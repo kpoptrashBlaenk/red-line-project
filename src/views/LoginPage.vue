@@ -1,0 +1,36 @@
+<template>
+  <ion-page>
+    <!-- Header -->
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Login</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- Content -->
+    <ion-content :fullscreen="true">
+      <FormComponent :fields :state="userState" :schema="userSchema" @submit="onSubmit" />
+    </ion-content>
+  </ion-page>
+</template>
+
+<script setup lang="ts">
+/* Imports */
+import FormComponent from '@/components/forms/FormComponent.vue'
+import { useUserStore } from '@/stores/user'
+import { FormField, UserSchema } from '@/types'
+import { userSchema, userState } from '@/utils/schemas'
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue'
+import { reactive } from 'vue'
+
+/* Constants */
+const userStore = useUserStore()
+
+/* Refs */
+const fields: FormField[] = reactive([{ element: 'ion-input', name: 'name', label: 'Name' }])
+
+/* Constants */
+function onSubmit(state: UserSchema) {
+  userStore.login(state)
+}
+</script>
