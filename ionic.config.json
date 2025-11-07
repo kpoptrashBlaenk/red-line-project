@@ -1,0 +1,7 @@
+{
+  "name": "red-line",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
