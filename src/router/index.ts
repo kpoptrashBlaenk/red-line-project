@@ -2,6 +2,7 @@ import { authOnly } from '@/middleware/auth'
 import { guestOnly } from '@/middleware/guest'
 import AuthPage from '@/views/AuthPage.vue'
 import IndexPage from '@/views/IndexPage.vue'
+import TestPage from '@/views/TestPage.vue'
 import { createRouter, createWebHistory } from '@ionic/vue-router'
 import { RouteRecordRaw } from 'vue-router'
 
@@ -28,6 +29,12 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/LoginPage.vue'),
       },
     ],
+  },
+
+  // Component Testing Page
+  {
+    path: '/test',
+    component: TestPage,
   },
 ]
 
