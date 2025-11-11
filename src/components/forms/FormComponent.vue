@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="handleSubmit">
     <FormFieldComponent v-for="(field, index) in fields" :key="index" :field :state />
-    <ion-button type="submit"> Submit </ion-button>
+    <IonButton type="submit"> Submit </IonButton>
   </form>
 </template>
 

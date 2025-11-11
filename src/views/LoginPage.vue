@@ -1,17 +1,17 @@
 <template>
-  <ion-page>
+  <IonPage>
     <!-- Header -->
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Login</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <IonHeader>
+      <IonToolbar>
+        <IonTitle>Login</IonTitle>
+      </IonToolbar>
+    </IonHeader>
 
     <!-- Content -->
-    <ion-content :fullscreen="true">
+    <IonContent :fullscreen="true">
       <FormComponent :fields :state="userState" :schema="userSchema" @submit="onSubmit" />
-    </ion-content>
-  </ion-page>
+    </IonContent>
+  </IonPage>
 </template>
 
 <script setup lang="ts">
