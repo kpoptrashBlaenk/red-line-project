@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div class="ion-padding"></div>
 </template>
 
 <script setup lang="ts"></script>
