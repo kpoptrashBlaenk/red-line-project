@@ -6,6 +6,8 @@ body {
 }
 
 :root {
+  --ion-text-color: #0b0d22;
+
   /* Primary Color (Cyna Blue) */
   --ion-color-primary: #0078c7;
   --ion-color-primary-rgb: 0, 120, 199;
