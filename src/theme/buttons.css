@@ -5,6 +5,7 @@ ion-button {
   --padding-end: 25px;
 
   min-height: 40px;
+  font-weight: 700;
 }
 
 /* Cyna Solid Button Style */
