@@ -30,6 +30,24 @@ ion-button.button-solid::part(native):active {
   color: var(--ion-color-base);
 }
 
+/* Cyna Outline Button Style */
+ion-button.button-outline {
+  --background-hover-opacity: 0;
+  --background-focused-opacity: 0;
+  --background-activated-opacity: 0;
+}
+
+ion-button.button-outline.ion-activated::part(native) {
+  color: var(--ion-color-base);
+}
+
+/* idk what this shit is, ios is just feeling special today */
+@media (any-hover: hover) {
+  ion-button.button-outline:hover {
+    opacity: 1;
+  }
+}
+
 /* Cyna Clear Button Style */
 ion-button.button-clear {
   --background-hover-opacity: 0;
@@ -41,15 +59,11 @@ ion-button.button-clear::part(native):hover,
 ion-button.button-clear::part(native):focus,
 ion-button.button-clear::part(native):active {
   color: var(--ion-text-color);
-  opacity: 1;
 }
 
-/* idk what this shit is, ios is just feeling special today */
 @media (any-hover: hover) {
-  ion-button.button-clear:hover,
-  ion-button.button-clear:focus,
-  ion-button.button-clear:active {
-    opacity: 1 !important;
+  ion-button.button-clear:hover {
+    opacity: 1;
   }
 }
 
