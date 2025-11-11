@@ -1,20 +1,24 @@
+ion-button {
+  --padding-top: 3px;
+  --padding-bottom: 3px;
+  --padding-start: 25px;
+  --padding-end: 25px;
+
+  min-height: 40px;
+  font-weight: 700;
+}
 /* Cyna Solid Button Style */
 ion-button.button-solid {
   --border-color: var(--ion-color-base);
   --border-style: solid;
   --border-width: 1px;
 
-  --padding-top: 3px;
-  --padding-bottom: 3px;
-  --padding-start: 25px;
-  --padding-end: 25px;
-
-  --ion-color-tint: trasparent !important; /** because ios has a tint layer*/
-
-  min-height: 40px;
+  /** because ios has a tint & shade layer */
+  --ion-color-tint: trasparent !important;
+  --ion-color-shade: trasparent !important;
 }
 
-/* Cyna Solid Native Button Style again because of course why the fuck wouldn't ion-buttons background transitions apply to the native element */
+/* Cyna Solid Native Button Style because of course why the fuck wouldn't ion-button background transition apply to the native element */
 ion-button.button-solid::part(native) {
   transition: all 0.2s;
 }
@@ -25,12 +29,49 @@ ion-button.button-solid::part(native):active {
   color: var(--ion-color-base);
 }
 
-/* Button Chevron Animation */
-ion-button.button-solid ion-icon {
-  transition: transform 0.2s;
+/* Cyna Outline Button Style */
+ion-button.button-outline {
+  --background-hover-opacity: 0;
+  --background-focused-opacity: 0;
+  --background-activated-opacity: 0;
 }
-ion-button.button-solid:hover ion-icon,
-ion-button.button-solid:focus ion-icon,
-ion-button.button-solid:active ion-icon {
+
+ion-button.button-outline.ion-activated::part(native) {
+  color: var(--ion-color-base);
+}
+
+/* idk what this shit is, ios is just feeling special today */
+@media (any-hover: hover) {
+  ion-button.button-outline:hover {
+    opacity: 1;
+  }
+}
+
+/* Cyna Clear Button Style */
+ion-button.button-clear {
+  --background-hover-opacity: 0;
+  --background-focused-opacity: 0;
+  --background-activated-opacity: 0;
+}
+
+ion-button.button-clear::part(native):hover,
+ion-button.button-clear::part(native):focus,
+ion-button.button-clear::part(native):active {
+  color: var(--ion-text-color);
+}
+
+@media (any-hover: hover) {
+  ion-button.button-clear:hover {
+    opacity: 1;
+  }
+}
+
+/* Button Chevron Animation */
+ion-button ion-icon {
+  transition: all 0.2s;
+}
+ion-button:hover ion-icon,
+ion-button:focus ion-icon,
+ion-button:active ion-icon {
   transform: translateX(5px);
 }

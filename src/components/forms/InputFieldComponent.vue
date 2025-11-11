@@ -1,12 +1,12 @@
 <template>
-  <ion-input
+  <IonInput
     v-model="state[field.name]"
     :label="field.label"
     :error-text="field.error"
     @ionInput="validate"
     @ionBlur="markTouched"
     :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
-  ></ion-input>
+  ></IonInput>
 </template>
 
 <script setup lang="ts">

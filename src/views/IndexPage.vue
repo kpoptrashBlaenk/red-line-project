@@ -1,5 +1,5 @@
 <template>
-  <ion-page> </ion-page>
+  <IonPage> </IonPage>
 </template>
 
 <script setup lang="ts">
