@@ -1,5 +1,5 @@
 <template>
-  <div v-html="props.text"></div>
+  <div v-html="props.text" class="mt-7 text-base"></div>
 </template>
 
 <script setup lang="ts">
