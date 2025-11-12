@@ -1,7 +1,5 @@
 <template>
-  <div>
-    {{ props.text }}
-  </div>
+  <div v-html="props.text"></div>
 </template>
 
 <script setup lang="ts">

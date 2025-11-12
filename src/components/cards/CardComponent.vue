@@ -1,10 +1,10 @@
 <template>
-  <IonCard>
+  <IonCard :color="props.color">
     <!-- Title -->
     <CardTitleComponent v-if="props.title" :props="props.title" />
 
     <IonCardContent>
-      <div class="p-10">
+      <div class="px-7 pb-7">
         <!-- Subtitle -->
         <CardSubtitleComponent v-if="props.subtitle" :props="props.subtitle" />
 

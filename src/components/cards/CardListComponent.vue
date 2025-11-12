@@ -1,5 +1,5 @@
 <template>
-  <ul class="list-disc font-semibold text-base pl-5 mt-4">
+  <ul class="list-disc font-semibold text-base pl-5 mt-7">
     <li v-for="(item, key) in props.items" :key class="mb-2.5">
       {{ item }}
     </li>

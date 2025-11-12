@@ -1,5 +1,5 @@
 <template>
-  <div class="text-xl font-extrabold mb-5">
+  <div class="text-xl font-extrabold mt-7">
     {{ props.text }}
   </div>
 </template>
