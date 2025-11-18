@@ -1,10 +1,10 @@
-# #(issue)
+# Issue #(issue)
 
-### Description
+## Description
 
 Brief description of changements.
 
-### Tests
+## Tests
 
 Unit Tests:
 
@@ -14,8 +14,14 @@ E2E Tests
 
 - Specs added
 
-### Next Step
+## Next Step
 
 Description of next
 
-Related Issue: #(issue)
+Next Issue: #(issue)
+
+## Checklist
+
+- [x] Tested locally
+- [x] Ran `npm run format`
+- [x] Ran `npm run lint` and fixed errors
