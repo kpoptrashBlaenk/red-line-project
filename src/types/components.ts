@@ -1,5 +1,7 @@
 import type { PredefinedColors } from '@ionic/core/dist/types/interface'
 
+export type Props<T> = { props: T }
+
 type Position = 'start' | 'center' | 'end'
 export type Color = PredefinedColors
 

@@ -1,7 +1,7 @@
 import { useUserStore } from '@/stores/user'
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 
-const API_URL = import.meta.env.API_URL || 'localhost:8100'
+const API_URL = 'localhost:8100'
 
 // create axios instance
 const api: AxiosInstance = axios.create({

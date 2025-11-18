@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 /* Imports */
-import type { FormField } from '@/types/form'
+import type { FormField } from '@/types'
 import { userSchema } from '@/utils/schemas'
 import { IonInput } from '@ionic/vue'
 import { toRef } from 'vue'

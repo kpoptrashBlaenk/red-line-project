@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 /* Imports */
-import { FormField } from '@/types/form'
+import { FormField } from '@/types'
 import { validateForm } from '@/utils/validateForm'
 import { IonButton } from '@ionic/vue'
 import z from 'zod'

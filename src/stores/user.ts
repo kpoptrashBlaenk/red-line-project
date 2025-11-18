@@ -1,6 +1,6 @@
+import { User, UserSchema } from '@/types'
 import { apiPost } from '@/utils/api'
 import { defineStore } from 'pinia'
-import { User, UserSchema } from './../types/index'
 
 export const useUserStore = defineStore('user', {
   state: () => ({
