@@ -1,5 +1,3 @@
-import { authOnly } from '@/middleware/auth'
-import { guestOnly } from '@/middleware/guest'
 import AuthPage from '@/views/AuthPage.vue'
 import IndexPage from '@/views/IndexPage.vue'
 import TestPage from '@/views/TestPage.vue'
@@ -11,13 +9,13 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     component: IndexPage,
-    beforeEnter: authOnly,
+    // beforeEnter: authOnly,
   },
 
   // Auth Page
   {
     path: '/auth',
-    beforeEnter: guestOnly,
+    // beforeEnter: guestOnly,
     component: AuthPage,
     children: [
       {
