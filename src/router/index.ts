@@ -9,7 +9,16 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     component: IndexPage,
-    // beforeEnter: authOnly,
+    children: [
+      {
+        path: '',
+        redirect: '/home',
+      },
+      {
+        path: 'home',
+        component: () => import('@/views/IndexPage.vue'),
+      },
+    ],
   },
 
   // Auth Page

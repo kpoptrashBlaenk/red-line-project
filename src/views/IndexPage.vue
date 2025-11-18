@@ -1,8 +1,10 @@
 <template>
-  <IonPage> </IonPage>
+  <IonPage>
+    <IonRouterOutlet></IonRouterOutlet>
+  </IonPage>
 </template>
 
 <script setup lang="ts">
 /* Imports */
-import { IonPage } from '@ionic/vue'
+import { IonPage, IonRouterOutlet } from '@ionic/vue'
 </script>
