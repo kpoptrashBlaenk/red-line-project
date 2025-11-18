@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "esnext",
     "useDefineForClassFields": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "ignoreDeprecations": "6.0",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "strict": true,
     "jsx": "preserve",
     "resolveJsonModule": true,
@@ -17,6 +16,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*ts", "cypress.config.mjs"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

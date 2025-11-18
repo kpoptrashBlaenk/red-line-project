@@ -1,8 +1,8 @@
 <template>
-  <IonPage> </IonPage>
+  <IonContent> </IonContent>
 </template>
 
 <script setup lang="ts">
 /* Imports */
-import { IonPage } from '@ionic/vue'
+import { IonContent } from '@ionic/vue'
 </script>

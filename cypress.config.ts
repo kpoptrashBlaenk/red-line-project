@@ -1,15 +1,28 @@
 import { defineConfig } from 'cypress'
 
 export default defineConfig({
-  e2e: {
-    supportFile: 'tests/e2e/support/e2e.{js,jsx,ts,tsx}',
-    specPattern: 'tests/e2e/specs/**/*.cy.{js,jsx,ts,tsx}',
-    videosFolder: 'tests/e2e/videos',
-    screenshotsFolder: 'tests/e2e/screenshots',
-    baseUrl: 'http://localhost:5173',
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
+  fixturesFolder: 'tests/fixtures',
+  defaultBrowser: 'electron',
+
+  // because ionic
+  includeShadowDom: true,
+
+  // Pixel 7 viewports
+  viewportHeight: 915,
+
+  viewportWidth: 412,
+
+  component: {
+    devServer: {
+      framework: 'vue',
+      bundler: 'vite',
     },
+    indexHtmlFile: 'tests/support/component-index.html',
+    supportFile: 'tests/support/component.ts',
+    specPattern: 'tests/component/specs/**/*.cy.{js,jsx,ts,tsx}',
+  },
+  e2e: {
+    supportFile: 'tests/support/e2e.ts',
+    specPattern: 'tests/e2e/specs/**/*.cy.{js,jsx,ts,tsx}',
   },
 })
