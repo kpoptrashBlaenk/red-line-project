@@ -30,6 +30,7 @@
 </template>
 
 <script setup lang="ts">
+/* Imports */
 import LogoComponent from '@/components/ui/LogoComponent.vue'
 import { IonIcon } from '@ionic/vue'
 import { logoAmazon } from 'ionicons/icons'
