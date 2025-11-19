@@ -1,3 +1,4 @@
 export default {
-  footer_info_text: '/api/footer/info-text',
-}
+  footer_socials: 'footer/socials',
+  footer_info_text: 'footer/info-text',
+} as const
