@@ -5,7 +5,7 @@ import { createRouter, createWebHistory } from '@ionic/vue-router'
 import { RouteRecordRaw } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
-  // Index Page
+  // Root Pages
   {
     path: '/',
     component: IndexPage,
@@ -14,14 +14,15 @@ const routes: Array<RouteRecordRaw> = [
         path: '',
         redirect: '/home',
       },
+      // Home Page
       {
         path: 'home',
-        component: () => import('@/views/IndexPage.vue'),
+        component: () => import('@/views/HomePage.vue'),
       },
     ],
   },
 
-  // Auth Page
+  // Auth Pages
   {
     path: '/auth',
     // beforeEnter: guestOnly,
