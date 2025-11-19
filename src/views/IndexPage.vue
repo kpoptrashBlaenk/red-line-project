@@ -1,7 +1,7 @@
 <template>
   <IonPage>
     <DefaultLayout>
-      <IonRouterOutlet> </IonRouterOutlet>
+      <RouterView />
     </DefaultLayout>
   </IonPage>
 </template>
@@ -9,5 +9,5 @@
 <script setup lang="ts">
 /* Imports */
 import DefaultLayout from '@/components/layouts/default/DefaultLayout.vue'
-import { IonPage, IonRouterOutlet } from '@ionic/vue'
+import { IonPage } from '@ionic/vue'
 </script>

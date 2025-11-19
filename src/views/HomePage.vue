@@ -1,10 +1,5 @@
 <template>
-  <IonPage>
-    <IonRouterOutlet> </IonRouterOutlet>
-  </IonPage>
+  <div></div>
 </template>
 
-<script setup lang="ts">
-/* Imports */
-import { IonPage, IonRouterOutlet } from '@ionic/vue'
-</script>
+<script setup lang="ts"></script>

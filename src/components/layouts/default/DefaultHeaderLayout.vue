@@ -1,11 +1,7 @@
 <template>
   <IonHeader>
     <IonToolbar color="primary" class="px-5">
-      <IonImg
-        src="https://cyna-it.fr/wp-content/themes/theme-cyna-it/images/logo-cyna-white.svg"
-        slot="start"
-        router-link="/home"
-      />
+      <LogoComponent slot="start" />
 
       <IonButtons slot="end">
         <IonButton id="open-search-modal" fill="clear" size="large">
@@ -22,6 +18,7 @@
 
 <script setup lang="ts">
 /* Imports */
-import { IonButton, IonButtons, IonHeader, IonIcon, IonImg, IonMenuButton, IonToolbar } from '@ionic/vue'
+import LogoComponent from '@/components/ui/LogoComponent.vue'
+import { IonButton, IonButtons, IonHeader, IonIcon, IonMenuButton, IonToolbar } from '@ionic/vue'
 import { cartOutline, searchOutline } from 'ionicons/icons'
 </script>
