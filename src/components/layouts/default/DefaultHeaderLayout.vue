@@ -1,5 +1,5 @@
 <template>
-  <IonHeader mode="ios">
+  <IonHeader>
     <IonToolbar color="primary" class="px-5">
       <IonImg
         src="https://cyna-it.fr/wp-content/themes/theme-cyna-it/images/logo-cyna-white.svg"
