@@ -9,6 +9,7 @@
 <script setup lang="ts">
 /* Imports */
 import { Social } from '@/types'
+import { IonIcon } from '@ionic/vue'
 
 /* Props */
 defineProps<{
