@@ -10,32 +10,21 @@
     </div>
 
     <!-- Social Media -->
-    <div class="flex flex-wrap gap-5 text-2xl">
-      <a v-for="(social, key) in socials" :key :href="social.url" target="_blank">
-        <IonIcon :icon="social.logo" />
-      </a>
-    </div>
+    <DefaultSocialsFooter :socials />
 
     <!-- Info -->
-    <div class="flex flex-col gap-3">
-      <div>
-        <LogoComponent />
-      </div>
-      <div>
-        {{ infoText }}
-      </div>
-    </div>
+    <DefaultInfoFooter :info-text />
   </footer>
 </template>
 
 <script setup lang="ts">
 /* Imports */
-import LogoComponent from '@/components/ui/LogoComponent.vue'
 import { useFooter } from '@/composables/footer'
 import { Social } from '@/types'
 import translation from '@/utils/translation'
-import { IonIcon } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
+import DefaultInfoFooter from './DefaultInfoFooter.vue'
+import DefaultSocialsFooter from './DefaultSocialsFooter.vue'
 
 /* Constants */
 const { getInfoText, getSocials } = useFooter()
