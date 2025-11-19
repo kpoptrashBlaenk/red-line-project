@@ -6,7 +6,7 @@
     </div>
     <!-- General Conditions -->
     <div>
-      <RouterLink to="/home">{{ translation('legal_mentions') }}</RouterLink>
+      <RouterLink to="/home">{{ translation('general_conditions') }}</RouterLink>
     </div>
 
     <!-- Social Media -->
