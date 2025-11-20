@@ -28,50 +28,22 @@
 <script setup lang="ts">
 /* Imports */
 import { Promotion } from '$/types'
+import { useHome } from '@/composables/home'
 import { EffectCoverflow } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { reactive } from 'vue'
+import { onMounted, ref } from 'vue'
 import HomeSwiperCard from '../ui/cards/HomeSwiperCard.vue'
 
 /* Constants */
-const promotions = reactive<Promotion[]>([
-  {
-    id: 1,
-    image: 'https://cyna-it.fr/wp-content/uploads/2025/01/hopital-st-camille.png',
-    title: "Mise en place d'un SOC Managé",
-    subtitle: 'Centre hospitalier',
-    button: "Lire l'artlicle",
-    link: '/something',
-    index: 1,
-  },
-  {
-    id: 1,
-    image: 'https://cyna-it.fr/wp-content/uploads/2025/01/hopital-st-camille.png',
-    title: "Mise en place d'un SOC Managé",
-    subtitle: 'Centre hospitalier',
-    button: "Lire l'artlicle",
-    link: '/something',
-    index: 1,
-  },
-  {
-    id: 1,
-    image: 'https://cyna-it.fr/wp-content/uploads/2025/01/hopital-st-camille.png',
-    title: "Mise en place d'un SOC Managé",
-    subtitle: 'Centre hospitalier',
-    button: "Lire l'artlicle",
-    link: '/something',
-    index: 1,
-  },
-  {
-    id: 1,
-    image: 'https://cyna-it.fr/wp-content/uploads/2025/01/hopital-st-camille.png',
-    title: "Mise en place d'un SOC Managé",
-    subtitle: 'Centre hospitalier',
-    button: "Lire l'artlicle",
-    link: '/something',
-    index: 1,
-  },
-])
+const { getPromotions } = useHome()
+
+/* Refs */
+const promotions = ref<Promotion[]>([])
+
+/* Lifecycle Hooks */
+onMounted(async () => {
+  promotions.value = await getPromotions()
+})
 </script>
 
 <style lang="css" scoped>

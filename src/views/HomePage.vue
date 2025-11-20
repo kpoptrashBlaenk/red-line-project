@@ -1,6 +1,6 @@
 <template>
   <DefaultLayout>
-    <HomeSwiper />
+    <HomeSwiper class="mt-10" />
   </DefaultLayout>
 </template>
 

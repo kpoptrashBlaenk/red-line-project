@@ -9,7 +9,7 @@
     <IonContent id="main-content" fullscreen>
       <slot></slot>
 
-      <DefaultFooter v-if="getPlatforms().includes('desktop')" />
+      <DefaultFooter v-if="getPlatforms().includes('desktop')" class="mt-10" />
     </IonContent>
   </IonPage>
 </template>
