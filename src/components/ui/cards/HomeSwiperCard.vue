@@ -8,7 +8,7 @@
     </IonCardHeader>
 
     <div class="flex justify-end pb-3">
-      <OutlineButton :label="promotion.button" :link="promotion.link" />
+      <OutlineButton :label="promotion.button" :link="promotion.link" color="secondary" />
     </div>
   </IonCard>
 </template>
@@ -17,7 +17,7 @@
 /* Imports */
 import { Promotion } from '$/types'
 import { IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonImg } from '@ionic/vue'
-import OutlineButton from '../buttons/OutlineButton.vue'
+import OutlineButton from '../buttons/ClearButton.vue'
 
 /* Props */
 defineProps<{
