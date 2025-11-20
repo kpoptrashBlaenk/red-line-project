@@ -11,7 +11,7 @@ import '@ionic/vue/css/typography.css'
 
 import '@ionic/vue/css/palettes/dark.system.css'
 
-// import '@ionic/vue/css/ionic-swiper.css'
+import '@ionic/vue/css/ionic-swiper.css'
 import 'swiper/css'
 import 'swiper/css/effect-coverflow'
 

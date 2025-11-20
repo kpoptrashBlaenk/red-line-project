@@ -1,11 +1,11 @@
 <template>
   <DefaultLayout>
-    <HomeCarousel />
+    <HomeSwiper />
   </DefaultLayout>
 </template>
 
 <script setup lang="ts">
 /* Imports */
-import HomeCarousel from '@/components/home/carousel/HomeCarousel.vue'
 import DefaultLayout from '@/components/layouts/default/DefaultLayout.vue'
+import HomeSwiper from '@/components/swiper/HomeSwiper.vue'
 </script>

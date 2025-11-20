@@ -1,36 +1,26 @@
 <template>
   <Swiper
-    :effect="'coverflow'"
+    v-if="promotions.length > 0"
+    :modules="[EffectCoverflow]"
+    loop
     grabCursor
     centeredSlides
-    :slidesPerView="'auto'"
-    :coverflowEffect="{
+    :slides-per-view="'auto'"
+    effect="coverflow"
+    :coverflow-effect="{
       rotate: 50,
       stretch: 0,
       depth: 100,
       modifier: 1,
       slideShadows: true,
     }"
-    :modules="[EffectCoverflow]"
-    loop
-    class="m-10"
+    :autoplay="{
+      delay: 2500,
+      disableOnInteraction: false,
+    }"
   >
-    <SwiperSlide v-for="(promotion, key) in promotions" :key class="bg-secondary">
-      <IonCard class="mb-0.5 rounded-none">
-        <IonImg :src="promotion.image" class="bg-secondary h-32 p-2" />
-
-        <IonCardHeader class="p-5 text-start">
-          <IonCardTitle>{{ promotion.title }}</IonCardTitle>
-          <IonCardSubtitle class="mb-2">{{ promotion.subtitle }}</IonCardSubtitle>
-        </IonCardHeader>
-
-        <div class="flex justify-end pb-3 bg-white">
-          <IonButton fill="clear" color="secondary" :router-link="promotion.link">
-            {{ promotion.button }}
-            <IonIcon :icon="chevronForward" />
-          </IonButton>
-        </div>
-      </IonCard>
+    <SwiperSlide v-for="(promotion, key) in promotions" :key="key" class="bg-secondary">
+      <HomeSwiperCard :promotion="promotion" />
     </SwiperSlide>
   </Swiper>
 </template>
@@ -38,11 +28,10 @@
 <script setup lang="ts">
 /* Imports */
 import { Promotion } from '$/types'
-import { IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonIcon, IonImg } from '@ionic/vue'
-import { chevronForward } from 'ionicons/icons'
 import { EffectCoverflow } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { reactive } from 'vue'
+import HomeSwiperCard from '../ui/cards/HomeSwiperCard.vue'
 
 /* Constants */
 const promotions = reactive<Promotion[]>([
@@ -85,7 +74,7 @@ const promotions = reactive<Promotion[]>([
 ])
 </script>
 
-<style>
+<style lang="css" scoped>
 .swiper-slide {
   max-width: 300px;
   max-height: 300px;
