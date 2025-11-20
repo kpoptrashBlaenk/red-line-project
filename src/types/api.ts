@@ -1,7 +1,3 @@
-import apiUrls from '@/constants/apiUrls'
-
-export type ApiUrl = keyof typeof apiUrls
-
 export type Social = {
   id: number
   logo: string

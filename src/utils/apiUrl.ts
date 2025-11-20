@@ -1,9 +1,19 @@
-import apiUrls from '@/constants/apiUrls'
 import { useSettingsStore } from '@/stores/settings'
-import { ApiUrl } from '@/types'
 
+const urls = {
+  footer_socials: 'footer/socials',
+  footer_info_text: 'footer/info-text',
+} as const
+
+type ApiUrl = keyof typeof urls
+
+/**
+ * Get API URL by key
+ *
+ * @param key Key of wanted API
+ */
 export default function (key: ApiUrl) {
   const setttingsStore = useSettingsStore()
 
-  return `api/${apiUrls[key]}?lang=${setttingsStore.getLanguage}`
+  return `api/${urls[key]}?lang=${setttingsStore.getLanguage}`
 }
