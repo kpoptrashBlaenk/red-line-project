@@ -62,3 +62,9 @@ a:hover {
 .bg-gradient {
   background: linear-gradient(90deg, #010033 50%, #302082);
 }
+.bg-primary {
+  background: var(--ion-color-primary);
+}
+.bg-secondary {
+  background: var(--ion-color-secondary);
+}

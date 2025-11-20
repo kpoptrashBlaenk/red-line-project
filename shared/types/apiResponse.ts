@@ -2,7 +2,9 @@
 export type Promotion = {
   id: number
   image: string
-  text: string
+  title: string
+  subtitle: string
+  button: string
   link: string
   index: number
 }
