@@ -1,4 +1,4 @@
-@import url(./buttons.css);
+/* @import url(./buttons.css); */
 @import 'tailwindcss';
 
 /* ---------- FONTS ---------- */
@@ -48,4 +48,17 @@ body {
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
   --ion-color-secondary-shade: #7100e0;
   --ion-color-secondary-tint: #8d1aff;
+}
+
+/* Link */
+a {
+  color: inherit;
+}
+a:hover {
+  text-decoration-line: underline;
+}
+
+/* Color */
+.bg-gradient {
+  background: linear-gradient(90deg, #010033 50%, #302082);
 }

@@ -1,34 +1,24 @@
-import { authOnly } from '@/middleware/auth'
-import { guestOnly } from '@/middleware/guest'
-import AuthPage from '@/views/AuthPage.vue'
-import IndexPage from '@/views/IndexPage.vue'
+import HomePage from '@/views/HomePage.vue'
+import LoginPage from '@/views/LoginPage.vue'
 import TestPage from '@/views/TestPage.vue'
 import { createRouter, createWebHistory } from '@ionic/vue-router'
 import { RouteRecordRaw } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
-  // Index Page
+  // Home Page
   {
-    path: '/',
-    component: IndexPage,
-    beforeEnter: authOnly,
+    path: '',
+    redirect: '/home',
+  },
+  {
+    path: '/home',
+    component: HomePage,
   },
 
-  // Auth Page
+  // Auth Pages
   {
-    path: '/auth',
-    beforeEnter: guestOnly,
-    component: AuthPage,
-    children: [
-      {
-        path: '',
-        redirect: '/auth/login',
-      },
-      {
-        path: 'login',
-        component: () => import('@/views/LoginPage.vue'),
-      },
-    ],
+    path: '/login',
+    component: LoginPage,
   },
 
   // Component Testing Page
