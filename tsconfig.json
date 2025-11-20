@@ -13,9 +13,10 @@
     "skipLibCheck": true,
     "noEmit": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "#/*": ["./server/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*ts", "cypress.config.mjs"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "tests/**/*ts", "server/**/*.ts", "server/**/*.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
