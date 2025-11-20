@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 /* Imports */
-import type { FormField } from '@/types/form'
+import type { FormField } from '@/types'
 import InputFieldComponent from './InputFieldComponent.vue'
 
 /* Props */

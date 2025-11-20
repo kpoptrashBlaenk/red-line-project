@@ -1,17 +1,17 @@
 <template>
-  <ion-input
+  <IonInput
     v-model="state[field.name]"
     :label="field.label"
     :error-text="field.error"
     @ionInput="validate"
     @ionBlur="markTouched"
     :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
-  ></ion-input>
+  ></IonInput>
 </template>
 
 <script setup lang="ts">
 /* Imports */
-import type { FormField } from '@/types/form'
+import type { FormField } from '@/types'
 import { userSchema } from '@/utils/schemas'
 import { IonInput } from '@ionic/vue'
 import { toRef } from 'vue'
