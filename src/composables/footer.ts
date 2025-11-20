@@ -1,4 +1,4 @@
-import { Social } from '@/types'
+import { Social } from '$/types'
 import { logoGithub } from 'ionicons/icons'
 
 /**

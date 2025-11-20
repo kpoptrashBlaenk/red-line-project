@@ -14,9 +14,10 @@
     "noEmit": true,
     "paths": {
       "@/*": ["./src/*"],
-      "#/*": ["./server/*"]
+      "#/*": ["./server/*"],
+      "$/*": ["./shared/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "tests/**/*ts", "server/**/*.ts", "server/**/*.d.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "tests/**/*ts", "server/**/*.ts", "shared/**/*.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

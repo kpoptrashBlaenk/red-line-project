@@ -19,8 +19,8 @@
 
 <script setup lang="ts">
 /* Imports */
+import { Social } from '$/types'
 import { useFooter } from '@/composables/footer'
-import { Social } from '@/types'
 import translation from '@/utils/translation'
 import { onMounted, ref } from 'vue'
 import DefaultInfoFooter from './DefaultInfoFooter.vue'

@@ -1,9 +1,3 @@
-export type Social = {
-  id: number
-  logo: string
-  url: string
-}
-
 export interface User {
   token: string
 }
