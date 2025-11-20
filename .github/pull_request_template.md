@@ -14,12 +14,6 @@ E2E Tests
 
 - Specs added
 
-## Next Step
-
-Description of next
-
-Next Issue: #(issue)
-
 ## Checklist
 
 - [x] Tested locally
