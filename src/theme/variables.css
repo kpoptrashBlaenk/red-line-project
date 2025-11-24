@@ -72,3 +72,13 @@ a:hover {
 .bg-secondary {
   background: var(--ion-color-secondary);
 }
+
+/* Layout */
+.wrap {
+  width: 100%;
+  max-width: 1250px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 25px;
+  box-sizing: border-box;
+}

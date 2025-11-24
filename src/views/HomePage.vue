@@ -1,8 +1,10 @@
 <template>
   <DefaultLayout>
-    <PageTop :title="translation('home_carousel_title')">
+    <HeroComponent :title="translation('home_carousel_title')">
       <HomeSwiper :promotions />
-    </PageTop>
+    </HeroComponent>
+
+    <div class="wrap"></div>
   </DefaultLayout>
 </template>
 
@@ -11,7 +13,7 @@
 import { Promotion } from '$/types'
 import DefaultLayout from '@/components/layouts/default/DefaultLayout.vue'
 import HomeSwiper from '@/components/swiper/HomeSwiper.vue'
-import PageTop from '@/components/ui/PageTop.vue'
+import HeroComponent from '@/components/ui/HeroComponent.vue'
 import { useHome } from '@/composables/home'
 import translation from '@/utils/translation'
 import { onMounted, ref } from 'vue'

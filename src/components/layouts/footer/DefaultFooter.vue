@@ -1,24 +1,26 @@
 <template>
-  <footer class="bg-gradient py-10 px-5 text-white grid grid-cols-1 md:grid-cols-5 gap-5 items-start">
-    <!-- Legal Mentions -->
-    <div>
-      <RouterLink to="/home">{{ translation('legal_mentions') }}</RouterLink>
-    </div>
-    <!-- General Conditions -->
-    <div>
-      <RouterLink to="/home">{{ translation('general_conditions') }}</RouterLink>
-    </div>
+  <footer class="bg-gradient py-10 px-5">
+    <div class="text-white grid grid-cols-1 md:grid-cols-5 gap-5 items-start wrap">
+      <!-- Legal Mentions -->
+      <div>
+        <RouterLink to="/home">{{ translation('legal_mentions') }}</RouterLink>
+      </div>
+      <!-- General Conditions -->
+      <div>
+        <RouterLink to="/home">{{ translation('general_conditions') }}</RouterLink>
+      </div>
 
-    <!-- Contact -->
-    <div>
-      <RouterLink to="/home">{{ translation('contact') }}</RouterLink>
+      <!-- Contact -->
+      <div>
+        <RouterLink to="/home">{{ translation('contact') }}</RouterLink>
+      </div>
+
+      <!-- Social Media -->
+      <DefaultSocialsFooter :socials />
+
+      <!-- Info -->
+      <DefaultInfoFooter :info-text />
     </div>
-
-    <!-- Social Media -->
-    <DefaultSocialsFooter :socials />
-
-    <!-- Info -->
-    <DefaultInfoFooter :info-text />
   </footer>
 </template>
 
