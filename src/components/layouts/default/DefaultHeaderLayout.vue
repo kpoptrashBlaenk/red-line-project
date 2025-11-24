@@ -1,6 +1,6 @@
 <template>
   <IonHeader>
-    <IonToolbar class="px-5">
+    <IonToolbar class="px-5" color="tertiary">
       <LogoComponent slot="start" />
 
       <IonButtons slot="end">
@@ -22,11 +22,3 @@ import LogoComponent from '@/components/ui/LogoComponent.vue'
 import { IonButton, IonButtons, IonHeader, IonIcon, IonMenuButton, IonToolbar } from '@ionic/vue'
 import { cartOutline, searchOutline } from 'ionicons/icons'
 </script>
-
-<style lang="css" scoped>
-/* Toolbar Background */
-ion-toolbar {
-  --background: var(--color-gradient);
-  --color: var(--color-gradient-contrast);
-}
-</style>

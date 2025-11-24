@@ -49,9 +49,13 @@ body {
   --ion-color-secondary-shade: #7100e0;
   --ion-color-secondary-tint: #8d1aff;
 
-  /* Gradient Color */
-  --color-gradient: linear-gradient(90deg, #010033 50%, #302082);
-  --color-gradient-contrast: #ffffff;
+  /* Tertiary Color (Cyna Dark Blue) */
+  --ion-color-tertiary: #010033;
+  --ion-color-tertiary-rgb: 26, 0, 96;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #160051;
+  --ion-color-tertiary-tint: #330099;
 }
 
 /* Link */
@@ -63,14 +67,14 @@ a:hover {
 }
 
 /* Color */
-.bg-gradient {
-  background: var(--color-gradient);
-}
 .bg-primary {
   background: var(--ion-color-primary);
 }
 .bg-secondary {
   background: var(--ion-color-secondary);
+}
+.bg-tertiary {
+  background: var(--ion-color-tertiary);
 }
 
 /* Layout */

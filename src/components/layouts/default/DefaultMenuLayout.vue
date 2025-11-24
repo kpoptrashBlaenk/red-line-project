@@ -2,7 +2,7 @@
   <IonMenu content-id="main-content" side="end">
     <!-- Header -->
     <IonHeader>
-      <IonToolbar color="primary" class="px-5">
+      <IonToolbar color="tertiary" class="px-5">
         <IonTitle> {{ translation('menu') }} </IonTitle>
       </IonToolbar>
     </IonHeader>
@@ -15,7 +15,7 @@
           <IonItem
             v-if="!(page.mobileOnly && isDesktop())"
             :key
-            :color="route.fullPath.startsWith(page.url) ? 'primary' : ''"
+            :color="route.fullPath.startsWith(page.url) ? 'primary' : 'light'"
             :router-link="page.url"
             button
             detail

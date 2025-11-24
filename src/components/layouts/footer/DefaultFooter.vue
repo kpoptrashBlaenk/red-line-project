@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-gradient py-10 px-5">
+  <footer class="bg-tertiary py-10 px-5">
     <div class="text-white grid grid-cols-1 md:grid-cols-5 gap-5 items-start wrap">
       <!-- Legal Mentions -->
       <div>
