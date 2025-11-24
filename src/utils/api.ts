@@ -1,3 +1,4 @@
+import { useSettingsStore } from '@/stores/settings'
 import { useUserStore } from '@/stores/user'
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import apiUrl from './apiUrl'
@@ -23,11 +24,15 @@ const api: AxiosInstance = axios.create({
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const userStore = useUserStore()
+    const settingsStore = useSettingsStore()
 
     // bearer token if user
     if (userStore.user?.token) {
       config.headers.set?.('Authorization', `Bearer ${userStore.user.token}`)
     }
+
+    // add language to config
+    config.headers.set?.('App-Language', settingsStore.getLanguage)
 
     return config
   },
