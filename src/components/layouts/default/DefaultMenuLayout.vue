@@ -13,7 +13,7 @@
         <!-- Item -->
         <template v-for="(page, key) in pages">
           <IonItem
-            v-if="page.mobileOnly && !getPlatforms().includes('desktop')"
+            v-if="!(page.mobileOnly && getPlatforms().includes('desktop'))"
             :key
             :color="route.fullPath.startsWith(page.url) ? 'primary' : ''"
             :router-link="page.url"

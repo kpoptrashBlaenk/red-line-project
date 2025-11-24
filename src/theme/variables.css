@@ -48,6 +48,10 @@ body {
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
   --ion-color-secondary-shade: #7100e0;
   --ion-color-secondary-tint: #8d1aff;
+
+  /* Gradient Color */
+  --color-gradient: linear-gradient(90deg, #010033 50%, #302082);
+  --color-gradient-contrast: #ffffff;
 }
 
 /* Link */
@@ -60,7 +64,7 @@ a:hover {
 
 /* Color */
 .bg-gradient {
-  background: linear-gradient(90deg, #010033 50%, #302082);
+  background: var(--color-gradient);
 }
 .bg-primary {
   background: var(--ion-color-primary);

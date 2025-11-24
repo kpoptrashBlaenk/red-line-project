@@ -1,6 +1,6 @@
 <template>
-  <IonCard class="mb-0.5 rounded-none">
-    <IonImg :src="promotion.image" class="bg-secondary h-32 p-2" />
+  <IonCard class="mb-0.5 rounded-none w-full">
+    <IonImg :src="promotion.image" class="bg-primary h-32 p-2" />
 
     <IonCardHeader class="p-5 text-start">
       <IonCardTitle>{{ promotion.title }}</IonCardTitle>
@@ -8,7 +8,7 @@
     </IonCardHeader>
 
     <div class="flex justify-end pb-3">
-      <OutlineButton :label="promotion.button" :link="promotion.link" color="secondary" />
+      <OutlineButton :label="promotion.button" :link="promotion.link" color="primary" />
     </div>
   </IonCard>
 </template>

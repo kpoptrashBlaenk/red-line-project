@@ -7,6 +7,7 @@ const translationKeys = {
   legal_mentions: 'legal_mentions',
   general_conditions: 'general_conditions',
   contact: 'contact',
+  home_carousel_title: 'home_carousel_title',
 }
 
 export type TranslationKey = keyof typeof translationKeys
@@ -18,6 +19,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     legal_mentions: 'Legal Mentions',
     general_conditions: 'General Conditions',
     contact: 'Contact',
+    home_carousel_title: 'Our Promotions',
   },
   fr: {
     menu: 'Menu',
@@ -25,6 +27,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     legal_mentions: 'Mentions légales',
     general_conditions: 'Conditions générales',
     contact: 'Contacte',
+    home_carousel_title: 'Nos Promotions',
   },
 }
 

@@ -2,7 +2,6 @@
   <Swiper
     v-if="promotions.length > 0"
     :modules="[EffectCoverflow]"
-    loop
     grabCursor
     centeredSlides
     :slides-per-view="'auto'"
@@ -19,7 +18,7 @@
       disableOnInteraction: false,
     }"
   >
-    <SwiperSlide v-for="(promotion, key) in promotions" :key="key" class="bg-secondary">
+    <SwiperSlide v-for="(promotion, key) in promotions" :key="key" class="bg-primary max-w-80 md:max-w-120 max-h-80">
       <HomeSwiperCard :promotion="promotion" />
     </SwiperSlide>
   </Swiper>
@@ -28,27 +27,12 @@
 <script setup lang="ts">
 /* Imports */
 import { Promotion } from '$/types'
-import { useHome } from '@/composables/home'
 import { EffectCoverflow } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { onMounted, ref } from 'vue'
 import HomeSwiperCard from '../ui/cards/HomeSwiperCard.vue'
 
-/* Constants */
-const { getPromotions } = useHome()
-
-/* Refs */
-const promotions = ref<Promotion[]>([])
-
-/* Lifecycle Hooks */
-onMounted(async () => {
-  promotions.value = await getPromotions()
-})
+/* Props */
+defineProps<{
+  promotions: Promotion[]
+}>()
 </script>
-
-<style lang="css" scoped>
-.swiper-slide {
-  max-width: 300px;
-  max-height: 300px;
-}
-</style>
