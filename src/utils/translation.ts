@@ -31,6 +31,11 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
   },
 }
 
+/**
+ * Translate static text in the selected app language
+ *
+ * @param key
+ */
 export default function (key: TranslationKey) {
   const setttingsStore = useSettingsStore()
 

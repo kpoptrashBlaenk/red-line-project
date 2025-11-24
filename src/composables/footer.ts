@@ -13,7 +13,7 @@ export function useFooter() {
       {
         id: 1,
         logo: logoGithub,
-        url: 'https://github.com/kpoptrashBlaenk',
+        link: 'https://github.com/kpoptrashBlaenk',
       },
     ]
 

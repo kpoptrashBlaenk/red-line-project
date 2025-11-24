@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-wrap gap-5 text-2xl">
-    <a v-for="(social, key) in socials" :key :href="social.url" target="_blank">
+    <a v-for="(social, key) in socials" :key :href="social.link" target="_blank">
       <IonIcon :icon="social.logo" />
     </a>
   </div>

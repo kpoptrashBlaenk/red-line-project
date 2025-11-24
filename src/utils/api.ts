@@ -1,9 +1,16 @@
 import { useUserStore } from '@/stores/user'
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import apiUrl from './apiUrl'
+apiUrl // ignore that (lint)
 
+/**
+ * URL of the API
+ */
 const API_URL = 'localhost:8100'
 
-// create axios instance
+/**
+ * Created axios instance
+ */
 const api: AxiosInstance = axios.create({
   baseURL: API_URL,
   timeout: 15000,
@@ -53,25 +60,45 @@ api.interceptors.response.use(
   },
 )
 
-// get
+/**
+ * Get request from the API
+ *
+ * @param url Use {@link apiUrl} to create an URL
+ * @param config
+ */
 export async function apiGet<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
   const { data } = await api.get<T>(url, config)
   return data
 }
 
-// post
+/**
+ * Post request from the API
+ *
+ * @param url Use {@link apiUrl} to create an URL
+ * @param config
+ */
 export async function apiPost<T>(url: string, body?: any, config?: AxiosRequestConfig): Promise<T> {
   const { data } = await api.post<T>(url, body, config)
   return data
 }
 
-// put
+/**
+ * Put request from the API
+ *
+ * @param url Use {@link apiUrl} to create an URL
+ * @param config
+ */
 export async function apiPut<T>(url: string, body?: any, config?: AxiosRequestConfig): Promise<T> {
   const { data } = await api.put<T>(url, body, config)
   return data
 }
 
-// delete
+/**
+ * Delete request from the API
+ *
+ * @param url Use {@link apiUrl} to create an URL
+ * @param config
+ */
 export async function apiDelete<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
   const { data } = await api.delete<T>(url, config)
   return data

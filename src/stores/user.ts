@@ -7,12 +7,16 @@ export const useUserStore = defineStore('user', {
   }),
   getters: {},
   actions: {
-    // restore session using local storage token (used in middleware)
+    /**
+     * Restore session using local storage token (used in middleware)
+     */
     async restoreSession() {
       return
     },
 
-    // login user
+    /**
+     * Log the user in using an email and password
+     */
     async login(body: UserSchema) {
       console.log(body)
       return

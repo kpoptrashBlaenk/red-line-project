@@ -7,10 +7,18 @@ export const useSettingsStore = defineStore('settings', {
   }),
 
   getters: {
+    /**
+     * Get the selected app language
+     */
     getLanguage: (state) => state.language,
   },
 
   actions: {
+    /**
+     * Set the app language
+     *
+     * @param lang New selected language
+     */
     setLanguage(lang: Language) {
       this.language = lang
     },
