@@ -13,7 +13,7 @@
         <!-- Item -->
         <template v-for="(page, key) in pages">
           <IonItem
-            v-if="!(page.mobileOnly && getPlatforms().includes('desktop'))"
+            v-if="!(page.mobileOnly && isDesktop())"
             :key
             :color="route.fullPath.startsWith(page.url) ? 'primary' : ''"
             :router-link="page.url"
@@ -31,8 +31,9 @@
 <script setup lang="ts">
 /* Imports */
 import pages from '@/constants/pages'
+import isDesktop from '@/utils/isDesktop'
 import translation from '@/utils/translation'
-import { getPlatforms, IonContent, IonHeader, IonItem, IonLabel, IonList, IonMenu, IonTitle, IonToolbar } from '@ionic/vue'
+import { IonContent, IonHeader, IonItem, IonLabel, IonList, IonMenu, IonTitle, IonToolbar } from '@ionic/vue'
 import { useRoute } from 'vue-router'
 
 /* Constants */

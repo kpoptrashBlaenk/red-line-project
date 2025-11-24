@@ -1,6 +1,7 @@
 <template>
+  <!-- Mobile Swiper (with cool effects) -->
   <Swiper
-    v-if="promotions.length > 0"
+    v-if="promotions.length > 0 && !isDesktop()"
     :modules="[EffectCoverflow]"
     grabCursor
     centeredSlides
@@ -13,10 +14,20 @@
       modifier: 1,
       slideShadows: true,
     }"
-    :autoplay="{
-      delay: 2500,
-      disableOnInteraction: false,
-    }"
+  >
+    <SwiperSlide v-for="(promotion, key) in promotions" :key="key" class="bg-primary max-w-80 md:max-w-120 max-h-80">
+      <HomeSwiperCard :promotion="promotion" />
+    </SwiperSlide>
+  </Swiper>
+
+  <!-- Desktop Swiper (without cool effects) -->
+  <Swiper
+    v-else-if="promotions.length > 0"
+    grabCursor
+    centeredSlides
+    :slides-per-view="'auto'"
+    :space-between="50"
+    effect="slide"
   >
     <SwiperSlide v-for="(promotion, key) in promotions" :key="key" class="bg-primary max-w-80 md:max-w-120 max-h-80">
       <HomeSwiperCard :promotion="promotion" />
@@ -27,6 +38,7 @@
 <script setup lang="ts">
 /* Imports */
 import { Promotion } from '$/types'
+import isDesktop from '@/utils/isDesktop'
 import { EffectCoverflow } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import HomeSwiperCard from '../ui/cards/HomeSwiperCard.vue'
