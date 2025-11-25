@@ -1,5 +1,5 @@
 <template>
-  <IonModal trigger="open-search-modal" :initial-breakpoint="0.75" :breakpoints="[0, 0.75]">
+  <IonModal :initial-breakpoint="0.75" :breakpoints="[0, 0.75]">
     <IonContent>
       <IonSearchbar placeholder="Search for products..." />
       <IonList>

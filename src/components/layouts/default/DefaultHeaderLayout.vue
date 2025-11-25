@@ -4,7 +4,7 @@
       <LogoComponent slot="start" :light="!isScrolled" />
 
       <IonButtons slot="end">
-        <IonButton id="open-search-modal" fill="clear" size="large">
+        <IonButton fill="clear" size="large" @click="$emit('open:search-modal')">
           <IonIcon :icon="searchOutline" />
         </IonButton>
         <IonButton fill="clear" size="large">

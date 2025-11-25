@@ -2,9 +2,9 @@
   <IonPage>
     <DefaultMenuLayout />
 
-    <DefaultModalLayout />
+    <DefaultModalLayout ref="searchModal" />
 
-    <DefaultHeaderLayout :is-scrolled />
+    <DefaultHeaderLayout :is-scrolled @open:search-modal="searchModal.$el.present()" />
 
     <IonContent id="main-content" ref="content" fullscreen scroll-events @ion-scroll="handleScroll">
       <slot></slot>
@@ -26,6 +26,7 @@ import DefaultModalLayout from './DefaultModalLayout.vue'
 
 /* Refs */
 const isScrolled = ref<boolean>(false)
+const searchModal = ref()
 
 /* Functions */
 function handleScroll(event: CustomEvent) {
