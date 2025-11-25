@@ -45,4 +45,15 @@ const router = createRouter({
   routes,
 })
 
+let lastRoute: string | null = null
+
+router.beforeEach((to, from, next) => {
+  lastRoute = from.fullPath
+  next()
+})
+
+export function getLastRoute() {
+  return lastRoute
+}
+
 export default router
