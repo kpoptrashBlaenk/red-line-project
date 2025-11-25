@@ -1,15 +1,15 @@
 <template>
-  <DefaultLayout>
+  <DefaultContentLayout>
     <div class="wrap">
       <SeparatorComponent />
 
       <SeparatorComponent />
     </div>
-  </DefaultLayout>
+  </DefaultContentLayout>
 </template>
 
 <script setup lang="ts">
 /* Imports */
-import DefaultLayout from '@/components/layouts/default/DefaultLayout.vue'
+import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 </script>

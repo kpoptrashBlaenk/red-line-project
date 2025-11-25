@@ -1,5 +1,5 @@
 <template>
-  <DefaultLayout>
+  <DefaultContentLayout>
     <HeroComponent :title="translation('home_carousel_title')">
       <HomeSwiper :promotions />
     </HeroComponent>
@@ -16,14 +16,14 @@
 
       <SeparatorComponent />
     </div>
-  </DefaultLayout>
+  </DefaultContentLayout>
 </template>
 
 <script setup lang="ts">
 /* Imports */
 import { Category, Promotion } from '$/types'
 import HomeCategoryGrid from '@/components/grids/HomeCategoryGrid.vue'
-import DefaultLayout from '@/components/layouts/default/DefaultLayout.vue'
+import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
 import HomeSwiper from '@/components/swiper/HomeSwiper.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
