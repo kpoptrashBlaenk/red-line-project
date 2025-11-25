@@ -9,7 +9,7 @@
     <IonContent id="main-content" ref="content" fullscreen scroll-events @ion-scroll="handleScroll">
       <slot></slot>
 
-      <DefaultFooter v-if="isDesktop()" class="mt-10" />
+      <DefaultFooter v-if="isDesktop()" />
     </IonContent>
   </IonPage>
 </template>

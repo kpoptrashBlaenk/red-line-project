@@ -1,5 +1,6 @@
 import { useSettingsStore } from '@/stores/settings'
 import { Language } from '@/types'
+import totTitle from './totTitle'
 
 const translationKeys = {
   menu: 'menu',
@@ -8,6 +9,7 @@ const translationKeys = {
   general_conditions: 'general_conditions',
   contact: 'contact',
   home_carousel_title: 'home_carousel_title',
+  home_category_title: 'home_category_title',
 }
 
 export type TranslationKey = keyof typeof translationKeys
@@ -20,6 +22,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     general_conditions: 'General Conditions',
     contact: 'Contact',
     home_carousel_title: 'Our Promotions',
+    home_category_title: `Explore Our ${totTitle('Categories')}`,
   },
   fr: {
     menu: 'Menu',
@@ -28,6 +31,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     general_conditions: 'Conditions générales',
     contact: 'Contacte',
     home_carousel_title: 'Nos Promotions',
+    home_category_title: `Découvrez nos ${totTitle('catégories')}`,
   },
 }
 

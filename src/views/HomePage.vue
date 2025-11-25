@@ -4,7 +4,13 @@
       <HomeSwiper :promotions />
     </HeroComponent>
 
-    <div class="wrap"></div>
+    <div class="wrap">
+      <SeparatorComponent />
+
+      <TitleComponent :text="translation('home_category_title')" color="secondary" />
+
+      <SeparatorComponent />
+    </div>
   </DefaultLayout>
 </template>
 
@@ -14,6 +20,8 @@ import { Promotion } from '$/types'
 import DefaultLayout from '@/components/layouts/default/DefaultLayout.vue'
 import HomeSwiper from '@/components/swiper/HomeSwiper.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
+import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
+import TitleComponent from '@/components/ui/TitleComponent.vue'
 import { useHome } from '@/composables/home'
 import translation from '@/utils/translation'
 import { onMounted, ref } from 'vue'

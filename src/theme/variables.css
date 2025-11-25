@@ -76,6 +76,15 @@ a:hover {
 .bg-tertiary {
   background: var(--ion-color-tertiary);
 }
+.text-primary {
+  color: var(--ion-color-primary);
+}
+.text-secondary {
+  color: var(--ion-color-secondary);
+}
+.text-tertiary {
+  color: var(--ion-color-tertiary);
+}
 
 /* Layout */
 .wrap {
