@@ -1,13 +1,13 @@
 <template>
-  <IonCard class="mb-0.5 rounded-none w-full h-72 flex flex-col">
+  <IonCard class="mb-0.5 rounded-none w-full h-78 flex flex-col">
     <IonImg :src="promotion.image" class="bg-primary h-32 p-2" />
 
-    <IonCardHeader class="p-5 text-start flex-1">
-      <IonCardTitle>{{ promotion.title }}</IonCardTitle>
+    <IonCardHeader class="px-3 pt-3 text-start">
+      <IonCardTitle class="text-2xl">{{ promotion.title }}</IonCardTitle>
       <IonCardSubtitle class="mb-2">{{ promotion.subtitle }}</IonCardSubtitle>
     </IonCardHeader>
 
-    <div class="flex justify-end pb-3 mt-auto">
+    <div class="flex justify-end mt-auto">
       <OutlineButton :label="promotion.button" :link="promotion.link" color="primary" />
     </div>
   </IonCard>
