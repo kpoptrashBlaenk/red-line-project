@@ -77,6 +77,9 @@ a:hover {
 .bg-tertiary {
   background: var(--ion-color-tertiary);
 }
+.bg-light {
+  background: var(--ion-color-light);
+}
 .text-primary {
   color: var(--ion-color-primary);
 }
