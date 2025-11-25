@@ -1,7 +1,15 @@
-/* Home */
+/**
+ * Product categories
+ */
+export type Category = {
+  id: number
+  image: string
+  name: string
+  index: number
+}
 
 /**
- * Promotional items of the Home Carousel
+ * Promotional item for the Home Carousel
  */
 export type Promotion = {
   id: number
@@ -13,7 +21,9 @@ export type Promotion = {
   index: number
 }
 
-/* Footer */
+/**
+ * Social links for the footer
+ */
 export type Social = {
   id: number
   logo: string

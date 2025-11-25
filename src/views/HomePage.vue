@@ -8,6 +8,7 @@
       <SeparatorComponent />
 
       <TitleComponent :text="translation('home_category_title')" color="secondary" />
+      <HomeCategoryGrid />
 
       <SeparatorComponent />
     </div>
@@ -17,6 +18,7 @@
 <script setup lang="ts">
 /* Imports */
 import { Promotion } from '$/types'
+import HomeCategoryGrid from '@/components/grids/HomeCategoryGrid.vue'
 import DefaultLayout from '@/components/layouts/default/DefaultLayout.vue'
 import HomeSwiper from '@/components/swiper/HomeSwiper.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'

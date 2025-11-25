@@ -32,6 +32,7 @@ body {
 :root {
   --ion-font-family: 'Red Hat Display', sans-serif;
   --ion-text-color: #0b0d22;
+  --default-transition-duration: 0.2s; /* tailwind (to fit ionic default) */
 
   /* Primary Color (Cyna Blue) */
   --ion-color-primary: #0078c7;
