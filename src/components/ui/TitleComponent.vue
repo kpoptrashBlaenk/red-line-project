@@ -12,6 +12,7 @@ const props = defineProps<{
   color: Color
 }>()
 
+/* Refs */
 const title = ref<string>(
   props.text.replaceAll('<title>', `<span class="text-${props.color}">`).replaceAll('</title>', `</span>`),
 )
