@@ -8,6 +8,7 @@ const translationKeys = {
   legal_mentions: 'legal_mentions',
   general_conditions: 'general_conditions',
   contact: 'contact',
+  admin: 'admin',
   home_carousel_title: 'home_carousel_title',
   home_category_title: 'home_category_title',
 }
@@ -21,6 +22,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     legal_mentions: 'Legal Mentions',
     general_conditions: 'General Conditions',
     contact: 'Contact',
+    admin: 'Admin Access',
     home_carousel_title: 'Our Promotions',
     home_category_title: `Explore Our ${totTitle('Categories')}`,
   },
@@ -30,6 +32,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     legal_mentions: 'Mentions légales',
     general_conditions: 'Conditions générales',
     contact: 'Contacte',
+    admin: 'Accès Admin',
     home_carousel_title: 'Nos Promotions',
     home_category_title: `Découvrez nos ${totTitle('catégories')}`,
   },

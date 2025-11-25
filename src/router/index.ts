@@ -1,3 +1,4 @@
+import AdminPage from '@/views/AdminPage.vue'
 import HomePage from '@/views/HomePage.vue'
 import LoginPage from '@/views/LoginPage.vue'
 import TestPage from '@/views/TestPage.vue'
@@ -19,6 +20,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     component: LoginPage,
+  },
+
+  // Admin Page
+  {
+    path: '/admin',
+    component: AdminPage,
   },
 
   // Component Testing Page

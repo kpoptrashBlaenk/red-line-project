@@ -5,6 +5,7 @@ const pageKeys = {
   legal_mentions: 'legal_mentions',
   general_conditions: 'general_conditions',
   contact: 'contact',
+  admin: 'admin',
 } as const
 
 type PageKey = keyof typeof pageKeys
@@ -33,6 +34,10 @@ const pages: Record<PageKey, Page> = {
     translationKey: pageKeys.general_conditions,
     url: '/conditions',
     mobileOnly: true,
+  },
+  admin: {
+    translationKey: pageKeys.admin,
+    url: '/admin',
   },
 }
 
