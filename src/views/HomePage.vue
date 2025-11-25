@@ -8,7 +8,7 @@
       <SeparatorComponent />
 
       <TitleComponent :text="translation('home_category_title')" color="secondary" />
-      <HomeCategoryGrid />
+      <HomeCategoryGrid :categories />
 
       <SeparatorComponent />
     </div>
@@ -17,25 +17,29 @@
 
 <script setup lang="ts">
 /* Imports */
-import { Promotion } from '$/types'
+import { Category, Promotion } from '$/types'
 import HomeCategoryGrid from '@/components/grids/HomeCategoryGrid.vue'
 import DefaultLayout from '@/components/layouts/default/DefaultLayout.vue'
 import HomeSwiper from '@/components/swiper/HomeSwiper.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import TitleComponent from '@/components/ui/TitleComponent.vue'
-import { useHome } from '@/composables/home'
+import { useCategory } from '@/composables/category'
+import { usePromotion } from '@/composables/promotion'
 import translation from '@/utils/translation'
 import { onMounted, ref } from 'vue'
 
 /* Constants */
-const { getPromotions } = useHome()
+const { getPromotions } = usePromotion()
+const { getCategories } = useCategory()
 
 /* Refs */
 const promotions = ref<Promotion[]>([])
+const categories = ref<Category[]>([])
 
 /* Lifecycle Hooks */
 onMounted(async () => {
   promotions.value = await getPromotions()
+  categories.value = await getCategories()
 })
 </script>

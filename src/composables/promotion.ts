@@ -1,9 +1,9 @@
 import { Promotion } from '$/types'
 
 /**
- * Use this composable to do home related queries
+ * Use this composable to do promotion related queries
  */
-export function useHome() {
+export function usePromotion() {
   /**
    * Get the promotional products
    */
