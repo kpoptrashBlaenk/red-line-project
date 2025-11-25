@@ -3,7 +3,7 @@
     <IonImg :src="promotion.image" class="bg-primary h-32 p-2" />
 
     <IonCardHeader class="px-3 pt-3 text-start">
-      <IonCardTitle class="text-2xl">{{ promotion.title }}</IonCardTitle>
+      <IonCardTitle class="text-2xl font-semibold">{{ promotion.title }}</IonCardTitle>
       <IonCardSubtitle class="mb-2">{{ promotion.subtitle }}</IonCardSubtitle>
     </IonCardHeader>
 
