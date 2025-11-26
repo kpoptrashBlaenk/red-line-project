@@ -9,7 +9,7 @@ import { ref } from 'vue'
 /* Props */
 const props = defineProps<{
   text: string
-  color: Color
+  color?: Color
 }>()
 
 /* Refs */

@@ -11,6 +11,7 @@ const translationKeys = {
   admin: 'admin',
   home_carousel_title: 'home_carousel_title',
   home_category_title: 'home_category_title',
+  category: 'category',
 }
 
 export type TranslationKey = keyof typeof translationKeys
@@ -25,6 +26,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     admin: 'Admin Access',
     home_carousel_title: 'Our Promotions',
     home_category_title: `Explore Our ${totTitle('Categories')}`,
+    category: 'Category',
   },
   fr: {
     menu: 'Menu',
@@ -35,6 +37,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     admin: 'Accès Admin',
     home_carousel_title: 'Nos Promotions',
     home_category_title: `Découvrez nos ${totTitle('catégories')}`,
+    category: 'Catégorie',
   },
 }
 

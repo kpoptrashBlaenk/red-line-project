@@ -5,16 +5,16 @@
     </HeroComponent>
 
     <div class="wrap">
-      <SeparatorComponent />
+      <SeparatorComponent size="sm" />
 
       <TextBox :home-text />
 
-      <SeparatorComponent />
+      <SeparatorComponent size="sm" />
 
       <TitleComponent :text="translation('home_category_title')" color="secondary" />
       <HomeCategoryGrid :categories />
 
-      <SeparatorComponent />
+      <SeparatorComponent size="md" />
     </div>
   </DefaultContentLayout>
 </template>
