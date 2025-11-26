@@ -16,6 +16,7 @@
           :items="promotions"
           image-key="image"
           text-key="title"
+          :reorder-callback="reorderPromotions"
         />
       </IonAccordionGroup>
 
@@ -38,7 +39,7 @@ import { IonAccordionGroup } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
 
 /* Constants */
-const { getPromotions } = usePromotion()
+const { getPromotions, reorderPromotions } = usePromotion()
 
 /* Refs */
 const promotions = ref<Promotion[]>([])

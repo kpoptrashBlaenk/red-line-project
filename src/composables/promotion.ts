@@ -68,6 +68,16 @@ export function usePromotion() {
     return promotions ?? []
   }
 
+  /**
+   * Reorder the promotional products
+   */
+  async function reorderPromotions(items: Promotion[]) {
+    // api request
+    items
+
+    return
+  }
+
   // return all functions
-  return { getPromotions }
+  return { getPromotions, reorderPromotions }
 }
