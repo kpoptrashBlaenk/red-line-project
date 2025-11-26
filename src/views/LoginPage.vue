@@ -18,8 +18,8 @@
 /* Imports */
 import FormComponent from '@/components/forms/FormComponent.vue'
 import { useUserStore } from '@/stores/user'
-import { FormField, UserSchema } from '@/types'
-import { userSchema, userState } from '@/utils/schemas'
+import { FormField } from '@/types'
+import { UserSchema, userSchema, userState } from '@/utils/schemas'
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue'
 import { reactive } from 'vue'
 

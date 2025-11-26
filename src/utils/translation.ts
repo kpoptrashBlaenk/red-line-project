@@ -14,6 +14,7 @@ const translationKeys = {
   category: 'category',
   admin_home_carousel_title: 'admin_home_carousel_title',
   toast_reordered: 'toast_reorder',
+  add: 'add',
 }
 
 export type TranslationKey = keyof typeof translationKeys
@@ -31,6 +32,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     category: 'Category',
     admin_home_carousel_title: 'Promotion Carousel',
     toast_reordered: 'Items reordered',
+    add: 'Add',
   },
   fr: {
     menu: 'Menu',
@@ -44,6 +46,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     category: 'Catégorie',
     admin_home_carousel_title: 'Carrousel de promotions',
     toast_reordered: 'Items reordered',
+    add: 'Ajouter',
   },
 }
 
