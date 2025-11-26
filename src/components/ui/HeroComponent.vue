@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-tertiary py-5">
-    <div class="text-white text-6xl font-bold mb-10 text-center px-2">{{ title }}</div>
+  <div class="bg-tertiary py-5!">
+    <div v-if="title" class="text-white text-6xl font-bold mb-10 text-center px-2">{{ title }}</div>
     <slot></slot>
   </div>
 </template>
@@ -8,6 +8,6 @@
 <script setup lang="ts">
 /* Props */
 defineProps<{
-  title: string
+  title?: string
 }>()
 </script>

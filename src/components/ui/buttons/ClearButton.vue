@@ -28,7 +28,8 @@ ion-button[fill='clear'] {
 
 /* Black Color */
 ion-button[fill='clear']::part(native):hover,
-ion-button[fill='clear']::part(native):focus {
+ion-button[fill='clear']::part(native):focus,
+ion-button[fill='clear']::part(native):active {
   color: var(--ion-text-color);
 }
 
@@ -50,7 +51,8 @@ ion-button ion-icon {
   transition: all 0.2s;
 }
 ion-button:hover ion-icon,
-ion-button:focus ion-icon {
+ion-button:focus ion-icon,
+ion-button:active ion-icon {
   transform: translateX(5px);
 }
 </style>
