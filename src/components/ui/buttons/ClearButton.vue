@@ -13,7 +13,7 @@ import { chevronForward } from 'ionicons/icons'
 
 /* Props */
 defineProps<{
-  label: string
+  label?: string
   link?: string
   color: Color
 }>()
