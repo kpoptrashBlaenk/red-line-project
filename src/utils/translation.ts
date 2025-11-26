@@ -13,6 +13,7 @@ const translationKeys = {
   home_category_title: 'home_category_title',
   category: 'category',
   admin_home_carousel_title: 'admin_home_carousel_title',
+  toast_reordered: 'toast_reorder',
 }
 
 export type TranslationKey = keyof typeof translationKeys
@@ -29,6 +30,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     home_category_title: `Explore Our ${totTitle('Categories')}`,
     category: 'Category',
     admin_home_carousel_title: 'Promotion Carousel',
+    toast_reordered: 'Items reordered',
   },
   fr: {
     menu: 'Menu',
@@ -41,6 +43,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     home_category_title: `Découvrez nos ${totTitle('catégories')}`,
     category: 'Catégorie',
     admin_home_carousel_title: 'Carrousel de promotions',
+    toast_reordered: 'Items reordered',
   },
 }
 

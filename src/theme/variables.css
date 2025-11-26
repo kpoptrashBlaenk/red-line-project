@@ -99,3 +99,19 @@ a:hover {
   padding: 0 25px;
   box-sizing: border-box;
 }
+
+/* Toast */
+ion-toast {
+  margin-top: -25px;
+  --width: 50%;
+}
+
+ion-toast.toast-success {
+  --background: var(--ion-color-success);
+  --color: var(--ion-color-success-contrast);
+}
+
+ion-toast.toast-danger {
+  --background: var(--ion-color-danger);
+  --color: var(--ion-color-danger-contrast);
+}

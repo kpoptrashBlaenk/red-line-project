@@ -1,4 +1,7 @@
 import { Promotion } from '$/types'
+import presentToast from '@/utils/presentToast'
+import translation from '@/utils/translation'
+import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do promotion related queries
@@ -74,6 +77,8 @@ export function usePromotion() {
   async function reorderPromotions(items: Promotion[]) {
     // api request
     items
+
+    await presentToast(translation('toast_reordered'), 'success', checkmarkCircleOutline)
 
     return
   }
