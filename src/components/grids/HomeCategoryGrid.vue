@@ -4,7 +4,7 @@
       v-for="(category, key) in categories"
       :key
       :image="category.image"
-      :title="category.name"
+      :title="translation(category.name)"
       :link="`/category/${category.id}`"
     />
   </div>
@@ -13,6 +13,7 @@
 <script setup lang="ts">
 /* Imports */
 import { Category } from '$/types'
+import translation from '@/utils/translation'
 import ImageTitleCard from '../ui/cards/ImageTitleCard.vue'
 
 /* Props */

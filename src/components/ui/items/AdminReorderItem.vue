@@ -5,7 +5,7 @@
       <div class="grid grid-cols-[min-content_min-content_1fr] gap-3 items-center py-2">
         <IonReorder />
         <IonImg v-if="imageKey" :src="item[imageKey]" class="w-12" />
-        <IonLabel v-if="textKey">{{ item[textKey] }}</IonLabel>
+        <IonLabel v-if="textKey">{{ translation(item[textKey]) }}</IonLabel>
       </div>
 
       <!-- Open Slide Button -->
@@ -26,6 +26,7 @@
 
 <script setup lang="ts">
 /* Imports */
+import translation from '@/utils/translation'
 import { IonIcon, IonImg, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonReorder } from '@ionic/vue'
 import { pencilOutline, trashBinOutline } from 'ionicons/icons'
 import { ref } from 'vue'

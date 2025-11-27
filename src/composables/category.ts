@@ -12,37 +12,55 @@ export function useCategory() {
       {
         id: 1,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: 'Technology',
+        name: {
+          en: 'Technology',
+          fr: 'Technologie',
+        },
         index: 0,
       },
       {
         id: 2,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: 'Health',
+        name: {
+          en: 'Health',
+          fr: 'Santé',
+        },
         index: 1,
       },
       {
         id: 3,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: 'Travel',
+        name: {
+          en: 'Travel',
+          fr: 'Voyage',
+        },
         index: 2,
       },
       {
         id: 4,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: 'Food',
+        name: {
+          en: 'Food',
+          fr: 'Alimentation',
+        },
         index: 3,
       },
       {
         id: 5,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: 'Education',
+        name: {
+          en: 'Education',
+          fr: 'Éducation',
+        },
         index: 4,
       },
       {
         id: 6,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: 'Sports',
+        name: {
+          en: 'Sports',
+          fr: 'Sports',
+        },
         index: 5,
       },
     ]

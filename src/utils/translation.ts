@@ -1,62 +1,88 @@
+import { LanguageRecord } from '$/types'
 import { useSettingsStore } from '@/stores/settings'
 import { Language } from '@/types'
 import totTitle from './totTitle'
 
 const translationKeys = {
-  menu: 'menu',
-  home: 'home',
-  legal_mentions: 'legal_mentions',
-  general_conditions: 'general_conditions',
-  contact: 'contact',
+  add: 'add',
   admin: 'admin',
+  admin_home_carousel_title: 'admin_home_carousel_title',
+  category: 'category',
+  contact: 'contact',
+  general_conditions: 'general_conditions',
+  home: 'home',
   home_carousel_title: 'home_carousel_title',
   home_category_title: 'home_category_title',
-  category: 'category',
-  admin_home_carousel_title: 'admin_home_carousel_title',
-  toast_reordered: 'toast_reorder',
-  add: 'add',
+  legal_mentions: 'legal_mentions',
+  menu: 'menu',
+  toast_reordered: 'toast_reordered',
 }
 
 export type TranslationKey = keyof typeof translationKeys
 
-const translations: Record<Language, Record<TranslationKey, string>> = {
-  en: {
-    menu: 'Menu',
-    home: 'Home',
-    legal_mentions: 'Legal Mentions',
-    general_conditions: 'General Conditions',
-    contact: 'Contact',
-    admin: 'Admin Access',
-    home_carousel_title: 'Our Promotions',
-    home_category_title: `Explore Our ${totTitle('Categories')}`,
-    category: 'Category',
-    admin_home_carousel_title: 'Promotion Carousel',
-    toast_reordered: 'Items reordered',
-    add: 'Add',
+const translations: Record<TranslationKey, Record<Language, string>> = {
+  add: {
+    en: 'Add',
+    fr: 'Ajouter',
   },
-  fr: {
-    menu: 'Menu',
-    home: 'Accueil',
-    legal_mentions: 'Mentions légales',
-    general_conditions: 'Conditions générales',
-    contact: 'Contacte',
-    admin: 'Accès Admin',
-    home_carousel_title: 'Nos Promotions',
-    home_category_title: `Découvrez nos ${totTitle('catégories')}`,
-    category: 'Catégorie',
-    admin_home_carousel_title: 'Carrousel de promotions',
-    toast_reordered: 'Items reordered',
-    add: 'Ajouter',
+  admin: {
+    en: 'Admin Access',
+    fr: 'Accès Admin',
+  },
+  admin_home_carousel_title: {
+    en: 'Promotion Carousel',
+    fr: 'Carrousel de promotions',
+  },
+  category: {
+    en: 'Category',
+    fr: 'Catégorie',
+  },
+  contact: {
+    en: 'Contact',
+    fr: 'Contacte',
+  },
+  general_conditions: {
+    en: 'General Conditions',
+    fr: 'Conditions générales',
+  },
+  home: {
+    en: 'Home',
+    fr: 'Accueil',
+  },
+  home_carousel_title: {
+    en: 'Our Promotions',
+    fr: 'Nos Promotions',
+  },
+  home_category_title: {
+    en: `Explore Our ${totTitle('Categories')}`,
+    fr: `Découvrez nos ${totTitle('catégories')}`,
+  },
+  legal_mentions: {
+    en: 'Legal Mentions',
+    fr: 'Mentions légales',
+  },
+  menu: {
+    en: 'Menu',
+    fr: 'Menu',
+  },
+  toast_reordered: {
+    en: 'Items reordered',
+    fr: 'Éléments réordonnés',
   },
 }
 
 /**
- * Translate static text in the selected app language
+ * Translate static text in the selected app language.
+ * If none is found, then return the transltion of the record
  *
- * @param key
+ * @param record Translation key or an entire language record
  */
-export default function (key: TranslationKey) {
+export default function (record: TranslationKey | LanguageRecord) {
   const setttingsStore = useSettingsStore()
 
-  return translations[setttingsStore.getLanguage][key]
+  if (typeof record === 'string') {
+    return translations[record][setttingsStore.getLanguage]
+  }
+
+  return record[setttingsStore.getLanguage]
 }

@@ -1,10 +1,17 @@
+import { Language } from '@/types'
+
+/**
+ * Text record with multiple languages
+ */
+export type LanguageRecord = Record<Language, string>
+
 /**
  * Product categories
  */
 export type Category = {
   id: number
   image: string
-  name: string
+  name: LanguageRecord
   index: number
 }
 
@@ -14,9 +21,9 @@ export type Category = {
 export type Promotion = {
   id: number
   image: string // image url
-  title: string
-  subtitle: string
-  button: string // button text
+  title: LanguageRecord
+  subtitle: LanguageRecord
+  button: LanguageRecord // button text
   link: string
   index: number
 }
