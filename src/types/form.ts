@@ -9,6 +9,14 @@ export interface FormFieldWrapper {
 }
 
 /**
+ * Divider Form Component
+ */
+export interface DividerField {
+  label: string
+  element: 'divider'
+}
+
+/**
  * Input Form Field
  */
 export interface InputField extends FormFieldWrapper {
@@ -18,4 +26,4 @@ export interface InputField extends FormFieldWrapper {
 /**
  * Form Field
  */
-export type FormField = InputField
+export type FormField = DividerField | InputField

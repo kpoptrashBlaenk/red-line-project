@@ -1,7 +1,6 @@
 import DefaultLayout from '@/components/layouts/default/DefaultLayout.vue'
 import AdminPage from '@/views/AdminPage.vue'
 import HomePage from '@/views/HomePage.vue'
-import LoginPage from '@/views/LoginPage.vue'
 import TestPage from '@/views/TestPage.vue'
 import { createRouter, createWebHistory } from '@ionic/vue-router'
 import { RouteRecordRaw } from 'vue-router'
@@ -25,12 +24,6 @@ const routes: Array<RouteRecordRaw> = [
         component: AdminPage,
       },
     ],
-  },
-
-  // Auth Pages
-  {
-    path: '/login',
-    component: LoginPage,
   },
 
   // Component Testing Page

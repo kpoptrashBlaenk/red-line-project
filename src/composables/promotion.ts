@@ -1,5 +1,7 @@
 import { Promotion } from '$/types'
+import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
+import { PromotionSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { checkmarkCircleOutline } from 'ionicons/icons'
 
@@ -7,6 +9,66 @@ import { checkmarkCircleOutline } from 'ionicons/icons'
  * Use this composable to do promotion related queries
  */
 export function usePromotion() {
+  /**
+   * Create Promotional Form Fields
+   */
+  function createPromotionFields() {
+    return [
+      // general
+      {
+        element: 'divider',
+        label: translation('general'),
+      },
+      {
+        element: 'ion-input',
+        name: 'link',
+        label: translation('link'),
+      },
+
+      // en
+      {
+        element: 'divider',
+        label: translation('english'),
+      },
+      {
+        element: 'ion-input',
+        name: 'title_en',
+        label: translation('title'),
+      },
+      {
+        element: 'ion-input',
+        name: 'subtitle_en',
+        label: translation('subtitle'),
+      },
+      {
+        element: 'ion-input',
+        name: 'button_en',
+        label: translation('button_text'),
+      },
+
+      // fr
+      {
+        element: 'divider',
+        label: translation('french'),
+      },
+      {
+        element: 'ion-input',
+        name: 'title_fr',
+        label: translation('title'),
+      },
+      {
+        element: 'ion-input',
+        name: 'subtitle_fr',
+        label: translation('subtitle'),
+      },
+      {
+        element: 'ion-input',
+        name: 'button_fr',
+        label: translation('button_text'),
+      },
+    ] as FormField[]
+  }
+
   /**
    * Get the promotional products
    */
@@ -133,10 +195,15 @@ export function usePromotion() {
     items
 
     await presentToast(translation('toast_reordered'), 'success', checkmarkCircleOutline)
+  }
 
-    return
+  async function createPromotion(state: PromotionSchema) {
+    // api request
+    state
+
+    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
   }
 
   // return all functions
-  return { getPromotions, reorderPromotions }
+  return { createPromotionFields, getPromotions, reorderPromotions, createPromotion }
 }

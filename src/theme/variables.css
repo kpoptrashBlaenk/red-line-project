@@ -1,6 +1,15 @@
 /* @import url(./buttons.css); */
 @import 'tailwindcss';
 
+/* ---------- BREAKPOINTS ---------- */
+/* --------------------------------- */
+@theme {
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+}
+
 /* ---------- FONTS ---------- */
 /* --------------------------- */
 @font-face {
@@ -20,7 +29,7 @@
 }
 
 /* ---------- BODY ---------- */
-/* --------------------------- */
+/* -------------------------- */
 body {
   font-weight: 400;
   font-size: 16px;
@@ -28,7 +37,7 @@ body {
 }
 
 /* ---------- VARIABLES ---------- */
-/* --------------------------- */
+/* ------------------------------- */
 :root {
   --ion-font-family: 'Red Hat Display', sans-serif;
   --ion-text-color: #0b0d22;
@@ -67,7 +76,8 @@ body {
   --ion-color-warning-contrast-rgb: 255, 255, 255;
 }
 
-/* Link */
+/* ---------- LINK ---------- */
+/* -------------------------- */
 a {
   color: inherit;
 }
@@ -75,7 +85,8 @@ a:hover {
   text-decoration-line: underline;
 }
 
-/* Color */
+/* ---------- COLORS ---------- */
+/* ---------------------------- */
 .bg-primary {
   background: var(--ion-color-primary);
 }
@@ -98,7 +109,8 @@ a:hover {
   color: var(--ion-color-tertiary);
 }
 
-/* Layout */
+/* ---------- LAYOUT ---------- */
+/* ---------------------------- */
 .wrap {
   width: 100%;
   max-width: 1250px;
@@ -108,7 +120,8 @@ a:hover {
   box-sizing: border-box;
 }
 
-/* Toast */
+/* ---------- TOAST ---------- */
+/* --------------------------- */
 ion-toast {
   margin-top: -25px;
   --width: 50%;

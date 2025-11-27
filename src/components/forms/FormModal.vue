@@ -1,5 +1,5 @@
 <template>
-  <IonModal ref="modal" trigger="open-admin-form-modal" :is-open="true">
+  <IonModal ref="modal" trigger="open-admin-form-modal">
     <!-- Header -->
     <IonHeader>
       <IonToolbar color="tertiary" class="px-5">
@@ -9,14 +9,14 @@
 
     <!-- Form -->
     <IonContent class="flex flex-col justify-end">
-      <FormComponent id="modal-form" :fields :state :schema :on-submit />
+      <FormComponent id="modal-form" :fields :state :schema :on-submit :dismiss />
     </IonContent>
 
     <!-- Buttons -->
     <IonFooter>
       <IonToolbar color="light">
         <div class="flex">
-          <ClearButton :label="'Cancel'" color="dark" size="large" class="flex-1" @click="cancel()" />
+          <ClearButton :label="'Cancel'" color="dark" size="large" class="flex-1" @click="dismiss()" />
           <ClearButton :label="'Submit'" color="dark" size="large" form="modal-form" class="flex-1" />
         </div>
       </IonToolbar>
@@ -35,20 +35,19 @@ import ClearButton from '../ui/buttons/ClearButton.vue'
 import FormComponent from './FormComponent.vue'
 
 /* Props */
-interface Props<T extends Record<string, any>> {
+defineProps<{
   fields: FormField[]
-  state: T
-  schema: z.ZodType<T>
-  onSubmit: (state: T) => void
-}
-defineProps<Props<any>>()
+  state: any
+  schema: z.ZodType<any>
+  onSubmit: (state: any, dismiss: () => void) => void
+}>()
 
 /* Refs */
 const modal = ref()
 
 /* Functions */
-function cancel() {
-  modal.value.$el.dismiss(null, 'cancel')
+function dismiss() {
+  modal.value.$el.dismiss(null, 'dismiss')
 }
 </script>
 
@@ -56,6 +55,7 @@ function cancel() {
 @media (min-width: 768px) {
   ion-modal {
     --border-radius: 25px;
+    --min-height: 610px;
   }
 }
 </style>

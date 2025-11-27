@@ -1,6 +1,6 @@
 <template>
-  <form @submit.prevent="handleSubmit" class="px-10 py-2">
-    <FormFieldComponent v-for="(field, index) in fields" :key="index" :field :state />
+  <form @submit.prevent="handleSubmit" class="grid grid-cols-2 px-10">
+    <FormFieldComponent v-for="(field, key) in fields" :key :field :state :schema />
   </form>
 </template>
 
@@ -12,13 +12,13 @@ import z from 'zod'
 import FormFieldComponent from './FormFieldComponent.vue'
 
 /* Props */
-interface Props<T extends Record<string, any>> {
+const props = defineProps<{
   fields: FormField[]
-  state: T
-  schema: z.ZodType<T>
-  onSubmit: (state: T) => void
-}
-const props = defineProps<Props<any>>()
+  state: any
+  schema: z.ZodType<any>
+  onSubmit: (state: any, dismiss: () => void) => void
+  dismiss: () => void
+}>()
 
 /* Functions */
 function handleSubmit() {
@@ -26,6 +26,6 @@ function handleSubmit() {
     return
   }
 
-  props.onSubmit(props.state)
+  props.onSubmit(props.state, props.dismiss)
 }
 </script>

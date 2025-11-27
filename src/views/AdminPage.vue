@@ -1,7 +1,12 @@
 <template>
   <DefaultContentLayout>
     <!-- Admin Form Modal -->
-    <FormModal :fields="fields.promotion" :state="promotionState" :schema="promotionSchema" @submit="onPromotionSubmit" />
+    <FormModal
+      :fields="fields.promotion"
+      :state="{ ...promotionState }"
+      :schema="promotionSchema()"
+      @submit="onPromotionSubmit"
+    />
 
     <!-- Hero Page Grid -->
     <HeroComponent>
@@ -46,11 +51,13 @@ import { IonAccordionGroup } from '@ionic/vue'
 import { onMounted, reactive, ref } from 'vue'
 
 /* Constants */
-const { getPromotions, reorderPromotions } = usePromotion()
+const { createPromotionFields, getPromotions, reorderPromotions, createPromotion } = usePromotion()
 
 /* Refs */
 const promotions = ref<Promotion[]>([])
-const fields: { promotion: FormField[] } = reactive({ promotion: [{ element: 'ion-input', name: 'title', label: 'Title' }] })
+const fields: { promotion: FormField[] } = reactive({
+  promotion: createPromotionFields(),
+})
 
 /* Lifecycle Hooks */
 onMounted(async () => {
@@ -58,7 +65,8 @@ onMounted(async () => {
 })
 
 /* Functions */
-function onPromotionSubmit(state: PromotionSchema) {
-  console.log(state)
+function onPromotionSubmit(state: PromotionSchema, dismiss: () => void) {
+  createPromotion(state)
+  dismiss()
 }
 </script>

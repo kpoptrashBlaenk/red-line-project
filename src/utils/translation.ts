@@ -8,17 +8,26 @@ const translationKeys = {
   add_promotion: 'add_promotion',
   admin: 'admin',
   admin_home_carousel_title: 'admin_home_carousel_title',
+  button_text: 'promotion_button',
   cancel: 'cancel',
   category: 'category',
   contact: 'contact',
+  english: 'english',
+  error_required: 'error_required',
+  french: 'french',
+  general: 'general',
   general_conditions: 'general_conditions',
   home: 'home',
   home_carousel_title: 'home_carousel_title',
   home_category_title: 'home_category_title',
   legal_mentions: 'legal_mentions',
+  link: 'promotion_link',
   menu: 'menu',
   submit: 'submit',
+  subtitle: 'promotion_subtitle',
+  title: 'promotion_title',
   toast_reordered: 'toast_reordered',
+  toast_added: 'toast_added',
 }
 
 export type TranslationKey = keyof typeof translationKeys
@@ -40,6 +49,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Promotion Carousel',
     fr: 'Carrousel de promotions',
   },
+  button_text: {
+    en: 'Button text',
+    fr: 'Texte du bouton',
+  },
   cancel: {
     en: 'Cancel',
     fr: 'Annuler',
@@ -51,6 +64,22 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   contact: {
     en: 'Contact',
     fr: 'Contacte',
+  },
+  english: {
+    en: 'English',
+    fr: 'Anglais',
+  },
+  error_required: {
+    en: 'Please fill out this field',
+    fr: 'Veuillez remplir ce champ',
+  },
+  french: {
+    en: 'French',
+    fr: 'Français',
+  },
+  general: {
+    en: 'General',
+    fr: 'Général',
   },
   general_conditions: {
     en: 'General Conditions',
@@ -68,6 +97,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: `Explore Our ${totTitle('Categories')}`,
     fr: `Découvrez nos ${totTitle('catégories')}`,
   },
+  link: {
+    en: 'Link',
+    fr: 'Lien',
+  },
   legal_mentions: {
     en: 'Legal Mentions',
     fr: 'Mentions légales',
@@ -80,9 +113,21 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Submit',
     fr: 'Envoyer',
   },
+  subtitle: {
+    en: 'Subtitle',
+    fr: 'Sous-titre',
+  },
+  title: {
+    en: 'Title',
+    fr: 'Titre',
+  },
   toast_reordered: {
     en: 'Items reordered',
     fr: 'Éléments réordonnés',
+  },
+  toast_added: {
+    en: 'Successfully added',
+    fr: 'Ajouté avec succès',
   },
 }
 

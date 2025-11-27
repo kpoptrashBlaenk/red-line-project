@@ -11,20 +11,22 @@
     @ionBlur="markTouched"
     :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
     mode="md"
+    class="ps-5!"
   ></IonInput>
 </template>
 
 <script setup lang="ts">
 /* Imports */
-import type { FormField } from '@/types'
-import { userSchema } from '@/utils/schemas'
+import type { InputField } from '@/types'
 import { IonInput } from '@ionic/vue'
 import { toRef } from 'vue'
+import z from 'zod'
 
 /* Props */
 const props = defineProps<{
-  field: FormField
+  field: InputField
   state: Record<string, any>
+  schema: z.ZodType<any>
 }>()
 
 /* Refs */
@@ -33,7 +35,7 @@ const state = toRef(props, 'state')
 
 /* Functions */
 function validate() {
-  const result = userSchema.safeParse(state.value)
+  const result = props.schema.safeParse(state.value)
 
   if (!result.success) {
     const issue = result.error.issues.find((issue) => issue.path[0] === field.value.name)
@@ -53,6 +55,7 @@ function markTouched() {
 ion-input {
   --background: transparent !important;
   --border-color: var(--ion-color-primary-tint) !important;
+  --highlight-color: var(--ion-color-primary-shade);
 }
 
 ion-input.ion-invalid {
