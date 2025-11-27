@@ -2,10 +2,15 @@
   <IonInput
     v-model="state[field.name]"
     :label="field.label"
+    :aria-label="field.label"
+    label-placement="floating"
+    clear-input
+    fill="solid"
     :error-text="field.error"
     @ionInput="validate"
     @ionBlur="markTouched"
     :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
+    mode="md"
   ></IonInput>
 </template>
 
@@ -43,3 +48,14 @@ function markTouched() {
   validate()
 }
 </script>
+
+<style lang="css" scoped>
+ion-input {
+  --background: transparent !important;
+  --border-color: var(--ion-color-primary-tint) !important;
+}
+
+ion-input.ion-invalid {
+  --border-color: var(--ion-color-danger) !important;
+}
+</style>

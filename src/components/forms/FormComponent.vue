@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form @submit.prevent="handleSubmit" class="px-10 py-2">
     <FormFieldComponent v-for="(field, index) in fields" :key="index" :field :state />
   </form>
 </template>

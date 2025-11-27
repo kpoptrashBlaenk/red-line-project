@@ -1,5 +1,5 @@
 <template>
-  <IonButton fill="clear" :color="color" :router-link="link" :type="form ? 'submit' : 'button'" :form="'modal-form'">
+  <IonButton fill="clear" :color="color" :router-link="link" :type="form ? 'submit' : 'button'" :form>
     {{ label }}
     <IonIcon v-if="chevron" :icon="chevronForward" class="ms-1" />
   </IonButton>
