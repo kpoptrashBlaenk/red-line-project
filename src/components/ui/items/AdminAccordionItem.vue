@@ -7,11 +7,24 @@
     <div class="p-5" slot="content">
       <IonList>
         <IonReorderGroup :disabled="false" @ionReorderEnd="onReorderEnd">
-          <AdminReorderItem v-for="(item, key) in items" :key :item :image-key :text-key />
+          <AdminReorderItem
+            v-for="(item, key) in items"
+            :key
+            :item
+            :image-key
+            :text-key
+            @open:modal-form="$emit('open:modal-form', value, $event)"
+          />
         </IonReorderGroup>
       </IonList>
 
-      <SolidButton id="open-admin-form-modal" :label="translation('add')" color="success" class="mt-2" expand="block" />
+      <SolidButton
+        :label="translation('add')"
+        color="success"
+        class="mt-2"
+        expand="block"
+        @click="$emit('open:modal-form', value)"
+      />
     </div>
   </IonAccordion>
 </template>

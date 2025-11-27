@@ -26,8 +26,9 @@ const translationKeys = {
   submit: 'submit',
   subtitle: 'promotion_subtitle',
   title: 'promotion_title',
-  toast_reordered: 'toast_reordered',
   toast_added: 'toast_added',
+  toast_modified: 'toast_modified',
+  toast_reordered: 'toast_reordered',
 }
 
 export type TranslationKey = keyof typeof translationKeys
@@ -121,13 +122,17 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Title',
     fr: 'Titre',
   },
-  toast_reordered: {
-    en: 'Items reordered',
-    fr: 'Éléments réordonnés',
-  },
   toast_added: {
     en: 'Successfully added',
     fr: 'Ajouté avec succès',
+  },
+  toast_modified: {
+    en: 'Successfully modified',
+    fr: 'Modifié avec succès',
+  },
+  toast_reordered: {
+    en: 'Items reordered',
+    fr: 'Éléments réordonnés',
   },
 }
 

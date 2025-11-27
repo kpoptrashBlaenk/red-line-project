@@ -14,6 +14,6 @@ import InputFieldComponent from './InputFieldComponent.vue'
 defineProps<{
   field: FormField
   state: Record<string, any>
-  schema: z.ZodType<any>
+  schema: z.ZodType<any> | undefined
 }>()
 </script>

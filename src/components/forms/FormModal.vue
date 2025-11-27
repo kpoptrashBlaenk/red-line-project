@@ -1,5 +1,5 @@
 <template>
-  <IonModal ref="modal" trigger="open-admin-form-modal">
+  <IonModal ref="modal" :is-open>
     <!-- Header -->
     <IonHeader>
       <IonToolbar color="tertiary" class="px-5">
@@ -8,8 +8,9 @@
     </IonHeader>
 
     <!-- Form -->
-    <IonContent class="flex flex-col justify-end">
+    <IonContent>
       <FormComponent id="modal-form" :fields :state :schema :on-submit :dismiss />
+      <slot></slot>
     </IonContent>
 
     <!-- Buttons -->
@@ -36,9 +37,10 @@ import FormComponent from './FormComponent.vue'
 
 /* Props */
 defineProps<{
+  isOpen: boolean
   fields: FormField[]
   state: any
-  schema: z.ZodType<any>
+  schema: z.ZodType<any> | undefined
   onSubmit: (state: any, dismiss: () => void) => void
 }>()
 
@@ -56,6 +58,7 @@ function dismiss() {
   ion-modal {
     --border-radius: 25px;
     --min-height: 610px;
+    --min-width: 75%;
   }
 }
 </style>

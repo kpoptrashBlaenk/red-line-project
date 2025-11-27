@@ -1,12 +1,7 @@
 <template>
   <DefaultContentLayout>
     <!-- Admin Form Modal -->
-    <FormModal
-      :fields="fields.promotion"
-      :state="{ ...promotionState }"
-      :schema="promotionSchema()"
-      @submit="onPromotionSubmit"
-    />
+    <FormModal ref="modal" :is-open="modalOpen" :fields :state :schema @submit="onSubmit" />
 
     <!-- Hero Page Grid -->
     <HeroComponent>
@@ -26,6 +21,7 @@
           image-key="image"
           text-key="title"
           :reorder-callback="reorderPromotions"
+          @open:modal-form="onModalOpen"
         />
       </IonAccordionGroup>
 
@@ -48,16 +44,23 @@ import { FormField } from '@/types'
 import { promotionSchema, PromotionSchema, promotionState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import z from 'zod'
 
 /* Constants */
-const { createPromotionFields, getPromotions, reorderPromotions, createPromotion } = usePromotion()
+const { createPromotionFields, flattenPromotion, getPromotions, reorderPromotions, createPromotion, modifyPromotion } =
+  usePromotion()
+
+/* Form Refs */
+const modal = ref()
+const modalOpen = ref<boolean>(false)
+const fields = ref<FormField[]>([])
+const state = ref<any>({})
+const schema = ref<z.ZodType<any>>()
+const onSubmit = ref<(state: any, dismiss: () => void) => void>(() => {})
 
 /* Refs */
 const promotions = ref<Promotion[]>([])
-const fields: { promotion: FormField[] } = reactive({
-  promotion: createPromotionFields(),
-})
 
 /* Lifecycle Hooks */
 onMounted(async () => {
@@ -65,8 +68,25 @@ onMounted(async () => {
 })
 
 /* Functions */
-function onPromotionSubmit(state: PromotionSchema, dismiss: () => void) {
-  createPromotion(state)
-  dismiss()
+function onModalOpen(context: 'promotion', item?: any) {
+  const items = {
+    // promotion
+    promotion: {
+      fields: createPromotionFields(),
+      state: item ? { ...flattenPromotion(item) } : { ...promotionState },
+      schema: promotionSchema(),
+      onSubmit: (state: PromotionSchema, dismiss: () => void) => {
+        item ? modifyPromotion(state) : createPromotion(state)
+        dismiss()
+      },
+    },
+  }
+
+  modal.value.$el.present()
+
+  fields.value = items[context].fields
+  state.value = items[context].state
+  schema.value = items[context].schema
+  onSubmit.value = items[context].onSubmit
 }
 </script>

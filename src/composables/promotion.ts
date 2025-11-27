@@ -70,6 +70,23 @@ export function usePromotion() {
   }
 
   /**
+   * Flatten promotion to fit into state for forms
+   *
+   * @param promotion Selected promotion
+   */
+  function flattenPromotion(promotion: Promotion) {
+    return {
+      title_en: promotion.title.en,
+      title_fr: promotion.title.fr,
+      subtitle_en: promotion.subtitle.en,
+      subtitle_fr: promotion.subtitle.fr,
+      button_en: promotion.button.en,
+      button_fr: promotion.button.fr,
+      link: promotion.link,
+    }
+  }
+
+  /**
    * Get the promotional products
    */
   async function getPromotions() {
@@ -189,6 +206,8 @@ export function usePromotion() {
 
   /**
    * Reorder the promotional products
+   *
+   * @param items Items in new order
    */
   async function reorderPromotions(items: Promotion[]) {
     // api request
@@ -197,6 +216,11 @@ export function usePromotion() {
     await presentToast(translation('toast_reordered'), 'success', checkmarkCircleOutline)
   }
 
+  /**
+   * Create a new promotion
+   *
+   * @param state The state that tracks the new values
+   */
   async function createPromotion(state: PromotionSchema) {
     // api request
     state
@@ -204,6 +228,18 @@ export function usePromotion() {
     await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
   }
 
+  /**
+   * Modify a promotion
+   *
+   * @param state The state that tracks the new values
+   */
+  async function modifyPromotion(state: PromotionSchema) {
+    // api request
+    state
+
+    await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+  }
+
   // return all functions
-  return { createPromotionFields, getPromotions, reorderPromotions, createPromotion }
+  return { createPromotionFields, flattenPromotion, getPromotions, reorderPromotions, createPromotion, modifyPromotion }
 }

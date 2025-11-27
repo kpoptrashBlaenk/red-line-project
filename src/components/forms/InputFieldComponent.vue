@@ -26,7 +26,7 @@ import z from 'zod'
 const props = defineProps<{
   field: InputField
   state: Record<string, any>
-  schema: z.ZodType<any>
+  schema: z.ZodType<any> | undefined
 }>()
 
 /* Refs */
@@ -35,7 +35,7 @@ const state = toRef(props, 'state')
 
 /* Functions */
 function validate() {
-  const result = props.schema.safeParse(state.value)
+  const result = props.schema!.safeParse(state.value)
 
   if (!result.success) {
     const issue = result.error.issues.find((issue) => issue.path[0] === field.value.name)

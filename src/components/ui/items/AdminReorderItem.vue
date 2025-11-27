@@ -14,7 +14,7 @@
 
     <!-- Item Options when Slide open -->
     <IonItemOptions side="end">
-      <IonItemOption color="warning">
+      <IonItemOption color="warning" @click="$emit('open:modal-form', item)">
         <IonIcon :icon="pencilOutline" class="text-xl p-0" />
       </IonItemOption>
       <IonItemOption color="danger">
