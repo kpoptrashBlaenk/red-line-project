@@ -5,7 +5,10 @@
       <div class="grid grid-cols-[min-content_min-content_1fr] gap-3 items-center py-2">
         <IonReorder />
         <IonImg v-if="imageKey" :src="item[imageKey]" class="w-12" />
-        <IonLabel v-if="textKey">{{ translation(item[textKey]) }}</IonLabel>
+        <div>
+          <IonLabel v-if="textKey">{{ translation(item[textKey]) }}</IonLabel>
+          <IonNote v-if="noteKey">{{ translation(item[noteKey]) }}</IonNote>
+        </div>
       </div>
 
       <!-- Open Slide Button -->
@@ -15,10 +18,10 @@
     <!-- Item Options when Slide open -->
     <IonItemOptions side="end">
       <IonItemOption color="warning" @click="$emit('open:modal-form', item)">
-        <IonIcon :icon="pencilOutline" class="text-xl p-0" />
+        <IonIcon :icon="pencilOutline" class="text-xl p-3" />
       </IonItemOption>
       <IonItemOption color="danger">
-        <IonIcon :icon="trashBinOutline" class="text-xl p-0" />
+        <IonIcon :icon="trashBinOutline" class="text-xl p-3" />
       </IonItemOption>
     </IonItemOptions>
   </IonItemSliding>
@@ -27,7 +30,17 @@
 <script setup lang="ts">
 /* Imports */
 import translation from '@/utils/translation'
-import { IonIcon, IonImg, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonReorder } from '@ionic/vue'
+import {
+  IonIcon,
+  IonImg,
+  IonItem,
+  IonItemOption,
+  IonItemOptions,
+  IonItemSliding,
+  IonLabel,
+  IonNote,
+  IonReorder,
+} from '@ionic/vue'
 import { pencilOutline, trashBinOutline } from 'ionicons/icons'
 import { ref } from 'vue'
 import ClearButton from '../buttons/ClearButton.vue'
@@ -36,6 +49,7 @@ import ClearButton from '../buttons/ClearButton.vue'
 defineProps<{
   item: any
   textKey?: string
+  noteKey?: string
   imageKey?: string
 }>()
 

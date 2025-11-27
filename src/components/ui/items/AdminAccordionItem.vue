@@ -13,6 +13,7 @@
             :item
             :image-key
             :text-key
+            :note-key
             @open:modal-form="$emit('open:modal-form', value, $event)"
           />
         </IonReorderGroup>
@@ -42,6 +43,7 @@ const props = defineProps<{
   value: string
   items: any[]
   textKey?: string
+  noteKey?: string
   imageKey?: string
   reorderCallback: (items: any) => Promise<void>
 }>()

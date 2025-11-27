@@ -20,6 +20,7 @@
           :items="promotions"
           image-key="image"
           text-key="title"
+          note-key="subtitle"
           :reorder-callback="reorderPromotions"
           @open:modal-form="onModalOpen"
         />
