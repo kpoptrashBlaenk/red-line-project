@@ -9,7 +9,7 @@
       </div>
 
       <!-- Open Slide Button -->
-      <ClearButton slot="end" color="dark" @click="sliding.$el.open()" />
+      <ClearButton slot="end" color="dark" chevron @click="sliding.$el.open()" />
     </IonItem>
 
     <!-- Item Options when Slide open -->

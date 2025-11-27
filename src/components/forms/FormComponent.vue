@@ -1,7 +1,6 @@
 <template>
   <form @submit.prevent="handleSubmit">
     <FormFieldComponent v-for="(field, index) in fields" :key="index" :field :state />
-    <IonButton type="submit"> Submit </IonButton>
   </form>
 </template>
 
@@ -9,7 +8,6 @@
 /* Imports */
 import { FormField } from '@/types'
 import { validateForm } from '@/utils/validateForm'
-import { IonButton } from '@ionic/vue'
 import z from 'zod'
 import FormFieldComponent from './FormFieldComponent.vue'
 

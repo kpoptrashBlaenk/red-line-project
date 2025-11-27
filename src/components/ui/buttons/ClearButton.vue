@@ -1,7 +1,7 @@
 <template>
-  <IonButton fill="clear" :color="color" :router-link="link">
+  <IonButton fill="clear" :color="color" :router-link="link" :type="form ? 'submit' : 'button'" :form="'modal-form'">
     {{ label }}
-    <IonIcon :icon="chevronForward" class="ms-1" />
+    <IonIcon v-if="chevron" :icon="chevronForward" class="ms-1" />
   </IonButton>
 </template>
 
@@ -16,6 +16,8 @@ defineProps<{
   label?: string
   link?: string
   color: Color
+  chevron?: boolean
+  form?: string
 }>()
 </script>
 
@@ -30,13 +32,7 @@ ion-button[fill='clear'] {
 ion-button[fill='clear']::part(native):hover,
 ion-button[fill='clear']::part(native):focus,
 ion-button[fill='clear']::part(native):active {
-  color: var(--ion-text-color);
-}
-
-/* Remove Ripple */
-ion-button[fill='clear'] {
-  --ripple-color: transparent;
-  --ripple-alpha: 0;
+  color: var(--ion-color-dark);
 }
 
 /* IOS Hover */

@@ -8,7 +8,7 @@
     </IonCardHeader>
 
     <div class="flex justify-end mt-auto">
-      <OutlineButton :label="promotion.button" :link="promotion.link" color="primary" />
+      <OutlineButton :label="promotion.button" :link="promotion.link" chevron color="primary" />
     </div>
   </IonCard>
 </template>

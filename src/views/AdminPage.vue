@@ -1,23 +1,17 @@
 <template>
   <DefaultContentLayout>
+    <!-- Admin Form Modal -->
+    <FormModal :fields="fields.promotion" :state="promotionState" :schema="promotionSchema" @submit="onPromotionSubmit" />
+
     <!-- Hero Page Grid -->
     <HeroComponent>
       <AdminPageGrid />
     </HeroComponent>
 
-    <IonModal trigger="open-admin-form-modal" :is-open="true">
-      <IonHeader>
-        <IonToolbar color="primary" class="px-5">
-          <IonTitle> Add a new Promotion </IonTitle>
-        </IonToolbar>
-      </IonHeader>
-
-      <FormComponent :fields="fields.promotion" :state="promotionState" :schema="promotionSchema" @submit="onPromotionSubmit" />
-    </IonModal>
-
     <div class="wrap">
       <SeparatorComponent size="xs" />
 
+      <!-- Admin Home Accordions -->
       <IonAccordionGroup expand="inset" value="promotion">
         <!-- Promotion Carousel Accordion -->
         <AdminAccordionItem
@@ -38,7 +32,7 @@
 <script setup lang="ts">
 /* Imports */
 import { Promotion } from '$/types'
-import FormComponent from '@/components/forms/FormComponent.vue'
+import FormModal from '@/components/forms/FormModal.vue'
 import AdminPageGrid from '@/components/grids/AdminPageGrid.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
@@ -46,9 +40,9 @@ import AdminAccordionItem from '@/components/ui/items/AdminAccordionItem.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { usePromotion } from '@/composables/promotion'
 import { FormField } from '@/types'
-import { PromotionSchema, promotionSchema, promotionState } from '@/utils/schemas'
+import { promotionSchema, PromotionSchema, promotionState } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { IonAccordionGroup, IonHeader, IonModal, IonTitle, IonToolbar } from '@ionic/vue'
+import { IonAccordionGroup } from '@ionic/vue'
 import { onMounted, reactive, ref } from 'vue'
 
 /* Constants */
@@ -68,11 +62,3 @@ function onPromotionSubmit(state: PromotionSchema) {
   console.log(state)
 }
 </script>
-
-<style lang="css" scoped>
-ion-modal {
-  --height: auto;
-  --width: 80%;
-  --border-radius: 20px;
-}
-</style>
