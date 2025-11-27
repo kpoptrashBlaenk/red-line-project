@@ -3,7 +3,7 @@
     <!-- Header -->
     <IonHeader>
       <IonToolbar color="tertiary" class="px-5">
-        <IonTitle> Add a new Promotion </IonTitle>
+        <IonTitle> {{ translation('add_promotion') }} </IonTitle>
       </IonToolbar>
     </IonHeader>
 
@@ -27,6 +27,7 @@
 <script setup lang="ts">
 /* Imports */
 import { FormField } from '@/types'
+import translation from '@/utils/translation'
 import { IonContent, IonFooter, IonHeader, IonModal, IonTitle, IonToolbar } from '@ionic/vue'
 import { ref } from 'vue'
 import z from 'zod'

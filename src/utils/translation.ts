@@ -5,8 +5,10 @@ import totTitle from './totTitle'
 
 const translationKeys = {
   add: 'add',
+  add_promotion: 'add_promotion',
   admin: 'admin',
   admin_home_carousel_title: 'admin_home_carousel_title',
+  cancel: 'cancel',
   category: 'category',
   contact: 'contact',
   general_conditions: 'general_conditions',
@@ -15,6 +17,7 @@ const translationKeys = {
   home_category_title: 'home_category_title',
   legal_mentions: 'legal_mentions',
   menu: 'menu',
+  submit: 'submit',
   toast_reordered: 'toast_reordered',
 }
 
@@ -25,6 +28,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Add',
     fr: 'Ajouter',
   },
+  add_promotion: {
+    en: 'Add a new Promotion',
+    fr: 'Ajouter une nouvelle promotion',
+  },
   admin: {
     en: 'Admin Access',
     fr: 'Accès Admin',
@@ -32,6 +39,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   admin_home_carousel_title: {
     en: 'Promotion Carousel',
     fr: 'Carrousel de promotions',
+  },
+  cancel: {
+    en: 'Cancel',
+    fr: 'Annuler',
   },
   category: {
     en: 'Category',
@@ -64,6 +75,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   menu: {
     en: 'Menu',
     fr: 'Menu',
+  },
+  submit: {
+    en: 'Submit',
+    fr: 'Envoyer',
   },
   toast_reordered: {
     en: 'Items reordered',
