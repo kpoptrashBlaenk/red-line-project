@@ -4,7 +4,7 @@
 
     <DefaultHeaderLayout :is-scrolled />
 
-    <IonContent id="main-content" fullscreen scroll-events @ion-scroll="handleScroll">
+    <IonContent id="main-content" scroll-events @ion-scroll="handleScroll">
       <slot></slot>
 
       <DefaultFooter v-if="isDesktop()" />
