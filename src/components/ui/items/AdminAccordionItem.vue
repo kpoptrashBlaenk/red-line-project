@@ -24,7 +24,7 @@
         color="success"
         class="mt-2"
         expand="block"
-        @click="$emit('open:modal-form', value)"
+        @click="$emit('open:modal-form', value, 'post')"
       />
     </div>
   </IonAccordion>

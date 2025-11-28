@@ -4,7 +4,7 @@
     :message="translation('alert_message')"
     :buttons="[
       { text: translation('cancel'), role: 'cancel' },
-      { text: translation('delete'), handler: onSubmit, cssClass: 'bg-danger' },
+      { text: translation('delete'), role: 'destructive', handler: onSubmit, cssClass: 'bg-danger' },
     ]"
   />
 </template>

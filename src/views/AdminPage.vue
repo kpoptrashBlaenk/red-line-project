@@ -45,7 +45,7 @@ import HeroComponent from '@/components/ui/HeroComponent.vue'
 import AdminAccordionItem from '@/components/ui/items/AdminAccordionItem.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { usePromotion } from '@/composables/promotion'
-import { FormField } from '@/types'
+import { ApiHandler, FormField } from '@/types'
 import { promotionSchema, PromotionSchema, promotionState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
@@ -83,7 +83,7 @@ onMounted(async () => {
 
 /* Functions */
 function onModalOpen(context: 'promotion', method: 'post' | 'put' | 'delete', item?: any) {
-  const items = {
+  const items: ApiHandler = {
     // promotion
     promotion: {
       fields: createPromotionFields(),
@@ -98,7 +98,7 @@ function onModalOpen(context: 'promotion', method: 'post' | 'put' | 'delete', it
         }
 
         // post & put
-        method === 'post' ? createPromotion(state) : modifyPromotion(state)
+        method === 'post' ? createPromotion(state) : modifyPromotion(item.id, state)
         modal.value.$el.dismiss()
       },
     },

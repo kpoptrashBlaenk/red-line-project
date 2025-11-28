@@ -231,10 +231,12 @@ export function usePromotion() {
   /**
    * Modify a promotion
    *
+   * @param id The id of the record to modify
    * @param state The state that tracks the new values
    */
-  async function modifyPromotion(state: PromotionSchema) {
+  async function modifyPromotion(id: number, state: PromotionSchema) {
     // api request
+    id
     state
 
     await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
