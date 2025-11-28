@@ -25,4 +25,4 @@ export const promotionState = reactive<Partial<PromotionSchema>>({
   button_fr: '',
   link: '',
 })
-export type PromotionSchema = z.output<typeof promotionSchema>
+export type PromotionSchema = z.output<ReturnType<typeof promotionSchema>>

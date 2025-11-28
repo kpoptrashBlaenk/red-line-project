@@ -4,7 +4,7 @@ import { FormField } from './form'
 /**
  * Api handler item to setup form fields, form state, validation schema and submit callbacks
  */
-export type ApiHandler = {
+export type ApiHandlerItem = {
   [key: string]: {
     fields: FormField[]
     state: Partial<unknown>

@@ -45,7 +45,7 @@ import HeroComponent from '@/components/ui/HeroComponent.vue'
 import AdminAccordionItem from '@/components/ui/items/AdminAccordionItem.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { usePromotion } from '@/composables/promotion'
-import { ApiHandler, FormField } from '@/types'
+import { ApiHandlerItem, FormField } from '@/types'
 import { promotionSchema, PromotionSchema, promotionState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
@@ -83,7 +83,7 @@ onMounted(async () => {
 
 /* Functions */
 function onModalOpen(context: 'promotion', method: 'post' | 'put' | 'delete', item?: any) {
-  const items: ApiHandler = {
+  const items: ApiHandlerItem = {
     // promotion
     promotion: {
       fields: createPromotionFields(),
@@ -98,7 +98,7 @@ function onModalOpen(context: 'promotion', method: 'post' | 'put' | 'delete', it
         }
 
         // post & put
-        method === 'post' ? createPromotion(state) : modifyPromotion(item.id, state)
+        method === 'post' ? createPromotion(state as PromotionSchema) : modifyPromotion(item.id, state as PromotionSchema)
         modal.value.$el.dismiss()
       },
     },
@@ -107,6 +107,7 @@ function onModalOpen(context: 'promotion', method: 'post' | 'put' | 'delete', it
   // if not delete then form modal, otherwise alert
   method !== 'delete' ? modal.value.$el.present() : alert.value.$el.present()
 
+  // attribute variables
   fields.value = items[context].fields
   state.value = items[context].state
   schema.value = items[context].schema
