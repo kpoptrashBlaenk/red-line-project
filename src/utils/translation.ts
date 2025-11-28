@@ -7,6 +7,7 @@ const translationKeys = {
   add: 'add',
   add_promotion: 'add_promotion',
   admin: 'admin',
+  admin_category_title: 'admin_category_title',
   admin_home_carousel_title: 'admin_home_carousel_title',
   alert_header: 'alert_header',
   alert_message: 'alert_message',
@@ -28,6 +29,7 @@ const translationKeys = {
   legal_mentions: 'legal_mentions',
   link: 'promotion_link',
   menu: 'menu',
+  name: 'name',
   no_file: 'no_file',
   not_an_image: 'not_an_image',
   pages: 'pages',
@@ -54,6 +56,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   admin: {
     en: 'Admin Access',
     fr: 'Accès Admin',
+  },
+  admin_category_title: {
+    en: 'Categories',
+    fr: 'Catégories',
   },
   admin_home_carousel_title: {
     en: 'Promotion Carousel',
@@ -138,6 +144,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   menu: {
     en: 'Menu',
     fr: 'Menu',
+  },
+  name: {
+    en: 'Name',
+    fr: 'Nom',
   },
   no_file: {
     en: 'No file selected',

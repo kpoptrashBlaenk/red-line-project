@@ -1,9 +1,67 @@
 import { Category } from '$/types'
+import { FormField } from '@/types'
+import presentToast from '@/utils/presentToast'
+import { CategorySchema } from '@/utils/schemas'
+import translation from '@/utils/translation'
+import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do category related queries
  */
 export function useCategory() {
+  /**
+   * Create Category Form Fields
+   */
+  function createCategoryFields() {
+    return [
+      // general
+      {
+        element: 'divider',
+        label: translation('general'),
+      },
+      {
+        element: 'image',
+        name: 'image',
+        label: translation('image'),
+      },
+
+      // en
+      {
+        element: 'divider',
+        label: translation('english'),
+      },
+      {
+        element: 'input',
+        name: 'name_en',
+        label: translation('name'),
+      },
+
+      // fr
+      {
+        element: 'divider',
+        label: translation('french'),
+      },
+      {
+        element: 'input',
+        name: 'name_fr',
+        label: translation('name'),
+      },
+    ] as FormField[]
+  }
+
+  /**
+   * Flatten category to fit into state for forms
+   *
+   * @param category Selected category
+   */
+  function flattenCategory(category: Category) {
+    return {
+      name_en: category.name.en,
+      name_fr: category.name.fr,
+      image: category.image,
+    }
+  }
+
   /**
    * Get all categories
    */
@@ -68,6 +126,64 @@ export function useCategory() {
     return categories ?? []
   }
 
+  /**
+   * Reorder the categories
+   *
+   * @param items Items in new order
+   */
+  async function reorderCategories(items: Category[]) {
+    // api request
+    items
+
+    await presentToast(translation('toast_reordered'), 'success', checkmarkCircleOutline)
+  }
+
+  /**
+   * Create a new category
+   *
+   * @param state The state that tracks the new values
+   */
+  async function createCategory(state: CategorySchema) {
+    // api request
+    state
+
+    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+  }
+
+  /**
+   * Modify a category
+   *
+   * @param id The id of the record to modify
+   * @param state The state that tracks the new values
+   */
+  async function modifyCategory(id: number, state: CategorySchema) {
+    // api request
+    id
+    state
+
+    await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+  }
+
+  /**
+   * Delete a category
+   *
+   * @param id The id of the category record
+   */
+  async function deleteCategory(id: number) {
+    // api request
+    id
+
+    await presentToast(translation('toast_deleted'), 'success', checkmarkCircleOutline)
+  }
+
   // return all functions
-  return { getCategories }
+  return {
+    createCategoryFields,
+    flattenCategory,
+    getCategories,
+    reorderCategories,
+    createCategory,
+    modifyCategory,
+    deleteCategory,
+  }
 }

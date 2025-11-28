@@ -1,3 +1,4 @@
+import { AdminSectionKey } from '@/constants/adminPages'
 import z from 'zod'
 import { FormField } from './form'
 
@@ -5,7 +6,7 @@ import { FormField } from './form'
  * An object of ApiHandlerItems
  */
 export type ApiHandlerItems = {
-  [key: string]: ApiHandlerItem
+  [K in AdminSectionKey]: ApiHandlerItem
 }
 
 /**

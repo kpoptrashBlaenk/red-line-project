@@ -28,3 +28,18 @@ export const promotionState = reactive<Partial<PromotionSchema>>({
   image: undefined,
 })
 export type PromotionSchema = z.output<ReturnType<typeof promotionSchema>>
+
+/* Category */
+export const categorySchema = () =>
+  z.object({
+    name_en: z.string().min(1, translation('error_required')),
+    name_fr: z.string().min(1, translation('error_required')),
+
+    image: z.file(translation('error_required')),
+  })
+export const categoryState = reactive<Partial<CategorySchema>>({
+  name_en: '',
+  name_fr: '',
+  image: undefined,
+})
+export type CategorySchema = z.output<ReturnType<typeof categorySchema>>

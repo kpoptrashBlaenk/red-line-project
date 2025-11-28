@@ -14,8 +14,8 @@
     <div class="wrap">
       <SeparatorComponent size="xs" />
 
-      <!-- Admin Home Accordions -->
-      <IonAccordionGroup v-if="selectedPage === 'pages'" expand="inset" :value="adminSections.promotion">
+      <!-- Admin Page Content Accordions -->
+      <IonAccordionGroup v-if="selectedPage === 'pages'" expand="inset">
         <!-- Promotion Carousel Accordion -->
         <AdminAccordionItem
           :title="translation('admin_home_carousel_title')"
@@ -27,6 +27,17 @@
           :reorder-callback="reorderPromotions"
           @open:modal-form="onModalOpen"
         />
+
+        <!-- Category Carousel Accordion -->
+        <AdminAccordionItem
+          :title="translation('admin_category_title')"
+          value="category"
+          :items="categories"
+          image-key="image"
+          text-key="name"
+          :reorder-callback="reorderCategories"
+          @open:modal-form="onModalOpen"
+        />
       </IonAccordionGroup>
 
       <SeparatorComponent size="md" />
@@ -36,7 +47,7 @@
 
 <script setup lang="ts">
 /* Imports */
-import { Promotion } from '$/types'
+import { Category, Promotion } from '$/types'
 import FormAlert from '@/components/forms/FormAlert.vue'
 import FormModal from '@/components/forms/FormModal.vue'
 import AdminPageGrid from '@/components/grids/AdminPageGrid.vue'
@@ -44,11 +55,12 @@ import DefaultContentLayout from '@/components/layouts/default/DefaultContentLay
 import HeroComponent from '@/components/ui/HeroComponent.vue'
 import AdminAccordionItem from '@/components/ui/items/AdminAccordionItem.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
+import { useCategory } from '@/composables/category'
 import { usePromotion } from '@/composables/promotion'
-import { AdminPageKey, AdminSectionKey, adminSections } from '@/constants/adminPages'
+import { AdminPageKey, AdminSectionKey } from '@/constants/adminPages'
 import { ApiMethod } from '@/constants/apiMethod'
-import { ApiHandlerItems, FormField } from '@/types'
-import { promotionSchema, PromotionSchema, promotionState } from '@/utils/schemas'
+import { FormField } from '@/types'
+import { categorySchema, CategorySchema, categoryState, promotionSchema, PromotionSchema, promotionState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
@@ -64,6 +76,15 @@ const {
   modifyPromotion,
   deletePromotion,
 } = usePromotion()
+const {
+  createCategoryFields,
+  flattenCategory,
+  getCategories,
+  reorderCategories,
+  createCategory,
+  modifyCategory,
+  deleteCategory,
+} = useCategory()
 
 /* Form Refs */
 const modal = ref()
@@ -78,42 +99,69 @@ const onSubmit = ref<(state?: any) => void>(() => {})
 /* Refs */
 const selectedPage = ref<AdminPageKey>('pages')
 const promotions = ref<Promotion[]>([])
+const categories = ref<Category[]>([])
 
 /* Lifecycle Hooks */
 onMounted(async () => {
   promotions.value = await getPromotions()
+  categories.value = await getCategories()
 })
 
 /* Functions */
 function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: any) {
-  const items: ApiHandlerItems = {
-    // promotion
-    promotion: {
-      fields: createPromotionFields(),
-      state: item ? { ...flattenPromotion(item) } : { ...promotionState },
-      schema: promotionSchema(),
-      onSubmit: (state?: PromotionSchema) => {
-        // delete
-        if (method === 'delete') {
-          deletePromotion(item.id)
-          alert.value.$el.dismiss()
-          return
-        }
+  let contextItem: any
 
-        // post & put
-        method === 'post' ? createPromotion(state as PromotionSchema) : modifyPromotion(item.id, state as PromotionSchema)
-        modal.value.$el.dismiss()
-      },
-    },
+  switch (context) {
+    // promotion
+    case 'promotion':
+      contextItem = {
+        fields: createPromotionFields(),
+        state: item ? { ...flattenPromotion(item) } : { ...promotionState },
+        schema: promotionSchema(),
+        onSubmit: (state?: PromotionSchema) => {
+          // delete
+          if (method === 'delete') {
+            deletePromotion(item.id)
+            alert.value.$el.dismiss()
+            return
+          }
+
+          // post & put
+          method === 'post' ? createPromotion(state as PromotionSchema) : modifyPromotion(item.id, state as PromotionSchema)
+          modal.value.$el.dismiss()
+        },
+      }
+      break
+
+    // category
+    case 'category':
+      contextItem = {
+        fields: createCategoryFields(),
+        state: item ? { ...flattenCategory(item) } : { ...categoryState },
+        schema: categorySchema(),
+        onSubmit: (state?: CategorySchema) => {
+          // delete
+          if (method === 'delete') {
+            deleteCategory(item.id)
+            alert.value.$el.dismiss()
+            return
+          }
+
+          // post & put
+          method === 'post' ? createCategory(state as CategorySchema) : modifyCategory(item.id, state as CategorySchema)
+          modal.value.$el.dismiss()
+        },
+      }
+      break
   }
 
   // if not delete then form modal, otherwise alert
   method !== 'delete' ? modal.value.$el.present() : alert.value.$el.present()
 
   // attribute variables
-  fields.value = items[context].fields
-  state.value = items[context].state
-  schema.value = items[context].schema
-  onSubmit.value = items[context].onSubmit
+  fields.value = contextItem.fields
+  state.value = contextItem.state
+  schema.value = contextItem.schema
+  onSubmit.value = contextItem.onSubmit
 }
 </script>
