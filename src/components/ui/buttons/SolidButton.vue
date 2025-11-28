@@ -1,19 +1,21 @@
 <template>
   <IonButton fill="solid" :color="color" :router-link="link" class="font-extrabold">
     {{ label }}
+    <IonIcon v-if="icon" :icon class="ms-1" />
   </IonButton>
 </template>
 
 <script setup lang="ts">
 /* Imports */
 import { Color } from '@/types'
-import { IonButton } from '@ionic/vue'
+import { IonButton, IonIcon } from '@ionic/vue'
 
 /* Props */
 defineProps<{
   label: string
   link?: string
   color: Color
+  icon?: string
 }>()
 </script>
 

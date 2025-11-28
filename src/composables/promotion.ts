@@ -20,9 +20,14 @@ export function usePromotion() {
         label: translation('general'),
       },
       {
-        element: 'ion-input',
+        element: 'input',
         name: 'link',
         label: translation('link'),
+      },
+      {
+        element: 'image',
+        name: 'image',
+        label: translation('image'),
       },
 
       // en
@@ -31,17 +36,17 @@ export function usePromotion() {
         label: translation('english'),
       },
       {
-        element: 'ion-input',
+        element: 'input',
         name: 'title_en',
         label: translation('title'),
       },
       {
-        element: 'ion-input',
+        element: 'input',
         name: 'subtitle_en',
         label: translation('subtitle'),
       },
       {
-        element: 'ion-input',
+        element: 'input',
         name: 'button_en',
         label: translation('button_text'),
       },
@@ -52,17 +57,17 @@ export function usePromotion() {
         label: translation('french'),
       },
       {
-        element: 'ion-input',
+        element: 'input',
         name: 'title_fr',
         label: translation('title'),
       },
       {
-        element: 'ion-input',
+        element: 'input',
         name: 'subtitle_fr',
         label: translation('subtitle'),
       },
       {
-        element: 'ion-input',
+        element: 'input',
         name: 'button_fr',
         label: translation('button_text'),
       },
@@ -83,6 +88,7 @@ export function usePromotion() {
       button_en: promotion.button.en,
       button_fr: promotion.button.fr,
       link: promotion.link,
+      image: promotion.image,
     }
   }
 

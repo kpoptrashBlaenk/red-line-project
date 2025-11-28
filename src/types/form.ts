@@ -17,13 +17,20 @@ export interface DividerField {
 }
 
 /**
+ * Image Form Component
+ */
+export interface ImageField extends FormFieldWrapper {
+  element: 'image'
+}
+
+/**
  * Input Form Field
  */
 export interface InputField extends FormFieldWrapper {
-  element: 'ion-input'
+  element: 'input'
 }
 
 /**
  * Form Field
  */
-export type FormField = DividerField | InputField
+export type FormField = DividerField | ImageField | InputField

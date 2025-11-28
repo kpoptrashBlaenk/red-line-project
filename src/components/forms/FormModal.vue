@@ -10,7 +10,6 @@
     <!-- Form -->
     <IonContent>
       <FormComponent id="modal-form" :fields :state :schema :on-submit />
-      <slot></slot>
     </IonContent>
 
     <!-- Buttons -->

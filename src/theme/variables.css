@@ -99,6 +99,7 @@ a:hover {
 .bg-light {
   background: var(--ion-color-light);
 }
+
 .text-primary {
   color: var(--ion-color-primary);
 }
@@ -107,6 +108,13 @@ a:hover {
 }
 .text-tertiary {
   color: var(--ion-color-tertiary);
+}
+.text-danger {
+  color: var(--ion-color-danger);
+}
+
+.border-primary {
+  border-color: var(--ion-color-primary);
 }
 
 /* ---------- LAYOUT ---------- */

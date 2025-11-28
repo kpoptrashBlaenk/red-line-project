@@ -15,6 +15,7 @@ export const promotionSchema = () =>
     button_fr: z.string().min(1, translation('error_required')),
 
     link: z.string().min(1, translation('error_required')),
+    image: z.file(translation('error_required')),
   })
 export const promotionState = reactive<Partial<PromotionSchema>>({
   title_en: '',
@@ -24,5 +25,6 @@ export const promotionState = reactive<Partial<PromotionSchema>>({
   button_en: '',
   button_fr: '',
   link: '',
+  image: undefined,
 })
 export type PromotionSchema = z.output<ReturnType<typeof promotionSchema>>

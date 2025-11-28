@@ -17,15 +17,19 @@ const translationKeys = {
   delete: 'delete',
   english: 'english',
   error_required: 'error_required',
+  file_too_big: 'file_too_big',
   french: 'french',
   general: 'general',
   general_conditions: 'general_conditions',
   home: 'home',
   home_carousel_title: 'home_carousel_title',
   home_category_title: 'home_category_title',
+  image: 'image',
   legal_mentions: 'legal_mentions',
   link: 'promotion_link',
   menu: 'menu',
+  no_file: 'no_file',
+  not_an_image: 'not_an_image',
   submit: 'submit',
   subtitle: 'promotion_subtitle',
   title: 'promotion_title',
@@ -90,6 +94,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Please fill out this field',
     fr: 'Veuillez remplir ce champ',
   },
+  file_too_big: {
+    en: 'The selected file is too large',
+    fr: 'Le fichier sélectionné est trop volumineux',
+  },
   french: {
     en: 'French',
     fr: 'Français',
@@ -114,6 +122,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: `Explore Our ${totTitle('Categories')}`,
     fr: `Découvrez nos ${totTitle('catégories')}`,
   },
+  image: {
+    en: 'Image',
+    fr: 'Image',
+  },
   link: {
     en: 'Link',
     fr: 'Lien',
@@ -125,6 +137,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   menu: {
     en: 'Menu',
     fr: 'Menu',
+  },
+  no_file: {
+    en: 'No file selected',
+    fr: 'Aucun fichier sélectionné',
+  },
+  not_an_image: {
+    en: 'The selected file is not an image',
+    fr: "Le fichier sélectionné n'est pas une image",
   },
   submit: {
     en: 'Submit',
