@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-2 gap-5 wrap">
+  <div class="grid grid-cols-1 gap-5 wrap">
     <SolidButton
       v-for="(page, key) in adminPages"
       :key

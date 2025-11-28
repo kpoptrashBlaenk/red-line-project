@@ -15,7 +15,7 @@
       <SeparatorComponent size="xs" />
 
       <!-- Admin Home Accordions -->
-      <IonAccordionGroup v-if="selectedPage === 'home'" expand="inset" :value="adminSections.promotion">
+      <IonAccordionGroup v-if="selectedPage === 'pages'" expand="inset" :value="adminSections.promotion">
         <!-- Promotion Carousel Accordion -->
         <AdminAccordionItem
           :title="translation('admin_home_carousel_title')"
@@ -76,7 +76,7 @@ const schema = ref<z.ZodType<any>>()
 const onSubmit = ref<(state?: any) => void>(() => {})
 
 /* Refs */
-const selectedPage = ref<AdminPageKey>('home')
+const selectedPage = ref<AdminPageKey>('pages')
 const promotions = ref<Promotion[]>([])
 
 /* Lifecycle Hooks */

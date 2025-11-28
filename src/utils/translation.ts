@@ -30,6 +30,7 @@ const translationKeys = {
   menu: 'menu',
   no_file: 'no_file',
   not_an_image: 'not_an_image',
+  pages: 'pages',
   submit: 'submit',
   subtitle: 'promotion_subtitle',
   title: 'promotion_title',
@@ -145,6 +146,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   not_an_image: {
     en: 'The selected file is not an image',
     fr: "Le fichier sélectionné n'est pas une image",
+  },
+  pages: {
+    en: 'Pages',
+    fr: 'Pages',
   },
   submit: {
     en: 'Submit',

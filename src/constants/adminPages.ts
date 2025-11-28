@@ -1,6 +1,5 @@
 export const adminPages = {
-  home: 'home',
-  category: 'category',
+  pages: 'pages',
 } as const
 export type AdminPageKey = keyof typeof adminPages
 
