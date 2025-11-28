@@ -17,10 +17,10 @@
 
     <!-- Item Options when Slide open -->
     <IonItemOptions side="end">
-      <IonItemOption color="warning" @click="$emit('open:modal-form', item)">
+      <IonItemOption color="warning" @click="$emit('open:modal-form', 'put')">
         <IonIcon :icon="pencilOutline" class="text-xl p-3" />
       </IonItemOption>
-      <IonItemOption color="danger">
+      <IonItemOption color="danger" @click="$emit('open:modal-form', 'delete')">
         <IonIcon :icon="trashBinOutline" class="text-xl p-3" />
       </IonItemOption>
     </IonItemOptions>

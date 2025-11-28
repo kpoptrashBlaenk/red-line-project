@@ -8,10 +8,13 @@ const translationKeys = {
   add_promotion: 'add_promotion',
   admin: 'admin',
   admin_home_carousel_title: 'admin_home_carousel_title',
+  alert_header: 'alert_header',
+  alert_message: 'alert_message',
   button_text: 'promotion_button',
   cancel: 'cancel',
   category: 'category',
   contact: 'contact',
+  delete: 'delete',
   english: 'english',
   error_required: 'error_required',
   french: 'french',
@@ -27,6 +30,7 @@ const translationKeys = {
   subtitle: 'promotion_subtitle',
   title: 'promotion_title',
   toast_added: 'toast_added',
+  toast_deleted: 'toast_deleted',
   toast_modified: 'toast_modified',
   toast_reordered: 'toast_reordered',
 }
@@ -50,6 +54,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Promotion Carousel',
     fr: 'Carrousel de promotions',
   },
+  alert_header: {
+    en: 'Are you sure?',
+    fr: 'Êtes-vous sûr?',
+  },
+  alert_message: {
+    en: 'This action cannot be undone.',
+    fr: 'Cette action est irréversible.',
+  },
   button_text: {
     en: 'Button text',
     fr: 'Texte du bouton',
@@ -65,6 +77,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   contact: {
     en: 'Contact',
     fr: 'Contacte',
+  },
+  delete: {
+    en: 'Delete',
+    fr: 'Supprimer',
   },
   english: {
     en: 'English',
@@ -125,6 +141,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   toast_added: {
     en: 'Successfully added',
     fr: 'Ajouté avec succès',
+  },
+  toast_deleted: {
+    en: 'Successfully deleted',
+    fr: 'Supprimé avec succès',
   },
   toast_modified: {
     en: 'Successfully modified',

@@ -120,8 +120,8 @@ a:hover {
   box-sizing: border-box;
 }
 
-/* ---------- TOAST ---------- */
-/* --------------------------- */
+/* ---------- TOASTS ---------- */
+/* ---------------------------- */
 ion-toast {
   margin-top: -25px;
   --width: 50%;
@@ -135,4 +135,15 @@ ion-toast.toast-success {
 ion-toast.toast-danger {
   --background: var(--ion-color-danger);
   --color: var(--ion-color-danger-contrast);
+}
+
+/* ---------- ALERTS ---------- */
+/* ---------------------------- */
+.alert-button.bg-danger {
+  background: var(--ion-color-danger);
+  color: var(--ion-color-danger-contrast);
+}
+
+.alert-button.ion-focusable {
+  border-radius: 4px;
 }

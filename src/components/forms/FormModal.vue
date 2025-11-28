@@ -9,7 +9,7 @@
 
     <!-- Form -->
     <IonContent>
-      <FormComponent id="modal-form" :fields :state :schema :on-submit :dismiss />
+      <FormComponent id="modal-form" :fields :state :schema :on-submit />
       <slot></slot>
     </IonContent>
 
@@ -17,7 +17,7 @@
     <IonFooter>
       <IonToolbar color="light">
         <div class="flex">
-          <ClearButton :label="'Cancel'" color="dark" size="large" class="flex-1" @click="dismiss()" />
+          <ClearButton :label="'Cancel'" color="dark" size="large" class="flex-1" @click="modal.$el.dismiss()" />
           <ClearButton :label="'Submit'" color="dark" size="large" form="modal-form" class="flex-1" />
         </div>
       </IonToolbar>
@@ -41,16 +41,11 @@ defineProps<{
   fields: FormField[]
   state: any
   schema: z.ZodType<any> | undefined
-  onSubmit: (state: any, dismiss: () => void) => void
+  onSubmit: (state: any) => void
 }>()
 
 /* Refs */
 const modal = ref()
-
-/* Functions */
-function dismiss() {
-  modal.value.$el.dismiss(null, 'dismiss')
-}
 </script>
 
 <style lang="css" scoped>

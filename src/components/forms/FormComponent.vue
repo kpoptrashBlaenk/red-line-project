@@ -16,8 +16,7 @@ const props = defineProps<{
   fields: FormField[]
   state: any
   schema: z.ZodType<any> | undefined
-  onSubmit: (state: any, dismiss: () => void) => void
-  dismiss: () => void
+  onSubmit: (state: any) => void
 }>()
 
 /* Functions */
@@ -26,6 +25,6 @@ function handleSubmit() {
     return
   }
 
-  props.onSubmit(props.state, props.dismiss)
+  props.onSubmit(props.state)
 }
 </script>

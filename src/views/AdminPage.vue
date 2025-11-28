@@ -3,6 +3,9 @@
     <!-- Admin Form Modal -->
     <FormModal ref="modal" :is-open="modalOpen" :fields :state :schema @submit="onSubmit" />
 
+    <!-- Admin Form Alert -->
+    <FormAlert ref="alert" :is-open="alertOpen" @submit="onSubmit" />
+
     <!-- Hero Page Grid -->
     <HeroComponent>
       <AdminPageGrid />
@@ -34,6 +37,7 @@
 <script setup lang="ts">
 /* Imports */
 import { Promotion } from '$/types'
+import FormAlert from '@/components/forms/FormAlert.vue'
 import FormModal from '@/components/forms/FormModal.vue'
 import AdminPageGrid from '@/components/grids/AdminPageGrid.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
@@ -49,16 +53,25 @@ import { onMounted, ref } from 'vue'
 import z from 'zod'
 
 /* Constants */
-const { createPromotionFields, flattenPromotion, getPromotions, reorderPromotions, createPromotion, modifyPromotion } =
-  usePromotion()
+const {
+  createPromotionFields,
+  flattenPromotion,
+  getPromotions,
+  reorderPromotions,
+  createPromotion,
+  modifyPromotion,
+  deletePromotion,
+} = usePromotion()
 
 /* Form Refs */
 const modal = ref()
+const alert = ref()
 const modalOpen = ref<boolean>(false)
+const alertOpen = ref<boolean>(false)
 const fields = ref<FormField[]>([])
 const state = ref<any>({})
 const schema = ref<z.ZodType<any>>()
-const onSubmit = ref<(state: any, dismiss: () => void) => void>(() => {})
+const onSubmit = ref<(state?: any) => void>(() => {})
 
 /* Refs */
 const promotions = ref<Promotion[]>([])
@@ -69,21 +82,30 @@ onMounted(async () => {
 })
 
 /* Functions */
-function onModalOpen(context: 'promotion', item?: any) {
+function onModalOpen(context: 'promotion', method: 'post' | 'put' | 'delete', item?: any) {
   const items = {
     // promotion
     promotion: {
       fields: createPromotionFields(),
       state: item ? { ...flattenPromotion(item) } : { ...promotionState },
       schema: promotionSchema(),
-      onSubmit: (state: PromotionSchema, dismiss: () => void) => {
-        item ? modifyPromotion(state) : createPromotion(state)
-        dismiss()
+      onSubmit: (state?: PromotionSchema) => {
+        // delete
+        if (method === 'delete') {
+          deletePromotion(item.id)
+          alert.value.$el.dismiss()
+          return
+        }
+
+        // post & put
+        method === 'post' ? createPromotion(state) : modifyPromotion(state)
+        modal.value.$el.dismiss()
       },
     },
   }
 
-  modal.value.$el.present()
+  // if not delete then form modal, otherwise alert
+  method !== 'delete' ? modal.value.$el.present() : alert.value.$el.present()
 
   fields.value = items[context].fields
   state.value = items[context].state

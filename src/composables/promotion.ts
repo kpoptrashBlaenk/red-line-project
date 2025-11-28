@@ -240,6 +240,26 @@ export function usePromotion() {
     await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
   }
 
+  /**
+   * Delete a promotion
+   *
+   * @param id The id of the promotion record
+   */
+  async function deletePromotion(id: number) {
+    // api request
+    id
+
+    await presentToast(translation('toast_deleted'), 'success', checkmarkCircleOutline)
+  }
+
   // return all functions
-  return { createPromotionFields, flattenPromotion, getPromotions, reorderPromotions, createPromotion, modifyPromotion }
+  return {
+    createPromotionFields,
+    flattenPromotion,
+    getPromotions,
+    reorderPromotions,
+    createPromotion,
+    modifyPromotion,
+    deletePromotion,
+  }
 }

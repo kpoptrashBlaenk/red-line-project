@@ -14,7 +14,7 @@
             :image-key
             :text-key
             :note-key
-            @open:modal-form="$emit('open:modal-form', value, $event)"
+            @open:modal-form="$emit('open:modal-form', value, $event, item)"
           />
         </IonReorderGroup>
       </IonList>
