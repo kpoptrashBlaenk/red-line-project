@@ -2,11 +2,6 @@ import z from 'zod'
 import { FormField } from './form'
 
 /**
- * Api request methods
- */
-export type ApiMethod = 'get' | 'post' | 'put' | 'delete'
-
-/**
  * An object of ApiHandlerItems
  */
 export type ApiHandlerItems = {

@@ -1,5 +1,5 @@
 <template>
-  <IonButton fill="solid" :color="color" :router-link="link" class="font-extrabold">
+  <IonButton fill="solid" :color="color" :router-link="link" class="font-extrabold" :class="{ selected: selected }">
     {{ label }}
     <IonIcon v-if="icon" :icon class="ms-1" />
   </IonButton>
@@ -16,6 +16,7 @@ defineProps<{
   link?: string
   color: Color
   icon?: string
+  selected?: boolean
 }>()
 </script>
 
@@ -37,9 +38,13 @@ ion-button.button-solid::part(native) {
 }
 
 /* Inverse Colors on Interaction */
-ion-button.button-solid::part(native):hover,
-ion-button.button-solid::part(native):focus,
-ion-button.button-solid::part(native):active {
+ion-button.button-solid::part(native):hover {
+  background-color: var(--ion-color-contrast);
+  color: var(--ion-color-base);
+}
+
+/* Inverse Colors On Default If Selected */
+ion-button.button-solid.selected::part(native) {
   background-color: var(--ion-color-contrast);
   color: var(--ion-color-base);
 }

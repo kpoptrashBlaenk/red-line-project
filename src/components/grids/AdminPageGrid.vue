@@ -1,13 +1,25 @@
 <template>
-  <!-- TODO: make this distributable by the amount of items -->
   <div class="grid grid-cols-2 gap-5 wrap">
-    <SolidButton size="large" :label="translation('home')" color="primary"> </SolidButton>
-    <SolidButton size="large" :label="translation('category')" color="primary"> </SolidButton>
+    <SolidButton
+      v-for="(page, key) in adminPages"
+      :key
+      size="large"
+      :label="translation(page)"
+      color="primary"
+      :selected="selectedPage === page"
+      @click="$emit('update:selected-page', page)"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 /* Imports */
+import { AdminPageKey, adminPages } from '@/constants/adminPages'
 import translation from '@/utils/translation'
 import SolidButton from '../ui/buttons/SolidButton.vue'
+
+/* Props */
+defineProps<{
+  selectedPage: AdminPageKey
+}>()
 </script>

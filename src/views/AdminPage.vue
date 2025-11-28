@@ -8,18 +8,18 @@
 
     <!-- Hero Page Grid -->
     <HeroComponent>
-      <AdminPageGrid />
+      <AdminPageGrid :selected-page @update:selected-page="selectedPage = $event" />
     </HeroComponent>
 
     <div class="wrap">
       <SeparatorComponent size="xs" />
 
       <!-- Admin Home Accordions -->
-      <IonAccordionGroup expand="inset" value="promotion">
+      <IonAccordionGroup v-if="selectedPage === 'home'" expand="inset" :value="adminSections.promotion">
         <!-- Promotion Carousel Accordion -->
         <AdminAccordionItem
           :title="translation('admin_home_carousel_title')"
-          :value="'promotion'"
+          value="promotion"
           :items="promotions"
           image-key="image"
           text-key="title"
@@ -45,7 +45,9 @@ import HeroComponent from '@/components/ui/HeroComponent.vue'
 import AdminAccordionItem from '@/components/ui/items/AdminAccordionItem.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { usePromotion } from '@/composables/promotion'
-import { ApiHandlerItems, ApiMethod, FormField } from '@/types'
+import { AdminPageKey, AdminSectionKey, adminSections } from '@/constants/adminPages'
+import { ApiMethod } from '@/constants/apiMethod'
+import { ApiHandlerItems, FormField } from '@/types'
 import { promotionSchema, PromotionSchema, promotionState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
@@ -74,6 +76,7 @@ const schema = ref<z.ZodType<any>>()
 const onSubmit = ref<(state?: any) => void>(() => {})
 
 /* Refs */
+const selectedPage = ref<AdminPageKey>('home')
 const promotions = ref<Promotion[]>([])
 
 /* Lifecycle Hooks */
@@ -82,7 +85,7 @@ onMounted(async () => {
 })
 
 /* Functions */
-function onModalOpen(context: 'promotion', method: ApiMethod, item?: any) {
+function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: any) {
   const items: ApiHandlerItems = {
     // promotion
     promotion: {

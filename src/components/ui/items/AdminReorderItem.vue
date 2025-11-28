@@ -17,10 +17,10 @@
 
     <!-- Item Options when Slide open -->
     <IonItemOptions side="end">
-      <IonItemOption color="warning" @click="$emit('open:modal-form', 'put')">
+      <IonItemOption color="warning" @click="$emit('open:modal-form', apiMethods.put)">
         <IonIcon :icon="pencilOutline" class="text-xl p-3" />
       </IonItemOption>
-      <IonItemOption color="danger" @click="$emit('open:modal-form', 'delete')">
+      <IonItemOption color="danger" @click="$emit('open:modal-form', apiMethods.delete)">
         <IonIcon :icon="trashBinOutline" class="text-xl p-3" />
       </IonItemOption>
     </IonItemOptions>
@@ -29,6 +29,7 @@
 
 <script setup lang="ts">
 /* Imports */
+import apiMethods from '@/constants/apiMethod'
 import translation from '@/utils/translation'
 import {
   IonIcon,

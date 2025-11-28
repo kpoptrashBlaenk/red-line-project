@@ -24,7 +24,7 @@
         color="success"
         class="mt-2"
         expand="block"
-        @click="$emit('open:modal-form', value, 'post')"
+        @click="$emit('open:modal-form', value, apiMethods.post)"
       />
     </div>
   </IonAccordion>
@@ -32,6 +32,8 @@
 
 <script setup lang="ts">
 /* Imports */
+import { AdminSectionKey } from '@/constants/adminPages'
+import apiMethods from '@/constants/apiMethod'
 import translation from '@/utils/translation'
 import { IonAccordion, IonItem, IonLabel, IonList, IonReorderGroup, ReorderEndCustomEvent } from '@ionic/vue'
 import SolidButton from '../buttons/SolidButton.vue'
@@ -40,7 +42,7 @@ import AdminReorderItem from './AdminReorderItem.vue'
 /* Props */
 const props = defineProps<{
   title: string
-  value: string
+  value: AdminSectionKey
   items: any[]
   textKey?: string
   noteKey?: string
