@@ -6,16 +6,6 @@ import { Language } from '@/types'
 export type LanguageRecord = Record<Language, string>
 
 /**
- * Product categories
- */
-export type Category = {
-  id: number
-  image: string
-  name: LanguageRecord
-  index: number
-}
-
-/**
  * Promotional item for the Home Carousel
  */
 export type Promotion = {
@@ -25,6 +15,23 @@ export type Promotion = {
   subtitle: LanguageRecord
   button: LanguageRecord // button text
   link: string
+  index: number
+}
+
+/**
+ * Home Text Box
+ */
+export type HomeText = {
+  text: LanguageRecord
+}
+
+/**
+ * Product categories
+ */
+export type Category = {
+  id: number
+  image: string
+  name: LanguageRecord
   index: number
 }
 

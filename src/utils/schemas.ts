@@ -32,6 +32,18 @@ export const promotionState = reactive<Partial<PromotionSchema>>({
 })
 export type PromotionSchema = z.output<ReturnType<typeof promotionSchema>>
 
+/* HomeText */
+export const homeTextSchema = () =>
+  z.object({
+    text_en: z.string().min(1, translation('error_required')),
+    text_fr: z.string().min(1, translation('error_required')),
+  })
+export const homeTextState = reactive<Partial<HomeTextSchema>>({
+  text_en: '',
+  text_fr: '',
+})
+export type HomeTextSchema = z.output<ReturnType<typeof homeTextSchema>>
+
 /* Category */
 export const categorySchema = () =>
   z.object({

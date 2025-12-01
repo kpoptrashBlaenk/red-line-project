@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 /* Imports */
-import { Category, Promotion } from '$/types'
+import { Category, HomeText, Promotion } from '$/types'
 import HomeCategoryGrid from '@/components/grids/HomeCategoryGrid.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
 import HomeSwiper from '@/components/swiper/HomeSwiper.vue'
@@ -42,7 +42,7 @@ const { getCategories } = useCategory()
 
 /* Refs */
 const promotions = ref<Promotion[]>([])
-const homeText = ref<string>('')
+const homeText = ref<HomeText[]>([])
 const categories = ref<Category[]>([])
 
 /* Lifecycle Hooks */

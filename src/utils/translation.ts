@@ -8,6 +8,7 @@ const translationKeys = {
   admin: 'admin',
   admin_category_title: 'admin_category_title',
   admin_home_carousel_title: 'admin_home_carousel_title',
+  admin_home_text_title: 'admin_home_carousel_title',
   alert_header: 'alert_header',
   alert_message: 'alert_message',
   button_text: 'promotion_button',
@@ -35,6 +36,7 @@ const translationKeys = {
   pages: 'pages',
   submit: 'submit',
   subtitle: 'promotion_subtitle',
+  text: 'text',
   title: 'promotion_title',
   toast_added: 'toast_added',
   toast_deleted: 'toast_deleted',
@@ -60,6 +62,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   },
   admin_home_carousel_title: {
     en: 'Promotion Carousel',
+    fr: "Boîte de texte d'accueil",
+  },
+  admin_home_text_title: {
+    en: 'Home Text Box',
     fr: 'Carrousel de promotions',
   },
   alert_header: {
@@ -169,6 +175,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   subtitle: {
     en: 'Subtitle',
     fr: 'Sous-titre',
+  },
+  text: {
+    en: 'Text',
+    fr: 'Texte',
   },
   title: {
     en: 'Title',

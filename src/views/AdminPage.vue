@@ -28,6 +28,16 @@
           @open:modal-form="onModalOpen"
         />
 
+        <!-- Home Text Accordion -->
+        <AdminAccordionItem
+          :title="translation('admin_home_text_title')"
+          value="homeText"
+          :items="homeText"
+          text-key="text"
+          :reorder-callback="reorderHomeText"
+          @open:modal-form="onModalOpen"
+        />
+
         <!-- Category Carousel Accordion -->
         <AdminAccordionItem
           :title="translation('admin_category_title')"
@@ -47,7 +57,7 @@
 
 <script setup lang="ts">
 /* Imports */
-import { Category, Promotion } from '$/types'
+import { Category, HomeText, Promotion } from '$/types'
 import FormAlert from '@/components/forms/FormAlert.vue'
 import FormModal from '@/components/forms/FormModal.vue'
 import AdminPageGrid from '@/components/grids/AdminPageGrid.vue'
@@ -56,11 +66,22 @@ import HeroComponent from '@/components/ui/HeroComponent.vue'
 import AdminAccordionItem from '@/components/ui/items/AdminAccordionItem.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useCategory } from '@/composables/category'
+import { useHomeText } from '@/composables/homeText'
 import { usePromotion } from '@/composables/promotion'
 import { AdminPageKey, AdminSectionKey } from '@/constants/adminPages'
 import { ApiMethod } from '@/constants/apiMethod'
 import { ApiHandlerItem, FormField } from '@/types'
-import { categorySchema, CategorySchema, categoryState, promotionSchema, PromotionSchema, promotionState } from '@/utils/schemas'
+import {
+  categorySchema,
+  CategorySchema,
+  categoryState,
+  homeTextSchema,
+  HomeTextSchema,
+  homeTextState,
+  promotionSchema,
+  PromotionSchema,
+  promotionState,
+} from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
@@ -76,6 +97,8 @@ const {
   modifyPromotion,
   deletePromotion,
 } = usePromotion()
+const { createHomeTextFields, flattenHomeText, getHomeText, reorderHomeText, createHomeText, modifyHomeText, deleteHomeText } =
+  useHomeText()
 const {
   createCategoryFields,
   flattenCategory,
@@ -99,11 +122,13 @@ const onSubmit = ref<(state?: any) => void>(() => {})
 /* Refs */
 const selectedPage = ref<AdminPageKey>('pages')
 const promotions = ref<Promotion[]>([])
+const homeText = ref<HomeText[]>([])
 const categories = ref<Category[]>([])
 
 /* Lifecycle Hooks */
 onMounted(async () => {
   promotions.value = await getPromotions()
+  homeText.value = await getHomeText()
   categories.value = await getCategories()
 })
 
@@ -128,6 +153,27 @@ function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: any) {
 
           // post & put
           method === 'post' ? createPromotion(state as PromotionSchema) : modifyPromotion(item.id, state as PromotionSchema)
+          modal.value.$el.dismiss()
+        },
+      }
+      break
+
+    // home text
+    case 'homeText':
+      contextItem = {
+        fields: createHomeTextFields(),
+        state: item ? { ...flattenHomeText(item) } : { ...homeTextState },
+        schema: homeTextSchema(),
+        onSubmit: (state?: HomeTextSchema) => {
+          // delete
+          if (method === 'delete') {
+            deleteHomeText(item.id)
+            alert.value.$el.dismiss()
+            return
+          }
+
+          // post & put
+          method === 'post' ? createHomeText(state as HomeTextSchema) : modifyHomeText(item.id, state as HomeTextSchema)
           modal.value.$el.dismiss()
         },
       }

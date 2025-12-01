@@ -2,12 +2,18 @@
   <IonItemSliding ref="sliding">
     <IonItem>
       <!-- Item Grid -->
-      <div class="grid grid-cols-[min-content_min-content_1fr] gap-3 items-center py-2">
+      <div
+        class="grid gap-3 items-center py-2 overflow-hidden"
+        :class="{
+          'grid-cols-[min-content_min-content_1fr]': imageKey,
+          'grid-cols-[min-content_1fr]': !imageKey,
+        }"
+      >
         <IonReorder />
         <IonImg v-if="imageKey" :src="item[imageKey]" class="w-12" />
-        <div>
-          <IonLabel v-if="textKey">{{ translation(item[textKey]) }}</IonLabel>
-          <IonNote v-if="noteKey">{{ translation(item[noteKey]) }}</IonNote>
+        <div class="overflow-hidden">
+          <IonLabel v-if="textKey" class="truncate text-ellipsis">{{ translation(item[textKey]) }}</IonLabel>
+          <IonNote v-if="noteKey" class="truncate text-ellipsis">{{ translation(item[noteKey]) }}</IonNote>
         </div>
       </div>
 
