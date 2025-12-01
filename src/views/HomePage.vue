@@ -36,9 +36,9 @@ import translation from '@/utils/translation'
 import { onMounted, ref } from 'vue'
 
 /* Constants */
-const { getPromotions } = usePromotion()
-const { getHomeText } = useHomeText()
-const { getCategories } = useCategory()
+const promotionComposable = usePromotion()
+const homeTextComposable = useHomeText()
+const categoryComposable = useCategory()
 
 /* Refs */
 const promotions = ref<Promotion[]>([])
@@ -47,8 +47,8 @@ const categories = ref<Category[]>([])
 
 /* Lifecycle Hooks */
 onMounted(async () => {
-  promotions.value = await getPromotions()
-  homeText.value = await getHomeText()
-  categories.value = await getCategories()
+  promotions.value = await promotionComposable.get()
+  homeText.value = await homeTextComposable.get()
+  categories.value = await categoryComposable.get()
 })
 </script>

@@ -31,6 +31,13 @@ export interface InputField extends FormFieldWrapper {
 }
 
 /**
+ * Textarea Form Field
+ */
+export interface TextareaField extends FormFieldWrapper {
+  element: 'textarea'
+}
+
+/**
  * Form Field
  */
-export type FormField = DividerField | ImageField | InputField
+export type FormField = DividerField | ImageField | InputField | TextareaField

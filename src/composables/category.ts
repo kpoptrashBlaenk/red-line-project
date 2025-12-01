@@ -12,7 +12,7 @@ export function useCategory() {
   /**
    * Create Category Form Fields
    */
-  function createCategoryFields() {
+  function createFields() {
     return [
       // en
       {
@@ -54,7 +54,7 @@ export function useCategory() {
    *
    * @param category Selected category
    */
-  function flattenCategory(category: Category) {
+  function flatten(category: Category) {
     return {
       name_en: category.name.en,
       name_fr: category.name.fr,
@@ -65,7 +65,7 @@ export function useCategory() {
   /**
    * Get all categories
    */
-  async function getCategories() {
+  async function get() {
     const categories: Category[] = [
       {
         id: 1,
@@ -131,7 +131,7 @@ export function useCategory() {
    *
    * @param items Items in new order
    */
-  async function reorderCategories(items: Category[]) {
+  async function reorder(items: Category[]) {
     // api request
     items
 
@@ -143,7 +143,7 @@ export function useCategory() {
    *
    * @param state The state that tracks the new values
    */
-  async function createCategory(state: CategorySchema) {
+  async function create(state: CategorySchema) {
     // api request
     state
 
@@ -156,7 +156,7 @@ export function useCategory() {
    * @param id The id of the record to modify
    * @param state The state that tracks the new values
    */
-  async function modifyCategory(id: number, state: CategorySchema) {
+  async function modify(id: number, state: CategorySchema) {
     // api request
     id
     state
@@ -169,7 +169,7 @@ export function useCategory() {
    *
    * @param id The id of the category record
    */
-  async function deleteCategory(id: number) {
+  async function remove(id: number) {
     // api request
     id
 
@@ -178,12 +178,12 @@ export function useCategory() {
 
   // return all functions
   return {
-    createCategoryFields,
-    flattenCategory,
-    getCategories,
-    reorderCategories,
-    createCategory,
-    modifyCategory,
-    deleteCategory,
+    createFields,
+    flatten,
+    get,
+    reorder,
+    create,
+    modify,
+    remove,
   }
 }

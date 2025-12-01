@@ -19,6 +19,8 @@ export function validateForm(fields: FormField[], state: Record<string, any>, sc
   let valid = true
 
   fields.forEach((field) => {
+    if (field.element === 'divider') return
+
     if (!result.success) {
       const issue = result.error.issues.find((issue: any) => issue.path[0] === field.name)
 

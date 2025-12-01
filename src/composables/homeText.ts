@@ -12,7 +12,7 @@ export function useHomeText() {
   /**
    * Create Home Text Form Fields
    */
-  function createHomeTextFields() {
+  function createFields() {
     return [
       // en
       {
@@ -20,7 +20,7 @@ export function useHomeText() {
         label: translation('english'),
       },
       {
-        element: 'input',
+        element: 'textarea',
         name: 'text_en',
         label: translation('text'),
       },
@@ -31,7 +31,7 @@ export function useHomeText() {
         label: translation('french'),
       },
       {
-        element: 'input',
+        element: 'textarea',
         name: 'text_fr',
         label: translation('text'),
       },
@@ -43,7 +43,7 @@ export function useHomeText() {
    *
    * @param homeText Selected homeText
    */
-  function flattenHomeText(homeText: HomeText) {
+  function flatten(homeText: HomeText) {
     return {
       text_en: homeText.text.en,
       text_fr: homeText.text.fr,
@@ -53,7 +53,7 @@ export function useHomeText() {
   /**
    * Get all home texts
    */
-  async function getHomeText() {
+  async function get() {
     const homeText: HomeText[] = [
       {
         text: {
@@ -71,7 +71,7 @@ export function useHomeText() {
    *
    * @param items Items in new order
    */
-  async function reorderHomeText(items: HomeText[]) {
+  async function reorder(items: HomeText[]) {
     // api request
     items
 
@@ -83,7 +83,7 @@ export function useHomeText() {
    *
    * @param state The state that tracks the new values
    */
-  async function createHomeText(state: HomeTextSchema) {
+  async function create(state: HomeTextSchema) {
     // api request
     state
 
@@ -96,7 +96,7 @@ export function useHomeText() {
    * @param id The id of the record to modify
    * @param state The state that tracks the new values
    */
-  async function modifyHomeText(id: number, state: HomeTextSchema) {
+  async function modify(id: number, state: HomeTextSchema) {
     // api request
     id
     state
@@ -109,7 +109,7 @@ export function useHomeText() {
    *
    * @param id The id of the home text record
    */
-  async function deleteHomeText(id: number) {
+  async function remove(id: number) {
     // api request
     id
 
@@ -118,12 +118,12 @@ export function useHomeText() {
 
   // return all functions
   return {
-    createHomeTextFields,
-    flattenHomeText,
-    getHomeText,
-    reorderHomeText,
-    createHomeText,
-    modifyHomeText,
-    deleteHomeText,
+    createFields,
+    flatten,
+    get,
+    reorder,
+    create,
+    modify,
+    remove,
   }
 }

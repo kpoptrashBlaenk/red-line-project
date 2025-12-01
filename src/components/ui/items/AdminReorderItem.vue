@@ -3,7 +3,7 @@
     <IonItem>
       <!-- Item Grid -->
       <div
-        class="grid gap-3 items-center py-2 overflow-hidden"
+        class="grid gap-3 items-center py-2 overflow-hidden h-16"
         :class="{
           'grid-cols-[min-content_min-content_1fr]': imageKey,
           'grid-cols-[min-content_1fr]': !imageKey,

@@ -24,7 +24,7 @@
           image-key="image"
           text-key="title"
           note-key="subtitle"
-          :reorder-callback="reorderPromotions"
+          :reorder-callback="promotionComposable.reorder"
           @open:modal-form="onModalOpen"
         />
 
@@ -34,7 +34,7 @@
           value="homeText"
           :items="homeText"
           text-key="text"
-          :reorder-callback="reorderHomeText"
+          :reorder-callback="homeTextComposable.reorder"
           @open:modal-form="onModalOpen"
         />
 
@@ -45,7 +45,7 @@
           :items="categories"
           image-key="image"
           text-key="name"
-          :reorder-callback="reorderCategories"
+          :reorder-callback="categoryComposable.reorder"
           @open:modal-form="onModalOpen"
         />
       </IonAccordionGroup>
@@ -71,43 +71,16 @@ import { usePromotion } from '@/composables/promotion'
 import { AdminPageKey, AdminSectionKey } from '@/constants/adminPages'
 import { ApiMethod } from '@/constants/apiMethod'
 import { ApiHandlerItem, FormField } from '@/types'
-import {
-  categorySchema,
-  CategorySchema,
-  categoryState,
-  homeTextSchema,
-  HomeTextSchema,
-  homeTextState,
-  promotionSchema,
-  PromotionSchema,
-  promotionState,
-} from '@/utils/schemas'
+import { categorySchema, categoryState, homeTextSchema, homeTextState, promotionSchema, promotionState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
 import z from 'zod'
 
 /* Constants */
-const {
-  createPromotionFields,
-  flattenPromotion,
-  getPromotions,
-  reorderPromotions,
-  createPromotion,
-  modifyPromotion,
-  deletePromotion,
-} = usePromotion()
-const { createHomeTextFields, flattenHomeText, getHomeText, reorderHomeText, createHomeText, modifyHomeText, deleteHomeText } =
-  useHomeText()
-const {
-  createCategoryFields,
-  flattenCategory,
-  getCategories,
-  reorderCategories,
-  createCategory,
-  modifyCategory,
-  deleteCategory,
-} = useCategory()
+const promotionComposable = usePromotion()
+const homeTextComposable = useHomeText()
+const categoryComposable = useCategory()
 
 /* Form Refs */
 const modal = ref()
@@ -127,87 +100,45 @@ const categories = ref<Category[]>([])
 
 /* Lifecycle Hooks */
 onMounted(async () => {
-  promotions.value = await getPromotions()
-  homeText.value = await getHomeText()
-  categories.value = await getCategories()
+  promotions.value = await promotionComposable.get()
+  homeText.value = await homeTextComposable.get()
+  categories.value = await categoryComposable.get()
 })
 
 /* Functions */
 function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: any) {
-  let contextItem: ApiHandlerItem
+  const contextItemMap: Record<AdminSectionKey, { composable: any; schema: any; defaultState: any }> = {
+    promotion: { composable: promotionComposable, schema: promotionSchema(), defaultState: promotionState },
+    homeText: { composable: homeTextComposable, schema: homeTextSchema(), defaultState: homeTextState },
+    category: { composable: categoryComposable, schema: categorySchema(), defaultState: categoryState },
+  }
+  const contextItem = contextItemMap[context]
 
-  switch (context) {
-    // promotion
-    case 'promotion':
-      contextItem = {
-        fields: createPromotionFields(),
-        state: item ? { ...flattenPromotion(item) } : { ...promotionState },
-        schema: promotionSchema(),
-        onSubmit: (state?: PromotionSchema) => {
-          // delete
-          if (method === 'delete') {
-            deletePromotion(item.id)
-            alert.value.$el.dismiss()
-            return
-          }
-
-          // post & put
-          method === 'post' ? createPromotion(state as PromotionSchema) : modifyPromotion(item.id, state as PromotionSchema)
-          modal.value.$el.dismiss()
-        },
+  const apiHandlerItem: ApiHandlerItem = {
+    fields: contextItem.composable.createFields(),
+    state: item ? { ...contextItem.composable.flatten(item) } : { ...contextItem.defaultState },
+    schema: contextItem.schema,
+    onSubmit: (state?: any) => {
+      // delete
+      if (method === 'delete') {
+        contextItem.composable.remove(item.id)
+        alert.value.$el.dismiss()
+        return
       }
-      break
 
-    // home text
-    case 'homeText':
-      contextItem = {
-        fields: createHomeTextFields(),
-        state: item ? { ...flattenHomeText(item) } : { ...homeTextState },
-        schema: homeTextSchema(),
-        onSubmit: (state?: HomeTextSchema) => {
-          // delete
-          if (method === 'delete') {
-            deleteHomeText(item.id)
-            alert.value.$el.dismiss()
-            return
-          }
-
-          // post & put
-          method === 'post' ? createHomeText(state as HomeTextSchema) : modifyHomeText(item.id, state as HomeTextSchema)
-          modal.value.$el.dismiss()
-        },
-      }
-      break
-
-    // category
-    case 'category':
-      contextItem = {
-        fields: createCategoryFields(),
-        state: item ? { ...flattenCategory(item) } : { ...categoryState },
-        schema: categorySchema(),
-        onSubmit: (state?: CategorySchema) => {
-          // delete
-          if (method === 'delete') {
-            deleteCategory(item.id)
-            alert.value.$el.dismiss()
-            return
-          }
-
-          // post & put
-          method === 'post' ? createCategory(state as CategorySchema) : modifyCategory(item.id, state as CategorySchema)
-          modal.value.$el.dismiss()
-        },
-      }
-      break
+      // post & put
+      method === 'post' ? contextItem.composable.create(state) : contextItem.composable.modify(item.id, state)
+      modal.value.$el.dismiss()
+    },
   }
 
   // if not delete then form modal, otherwise alert
   method !== 'delete' ? modal.value.$el.present() : alert.value.$el.present()
 
   // attribute variables
-  fields.value = contextItem.fields
-  state.value = contextItem.state
-  schema.value = contextItem.schema
-  onSubmit.value = contextItem.onSubmit
+  fields.value = apiHandlerItem.fields
+  state.value = apiHandlerItem.state
+  schema.value = apiHandlerItem.schema
+  onSubmit.value = apiHandlerItem.onSubmit
 }
 </script>

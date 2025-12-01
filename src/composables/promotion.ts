@@ -12,7 +12,7 @@ export function usePromotion() {
   /**
    * Create Promotional Form Fields
    */
-  function createPromotionFields() {
+  function createFields() {
     return [
       // general
       {
@@ -85,7 +85,7 @@ export function usePromotion() {
    *
    * @param promotion Selected promotion
    */
-  function flattenPromotion(promotion: Promotion) {
+  function flatten(promotion: Promotion) {
     return {
       title_en: promotion.title.en,
       title_fr: promotion.title.fr,
@@ -101,7 +101,7 @@ export function usePromotion() {
   /**
    * Get the promotional products
    */
-  async function getPromotions() {
+  async function get() {
     const promotions: Promotion[] = [
       {
         id: 6,
@@ -221,7 +221,7 @@ export function usePromotion() {
    *
    * @param items Items in new order
    */
-  async function reorderPromotions(items: Promotion[]) {
+  async function reorder(items: Promotion[]) {
     // api request
     items
 
@@ -233,7 +233,7 @@ export function usePromotion() {
    *
    * @param state The state that tracks the new values
    */
-  async function createPromotion(state: PromotionSchema) {
+  async function create(state: PromotionSchema) {
     // api request
     state
 
@@ -246,7 +246,7 @@ export function usePromotion() {
    * @param id The id of the record to modify
    * @param state The state that tracks the new values
    */
-  async function modifyPromotion(id: number, state: PromotionSchema) {
+  async function modify(id: number, state: PromotionSchema) {
     // api request
     id
     state
@@ -259,7 +259,7 @@ export function usePromotion() {
    *
    * @param id The id of the promotion record
    */
-  async function deletePromotion(id: number) {
+  async function remove(id: number) {
     // api request
     id
 
@@ -268,12 +268,12 @@ export function usePromotion() {
 
   // return all functions
   return {
-    createPromotionFields,
-    flattenPromotion,
-    getPromotions,
-    reorderPromotions,
-    createPromotion,
-    modifyPromotion,
-    deletePromotion,
+    createFields,
+    flatten,
+    get,
+    reorder,
+    create,
+    modify,
+    remove,
   }
 }
