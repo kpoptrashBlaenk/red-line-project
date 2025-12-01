@@ -17,6 +17,6 @@ import { IonAlert } from '@ionic/vue'
 /* Props */
 defineProps<{
   isOpen: boolean
-  onSubmit: (state?: any) => void
+  onSubmit: (state?: any) => Promise<void>
 }>()
 </script>

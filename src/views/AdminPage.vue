@@ -90,7 +90,7 @@ const alertOpen = ref<boolean>(false)
 const fields = ref<FormField[]>([])
 const state = ref<any>({})
 const schema = ref<z.ZodType<any>>()
-const onSubmit = ref<(state?: any) => void>(() => {})
+const onSubmit = ref<(state?: any) => Promise<void>>(async () => {})
 
 /* Refs */
 const selectedPage = ref<AdminPageKey>('pages')
@@ -107,28 +107,33 @@ onMounted(async () => {
 
 /* Functions */
 function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: any) {
-  const contextItemMap: Record<AdminSectionKey, { composable: any; schema: any; defaultState: any }> = {
-    promotion: { composable: promotionComposable, schema: promotionSchema(), defaultState: promotionState },
-    homeText: { composable: homeTextComposable, schema: homeTextSchema(), defaultState: homeTextState },
-    category: { composable: categoryComposable, schema: categorySchema(), defaultState: categoryState },
+  const contextItemMap = {
+    promotion: { composable: promotionComposable, schema: promotionSchema(), defaultState: promotionState, ref: promotions },
+    homeText: { composable: homeTextComposable, schema: homeTextSchema(), defaultState: homeTextState, ref: homeText },
+    category: { composable: categoryComposable, schema: categorySchema(), defaultState: categoryState, ref: categories },
   }
   const contextItem = contextItemMap[context]
 
   const apiHandlerItem: ApiHandlerItem = {
+    // create form fields
     fields: contextItem.composable.createFields(),
+    // flatten item if it exists (prepare for modify), if not then create new state
     state: item ? { ...contextItem.composable.flatten(item) } : { ...contextItem.defaultState },
+    // validation schema
     schema: contextItem.schema,
-    onSubmit: (state?: any) => {
+    // submit callback
+    onSubmit: async (state?: any) => {
+      // post
+      if (method === 'post') contextItem.composable.create(state)
+      // put
+      else if (method === 'put') contextItem.composable.modify(item.id, state)
       // delete
-      if (method === 'delete') {
-        contextItem.composable.remove(item.id)
-        alert.value.$el.dismiss()
-        return
-      }
+      else if (method === 'delete') contextItem.composable.remove(item.id)
 
-      // post & put
-      method === 'post' ? contextItem.composable.create(state) : contextItem.composable.modify(item.id, state)
+      // refetch and dismiss
+      contextItem.ref.value = await contextItem.composable.get()
       modal.value.$el.dismiss()
+      alert.value.$el.dismiss()
     },
   }
 

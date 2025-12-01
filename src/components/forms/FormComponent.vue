@@ -16,15 +16,15 @@ const props = defineProps<{
   fields: FormField[]
   state: any
   schema: z.ZodType<any> | undefined
-  onSubmit: (state: any) => void
+  onSubmit: (state: any) => Promise<void>
 }>()
 
 /* Functions */
-function handleSubmit() {
+async function handleSubmit() {
   if (!validateForm(props.fields, props.state, props.schema)) {
     return
   }
 
-  props.onSubmit(props.state)
+  await props.onSubmit(props.state)
 }
 </script>

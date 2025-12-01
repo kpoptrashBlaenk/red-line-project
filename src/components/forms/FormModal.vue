@@ -40,7 +40,7 @@ defineProps<{
   fields: FormField[]
   state: any
   schema: z.ZodType<any> | undefined
-  onSubmit: (state: any) => void
+  onSubmit: (state: any) => Promise<void>
 }>()
 
 /* Refs */
