@@ -22,6 +22,7 @@ export type Promotion = {
  * Home Text Box
  */
 export type HomeText = {
+  id: number
   text: LanguageRecord
 }
 

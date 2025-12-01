@@ -45,13 +45,16 @@
 
         <!-- Category Carousel Accordion -->
         <AdminAccordionItem
-          :title="translation('admin_home_category_title')"
+          :title="translation('admin_category_title')"
           value="category"
           :items="categories"
           image-key="image"
           text-key="name"
           :reorder-callback="categoryComposable.reorder"
           reorder
+          add
+          modify
+          remove
           @open:modal-form="onModalOpen"
         />
       </IonAccordionGroup>

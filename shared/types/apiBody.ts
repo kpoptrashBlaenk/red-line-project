@@ -1,5 +1,4 @@
 import { CategorySchema, HomeTextSchema, PromotionSchema } from '@/utils/schemas'
-
 /**
  * Body for promotion api
  */
