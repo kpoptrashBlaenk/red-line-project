@@ -56,6 +56,7 @@ export function useHomeText() {
   async function get() {
     const homeText: HomeText[] = [
       {
+        id: 1,
         text: {
           en: 'Cyna is a pure player in cybersecurity for SMEs and MSPs. Quality of service is at the heart of our business, where we prioritize expertise, proximity, and speed of execution.',
           fr: "Cyna est un acteur pur de la cybersécurité pour les PME et les MSP. La qualité de service est au cœur de notre activité, où nous privilégions l'expertise, la proximité et la rapidité d'exécution.",
@@ -64,30 +65,6 @@ export function useHomeText() {
     ]
 
     return homeText ?? []
-  }
-
-  /**
-   * Reorder the home text
-   *
-   * @param items Items in new order
-   */
-  async function reorder(items: HomeText[]) {
-    // api request
-    items
-
-    await presentToast(translation('toast_reordered'), 'success', checkmarkCircleOutline)
-  }
-
-  /**
-   * Create a new home text
-   *
-   * @param state The state that tracks the new values
-   */
-  async function create(state: HomeTextSchema) {
-    // api request
-    state
-
-    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
   }
 
   /**
@@ -104,26 +81,11 @@ export function useHomeText() {
     await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
   }
 
-  /**
-   * Delete a homeText
-   *
-   * @param id The id of the home text record
-   */
-  async function remove(id: number) {
-    // api request
-    id
-
-    await presentToast(translation('toast_deleted'), 'success', checkmarkCircleOutline)
-  }
-
   // return all functions
   return {
     createFields,
     flatten,
     get,
-    reorder,
-    create,
     modify,
-    remove,
   }
 }

@@ -51,7 +51,7 @@ const props = defineProps<{
   textKey?: string
   noteKey?: string
   imageKey?: string
-  reorderCallback: (items: any) => Promise<void>
+  reorderCallback?: (items: any) => Promise<void>
   reorder?: boolean
   add?: boolean
   modify?: boolean
@@ -62,6 +62,6 @@ const props = defineProps<{
 function onReorderEnd(event: ReorderEndCustomEvent) {
   event.detail.complete(props.items)
 
-  props.reorderCallback(props.items)
+  props.reorderCallback?.(props.items)
 }
 </script>

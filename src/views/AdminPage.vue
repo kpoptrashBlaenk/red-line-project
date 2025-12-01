@@ -14,47 +14,22 @@
     <div class="wrap">
       <SeparatorComponent size="xs" />
 
-      <!-- Admin Page Content Accordions -->
+      <!-- Content Accordions -->
       <IonAccordionGroup v-if="selectedPage === 'pages'" expand="inset">
-        <!-- Promotion Carousel Accordion -->
         <AdminAccordionItem
-          :title="translation('admin_home_carousel_title')"
-          value="promotion"
-          :items="promotions"
-          image-key="image"
-          text-key="title"
-          note-key="subtitle"
-          reorder
-          add
-          modify
-          remove
-          :reorder-callback="promotionComposable.reorder"
-          @open:modal-form="onModalOpen"
-        />
-
-        <!-- Home Text Accordion -->
-        <AdminAccordionItem
-          :title="translation('admin_home_text_title')"
-          value="homeText"
-          :items="homeText"
-          text-key="text"
-          :reorder-callback="homeTextComposable.reorder"
-          modify
-          @open:modal-form="onModalOpen"
-        />
-
-        <!-- Category Carousel Accordion -->
-        <AdminAccordionItem
-          :title="translation('admin_category_title')"
-          value="category"
-          :items="categories"
-          image-key="image"
-          text-key="name"
-          :reorder-callback="categoryComposable.reorder"
-          reorder
-          add
-          modify
-          remove
+          v-for="(item, key) in Object.values(contextItemMap)"
+          :key
+          :title="item.title"
+          :value="item.value"
+          :items="item.itemsRef"
+          :image-key="item.imageKey"
+          :text-key="item.textKey"
+          :note-key="item.noteKey"
+          :reorder="item.reorder"
+          :add="item.add"
+          :modify="item.modify"
+          :remove="item.remove"
+          :reorder-callback="item.reorderCallback"
           @open:modal-form="onModalOpen"
         />
       </IonAccordionGroup>
@@ -79,7 +54,7 @@ import { useHomeText } from '@/composables/homeText'
 import { usePromotion } from '@/composables/promotion'
 import { AdminPageKey, AdminSectionKey } from '@/constants/adminPages'
 import { ApiMethod } from '@/constants/apiMethod'
-import { ApiHandlerItem, FormField } from '@/types'
+import { ApiHandlerItem, ContextItem, FormField } from '@/types'
 import { categorySchema, categoryState, homeTextSchema, homeTextState, promotionSchema, promotionState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
@@ -106,6 +81,52 @@ const selectedPage = ref<AdminPageKey>('pages')
 const promotions = ref<Promotion[]>([])
 const homeText = ref<HomeText[]>([])
 const categories = ref<Category[]>([])
+const contextItemMap = ref<ContextItem>({
+  promotion: {
+    title: translation('admin_home_carousel_title'),
+    value: 'promotion',
+    itemsRef: promotions,
+    imageKey: 'image',
+    textKey: 'title',
+    noteKey: 'subtitle',
+    reorder: true,
+    add: true,
+    modify: true,
+    remove: true,
+    reorderCallback: promotionComposable.reorder,
+    composable: promotionComposable,
+    schema: promotionSchema(),
+    defaultState: promotionState,
+    ref: promotions,
+  },
+  homeText: {
+    title: translation('admin_home_text_title'),
+    value: 'homeText',
+    itemsRef: homeText,
+    textKey: 'text',
+    modify: true,
+    composable: homeTextComposable,
+    schema: homeTextSchema(),
+    defaultState: homeTextState,
+    ref: homeText,
+  },
+  category: {
+    title: translation('admin_category_title'),
+    value: 'category',
+    itemsRef: categories,
+    imageKey: 'image',
+    textKey: 'name',
+    reorder: true,
+    add: true,
+    modify: true,
+    remove: true,
+    reorderCallback: categoryComposable.reorder,
+    composable: categoryComposable,
+    schema: categorySchema(),
+    defaultState: categoryState,
+    ref: categories,
+  },
+})
 
 /* Lifecycle Hooks */
 onMounted(async () => {
@@ -116,31 +137,26 @@ onMounted(async () => {
 
 /* Functions */
 function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: any) {
-  const contextItemMap = {
-    promotion: { composable: promotionComposable, schema: promotionSchema(), defaultState: promotionState, ref: promotions },
-    homeText: { composable: homeTextComposable, schema: homeTextSchema(), defaultState: homeTextState, ref: homeText },
-    category: { composable: categoryComposable, schema: categorySchema(), defaultState: categoryState, ref: categories },
-  }
-  const contextItem = contextItemMap[context]
+  const contextItem = contextItemMap.value[context]
 
   const apiHandlerItem: ApiHandlerItem = {
     // create form fields
-    fields: contextItem.composable.createFields(),
+    fields: contextItem.composable.createFields?.() ?? [],
     // flatten item if it exists (prepare for modify), if not then create new state
-    state: item ? { ...contextItem.composable.flatten(item) } : { ...contextItem.defaultState },
+    state: item ? { ...contextItem.composable.flatten?.(item) } : { ...contextItem.defaultState },
     // validation schema
     schema: contextItem.schema,
     // submit callback
     onSubmit: async (state?: any) => {
       // post
-      if (method === 'post') contextItem.composable.create(state)
+      if (method === 'post') contextItem.composable.create?.(state)
       // put
-      else if (method === 'put') contextItem.composable.modify(item.id, state)
+      if (method === 'put') contextItem.composable.modify?.(item.id, state)
       // delete
-      else if (method === 'delete') contextItem.composable.remove(item.id)
+      if (method === 'delete') contextItem.composable.remove?.(item.id)
 
       // refetch and dismiss
-      contextItem.ref.value = await contextItem.composable.get()
+      contextItem.ref.value = await contextItem.composable.get?.()
       modal.value.$el.dismiss()
       alert.value.$el.dismiss()
     },
