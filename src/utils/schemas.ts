@@ -15,7 +15,10 @@ export const promotionSchema = () =>
     button_fr: z.string().min(1, translation('error_required')),
 
     link: z.string().min(1, translation('error_required')),
-    image: z.file(translation('error_required')),
+    image: z.union([
+      z.string().min(1, translation('error_required')),
+      z.instanceof(File).refine(Boolean, translation('error_required')),
+    ]),
   })
 export const promotionState = reactive<Partial<PromotionSchema>>({
   title_en: '',
@@ -25,7 +28,7 @@ export const promotionState = reactive<Partial<PromotionSchema>>({
   button_en: '',
   button_fr: '',
   link: '',
-  image: undefined,
+  image: '',
 })
 export type PromotionSchema = z.output<ReturnType<typeof promotionSchema>>
 
@@ -35,11 +38,14 @@ export const categorySchema = () =>
     name_en: z.string().min(1, translation('error_required')),
     name_fr: z.string().min(1, translation('error_required')),
 
-    image: z.file(translation('error_required')),
+    image: z.union([
+      z.string().min(1, translation('error_required')),
+      z.instanceof(File).refine(Boolean, translation('error_required')),
+    ]),
   })
 export const categoryState = reactive<Partial<CategorySchema>>({
   name_en: '',
   name_fr: '',
-  image: undefined,
+  image: '',
 })
 export type CategorySchema = z.output<ReturnType<typeof categorySchema>>
