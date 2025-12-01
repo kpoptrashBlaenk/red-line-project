@@ -59,7 +59,7 @@ import { useCategory } from '@/composables/category'
 import { usePromotion } from '@/composables/promotion'
 import { AdminPageKey, AdminSectionKey } from '@/constants/adminPages'
 import { ApiMethod } from '@/constants/apiMethod'
-import { FormField } from '@/types'
+import { ApiHandlerItem, FormField } from '@/types'
 import { categorySchema, CategorySchema, categoryState, promotionSchema, PromotionSchema, promotionState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
@@ -109,7 +109,7 @@ onMounted(async () => {
 
 /* Functions */
 function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: any) {
-  let contextItem: any
+  let contextItem: ApiHandlerItem
 
   switch (context) {
     // promotion

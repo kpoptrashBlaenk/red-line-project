@@ -5,7 +5,6 @@ import totTitle from './totTitle'
 
 const translationKeys = {
   add: 'add',
-  add_promotion: 'add_promotion',
   admin: 'admin',
   admin_category_title: 'admin_category_title',
   admin_home_carousel_title: 'admin_home_carousel_title',
@@ -16,6 +15,7 @@ const translationKeys = {
   category: 'category',
   contact: 'contact',
   delete: 'delete',
+  details: 'details',
   english: 'english',
   error_required: 'error_required',
   file_too_big: 'file_too_big',
@@ -49,10 +49,6 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   add: {
     en: 'Add',
     fr: 'Ajouter',
-  },
-  add_promotion: {
-    en: 'Add a new Promotion',
-    fr: 'Ajouter une nouvelle promotion',
   },
   admin: {
     en: 'Admin Access',
@@ -93,6 +89,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   delete: {
     en: 'Delete',
     fr: 'Supprimer',
+  },
+  details: {
+    en: 'Details',
+    fr: 'Détails',
   },
   english: {
     en: 'English',

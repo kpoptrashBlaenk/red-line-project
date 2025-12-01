@@ -3,7 +3,7 @@
     <!-- Header -->
     <IonHeader>
       <IonToolbar color="tertiary" class="px-5">
-        <IonTitle> {{ translation('add_promotion') }} </IonTitle>
+        <IonTitle> {{ translation('details') }} </IonTitle>
       </IonToolbar>
     </IonHeader>
 
