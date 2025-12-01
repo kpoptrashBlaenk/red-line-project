@@ -40,6 +40,7 @@ const translationKeys = {
   toast_deleted: 'toast_deleted',
   toast_modified: 'toast_modified',
   toast_reordered: 'toast_reordered',
+  upload: 'upload',
 }
 
 export type TranslationKey = keyof typeof translationKeys
@@ -188,6 +189,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   toast_reordered: {
     en: 'Items reordered',
     fr: 'Éléments réordonnés',
+  },
+  upload: {
+    en: 'Upload',
+    fr: 'Upload',
   },
 }
 

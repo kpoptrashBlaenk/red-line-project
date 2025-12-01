@@ -14,17 +14,6 @@ export function useCategory() {
    */
   function createCategoryFields() {
     return [
-      // general
-      {
-        element: 'divider',
-        label: translation('general'),
-      },
-      {
-        element: 'image',
-        name: 'image',
-        label: translation('image'),
-      },
-
       // en
       {
         element: 'divider',
@@ -45,6 +34,17 @@ export function useCategory() {
         element: 'input',
         name: 'name_fr',
         label: translation('name'),
+      },
+
+      // image
+      {
+        element: 'divider',
+        label: translation('image'),
+      },
+      {
+        element: 'image',
+        name: 'image',
+        label: translation('upload'),
       },
     ] as FormField[]
   }

@@ -24,11 +24,6 @@ export function usePromotion() {
         name: 'link',
         label: translation('link'),
       },
-      {
-        element: 'image',
-        name: 'image',
-        label: translation('image'),
-      },
 
       // en
       {
@@ -70,6 +65,17 @@ export function usePromotion() {
         element: 'input',
         name: 'button_fr',
         label: translation('button_text'),
+      },
+
+      // image
+      {
+        element: 'divider',
+        label: translation('image'),
+      },
+      {
+        element: 'image',
+        name: 'image',
+        label: translation('upload'),
       },
     ] as FormField[]
   }

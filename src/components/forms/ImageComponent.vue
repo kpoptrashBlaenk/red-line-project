@@ -1,5 +1,9 @@
 <template>
   <div class="ps-5">
+    <div class="flex justify-center">
+      <img v-if="image" :src="image" class="mt-2 rounded-2xl object-fit max-w-62 max-h-62 border border-primary" />
+    </div>
+
     <SolidButton
       :aria-label="field.label"
       :label="field.label"
@@ -9,9 +13,6 @@
       class="mt-4"
       @click="openGallery"
     />
-    <div class="flex justify-center">
-      <img v-if="image" :src="image" class="mt-2 rounded-2xl object-fit max-w-62 max-h-62 border border-primary" />
-    </div>
 
     <div v-if="field.touched && field.error" class="text-danger text-xs" style="margin-top: 9px">{{ field.error }}</div>
   </div>
