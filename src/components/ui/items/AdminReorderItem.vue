@@ -4,12 +4,13 @@
       <!-- Item Grid -->
       <div
         class="grid gap-3 items-center py-2 overflow-hidden h-16"
-        :class="{
-          'grid-cols-[min-content_min-content_1fr]': imageKey,
-          'grid-cols-[min-content_1fr]': !imageKey,
-        }"
+        :class="`grid-cols-[${[reorder, imageKey, true]
+          .filter((column) => column)
+          .map((column, index) => (index === 0 ? '1fr' : 'min-content_'))
+          .reverse()
+          .join('')}]`"
       >
-        <IonReorder />
+        <IonReorder v-if="reorder" />
         <IonImg v-if="imageKey" :src="item[imageKey]" class="w-12" />
         <div class="overflow-hidden">
           <IonLabel v-if="textKey" class="truncate text-ellipsis">{{ translation(item[textKey]) }}</IonLabel>
@@ -18,15 +19,15 @@
       </div>
 
       <!-- Open Slide Button -->
-      <ClearButton slot="end" color="dark" chevron @click="sliding.$el.open()" />
+      <ClearButton v-if="modify || remove" slot="end" color="dark" chevron @click="sliding.$el.open()" />
     </IonItem>
 
     <!-- Item Options when Slide open -->
-    <IonItemOptions side="end">
-      <IonItemOption color="warning" @click="$emit('open:modal-form', apiMethods.put)">
+    <IonItemOptions v-if="modify || remove" side="end">
+      <IonItemOption v-if="modify" color="warning" @click="$emit('open:modal-form', apiMethods.put)">
         <IonIcon :icon="pencilOutline" class="text-xl p-3" />
       </IonItemOption>
-      <IonItemOption color="danger" @click="$emit('open:modal-form', apiMethods.delete)">
+      <IonItemOption v-if="remove" color="danger" @click="$emit('open:modal-form', apiMethods.delete)">
         <IonIcon :icon="trashBinOutline" class="text-xl p-3" />
       </IonItemOption>
     </IonItemOptions>
@@ -58,6 +59,9 @@ defineProps<{
   textKey?: string
   noteKey?: string
   imageKey?: string
+  reorder?: boolean
+  modify?: boolean
+  remove?: boolean
 }>()
 
 /* Refs */

@@ -14,12 +14,16 @@
             :image-key
             :text-key
             :note-key
+            :reorder
+            :modify
+            :remove
             @open:modal-form="$emit('open:modal-form', value, $event, item)"
           />
         </IonReorderGroup>
       </IonList>
 
       <SolidButton
+        v-if="add"
         :label="translation('add')"
         color="success"
         class="mt-2"
@@ -48,6 +52,10 @@ const props = defineProps<{
   noteKey?: string
   imageKey?: string
   reorderCallback: (items: any) => Promise<void>
+  reorder?: boolean
+  add?: boolean
+  modify?: boolean
+  remove?: boolean
 }>()
 
 /* Functions */

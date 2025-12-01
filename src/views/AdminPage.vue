@@ -24,6 +24,10 @@
           image-key="image"
           text-key="title"
           note-key="subtitle"
+          reorder
+          add
+          modify
+          remove
           :reorder-callback="promotionComposable.reorder"
           @open:modal-form="onModalOpen"
         />
@@ -35,17 +39,19 @@
           :items="homeText"
           text-key="text"
           :reorder-callback="homeTextComposable.reorder"
+          modify
           @open:modal-form="onModalOpen"
         />
 
         <!-- Category Carousel Accordion -->
         <AdminAccordionItem
-          :title="translation('admin_category_title')"
+          :title="translation('admin_home_category_title')"
           value="category"
           :items="categories"
           image-key="image"
           text-key="name"
           :reorder-callback="categoryComposable.reorder"
+          reorder
           @open:modal-form="onModalOpen"
         />
       </IonAccordionGroup>

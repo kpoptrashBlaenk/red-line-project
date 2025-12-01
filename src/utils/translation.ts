@@ -6,7 +6,7 @@ import totTitle from './totTitle'
 const translationKeys = {
   add: 'add',
   admin: 'admin',
-  admin_category_title: 'admin_category_title',
+  admin_home_category_title: 'admin_category_title',
   admin_home_carousel_title: 'admin_home_carousel_title',
   admin_home_text_title: 'admin_home_carousel_title',
   alert_header: 'alert_header',
@@ -56,17 +56,17 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Admin Access',
     fr: 'Accès Admin',
   },
-  admin_category_title: {
-    en: 'Categories',
-    fr: 'Catégories',
+  admin_home_category_title: {
+    en: 'Home Categories',
+    fr: "Catégories d'accueil",
   },
   admin_home_carousel_title: {
-    en: 'Promotion Carousel',
-    fr: "Boîte de texte d'accueil",
+    en: 'Home Promotion Carousel',
+    fr: "Carrousel de promotions d'accueil",
   },
   admin_home_text_title: {
     en: 'Home Text Box',
-    fr: 'Carrousel de promotions',
+    fr: "Boîte de texte d'accueil",
   },
   alert_header: {
     en: 'Are you sure?',
