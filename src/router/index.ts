@@ -1,33 +1,35 @@
-import { authOnly } from '@/middleware/auth'
-import { guestOnly } from '@/middleware/guest'
-import AuthPage from '@/views/AuthPage.vue'
-import IndexPage from '@/views/IndexPage.vue'
+import DefaultLayout from '@/components/layouts/default/DefaultLayout.vue'
+import AdminPage from '@/views/AdminPage.vue'
+import HomePage from '@/views/HomePage.vue'
+import TestPage from '@/views/TestPage.vue'
 import { createRouter, createWebHistory } from '@ionic/vue-router'
 import { RouteRecordRaw } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
-  // Index Page
   {
-    path: '/',
-    component: IndexPage,
-    beforeEnter: authOnly,
+    path: '',
+    redirect: '/home',
   },
 
-  // Auth Page
   {
-    path: '/auth',
-    beforeEnter: guestOnly,
-    component: AuthPage,
+    path: '/',
+    component: DefaultLayout,
     children: [
       {
-        path: '',
-        redirect: '/auth/login',
+        path: 'home',
+        component: HomePage,
       },
       {
-        path: 'login',
-        component: () => import('@/views/LoginPage.vue'),
+        path: 'admin',
+        component: AdminPage,
       },
     ],
+  },
+
+  // Component Testing Page
+  {
+    path: '/test',
+    component: TestPage,
   },
 ]
 
@@ -35,5 +37,16 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
+
+let lastRoute: string | null = null
+
+router.beforeEach((to, from, next) => {
+  lastRoute = from.fullPath
+  next()
+})
+
+export function getLastRoute() {
+  return lastRoute
+}
 
 export default router

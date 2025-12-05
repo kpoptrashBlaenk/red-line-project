@@ -1,2 +1,157 @@
-/* For information on how to create your own theme, please see:
-http://ionicframework.com/docs/theming/ */
+/* @import url(./buttons.css); */
+@import 'tailwindcss';
+
+/* ---------- BREAKPOINTS ---------- */
+/* --------------------------------- */
+@theme {
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+}
+
+/* ---------- FONTS ---------- */
+/* --------------------------- */
+@font-face {
+  font-family: 'Red Hat Display';
+  src: url(fonts/RedHatDisplay.ttf);
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Red Hat Display';
+  src: url(fonts/RedHatDisplayItalic.ttf);
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ---------- BODY ---------- */
+/* -------------------------- */
+body {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* ---------- VARIABLES ---------- */
+/* ------------------------------- */
+:root {
+  --ion-font-family: 'Red Hat Display', sans-serif;
+  --ion-text-color: #0b0d22;
+  --default-transition-duration: 0.2s; /* tailwind (to fit ionic default) */
+
+  /* Primary Color (Cyna Blue) */
+  --ion-color-primary: #0078c7;
+  --ion-color-primary-rgb: 0, 120, 199;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #006aaf;
+  --ion-color-primary-tint: #1a86cd;
+
+  /* Secondary Color (Cyna Purple) */
+  --ion-color-secondary: #8000ff;
+  --ion-color-secondary-rgb: 128, 0, 255;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #7100e0;
+  --ion-color-secondary-tint: #8d1aff;
+
+  /* Tertiary Color (Cyna Dark Blue) */
+  --ion-color-tertiary: #010033;
+  --ion-color-tertiary-rgb: 26, 0, 96;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #160051;
+  --ion-color-tertiary-tint: #330099;
+
+  /* Success Color */
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+
+  /* Warning Color */
+  --ion-color-warning-contrast: #ffffff;
+  --ion-color-warning-contrast-rgb: 255, 255, 255;
+}
+
+/* ---------- LINK ---------- */
+/* -------------------------- */
+a {
+  color: inherit;
+}
+a:hover {
+  text-decoration-line: underline;
+}
+
+/* ---------- COLORS ---------- */
+/* ---------------------------- */
+.bg-primary {
+  background: var(--ion-color-primary);
+}
+.bg-secondary {
+  background: var(--ion-color-secondary);
+}
+.bg-tertiary {
+  background: var(--ion-color-tertiary);
+}
+.bg-light {
+  background: var(--ion-color-light);
+}
+
+.text-primary {
+  color: var(--ion-color-primary);
+}
+.text-secondary {
+  color: var(--ion-color-secondary);
+}
+.text-tertiary {
+  color: var(--ion-color-tertiary);
+}
+.text-danger {
+  color: var(--ion-color-danger);
+}
+
+.border-primary {
+  border-color: var(--ion-color-primary);
+}
+
+/* ---------- LAYOUT ---------- */
+/* ---------------------------- */
+.wrap {
+  width: 100%;
+  max-width: 1250px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 25px;
+  box-sizing: border-box;
+}
+
+/* ---------- TOASTS ---------- */
+/* ---------------------------- */
+ion-toast {
+  margin-top: -25px;
+  --width: 50%;
+}
+
+ion-toast.toast-success {
+  --background: var(--ion-color-success);
+  --color: var(--ion-color-success-contrast);
+}
+
+ion-toast.toast-danger {
+  --background: var(--ion-color-danger);
+  --color: var(--ion-color-danger-contrast);
+}
+
+/* ---------- ALERTS ---------- */
+/* ---------------------------- */
+.alert-button.bg-danger {
+  background: var(--ion-color-danger);
+  color: var(--ion-color-danger-contrast);
+}
+
+.alert-button.ion-focusable {
+  border-radius: 4px;
+}

@@ -1,33 +1,30 @@
 <template>
-  <form @submit.prevent="handleSubmit">
-    <FormFieldComponent v-for="(field, index) in fields" :key="index" :field :state />
-    <ion-button type="submit"> Submit </ion-button>
+  <form @submit.prevent="handleSubmit" class="grid grid-cols-2 px-10 pb-5">
+    <FormFieldComponent v-for="(field, key) in fields" :key :field :state :schema />
   </form>
 </template>
 
 <script setup lang="ts">
 /* Imports */
-import { FormField } from '@/types/form'
+import { FormField } from '@/types'
 import { validateForm } from '@/utils/validateForm'
-import { IonButton } from '@ionic/vue'
 import z from 'zod'
 import FormFieldComponent from './FormFieldComponent.vue'
 
 /* Props */
-interface Props<T extends Record<string, any>> {
+const props = defineProps<{
   fields: FormField[]
-  state: T
-  schema: z.ZodType<T>
-  onSubmit: (state: T) => void
-}
-const props = defineProps<Props<any>>()
+  state: any
+  schema: z.ZodType<any> | undefined
+  onSubmit: (state: any) => Promise<void>
+}>()
 
 /* Functions */
-function handleSubmit() {
+async function handleSubmit() {
   if (!validateForm(props.fields, props.state, props.schema)) {
     return
   }
 
-  props.onSubmit(props.state)
+  await props.onSubmit(props.state)
 }
 </script>
