@@ -1,16 +1,16 @@
-import { Category } from '$/types'
+import { Product } from '$/types'
 import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
-import { CategorySchema } from '@/utils/schemas'
+import { ProductSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
- * Use this composable to do category related queries
+ * Use this composable to do product related queries
  */
-export function useCategory() {
+export function useProduct() {
   /**
-   * Create Category Form Fields
+   * Create Product Form Fields
    */
   function createFields() {
     return [
@@ -50,52 +50,76 @@ export function useCategory() {
   }
 
   /**
-   * Flatten category to fit into state for forms
+   * Flatten product to fit into state for forms
    *
-   * @param category Selected category
+   * @param product Selected product
    */
-  function flatten(category: Category) {
+  function flatten(product: Product) {
     return {
-      name_en: category.name.en,
-      name_fr: category.name.fr,
-      image: category.image,
+      name_en: product.name.en,
+      name_fr: product.name.fr,
+      image: product.image,
     }
   }
 
   /**
-   * Get all categories
+   * Get all products
    */
   async function get() {
-    const categories: Category[] = [
+    const products: Product[] = [
       {
         id: 1,
+        category_id: 1,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: { en: 'SOC Services', fr: 'Services SOC' },
+        name: { en: 'Cyna SOC', fr: 'Cyna SOC' },
         index: 1,
       },
       {
         id: 2,
+        category_id: 1,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: { en: 'EDR Services', fr: 'Services EDR' },
+        name: { en: 'Cyna SOC Advanced', fr: 'Cyna SOC Avancé' },
         index: 2,
       },
       {
         id: 3,
+        category_id: 2,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: { en: 'XDR Services', fr: 'Services XDR' },
-        index: 3,
+        name: { en: 'Cyna EDR', fr: 'Cyna EDR' },
+        index: 1,
+      },
+      {
+        id: 4,
+        category_id: 2,
+        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
+        name: { en: 'Cyna EDR Pro', fr: 'Cyna EDR Pro' },
+        index: 2,
+      },
+      {
+        id: 5,
+        category_id: 3,
+        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
+        name: { en: 'Cyna XDR', fr: 'Cyna XDR' },
+        index: 1,
+      },
+      {
+        id: 6,
+        category_id: 3,
+        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
+        name: { en: 'Cyna XDR Insights', fr: 'Cyna XDR Insights' },
+        index: 2,
       },
     ]
 
-    return categories ?? []
+    return products ?? []
   }
 
   /**
-   * Reorder the categories
+   * Reorder the products
    *
    * @param items Items in new order
    */
-  async function reorder(items: Category[]) {
+  async function reorder(items: Product[]) {
     // api request
     items
 
@@ -103,11 +127,11 @@ export function useCategory() {
   }
 
   /**
-   * Create a new category
+   * Create a new product
    *
    * @param state The state that tracks the new values
    */
-  async function create(state: CategorySchema) {
+  async function create(state: ProductSchema) {
     // api request
     state
 
@@ -115,12 +139,12 @@ export function useCategory() {
   }
 
   /**
-   * Modify a category
+   * Modify a product
    *
    * @param id The id of the record to modify
    * @param state The state that tracks the new values
    */
-  async function modify(id: number, state: CategorySchema) {
+  async function modify(id: number, state: ProductSchema) {
     // api request
     id
     state
@@ -129,9 +153,9 @@ export function useCategory() {
   }
 
   /**
-   * Delete a category
+   * Delete a product
    *
-   * @param id The id of the category record
+   * @param id The id of the product record
    */
   async function remove(id: number) {
     // api request

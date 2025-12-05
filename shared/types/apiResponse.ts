@@ -41,6 +41,7 @@ export type Category = {
  */
 export type Product = {
   id: number
+  category_id: number
   image: string
   name: LanguageRecord
   index: number
