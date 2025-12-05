@@ -44,6 +44,7 @@ export type Product = {
   category_id: number
   image: string
   name: LanguageRecord
+  top: boolean
   index: number
 }
 

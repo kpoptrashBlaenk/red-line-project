@@ -65,6 +65,9 @@ export type CategorySchema = z.output<ReturnType<typeof categorySchema>>
 /* Product */
 export const productSchema = () =>
   z.object({
+    category_id: z.number(translation('error_required')).refine((val) => val !== 0, { message: translation('error_required') }),
+    top: z.boolean(translation('error_required')),
+
     name_en: z.string().min(1, translation('error_required')),
     name_fr: z.string().min(1, translation('error_required')),
 
@@ -74,6 +77,8 @@ export const productSchema = () =>
     ]),
   })
 export const productState = reactive<Partial<ProductSchema>>({
+  category_id: 0,
+  top: false,
   name_en: '',
   name_fr: '',
   image: '',

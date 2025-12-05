@@ -34,18 +34,28 @@
 
 <script setup lang="ts">
 /* Imports */
-import { Category, HomeText, Promotion } from '$/types'
+import { Category, HomeText, Product, Promotion } from '$/types'
 import FormAlert from '@/components/forms/FormAlert.vue'
 import FormModal from '@/components/forms/FormModal.vue'
 import AdminAccordionItem from '@/components/ui/items/AdminAccordionItem.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useCategory } from '@/composables/category'
 import { useHomeText } from '@/composables/homeText'
+import { useProduct } from '@/composables/product'
 import { usePromotion } from '@/composables/promotion'
 import { AdminSectionKey } from '@/constants/adminPages'
 import { ApiMethod } from '@/constants/apiMethod'
 import { ApiHandlerItem, ContextItem, FormField } from '@/types'
-import { categorySchema, categoryState, homeTextSchema, homeTextState, promotionSchema, promotionState } from '@/utils/schemas'
+import {
+  categorySchema,
+  categoryState,
+  homeTextSchema,
+  homeTextState,
+  productSchema,
+  productState,
+  promotionSchema,
+  promotionState,
+} from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
@@ -55,6 +65,7 @@ import z from 'zod'
 const promotionComposable = usePromotion()
 const homeTextComposable = useHomeText()
 const categoryComposable = useCategory()
+const productComposable = useProduct()
 
 /* Form Refs */
 const modal = ref()
@@ -70,6 +81,7 @@ const onSubmit = ref<(state?: any) => Promise<void>>(async () => {})
 const promotions = ref<Promotion[]>([])
 const homeText = ref<HomeText[]>([])
 const categories = ref<Category[]>([])
+const products = ref<Product[]>([])
 const contextItemMap = ref<ContextItem>({
   promotion: {
     title: translation('admin_home_carousel_title'),
@@ -115,6 +127,22 @@ const contextItemMap = ref<ContextItem>({
     defaultState: categoryState,
     ref: categories,
   },
+  product: {
+    title: translation('admin_product_title'),
+    value: 'product',
+    itemsRef: products,
+    imageKey: 'image',
+    textKey: 'name',
+    reorder: true,
+    add: true,
+    modify: true,
+    remove: true,
+    reorderCallback: productComposable.reorder,
+    composable: productComposable,
+    schema: productSchema(),
+    defaultState: productState,
+    ref: products,
+  },
 })
 
 /* Lifecycle Hooks */
@@ -122,6 +150,7 @@ onMounted(async () => {
   promotions.value = await promotionComposable.get()
   homeText.value = await homeTextComposable.get()
   categories.value = await categoryComposable.get()
+  products.value = await productComposable.get()
 })
 
 /* Functions */

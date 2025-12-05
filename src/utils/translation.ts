@@ -9,6 +9,7 @@ const translationKeys = {
   admin_category_title: 'admin_category_title',
   admin_home_carousel_title: 'admin_home_carousel_title',
   admin_home_text_title: 'admin_home_carousel_title',
+  admin_product_title: 'admin_product_title',
   alert_header: 'alert_header',
   alert_message: 'alert_message',
   button_text: 'promotion_button',
@@ -42,6 +43,7 @@ const translationKeys = {
   toast_deleted: 'toast_deleted',
   toast_modified: 'toast_modified',
   toast_reordered: 'toast_reordered',
+  top: 'top',
   upload: 'upload',
 }
 
@@ -67,6 +69,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   admin_home_text_title: {
     en: 'Home Text Box',
     fr: "Boîte de texte d'accueil",
+  },
+  admin_product_title: {
+    en: 'Products',
+    fr: 'Produits',
   },
   alert_header: {
     en: 'Are you sure?',
@@ -199,6 +205,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   toast_reordered: {
     en: 'Items reordered',
     fr: 'Éléments réordonnés',
+  },
+  top: {
+    en: 'Top',
+    fr: 'Top',
   },
   upload: {
     en: 'Upload',

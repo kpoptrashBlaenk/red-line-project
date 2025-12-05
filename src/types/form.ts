@@ -38,6 +38,13 @@ export interface TextareaField extends FormFieldWrapper {
 }
 
 /**
+ * Toggle Form Field
+ */
+export interface ToggleField extends FormFieldWrapper {
+  element: 'toggle'
+}
+
+/**
  * Form Field
  */
-export type FormField = DividerField | ImageField | InputField | TextareaField
+export type FormField = DividerField | ImageField | InputField | TextareaField | ToggleField

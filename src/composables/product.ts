@@ -14,6 +14,17 @@ export function useProduct() {
    */
   function createFields() {
     return [
+      // general
+      {
+        element: 'divider',
+        label: translation('general'),
+      },
+      {
+        element: 'toggle',
+        name: 'top',
+        label: translation('top'),
+      },
+
       // en
       {
         element: 'divider',
@@ -56,6 +67,8 @@ export function useProduct() {
    */
   function flatten(product: Product) {
     return {
+      category_id: product.category_id,
+      top: product.top,
       name_en: product.name.en,
       name_fr: product.name.fr,
       image: product.image,
@@ -72,6 +85,7 @@ export function useProduct() {
         category_id: 1,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
         name: { en: 'Cyna SOC', fr: 'Cyna SOC' },
+        top: true,
         index: 1,
       },
       {
@@ -79,6 +93,7 @@ export function useProduct() {
         category_id: 1,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
         name: { en: 'Cyna SOC Advanced', fr: 'Cyna SOC Avancé' },
+        top: false,
         index: 2,
       },
       {
@@ -86,6 +101,7 @@ export function useProduct() {
         category_id: 2,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
         name: { en: 'Cyna EDR', fr: 'Cyna EDR' },
+        top: false,
         index: 1,
       },
       {
@@ -93,6 +109,7 @@ export function useProduct() {
         category_id: 2,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
         name: { en: 'Cyna EDR Pro', fr: 'Cyna EDR Pro' },
+        top: false,
         index: 2,
       },
       {
@@ -100,6 +117,7 @@ export function useProduct() {
         category_id: 3,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
         name: { en: 'Cyna XDR', fr: 'Cyna XDR' },
+        top: false,
         index: 1,
       },
       {
@@ -107,6 +125,7 @@ export function useProduct() {
         category_id: 3,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
         name: { en: 'Cyna XDR Insights', fr: 'Cyna XDR Insights' },
+        top: false,
         index: 2,
       },
     ]
