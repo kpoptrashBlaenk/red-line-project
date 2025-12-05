@@ -1,4 +1,4 @@
-import { User, UserSchema } from '@/types'
+import { User } from '@/types'
 import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore('user', {
@@ -7,14 +7,10 @@ export const useUserStore = defineStore('user', {
   }),
   getters: {},
   actions: {
-    // restore session using local storage token (used in middleware)
+    /**
+     * Restore session using local storage token (used in middleware)
+     */
     async restoreSession() {
-      return
-    },
-
-    // login user
-    async login(body: UserSchema) {
-      console.log(body)
       return
     },
   },

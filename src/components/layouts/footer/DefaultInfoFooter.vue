@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-3">
     <div>
-      <LogoComponent />
+      <LogoComponent light />
     </div>
     <div>
       {{ infoText }}

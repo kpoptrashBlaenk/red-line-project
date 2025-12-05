@@ -1,4 +1,4 @@
-import { Social } from '@/types'
+import { Social } from '$/types'
 import { logoGithub } from 'ionicons/icons'
 
 /**
@@ -13,7 +13,7 @@ export function useFooter() {
       {
         id: 1,
         logo: logoGithub,
-        url: 'https://github.com/kpoptrashBlaenk',
+        link: 'https://github.com/kpoptrashBlaenk',
       },
     ]
 

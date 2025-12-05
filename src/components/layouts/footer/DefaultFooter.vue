@@ -1,26 +1,33 @@
 <template>
-  <footer class="bg-gradient py-10 px-5 text-white grid grid-cols-1 md:grid-cols-4 gap-5 items-start">
-    <!-- Legal Mentions -->
-    <div>
-      <RouterLink to="/home">{{ translation('legal_mentions') }}</RouterLink>
-    </div>
-    <!-- General Conditions -->
-    <div>
-      <RouterLink to="/home">{{ translation('general_conditions') }}</RouterLink>
-    </div>
+  <footer class="bg-tertiary py-10 px-5">
+    <div class="text-white grid grid-cols-1 md:grid-cols-5 gap-5 items-start wrap">
+      <!-- Legal Mentions -->
+      <div>
+        <RouterLink to="/home">{{ translation('legal_mentions') }}</RouterLink>
+      </div>
+      <!-- General Conditions -->
+      <div>
+        <RouterLink to="/home">{{ translation('general_conditions') }}</RouterLink>
+      </div>
 
-    <!-- Social Media -->
-    <DefaultSocialsFooter :socials />
+      <!-- Contact -->
+      <div>
+        <RouterLink to="/home">{{ translation('contact') }}</RouterLink>
+      </div>
 
-    <!-- Info -->
-    <DefaultInfoFooter :info-text />
+      <!-- Social Media -->
+      <DefaultSocialsFooter :socials />
+
+      <!-- Info -->
+      <DefaultInfoFooter :info-text />
+    </div>
   </footer>
 </template>
 
 <script setup lang="ts">
 /* Imports */
+import { Social } from '$/types'
 import { useFooter } from '@/composables/footer'
-import { Social } from '@/types'
 import translation from '@/utils/translation'
 import { onMounted, ref } from 'vue'
 import DefaultInfoFooter from './DefaultInfoFooter.vue'

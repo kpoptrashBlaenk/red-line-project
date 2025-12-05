@@ -1,24 +1,29 @@
+import DefaultLayout from '@/components/layouts/default/DefaultLayout.vue'
+import AdminPage from '@/views/AdminPage.vue'
 import HomePage from '@/views/HomePage.vue'
-import LoginPage from '@/views/LoginPage.vue'
 import TestPage from '@/views/TestPage.vue'
 import { createRouter, createWebHistory } from '@ionic/vue-router'
 import { RouteRecordRaw } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
-  // Home Page
   {
     path: '',
     redirect: '/home',
   },
-  {
-    path: '/home',
-    component: HomePage,
-  },
 
-  // Auth Pages
   {
-    path: '/login',
-    component: LoginPage,
+    path: '/',
+    component: DefaultLayout,
+    children: [
+      {
+        path: 'home',
+        component: HomePage,
+      },
+      {
+        path: 'admin',
+        component: AdminPage,
+      },
+    ],
   },
 
   // Component Testing Page
@@ -32,5 +37,16 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
+
+let lastRoute: string | null = null
+
+router.beforeEach((to, from, next) => {
+  lastRoute = from.fullPath
+  next()
+})
+
+export function getLastRoute() {
+  return lastRoute
+}
 
 export default router

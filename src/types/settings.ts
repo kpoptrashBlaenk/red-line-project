@@ -1,5 +1,4 @@
-import translationKeys from '@/constants/translationKeys'
-
-/* Translation */
+/**
+ * Available app languages
+ */
 export type Language = 'en' | 'fr'
-export type TranslationKey = keyof typeof translationKeys

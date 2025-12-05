@@ -1,25 +1,33 @@
 <template>
-  <IonInput
+  <IonTextarea
     v-model="state[field.name]"
     :label="field.label"
+    :aria-label="field.label"
+    label-placement="floating"
+    clear-input
+    auto-grow
+    fill="solid"
     :error-text="field.error"
     @ionInput="validate"
     @ionBlur="markTouched"
     :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
-  ></IonInput>
+    mode="md"
+    class="ps-5!"
+  ></IonTextarea>
 </template>
 
 <script setup lang="ts">
 /* Imports */
-import type { FormField } from '@/types'
-import { userSchema } from '@/utils/schemas'
-import { IonInput } from '@ionic/vue'
+import type { TextareaField } from '@/types'
+import { IonTextarea } from '@ionic/vue'
 import { toRef } from 'vue'
+import z from 'zod'
 
 /* Props */
 const props = defineProps<{
-  field: FormField
+  field: TextareaField
   state: Record<string, any>
+  schema: z.ZodType<any> | undefined
 }>()
 
 /* Refs */
@@ -28,7 +36,7 @@ const state = toRef(props, 'state')
 
 /* Functions */
 function validate() {
-  const result = userSchema.safeParse(state.value)
+  const result = props.schema!.safeParse(state.value)
 
   if (!result.success) {
     const issue = result.error.issues.find((issue) => issue.path[0] === field.value.name)
@@ -43,3 +51,15 @@ function markTouched() {
   validate()
 }
 </script>
+
+<style lang="css" scoped>
+ion-textarea {
+  --background: transparent !important;
+  --border-color: var(--ion-color-primary-tint) !important;
+  --highlight-color: var(--ion-color-primary-shade);
+}
+
+ion-textarea.ion-invalid {
+  --border-color: var(--ion-color-danger) !important;
+}
+</style>

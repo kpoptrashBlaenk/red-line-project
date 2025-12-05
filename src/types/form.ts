@@ -1,3 +1,6 @@
+/**
+ * Form Field Wrapper
+ */
 export interface FormFieldWrapper {
   label: string
   name: string
@@ -5,8 +8,36 @@ export interface FormFieldWrapper {
   touched?: boolean
 }
 
-export interface InputField extends FormFieldWrapper {
-  element: 'ion-input'
+/**
+ * Divider Form Component
+ */
+export interface DividerField {
+  label: string
+  element: 'divider'
 }
 
-export type FormField = InputField
+/**
+ * Image Form Component
+ */
+export interface ImageField extends FormFieldWrapper {
+  element: 'image'
+}
+
+/**
+ * Input Form Field
+ */
+export interface InputField extends FormFieldWrapper {
+  element: 'input'
+}
+
+/**
+ * Textarea Form Field
+ */
+export interface TextareaField extends FormFieldWrapper {
+  element: 'textarea'
+}
+
+/**
+ * Form Field
+ */
+export type FormField = DividerField | ImageField | InputField | TextareaField
