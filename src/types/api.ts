@@ -21,7 +21,7 @@ export type ContextItem = Record<
     remove?: boolean
     reorderCallback?: (items: any[]) => Promise<void>
     composable: {
-      createFields?: () => FormField[]
+      createFields?: (() => FormField[]) | (() => Promise<FormField[]>)
       flatten?: (item: any) => any
       get?: () => Promise<any[]>
       reorder?: (items: any[]) => Promise<void>

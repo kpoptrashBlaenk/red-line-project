@@ -37,6 +37,18 @@ export type Category = {
 }
 
 /**
+ * Products
+ */
+export type Product = {
+  id: number
+  category_id: number
+  image: string
+  name: LanguageRecord
+  top: boolean
+  index: number
+}
+
+/**
  * Social links for the footer
  */
 export type Social = {

@@ -9,6 +9,7 @@ const translationKeys = {
   admin_category_title: 'admin_category_title',
   admin_home_carousel_title: 'admin_home_carousel_title',
   admin_home_text_title: 'admin_home_carousel_title',
+  admin_product_title: 'admin_product_title',
   alert_header: 'alert_header',
   alert_message: 'alert_message',
   button_text: 'promotion_button',
@@ -26,6 +27,7 @@ const translationKeys = {
   home: 'home',
   home_carousel_title: 'home_carousel_title',
   home_category_title: 'home_category_title',
+  home_product_title: 'home_product_title',
   image: 'image',
   legal_mentions: 'legal_mentions',
   link: 'promotion_link',
@@ -42,6 +44,7 @@ const translationKeys = {
   toast_deleted: 'toast_deleted',
   toast_modified: 'toast_modified',
   toast_reordered: 'toast_reordered',
+  top: 'top',
   upload: 'upload',
 }
 
@@ -67,6 +70,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   admin_home_text_title: {
     en: 'Home Text Box',
     fr: "Boîte de texte d'accueil",
+  },
+  admin_product_title: {
+    en: 'Products',
+    fr: 'Produits',
   },
   alert_header: {
     en: 'Are you sure?',
@@ -136,6 +143,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: `Explore Our ${totTitle('Categories')}`,
     fr: `Découvrez nos ${totTitle('catégories')}`,
   },
+  home_product_title: {
+    en: `Check Out Our ${totTitle('Top Products')}`,
+    fr: `Parcourez nos ${totTitle('Meilleurs Produits')}`,
+  },
   image: {
     en: 'Image',
     fr: 'Image',
@@ -199,6 +210,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   toast_reordered: {
     en: 'Items reordered',
     fr: 'Éléments réordonnés',
+  },
+  top: {
+    en: 'Top',
+    fr: 'Top',
   },
   upload: {
     en: 'Upload',

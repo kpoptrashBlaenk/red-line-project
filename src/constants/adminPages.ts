@@ -7,5 +7,6 @@ export const adminSections = {
   promotion: 'promotion',
   homeText: 'homeText',
   category: 'category',
+  product: 'product',
 } as const
 export type AdminSectionKey = keyof typeof adminSections

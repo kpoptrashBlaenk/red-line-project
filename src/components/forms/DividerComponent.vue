@@ -1,5 +1,5 @@
 <template>
-  <div class="text-xl font-semibold text-primary mt-5 md:mt-3 mb-0 md:-mb-2">
+  <div class="text-xl font-semibold text-primary mt-5 mb-0 md:-mb-2">
     {{ field.label }}
   </div>
 </template>

@@ -1,26 +1,26 @@
 <template>
   <div class="flex flex-wrap justify-center gap-5 mt-10">
     <ImageTitleCard
-      v-for="(category, key) in categories"
+      v-for="(product, key) in products"
       :key
-      :image="category.image"
-      :title="translation(category.name)"
-      :link="`/category/${category.id}`"
       :color
+      :image="product.image"
+      :title="translation(product.name)"
+      :link="`/product/${product.id}`"
     />
   </div>
 </template>
 
 <script setup lang="ts">
 /* Imports */
-import { Category } from '$/types'
+import { Product } from '$/types'
+import { Color } from '@/types'
 import translation from '@/utils/translation'
 import ImageTitleCard from '../ui/cards/ImageTitleCard.vue'
-import { Color } from '@/types'
 
 /* Props */
 defineProps<{
-  categories: Category[]
+  products: Product[]
   color: Color
 }>()
 </script>

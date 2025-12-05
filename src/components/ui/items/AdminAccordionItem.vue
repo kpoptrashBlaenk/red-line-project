@@ -4,13 +4,14 @@
       <IonLabel class="font-semibold">{{ title }}</IonLabel>
     </IonItem>
 
-    <div class="p-5" slot="content">
+    <div slot="content">
       <IonList>
         <IonReorderGroup :disabled="false" @ionReorderEnd="onReorderEnd">
           <AdminReorderItem
             v-for="(item, key) in items"
             :key
             :item
+            :last="key === items.length - 1"
             :image-key
             :text-key
             :note-key
@@ -22,14 +23,15 @@
         </IonReorderGroup>
       </IonList>
 
-      <SolidButton
-        v-if="add"
-        :label="translation('add')"
-        color="success"
-        class="mt-2"
-        expand="block"
-        @click="$emit('open:modal-form', value, apiMethods.post)"
-      />
+      <div v-if="add" class="px-5 pb-5">
+        <SolidButton
+          :label="translation('add')"
+          color="success"
+          class="mt-2"
+          expand="block"
+          @click="$emit('open:modal-form', value, apiMethods.post)"
+        />
+      </div>
     </div>
   </IonAccordion>
 </template>
