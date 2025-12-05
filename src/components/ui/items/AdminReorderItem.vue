@@ -1,6 +1,6 @@
 <template>
   <IonItemSliding ref="sliding">
-    <IonItem>
+    <IonItem :lines="last ? 'none' : 'inset'">
       <!-- Item Grid -->
       <div
         class="grid gap-3 items-center py-2 overflow-hidden h-16"
@@ -58,6 +58,7 @@ import ClearButton from '../buttons/ClearButton.vue'
 /* Props */
 defineProps<{
   item: any
+  last: boolean
   textKey?: string
   noteKey?: string
   imageKey?: string
