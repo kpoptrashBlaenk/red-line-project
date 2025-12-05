@@ -154,12 +154,12 @@ onMounted(async () => {
 })
 
 /* Functions */
-function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: any) {
+async function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: any) {
   const contextItem = contextItemMap.value[context]
 
   const apiHandlerItem: ApiHandlerItem = {
     // create form fields
-    fields: contextItem.composable.createFields?.() ?? [],
+    fields: (await contextItem.composable.createFields?.()) ?? [],
     // flatten item if it exists (prepare for modify), if not then create new state
     state: item ? { ...contextItem.composable.flatten?.(item) } : { ...contextItem.defaultState },
     // validation schema

@@ -1,5 +1,5 @@
 <template>
-  <div class="ps-5 pt-5">
+  <div class="ps-5 pt-2">
     <div class="flex justify-center">
       <img v-if="image" :src="image" class="mt-2 rounded-2xl object-fit max-w-62 max-h-62 border border-primary" />
     </div>

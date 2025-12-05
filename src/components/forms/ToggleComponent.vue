@@ -1,19 +1,22 @@
 <template>
-  <IonToggle
-    v-model="state[field.name]"
-    :aria-label="field.label"
-    label-placement="start"
-    justify="start"
-    clear-input
-    fill="solid"
-    :error-text="field.error"
-    @ionChange="validate"
-    @ionBlur="markTouched"
-    :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
-    mode="md"
-    class="ms-9! mt-5 w-min"
-    >{{ field.label }}</IonToggle
-  >
+  <div>
+    <div class="ms-5 pt-5 ps-4 border-b border-primary" style="padding-bottom: 13px">
+      <IonToggle
+        v-model="state[field.name]"
+        :aria-label="field.label"
+        label-placement="start"
+        justify="start"
+        fill="solid"
+        :error-text="field.error"
+        @ionChange="validate"
+        @ionBlur="markTouched"
+        :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
+        class="w-min"
+      >
+        {{ field.label }}
+      </IonToggle>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">

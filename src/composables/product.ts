@@ -4,20 +4,31 @@ import presentToast from '@/utils/presentToast'
 import { ProductSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { checkmarkCircleOutline } from 'ionicons/icons'
+import { useCategory } from './category'
 
 /**
  * Use this composable to do product related queries
  */
 export function useProduct() {
+  const categoryComposable = useCategory()
+
   /**
    * Create Product Form Fields
    */
-  function createFields() {
-    return [
+  async function createFields() {
+    const formFields: FormField[] = [
       // general
       {
         element: 'divider',
         label: translation('general'),
+      },
+      {
+        element: 'select',
+        name: 'category_id',
+        label: translation('category'),
+        items: await categoryComposable.get(),
+        itemLabelKey: 'name',
+        itemValueKey: 'id',
       },
       {
         element: 'toggle',
@@ -57,7 +68,9 @@ export function useProduct() {
         name: 'image',
         label: translation('upload'),
       },
-    ] as FormField[]
+    ]
+
+    return formFields
   }
 
   /**

@@ -45,6 +45,16 @@ export interface ToggleField extends FormFieldWrapper {
 }
 
 /**
+ * Select Form Field
+ */
+export interface SelectField extends FormFieldWrapper {
+  element: 'select'
+  items: any[]
+  itemValueKey: string
+  itemLabelKey: string
+}
+
+/**
  * Form Field
  */
-export type FormField = DividerField | ImageField | InputField | TextareaField | ToggleField
+export type FormField = DividerField | ImageField | InputField | TextareaField | ToggleField | SelectField
