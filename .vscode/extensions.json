@@ -12,6 +12,7 @@
     "esbenp.prettier-vscode",
     "YoavBls.pretty-ts-errors",
     "Vue.volar",
-    "WebNative.webnative"
+    "WebNative.webnative",
+    "Webnative.webnative"
   ]
 }
