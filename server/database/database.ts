@@ -1,7 +1,6 @@
 import dotenv from 'dotenv'
 import pg from 'pg'
 const { Pool } = pg
-
 dotenv.config()
 
 const pool = new Pool({
@@ -10,9 +9,9 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
   port: Number(process.env.DB_PORT) || 5432,
-  ssl: {
-    rejectUnauthorized: false, // local only, change in prod
-  },
+  // ssl: {
+  //   rejectUnauthorized: false,
+  // },
 })
 
 export default pool
