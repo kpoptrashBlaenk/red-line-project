@@ -4,11 +4,13 @@
       <!-- Item Grid -->
       <div
         class="grid gap-3 items-center py-2 overflow-hidden h-16"
-        :class="`grid-cols-[${[reorder, imageKey, true]
-          .filter((column) => column)
-          .map((column, index) => (index === 0 ? '1fr' : 'min-content_'))
-          .reverse()
-          .join('')}]`"
+        :style="{
+          gridTemplateColumns: [reorder, imageKey, true]
+            .filter((col) => col)
+            .map((col, index) => (index === 0 ? '1fr' : 'min-content'))
+            .reverse()
+            .join(' '),
+        }"
       >
         <IonReorder v-if="reorder" />
         <IonImg v-if="imageKey" :src="item[imageKey]" class="w-12" />
