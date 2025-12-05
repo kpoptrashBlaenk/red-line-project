@@ -114,8 +114,8 @@ export function useProduct() {
         category_id: 2,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
         name: { en: 'Cyna EDR', fr: 'Cyna EDR' },
-        top: false,
-        index: 1,
+        top: true,
+        index: 3,
       },
       {
         id: 4,
@@ -123,25 +123,34 @@ export function useProduct() {
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
         name: { en: 'Cyna EDR Pro', fr: 'Cyna EDR Pro' },
         top: false,
-        index: 2,
+        index: 4,
       },
       {
         id: 5,
         category_id: 3,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
         name: { en: 'Cyna XDR', fr: 'Cyna XDR' },
-        top: false,
-        index: 1,
+        top: true,
+        index: 5,
       },
       {
         id: 6,
         category_id: 3,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
         name: { en: 'Cyna XDR Insights', fr: 'Cyna XDR Insights' },
-        top: false,
-        index: 2,
+        top: true,
+        index: 6,
       },
     ]
+
+    return products ?? []
+  }
+
+  /**
+   * Get all top products
+   */
+  async function top() {
+    const products: Product[] = (await get()).filter((product) => product.top)
 
     return products ?? []
   }
@@ -201,6 +210,7 @@ export function useProduct() {
     createFields,
     flatten,
     get,
+    top,
     reorder,
     create,
     modify,

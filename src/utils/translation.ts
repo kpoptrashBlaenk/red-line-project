@@ -27,6 +27,7 @@ const translationKeys = {
   home: 'home',
   home_carousel_title: 'home_carousel_title',
   home_category_title: 'home_category_title',
+  home_product_title: 'home_product_title',
   image: 'image',
   legal_mentions: 'legal_mentions',
   link: 'promotion_link',
@@ -141,6 +142,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   home_category_title: {
     en: `Explore Our ${totTitle('Categories')}`,
     fr: `Découvrez nos ${totTitle('catégories')}`,
+  },
+  home_product_title: {
+    en: `Check Out Our ${totTitle('Top Products')}`,
+    fr: `Parcourez nos ${totTitle('Meilleurs Produits')}`,
   },
   image: {
     en: 'Image',
