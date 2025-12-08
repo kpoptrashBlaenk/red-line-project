@@ -45,8 +45,8 @@ export function useCharacteristic() {
       {
         element: 'select',
         items: characteristicTypes,
-        itemLabelKey: 'key',
-        itemLabelValue: 'value',
+        itemLabelKey: 'label',
+        itemValueKey: 'value',
         name: 'type',
         label: translation('type'),
       },
@@ -85,18 +85,6 @@ export function useCharacteristic() {
     ]
 
     return characteristics ?? []
-  }
-
-  /**
-   * Reorder the characteristics
-   *
-   * @param items Items in new order
-   */
-  async function reorder(items: Characteristic[]) {
-    // api request
-    items
-
-    await presentToast(translation('toast_reordered'), 'success', checkmarkCircleOutline)
   }
 
   /**
@@ -142,7 +130,6 @@ export function useCharacteristic() {
     createFields,
     flatten,
     get,
-    reorder,
     create,
     modify,
     remove,

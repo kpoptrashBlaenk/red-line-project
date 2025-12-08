@@ -7,6 +7,7 @@ const translationKeys = {
   add: 'add',
   admin: 'admin',
   admin_category_title: 'admin_category_title',
+  admin_characteristic_title: 'admin_characteristic_title',
   admin_home_carousel_title: 'admin_home_carousel_title',
   admin_home_text_title: 'admin_home_carousel_title',
   admin_product_title: 'admin_product_title',
@@ -72,6 +73,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   admin_category_title: {
     en: 'Categories',
     fr: 'Catégories',
+  },
+  admin_characteristic_title: {
+    en: 'Characteristics',
+    fr: 'Caractéristiques',
   },
   admin_home_carousel_title: {
     en: 'Home Promotion Carousel',

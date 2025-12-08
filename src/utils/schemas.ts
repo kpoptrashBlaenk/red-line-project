@@ -5,18 +5,18 @@ import translation from './translation'
 /* Promotion */
 export const promotionSchema = () =>
   z.object({
-    title_en: z.string().min(1, translation('error_required')),
-    title_fr: z.string().min(1, translation('error_required')),
+    title_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    title_fr: z.string(translation('error_required')).min(1, translation('error_required')),
 
-    subtitle_en: z.string().min(1, translation('error_required')),
-    subtitle_fr: z.string().min(1, translation('error_required')),
+    subtitle_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    subtitle_fr: z.string(translation('error_required')).min(1, translation('error_required')),
 
-    button_en: z.string().min(1, translation('error_required')),
-    button_fr: z.string().min(1, translation('error_required')),
+    button_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    button_fr: z.string(translation('error_required')).min(1, translation('error_required')),
 
-    link: z.string().min(1, translation('error_required')),
+    link: z.string(translation('error_required')).min(1, translation('error_required')),
     image: z.union([
-      z.string().min(1, translation('error_required')),
+      z.string(translation('error_required')).min(1, translation('error_required')),
       z.instanceof(File).refine(Boolean, translation('error_required')),
     ]),
   })
@@ -35,8 +35,8 @@ export type PromotionSchema = z.output<ReturnType<typeof promotionSchema>>
 /* HomeText */
 export const homeTextSchema = () =>
   z.object({
-    text_en: z.string().min(1, translation('error_required')),
-    text_fr: z.string().min(1, translation('error_required')),
+    text_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    text_fr: z.string(translation('error_required')).min(1, translation('error_required')),
   })
 export const homeTextState = reactive<Partial<HomeTextSchema>>({
   text_en: undefined,
@@ -47,11 +47,11 @@ export type HomeTextSchema = z.output<ReturnType<typeof homeTextSchema>>
 /* Category */
 export const categorySchema = () =>
   z.object({
-    name_en: z.string().min(1, translation('error_required')),
-    name_fr: z.string().min(1, translation('error_required')),
+    name_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    name_fr: z.string(translation('error_required')).min(1, translation('error_required')),
 
     image: z.union([
-      z.string().min(1, translation('error_required')),
+      z.string(translation('error_required')).min(1, translation('error_required')),
       z.instanceof(File).refine(Boolean, translation('error_required')),
     ]),
   })
@@ -70,22 +70,22 @@ export const productSchema = () =>
     price: z.number(translation('error_required')),
     disponible: z.boolean(translation('error_required')),
 
-    name_en: z.string().min(1, translation('error_required')),
-    name_fr: z.string().min(1, translation('error_required')),
+    name_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    name_fr: z.string(translation('error_required')).min(1, translation('error_required')),
 
-    description_functionality_en: z.string().min(1, translation('error_required')),
-    description_functionality_fr: z.string().min(1, translation('error_required')),
-    description_advantage_en: z.string().min(1, translation('error_required')),
-    description_advantage_fr: z.string().min(1, translation('error_required')),
-    description_security_en: z.string().min(1, translation('error_required')),
-    description_security_fr: z.string().min(1, translation('error_required')),
+    description_functionality_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    description_functionality_fr: z.string(translation('error_required')).min(1, translation('error_required')),
+    description_advantage_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    description_advantage_fr: z.string(translation('error_required')).min(1, translation('error_required')),
+    description_security_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    description_security_fr: z.string(translation('error_required')).min(1, translation('error_required')),
 
     characteristics_performance_ids: z.array(z.number().min(1, translation('error_required'))),
     characteristics_scalability_ids: z.array(z.number().min(1, translation('error_required'))),
     characteristics_level_ids: z.array(z.number().min(1, translation('error_required'))),
 
     image: z.union([
-      z.string().min(1, translation('error_required')),
+      z.string(translation('error_required')).min(1, translation('error_required')),
       z.instanceof(File).refine(Boolean, translation('error_required')),
     ]),
   })
@@ -116,8 +116,8 @@ export type ProductSchema = z.output<ReturnType<typeof productSchema>>
 /* Characteristics */
 export const characteristicSchema = () =>
   z.object({
-    name_en: z.string().min(1, translation('error_required')),
-    name_fr: z.string().min(1, translation('error_required')),
+    name_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    name_fr: z.string(translation('error_required')).min(1, translation('error_required')),
     type: z.enum(['performance', 'scalability', 'level'], translation('error_required')),
   })
 export const characteristicsState = reactive<Partial<CharacteristicSchema>>({

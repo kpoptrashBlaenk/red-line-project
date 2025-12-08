@@ -34,12 +34,13 @@
 
 <script setup lang="ts">
 /* Imports */
-import { Category, HomeText, Product, Promotion } from '$/types'
+import { Category, Characteristic, HomeText, Product, Promotion } from '$/types'
 import FormAlert from '@/components/forms/FormAlert.vue'
 import FormModal from '@/components/forms/FormModal.vue'
 import AdminAccordionItem from '@/components/ui/items/AdminAccordionItem.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useCategory } from '@/composables/category'
+import { useCharacteristic } from '@/composables/characteristic'
 import { useHomeText } from '@/composables/homeText'
 import { useProduct } from '@/composables/product'
 import { usePromotion } from '@/composables/promotion'
@@ -49,6 +50,8 @@ import { ApiHandlerItem, ContextItem, FormField } from '@/types'
 import {
   categorySchema,
   categoryState,
+  characteristicSchema,
+  characteristicsState,
   homeTextSchema,
   homeTextState,
   productSchema,
@@ -66,6 +69,7 @@ const promotionComposable = usePromotion()
 const homeTextComposable = useHomeText()
 const categoryComposable = useCategory()
 const productComposable = useProduct()
+const characteristicComposable = useCharacteristic()
 
 /* Form Refs */
 const modal = ref()
@@ -82,6 +86,7 @@ const promotions = ref<Promotion[]>([])
 const homeText = ref<HomeText[]>([])
 const categories = ref<Category[]>([])
 const products = ref<Product[]>([])
+const characteristics = ref<Characteristic[]>([])
 const contextItemMap = ref<ContextItem>({
   promotion: {
     title: translation('admin_home_carousel_title'),
@@ -143,6 +148,20 @@ const contextItemMap = ref<ContextItem>({
     defaultState: productState,
     ref: products,
   },
+  characteristic: {
+    title: translation('admin_characteristic_title'),
+    value: 'characteristic',
+    itemsRef: characteristics,
+    textKey: 'name',
+    // noteKey: 'type',
+    add: true,
+    modify: true,
+    remove: true,
+    composable: characteristicComposable,
+    schema: characteristicSchema(),
+    defaultState: characteristicsState,
+    ref: characteristics,
+  },
 })
 
 /* Lifecycle Hooks */
@@ -151,6 +170,7 @@ onMounted(async () => {
   homeText.value = await homeTextComposable.get()
   categories.value = await categoryComposable.get()
   products.value = await productComposable.get()
+  characteristics.value = await characteristicComposable.get()
 })
 
 /* Functions */
