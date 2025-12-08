@@ -21,14 +21,14 @@ export const promotionSchema = () =>
     ]),
   })
 export const promotionState = reactive<Partial<PromotionSchema>>({
-  title_en: '',
-  title_fr: '',
-  subtitle_en: '',
-  subtitle_fr: '',
-  button_en: '',
-  button_fr: '',
-  link: '',
-  image: '',
+  title_en: undefined,
+  title_fr: undefined,
+  subtitle_en: undefined,
+  subtitle_fr: undefined,
+  button_en: undefined,
+  button_fr: undefined,
+  link: undefined,
+  image: undefined,
 })
 export type PromotionSchema = z.output<ReturnType<typeof promotionSchema>>
 
@@ -39,8 +39,8 @@ export const homeTextSchema = () =>
     text_fr: z.string().min(1, translation('error_required')),
   })
 export const homeTextState = reactive<Partial<HomeTextSchema>>({
-  text_en: '',
-  text_fr: '',
+  text_en: undefined,
+  text_fr: undefined,
 })
 export type HomeTextSchema = z.output<ReturnType<typeof homeTextSchema>>
 
@@ -56,23 +56,11 @@ export const categorySchema = () =>
     ]),
   })
 export const categoryState = reactive<Partial<CategorySchema>>({
-  name_en: '',
-  name_fr: '',
-  image: '',
+  name_en: undefined,
+  name_fr: undefined,
+  image: undefined,
 })
 export type CategorySchema = z.output<ReturnType<typeof categorySchema>>
-
-/* Characteristics */
-export const characteristicsSchema = () =>
-  z.object({
-    name_en: z.string().min(1, translation('error_required')),
-    name_fr: z.string().min(1, translation('error_required')),
-  })
-export const characteristicsState = reactive<Partial<CharacteristicsSchema>>({
-  name_en: '',
-  name_fr: '',
-})
-export type CharacteristicsSchema = z.output<ReturnType<typeof characteristicsSchema>>
 
 /* Product */
 export const productSchema = () =>
@@ -107,15 +95,15 @@ export const productState = reactive<Partial<ProductSchema>>({
   price: 0,
   disponible: false,
 
-  name_en: '',
-  name_fr: '',
+  name_en: undefined,
+  name_fr: undefined,
 
-  description_functionality_en: '',
-  description_functionality_fr: '',
-  description_advantage_en: '',
-  description_advantage_fr: '',
-  description_security_en: '',
-  description_security_fr: '',
+  description_functionality_en: undefined,
+  description_functionality_fr: undefined,
+  description_advantage_en: undefined,
+  description_advantage_fr: undefined,
+  description_security_en: undefined,
+  description_security_fr: undefined,
 
   characteristics_performance_ids: [],
   characteristics_scalability_ids: [],
@@ -124,3 +112,17 @@ export const productState = reactive<Partial<ProductSchema>>({
   image: undefined,
 })
 export type ProductSchema = z.output<ReturnType<typeof productSchema>>
+
+/* Characteristics */
+export const characteristicSchema = () =>
+  z.object({
+    name_en: z.string().min(1, translation('error_required')),
+    name_fr: z.string().min(1, translation('error_required')),
+    type: z.enum(['performance', 'scalability', 'level'], translation('error_required')),
+  })
+export const characteristicsState = reactive<Partial<CharacteristicSchema>>({
+  name_en: undefined,
+  name_fr: undefined,
+  type: undefined,
+})
+export type CharacteristicSchema = z.output<ReturnType<typeof characteristicSchema>>

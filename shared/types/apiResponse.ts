@@ -59,6 +59,15 @@ export type Product = {
 }
 
 /**
+ * Characteristics
+ */
+export type Characteristic = {
+  id: number
+  name: LanguageRecord
+  type: 'performance' | 'scalability' | 'level'
+}
+
+/**
  * Social links for the footer
  */
 export type Social = {

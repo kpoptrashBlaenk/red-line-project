@@ -54,6 +54,7 @@ const translationKeys = {
   toast_modified: 'toast_modified',
   toast_reordered: 'toast_reordered',
   top: 'top',
+  type: 'type',
   upload: 'upload',
 }
 
@@ -259,6 +260,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   top: {
     en: 'Top',
     fr: 'Top',
+  },
+  type: {
+    en: 'Type',
+    fr: 'Type',
   },
   upload: {
     en: 'Upload',
