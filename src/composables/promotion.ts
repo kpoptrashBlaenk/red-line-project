@@ -14,17 +14,6 @@ export function usePromotion() {
    */
   function createFields() {
     return [
-      // general
-      {
-        element: 'divider',
-        label: translation('general'),
-      },
-      {
-        element: 'input',
-        name: 'link',
-        label: translation('link'),
-      },
-
       // en
       {
         element: 'divider',
@@ -65,6 +54,17 @@ export function usePromotion() {
         element: 'input',
         name: 'button_fr',
         label: translation('button_text'),
+      },
+
+      // general
+      {
+        element: 'divider',
+        label: translation('general'),
+      },
+      {
+        element: 'input',
+        name: 'link',
+        label: translation('link'),
       },
 
       // image

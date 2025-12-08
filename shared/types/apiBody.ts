@@ -1,7 +1,6 @@
 import { CategorySchema, HomeTextSchema, ProductSchema, PromotionSchema } from '@/utils/schemas'
 
 type Id = { id: number }
-type CategoryId = { category_id: number }
 
 /**
  * Body for promotion api
@@ -21,4 +20,4 @@ export type CategoryBody = Omit<CategorySchema, 'image'> & Id
 /**
  * Body for product api
  */
-export type ProductBody = Omit<ProductSchema, 'image'> & Id & CategoryId
+export type ProductBody = Omit<ProductSchema, 'image'> & Id

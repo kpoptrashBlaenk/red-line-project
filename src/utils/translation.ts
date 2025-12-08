@@ -15,9 +15,14 @@ const translationKeys = {
   button_text: 'promotion_button',
   cancel: 'cancel',
   category: 'category',
+  characteristics: 'characteristics',
   contact: 'contact',
   delete: 'delete',
+  description_advantage: 'description_advantage',
+  description_functionality: 'description_functionality',
+  description_security: 'description_security',
   details: 'details',
+  disponible: 'disponible',
   english: 'english',
   error_required: 'error_required',
   file_too_big: 'file_too_big',
@@ -30,12 +35,16 @@ const translationKeys = {
   home_product_title: 'home_product_title',
   image: 'image',
   legal_mentions: 'legal_mentions',
+  level: 'level',
   link: 'promotion_link',
   menu: 'menu',
   name: 'name',
   no_file: 'no_file',
   not_an_image: 'not_an_image',
   pages: 'pages',
+  performance: 'performance',
+  price: 'price',
+  scalability: 'scalability',
   submit: 'submit',
   subtitle: 'promotion_subtitle',
   text: 'text',
@@ -95,6 +104,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Category',
     fr: 'Catégorie',
   },
+  characteristics: {
+    en: 'Characteristics',
+    fr: 'Caractéristiques',
+  },
   contact: {
     en: 'Contact',
     fr: 'Contacte',
@@ -103,9 +116,25 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Delete',
     fr: 'Supprimer',
   },
+  description_advantage: {
+    en: 'Advantages Description',
+    fr: 'Description des avantages',
+  },
+  description_functionality: {
+    en: 'Functionality Description',
+    fr: 'Description des fonctionnalités',
+  },
+  description_security: {
+    en: 'Security Description',
+    fr: 'Description de la sécurité',
+  },
   details: {
     en: 'Details',
     fr: 'Détails',
+  },
+  disponible: {
+    en: 'Available',
+    fr: 'Disponible',
   },
   english: {
     en: 'English',
@@ -159,6 +188,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Legal Mentions',
     fr: 'Mentions légales',
   },
+  level: {
+    en: 'Level',
+    fr: 'Niveau',
+  },
   menu: {
     en: 'Menu',
     fr: 'Menu',
@@ -178,6 +211,18 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   pages: {
     en: 'Pages',
     fr: 'Pages',
+  },
+  performance: {
+    en: 'Performance',
+    fr: 'Performance',
+  },
+  price: {
+    en: 'Price',
+    fr: 'Prix',
+  },
+  scalability: {
+    en: 'Scalability',
+    fr: 'Scalabilité',
   },
   submit: {
     en: 'Submit',

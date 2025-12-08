@@ -17,6 +17,58 @@ export function useProduct() {
    */
   async function createFields() {
     const formFields: FormField[] = [
+      // en
+      {
+        element: 'divider',
+        label: translation('english'),
+      },
+      {
+        element: 'input',
+        name: 'name_en',
+        label: translation('name'),
+      },
+      {
+        element: 'textarea',
+        name: 'description_functionality_en',
+        label: translation('description_functionality'),
+      },
+      {
+        element: 'textarea',
+        name: 'description_advantage_en',
+        label: translation('description_advantage'),
+      },
+      {
+        element: 'textarea',
+        name: 'description_security_en',
+        label: translation('description_security'),
+      },
+
+      // fr
+      {
+        element: 'divider',
+        label: translation('french'),
+      },
+      {
+        element: 'input',
+        name: 'name_fr',
+        label: translation('name'),
+      },
+      {
+        element: 'textarea',
+        name: 'description_functionality_fr',
+        label: translation('description_functionality'),
+      },
+      {
+        element: 'textarea',
+        name: 'description_advantage_fr',
+        label: translation('description_advantage'),
+      },
+      {
+        element: 'textarea',
+        name: 'description_security_fr',
+        label: translation('description_security'),
+      },
+
       // general
       {
         element: 'divider',
@@ -35,27 +87,45 @@ export function useProduct() {
         name: 'top',
         label: translation('top'),
       },
+      {
+        element: 'input', // TODO: number
+        name: 'price',
+        label: translation('price'),
+      },
+      {
+        element: 'toggle',
+        name: 'disponible',
+        label: translation('disponible'),
+      },
 
-      // en
+      // characteristics
       {
         element: 'divider',
-        label: translation('english'),
+        label: translation('characteristics'),
       },
       {
-        element: 'input',
-        name: 'name_en',
-        label: translation('name'),
-      },
-
-      // fr
-      {
-        element: 'divider',
-        label: translation('french'),
+        element: 'select',
+        name: 'characteristics_performance_ids',
+        label: translation('performance'),
+        items: [],
+        itemLabelKey: 'name',
+        itemValueKey: 'id',
       },
       {
-        element: 'input',
-        name: 'name_fr',
-        label: translation('name'),
+        element: 'select',
+        name: 'characteristics_scalability_ids',
+        label: translation('scalability'),
+        items: [],
+        itemLabelKey: 'name',
+        itemValueKey: 'id',
+      },
+      {
+        element: 'select',
+        name: 'characteristics_level_ids',
+        label: translation('level'),
+        items: [],
+        itemLabelKey: 'name',
+        itemValueKey: 'id',
       },
 
       // image
@@ -82,9 +152,24 @@ export function useProduct() {
     return {
       category_id: product.category_id,
       top: product.top,
+      price: product.price,
+      disponible: product.disponible,
+      index: product.index,
+      image: product.image,
+
       name_en: product.name.en,
       name_fr: product.name.fr,
-      image: product.image,
+
+      description_functionality_en: product.description_functionality.en,
+      description_functionality_fr: product.description_functionality.fr,
+      description_advantage_en: product.description_advantage.en,
+      description_advantage_fr: product.description_advantage.fr,
+      description_security_en: product.description_security.en,
+      description_security_fr: product.description_security.fr,
+
+      characteristics_performance_ids: product.characteristics_performance_ids,
+      characteristics_scalability_ids: product.characteristics_scalability_ids,
+      characteristics_level_ids: product.characteristics_level_ids,
     }
   }
 
@@ -99,7 +184,24 @@ export function useProduct() {
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
         name: { en: 'Cyna SOC', fr: 'Cyna SOC' },
         top: true,
+        price: 120,
+        disponible: true,
         index: 1,
+        description_functionality: {
+          en: 'Real-time monitoring and incident response for enterprise networks.',
+          fr: 'Surveillance en temps réel et réponse aux incidents pour les réseaux d’entreprise.',
+        },
+        description_advantage: {
+          en: 'Reduces risk and ensures compliance with security standards.',
+          fr: 'Réduit les risques et assure la conformité avec les standards de sécurité.',
+        },
+        description_security: {
+          en: 'SOC solution with advanced threat detection and 24/7 monitoring.',
+          fr: 'Solution SOC avec détection avancée des menaces et surveillance 24/7.',
+        },
+        characteristics_performance_ids: [1, 2],
+        characteristics_scalability_ids: [3],
+        characteristics_level_ids: [1],
       },
       {
         id: 2,
@@ -107,7 +209,24 @@ export function useProduct() {
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
         name: { en: 'Cyna SOC Advanced', fr: 'Cyna SOC Avancé' },
         top: false,
+        price: 200,
+        disponible: true,
         index: 2,
+        description_functionality: {
+          en: 'Advanced SOC platform with AI-driven threat analysis.',
+          fr: 'Plateforme SOC avancée avec analyse des menaces pilotée par IA.',
+        },
+        description_advantage: {
+          en: 'Enhanced automation and faster incident response.',
+          fr: 'Automatisation améliorée et réponse aux incidents plus rapide.',
+        },
+        description_security: {
+          en: 'Includes SOC 24/7 monitoring, automated alerts, and detailed reporting.',
+          fr: 'Inclut la surveillance SOC 24/7, alertes automatiques et rapports détaillés.',
+        },
+        characteristics_performance_ids: [2, 3],
+        characteristics_scalability_ids: [3, 4],
+        characteristics_level_ids: [2],
       },
       {
         id: 3,
@@ -115,31 +234,49 @@ export function useProduct() {
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
         name: { en: 'Cyna EDR', fr: 'Cyna EDR' },
         top: true,
+        price: 150,
+        disponible: true,
         index: 3,
+        description_functionality: {
+          en: 'Endpoint detection and response for multi-device environments.',
+          fr: 'Détection et réponse aux incidents sur les terminaux multi-appareils.',
+        },
+        description_advantage: {
+          en: 'Improves endpoint security and reduces breach risks.',
+          fr: 'Améliore la sécurité des terminaux et réduit les risques de violation.',
+        },
+        description_security: {
+          en: 'EDR solution with AI-based threat hunting and alerting.',
+          fr: 'Solution EDR avec chasse aux menaces et alertes basées sur l’IA.',
+        },
+        characteristics_performance_ids: [1, 4],
+        characteristics_scalability_ids: [2],
+        characteristics_level_ids: [1],
       },
       {
         id: 4,
-        category_id: 2,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: { en: 'Cyna EDR Pro', fr: 'Cyna EDR Pro' },
-        top: false,
-        index: 4,
-      },
-      {
-        id: 5,
         category_id: 3,
         image: 'https://ionicframework.com/docs/img/demos/card-media.png',
         name: { en: 'Cyna XDR', fr: 'Cyna XDR' },
         top: true,
-        index: 5,
-      },
-      {
-        id: 6,
-        category_id: 3,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: { en: 'Cyna XDR Insights', fr: 'Cyna XDR Insights' },
-        top: true,
-        index: 6,
+        price: 250,
+        disponible: true,
+        index: 4,
+        description_functionality: {
+          en: 'Extended detection and response integrating multiple security layers.',
+          fr: 'Détection et réponse étendues intégrant plusieurs couches de sécurité.',
+        },
+        description_advantage: {
+          en: 'Centralized threat management across networks, endpoints, and cloud.',
+          fr: 'Gestion centralisée des menaces sur les réseaux, terminaux et cloud.',
+        },
+        description_security: {
+          en: 'XDR platform with unified monitoring and proactive threat mitigation.',
+          fr: 'Plateforme XDR avec surveillance unifiée et atténuation proactive des menaces.',
+        },
+        characteristics_performance_ids: [3, 4],
+        characteristics_scalability_ids: [3, 4],
+        characteristics_level_ids: [2],
       },
     ]
 

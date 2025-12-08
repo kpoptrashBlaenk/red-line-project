@@ -45,7 +45,17 @@ export type Product = {
   image: string
   name: LanguageRecord
   top: boolean
+  price: number
+  disponible: boolean
   index: number
+
+  description_functionality: LanguageRecord
+  description_advantage: LanguageRecord
+  description_security: LanguageRecord
+
+  characteristics_performance_ids: number[]
+  characteristics_scalability_ids: number[]
+  characteristics_level_ids: number[]
 }
 
 /**
