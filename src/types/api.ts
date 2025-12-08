@@ -12,9 +12,9 @@ export type ContextItem = Record<
     title: string
     value: AdminSectionKey
     itemsRef: Ref<any, any[]>
-    imageKey?: string
-    textKey?: string
-    noteKey?: string
+    image?: (item: any) => string
+    text?: (item: any) => string
+    note?: (item: any) => string
     reorder?: boolean
     add?: boolean
     modify?: boolean
