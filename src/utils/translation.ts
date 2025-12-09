@@ -15,6 +15,7 @@ const translationKeys = {
   alert_message: 'alert_message',
   button_text: 'promotion_button',
   cancel: 'cancel',
+  categories: 'categories',
   category: 'category',
   characteristics: 'characteristics',
   contact: 'contact',
@@ -106,6 +107,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   cancel: {
     en: 'Cancel',
     fr: 'Annuler',
+  },
+  categories: {
+    en: 'Categories',
+    fr: 'Catégories',
   },
   category: {
     en: 'Category',

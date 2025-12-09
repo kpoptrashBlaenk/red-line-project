@@ -37,34 +37,24 @@
 <script setup lang="ts">
 /* Imports */
 import { Category, Characteristic, Product } from '$/types'
-import { useCategory } from '@/composables/category'
-import { useCharacteristic } from '@/composables/characteristic'
-import { useProduct } from '@/composables/product'
 import findById from '@/utils/findById'
 import searchArray from '@/utils/searchArray'
 import translation from '@/utils/translation'
 import { IonChip, IonImg, IonItem, IonLabel } from '@ionic/vue'
-import { computed, onMounted, ref } from 'vue'
+import { computed } from 'vue'
 
 /* Props */
 const props = defineProps<{
   searchText: string
+  products: Product[]
+  categories: Category[]
+  characteristics: Characteristic[]
 }>()
-
-/* Constants */
-const productComposable = useProduct()
-const categoryComposable = useCategory()
-const characteristicComposable = useCharacteristic()
-
-/* Refs */
-const products = ref<Product[]>([])
-const categories = ref<Category[]>([])
-const characteristics = ref<Characteristic[]>([])
 
 /* Computeds */
 const filteredProducts = computed(() => {
   // default
-  let results = products.value
+  let results = props.products
 
   // search
   results = searchArray(results, props.searchText, [
@@ -77,19 +67,12 @@ const filteredProducts = computed(() => {
   // flatten
   return results.map((product) => ({
     ...product,
-    category: findById(categories.value, product.category_id),
+    category: findById(props.categories, product.category_id),
     characteristics: [
       ...product.characteristics_performance_ids,
       ...product.characteristics_scalability_ids,
       ...product.characteristics_level_ids,
-    ].map((characteristicId) => findById(characteristics.value, characteristicId)),
+    ].map((characteristicId) => findById(props.characteristics, characteristicId)),
   }))
-})
-
-/* Lifecycle Hooks */
-onMounted(async () => {
-  products.value = await productComposable.get()
-  categories.value = await categoryComposable.get()
-  characteristics.value = await characteristicComposable.get()
 })
 </script>
