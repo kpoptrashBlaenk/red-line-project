@@ -46,6 +46,7 @@ const translationKeys = {
   performance: 'performance',
   price: 'price',
   scalability: 'scalability',
+  search_product: 'search_product',
   submit: 'submit',
   subtitle: 'promotion_subtitle',
   text: 'text',
@@ -229,6 +230,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   scalability: {
     en: 'Scalability',
     fr: 'Scalabilité',
+  },
+  search_product: {
+    en: 'Search for products...',
+    fr: 'Rechercher des produits...',
   },
   submit: {
     en: 'Submit',

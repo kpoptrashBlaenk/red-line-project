@@ -1,6 +1,6 @@
 <template>
   <!-- Item -->
-  <IonItem v-for="(product, key) in joinedProducts" :key button detail color="light" :router-link="`/product/${product.id}`">
+  <IonItem v-for="(product, key) in filteredProducts" :key button detail color="light" :router-link="`/product/${product.id}`">
     <div class="grid grid-cols-[80px_1fr_auto] py-3 gap-4 items-start w-full">
       <!-- Image -->
       <IonImg :src="product.image" class="my-auto" />
@@ -41,9 +41,15 @@ import { useCategory } from '@/composables/category'
 import { useCharacteristic } from '@/composables/characteristic'
 import { useProduct } from '@/composables/product'
 import findById from '@/utils/findById'
+import searchArray from '@/utils/searchArray'
 import translation from '@/utils/translation'
 import { IonChip, IonImg, IonItem, IonLabel } from '@ionic/vue'
 import { computed, onMounted, ref } from 'vue'
+
+/* Props */
+const props = defineProps<{
+  searchText: string
+}>()
 
 /* Constants */
 const productComposable = useProduct()
@@ -56,17 +62,29 @@ const categories = ref<Category[]>([])
 const characteristics = ref<Characteristic[]>([])
 
 /* Computeds */
-const joinedProducts = computed(() =>
-  products.value.map((product) => ({
+const filteredProducts = computed(() => {
+  // default
+  let results = products.value
+
+  // search
+  results = searchArray(results, props.searchText, [
+    'name',
+    'description_functionality',
+    'description_advantage',
+    'description_security',
+  ])
+
+  // flatten
+  return results.map((product) => ({
     ...product,
     category: findById(categories.value, product.category_id),
     characteristics: [
       ...product.characteristics_performance_ids,
       ...product.characteristics_scalability_ids,
       ...product.characteristics_level_ids,
-    ].map((characteristic) => findById(characteristics.value, characteristic)),
-  })),
-)
+    ].map((characteristicId) => findById(characteristics.value, characteristicId)),
+  }))
+})
 
 /* Lifecycle Hooks */
 onMounted(async () => {
