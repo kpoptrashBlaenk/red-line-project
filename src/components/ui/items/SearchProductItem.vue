@@ -1,6 +1,6 @@
 <template>
   <!-- Item -->
-  <IonItem v-for="(product, key) in joinedProducts" :key button detail color="light">
+  <IonItem v-for="(product, key) in joinedProducts" :key button detail color="light" :router-link="`/product/${product.id}`">
     <div class="grid grid-cols-[80px_1fr_auto] py-3 gap-4 items-start w-full">
       <!-- Image -->
       <IonImg :src="product.image" class="my-auto" />
