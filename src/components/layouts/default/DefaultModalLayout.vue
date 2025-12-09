@@ -1,5 +1,5 @@
 <template>
-  <IonModal trigger="open-search-modal" :initial-breakpoint="0.75" :breakpoints="[0, 0.75]">
+  <IonModal :is-open :initial-breakpoint="0.75" :breakpoints="[0, 0.75]" @will-dismiss="$emit('close:search-modal')">
     <IonContent>
       <IonSearchbar placeholder="Search for products..." />
       <IonList>
@@ -14,4 +14,9 @@
 <script setup lang="ts">
 /* Imports */
 import { IonContent, IonItem, IonList, IonModal, IonSearchbar } from '@ionic/vue'
+
+/* Props */
+defineProps<{
+  isOpen: boolean
+}>()
 </script>
