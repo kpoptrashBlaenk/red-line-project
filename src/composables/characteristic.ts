@@ -1,4 +1,4 @@
-import { Characteristic } from '$/types'
+import { Characteristic, CharacteristicType } from '$/types'
 import characteristicTypes from '@/constants/characteristicTypes'
 import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
@@ -49,6 +49,7 @@ export function useCharacteristic() {
         itemValueKey: 'value',
         name: 'type',
         label: translation('type'),
+        multiple: false,
       },
     ] as FormField[]
   }
@@ -69,7 +70,7 @@ export function useCharacteristic() {
   /**
    * Get all characteristics
    */
-  async function get() {
+  async function get(type?: CharacteristicType) {
     const characteristics: Characteristic[] = [
       { id: 1, name: { en: 'High Performance', fr: 'Haute performance' }, type: 'performance' },
       { id: 2, name: { en: 'Optimized', fr: 'Optimisé' }, type: 'performance' },
@@ -84,7 +85,7 @@ export function useCharacteristic() {
       { id: 9, name: { en: 'Basic Level', fr: 'Niveau de base' }, type: 'level' },
     ]
 
-    return characteristics ?? []
+    return type ? characteristics.filter((characteristic) => characteristic.type === type) : characteristics
   }
 
   /**

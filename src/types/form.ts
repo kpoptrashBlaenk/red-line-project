@@ -53,6 +53,7 @@ export interface SelectField extends FormFieldWrapper {
   items: any[]
   itemValueKey: string
   itemLabelKey: string
+  multiple: boolean
 }
 
 /**

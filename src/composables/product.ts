@@ -5,12 +5,14 @@ import { ProductSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { checkmarkCircleOutline } from 'ionicons/icons'
 import { useCategory } from './category'
+import { useCharacteristic } from './characteristic'
 
 /**
  * Use this composable to do product related queries
  */
 export function useProduct() {
   const categoryComposable = useCategory()
+  const characteristicComposable = useCharacteristic()
 
   /**
    * Create Product Form Fields
@@ -81,6 +83,7 @@ export function useProduct() {
         items: await categoryComposable.get(),
         itemLabelKey: 'name',
         itemValueKey: 'id',
+        multiple: false,
       },
       {
         element: 'toggle',
@@ -108,25 +111,28 @@ export function useProduct() {
         element: 'select',
         name: 'characteristics_performance_ids',
         label: translation('performance'),
-        items: [],
+        items: await characteristicComposable.get('performance'),
         itemLabelKey: 'name',
         itemValueKey: 'id',
+        multiple: true,
       },
       {
         element: 'select',
         name: 'characteristics_scalability_ids',
         label: translation('scalability'),
-        items: [],
+        items: await characteristicComposable.get('scalability'),
         itemLabelKey: 'name',
         itemValueKey: 'id',
+        multiple: true,
       },
       {
         element: 'select',
         name: 'characteristics_level_ids',
         label: translation('level'),
-        items: [],
+        items: await characteristicComposable.get('level'),
         itemLabelKey: 'name',
         itemValueKey: 'id',
+        multiple: true,
       },
 
       // image
@@ -201,8 +207,8 @@ export function useProduct() {
           fr: 'Solution SOC avec détection avancée des menaces et surveillance 24/7.',
         },
         characteristics_performance_ids: [1, 2],
-        characteristics_scalability_ids: [3],
-        characteristics_level_ids: [1],
+        characteristics_scalability_ids: [6],
+        characteristics_level_ids: [7],
       },
       {
         id: 2,
@@ -226,8 +232,8 @@ export function useProduct() {
           fr: 'Inclut la surveillance SOC 24/7, alertes automatiques et rapports détaillés.',
         },
         characteristics_performance_ids: [2, 3],
-        characteristics_scalability_ids: [3, 4],
-        characteristics_level_ids: [2],
+        characteristics_scalability_ids: [4, 5],
+        characteristics_level_ids: [8],
       },
       {
         id: 3,
@@ -250,9 +256,9 @@ export function useProduct() {
           en: 'EDR solution with AI-based threat hunting and alerting.',
           fr: 'Solution EDR avec chasse aux menaces et alertes basées sur l’IA.',
         },
-        characteristics_performance_ids: [1, 4],
-        characteristics_scalability_ids: [2],
-        characteristics_level_ids: [1],
+        characteristics_performance_ids: [1, 3],
+        characteristics_scalability_ids: [5],
+        characteristics_level_ids: [7],
       },
       {
         id: 4,
@@ -275,9 +281,9 @@ export function useProduct() {
           en: 'XDR platform with unified monitoring and proactive threat mitigation.',
           fr: 'Plateforme XDR avec surveillance unifiée et atténuation proactive des menaces.',
         },
-        characteristics_performance_ids: [3, 4],
-        characteristics_scalability_ids: [3, 4],
-        characteristics_level_ids: [2],
+        characteristics_performance_ids: [2, 3],
+        characteristics_scalability_ids: [5, 6],
+        characteristics_level_ids: [8],
       },
     ]
 
