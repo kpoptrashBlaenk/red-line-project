@@ -138,7 +138,7 @@ const contextItemMap = ref<ContextItem>({
     itemsRef: products,
     image: (item: Product) => item.image,
     text: (item: Product) => translation(item.name),
-    note: (item: Product) => translation(item.description_functionality),
+    note: (item: Product) => `${translation(item.description_functionality)} (${item.price}€)`,
     reorder: true,
     add: true,
     modify: true,

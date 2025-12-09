@@ -28,6 +28,7 @@ export interface ImageField extends FormFieldWrapper {
  */
 export interface InputField extends FormFieldWrapper {
   element: 'input'
+  type?: 'number'
 }
 
 /**

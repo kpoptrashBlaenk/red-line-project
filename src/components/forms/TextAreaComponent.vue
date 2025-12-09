@@ -12,6 +12,7 @@
     @ionBlur="markTouched"
     :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
     class="ps-5!"
+    :rows="1"
   ></IonTextarea>
 </template>
 
@@ -56,6 +57,8 @@ ion-textarea {
   --background: transparent !important;
   --border-color: var(--ion-color-primary-tint) !important;
   --highlight-color: var(--ion-color-primary-shade);
+
+  min-height: 0px !important;
 }
 
 ion-textarea.ion-invalid {

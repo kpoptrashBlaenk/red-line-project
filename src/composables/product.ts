@@ -88,9 +88,10 @@ export function useProduct() {
         label: translation('top'),
       },
       {
-        element: 'input', // TODO: number
+        element: 'input',
         name: 'price',
-        label: translation('price'),
+        label: `${translation('price')} (€)`,
+        type: 'number',
       },
       {
         element: 'toggle',
