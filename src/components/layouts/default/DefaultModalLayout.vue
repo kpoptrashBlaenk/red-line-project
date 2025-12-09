@@ -1,11 +1,13 @@
 <template>
   <IonModal :is-open :initial-breakpoint="0.75" :breakpoints="[0, 0.75]" @will-dismiss="$emit('close:search-modal')">
-    <IonContent>
+    <IonContent color="light">
+      <!-- Searchbar -->
       <IonSearchbar placeholder="Search for products..." />
-      <IonList>
-        <IonItem router-link="/" button detail>
-          <!-- Product Info -->
-        </IonItem>
+
+      <!-- List -->
+      <IonList class="bg-light">
+        <!-- Item -->
+        <SearchProductItem />
       </IonList>
     </IonContent>
   </IonModal>
@@ -13,10 +15,17 @@
 
 <script setup lang="ts">
 /* Imports */
-import { IonContent, IonItem, IonList, IonModal, IonSearchbar } from '@ionic/vue'
+import SearchProductItem from '@/components/ui/items/SearchProductItem.vue'
+import { IonContent, IonList, IonModal, IonSearchbar } from '@ionic/vue'
 
 /* Props */
 defineProps<{
   isOpen: boolean
 }>()
 </script>
+
+<style lang="css" scoped>
+ion-modal {
+  --width: 100%;
+}
+</style>

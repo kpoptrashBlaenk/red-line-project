@@ -282,7 +282,9 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
  *
  * @param record Translation key or an entire language record
  */
-export default function (record: TranslationKey | LanguageRecord) {
+export default function (record: TranslationKey | LanguageRecord | undefined) {
+  if (!record) return ''
+
   const setttingsStore = useSettingsStore()
 
   if (typeof record === 'string') {
