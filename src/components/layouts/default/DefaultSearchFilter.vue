@@ -18,10 +18,7 @@
         </IonCheckbox>
       </div>
 
-      <div class="flex justify-end pb-1 pe-2">
-        <IonButton fill="clear" :color @click="dismiss">{{ translation('cancel') }}</IonButton>
-        <IonButton fill="clear" :color @click="applySelected">OK</IonButton>
-      </div>
+      <CancelOkButtons :color :on-cancel="dismiss" :on-ok="applySelected" />
     </IonPopover>
 
     <!-- Filter Chips but teleported to chip-wrapper -->
@@ -46,10 +43,11 @@
 <script setup lang="ts">
 /* Imports */
 import { LanguageRecord } from '$/types'
+import CancelOkButtons from '@/components/ui/buttons/CancelOkButtons.vue'
 import SolidButton from '@/components/ui/buttons/SolidButton.vue'
 import { Color } from '@/types'
 import translation from '@/utils/translation'
-import { IonButton, IonCheckbox, IonChip, IonIcon, IonLabel, IonPopover } from '@ionic/vue'
+import { IonCheckbox, IonChip, IonIcon, IonLabel, IonPopover } from '@ionic/vue'
 import { closeCircleOutline } from 'ionicons/icons'
 import { ref } from 'vue'
 
