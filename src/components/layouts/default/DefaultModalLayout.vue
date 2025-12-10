@@ -13,10 +13,10 @@
           chip-key="name"
           :items="categories"
         />
-      </div>
 
-      <!-- Filter Chips -->
-      <div id="chips-row" class="col-span-4 mt-2 flex flex-wrap gap-2 px-2"></div>
+        <!-- Filter Chips -->
+        <div id="chips-row" class="col-span-4 mt-2 flex flex-wrap gap-2"></div>
+      </div>
 
       <!-- List -->
       <IonList class="bg-light">
