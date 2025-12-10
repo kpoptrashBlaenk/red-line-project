@@ -11,7 +11,7 @@
     "test:e2e": "cypress run",
     "test:unit": "vitest run tests/unit",
     "test:server": "vitest run tests/server",
-    "server": "node server/server.ts",
+    "server": "tsx server/server.ts",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
@@ -55,6 +55,7 @@
     "supertest": "^7.1.4",
     "tailwindcss": "^4.1.17",
     "terser": "^5.4.0",
+    "tsx": "^4.21.0",
     "typescript": "~5.6.2",
     "vite": "~5.2.0",
     "vitest": "^0.34.6",

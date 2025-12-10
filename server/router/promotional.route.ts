@@ -1,41 +1,79 @@
 import { Router } from 'express'
-import pool from '../database/database.ts'
-import { Promotional } from '../types/promotional.ts'
+import pool from '../database/database'
+import { Promotional } from '../types/promotional'
+// import { link } from 'ionicons/icons';
 
 const router = Router()
 
 router.get('/promotionals', async (req, res) => {
   try {
-    const result = await pool.query<Promotional>('SELECT * FROM promotional WHERE is_activate = true ORDER BY date_create DESC')
-    res.json(result.rows)
+    const showAll = req.query.all === 'true';
+    const query = showAll
+      ? 'SELECT * FROM promotional'
+      : 'SELECT * FROM promotional WHERE isactivate = true ORDER BY datecreate DESC';
+    const result = await pool.query(query);
+    const formattedPromotions = result.rows.map((row: any) => ({
+      id: row.id, 
+      image: row.urlimage,
+      title: { en: row.title_en, fr: row.title_fr },
+      subtitle: { en: row.subtitle_en, fr: row.subtitle_fr },
+      button: { en: row.button_en, fr: row.button_fr},
+      link: row.link,
+      index: row.index,
+    }));
+    res.json(formattedPromotions);
   } catch (error) {
-    console.error('Error fetching promotionals:', error)
-    res.status(500).json({ error: 'Internal Server Error' })
+    console.error('Error fetching promotionals:', error);
+    res.status(500).json({ error: 'Internal Server Error', details: error });
   }
-})
+});
 
 router.get('/promotionals/:id', async (req, res) => {
-  const { id } = req.params
+  const { id } = req.params;
   try {
-    const result = await pool.query<Promotional>('SELECT * FROM promotional WHERE id = $1', [id])
+    const result = await pool.query('SELECT * FROM promotional WHERE id = $1', [id]);
     if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Promotional item not found' })
+      return res.status(404).json({ error: 'Promotional item not found' });
     }
-    res.json(result.rows[0])
+    const row = result.rows[0];
+    const formattedPromotion = {
+      id: row.id,
+      image: row.urlimage,
+      title: { en: row.title_en, fr: row.title_fr },
+      subtitle: { en: row.subtitle_en, fr: row.subtitle_fr },
+      button: { en: row.button_en, fr: row.button_fr },
+      link: row.link,
+      index: row.index,
+    };
+    res.json(formattedPromotion);
   } catch (error) {
-    console.error('Error fetching promotional item:', error)
-    res.status(500).json({ error: 'Internal Server Error' })
+    console.error('Error fetching promotional item:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
-})
+});
+
 
 router.post('/promotionals', async (req, res) => {
-  const { titre, description, urlImage, link } = req.body
+  const { title_en, title_fr, subtitle_en, subtitle_fr, button_en, button_fr, urlimage, link, index = 0 } = req.body
   try {
-    const result = await pool.query<Promotional>(
-      `INSERT INTO promotional (titre, description, url_image, link) VALUES ($1, $2, $3, $4) RETURNING *`,
-      [titre, description, urlImage, link],
-    )
-    res.status(201).json(result.rows[0])
+    const result = await pool.query(
+      `INSERT INTO promotional
+      (title_en, title_fr, subtitle_en, subtitle_fr, button_en, button_fr, urlimage, link, "index")
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+      RETURNING *`,
+      [title_en, title_fr, subtitle_en, subtitle_fr, button_en, button_fr, urlimage, link, index],
+    );
+    const row = result.rows[0];
+    const formattedPromotion = {
+      id: row.id,
+      image: row.urlimage,
+      title: { en: row.title_en, fr: row.title_fr },
+      subtitle: { en: row.subtitle_en, fr: row.subtitle_fr },
+      button: { en: row.button_en, fr: row.button_fr },
+      link: row.link,
+      index: row.index,
+    }; 
+    res.status(201).json(formattedPromotion)
   } catch (error) {
     console.error('Error creating promotional item:', error)
     res.status(500).json({ error: 'Failed to create promotional item' })
@@ -44,16 +82,35 @@ router.post('/promotionals', async (req, res) => {
 
 router.put('/promotionals/:id', async (req, res) => {
   const { id } = req.params
-  const { titre, description, urlImage, link, isActivate } = req.body
+  const { title_en, title_fr, subtitle_en, subtitle_fr, button_en, button_fr, urlimage, link, isactivate, index } = req.body
   try {
-    const result = await pool.query<Promotional>(
-      `UPDATE promotional SET titre = $1, description = $2, url_image = $3, link = $5, isActivate = $6, update_date = NOW() WHERE id = $4 RETURNING *`,
-      [titre, description, urlImage, id, link, isActivate],
-    )
+    const result = await pool.query(
+      `UPDATE promotional
+      SET
+        title_en = $1, title_fr = $2,
+        subtitle_en = $3, subtitle_fr = $4,
+        button_en = $5, button_fr = $6,
+        urlimage = $7, link = $8,
+        isactivate = $9, "index" = $10,
+        update_date = NOW()
+      WHERE id = $11
+      RETURNING *`,
+      [title_en, title_fr, subtitle_en, subtitle_fr, button_en, button_fr, urlimage, link, isactivate, index, id],
+    );
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'Promotional item not found' })
     }
-    res.json(result.rows[0])
+    const row = result.rows[0];
+    const formattedPromotion = {
+      id: row.id,
+      image: row.urlimage,
+      title: {en: row.title_en, fr: row.title_fr},
+      subtitle: {en: row.subtitle_en, fr: row.subtitle_fr},
+      button: {en: row.button_en, fr: row.button_fr},
+      link: row.link,
+      index: row.index,
+    }
+    res.json(formattedPromotion)
   } catch (error) {
     console.error('Error updating promotional item:', error)
     res.status(500).json({ error: 'Failed to update Promotional item' })

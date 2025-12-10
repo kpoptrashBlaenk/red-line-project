@@ -61,3 +61,21 @@ export const categoryState = reactive<Partial<CategorySchema>>({
   image: '',
 })
 export type CategorySchema = z.output<ReturnType<typeof categorySchema>>
+
+export const productShema = () =>
+  z.object({
+    image: z.union([
+      z.string().min(1, translation('error_required')),
+      z.instanceof(File).refine(Boolean, translation('error_required')),
+    ]),
+    name_en: z.string().min(1, translation('error_required')),
+    name_fr: z.string().min(1, translation('error_required')),
+    top: z.boolean(),
+  })
+export const productState = reactive<Partial<ProductShema>>({
+  image: '',
+  name_en: '',
+  name_fr: '',
+  top: false,
+})
+export type ProductShema = z.output<ReturnType<typeof productShema>>

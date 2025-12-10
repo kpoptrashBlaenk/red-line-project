@@ -1,10 +1,16 @@
 export interface Promotional {
   id: number
-  titre: string
+  title_en: string
+  titele_fr: string
+  subtitle_en: string | null
+  subtitle_fr: string | null
+  button_en: string | null
+  button_fr: string | null
   description: string | null
-  urlImage: string
+  urlimage: string
   link: string | null
-  isActivate: boolean
-  dateCreate: Date
-  dateUpdate: Date
+  isactivate: boolean
+  datecreate: Date
+  dateupdate: Date
+  index: number
 }
