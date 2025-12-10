@@ -26,6 +26,7 @@ const translationKeys = {
   details: 'details',
   disponible: 'disponible',
   english: 'english',
+  error_category_post_500: 'error_category_post_500',
   error_required: 'error_required',
   file_too_big: 'file_too_big',
   french: 'french',
@@ -151,6 +152,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   english: {
     en: 'English',
     fr: 'Anglais',
+  },
+  error_category_post_500: {
+    en: "Couldn't create category",
+    fr: 'Impossible de créer la catégorie',
   },
   error_required: {
     en: 'Please fill out this field',
