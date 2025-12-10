@@ -4,7 +4,7 @@
     <SolidButton :id="`${context}-popover`" :color :label expand="block" @click="resetItems" />
 
     <!-- Filter Popover -->
-    <IonPopover ref="popover" :trigger="`${context}-popover`" @ion-popover-will-dismiss="temporarySelected = []">
+    <IonPopover ref="popover" :trigger="`${context}-popover`" @ion-popover-did-dismiss="temporarySelected = []">
       <div class="flex flex-col gap-2 pt-5 px-5 pb-3">
         <IonCheckbox
           v-for="(item, key) in items"

@@ -23,6 +23,15 @@
           :items="characteristics"
           @update:filter="selectedCharacteristics = $event"
         />
+
+        <DefaultRangeFilter
+          :context="'price'"
+          color="tertiary"
+          :label="translation('price')"
+          :min="[...products].sort((a, b) => a.price - b.price)[0].price"
+          :max="[...products].sort((a, b) => b.price - a.price)[0].price"
+          @update:filter="console.log($event)"
+        />
       </div>
 
       <!-- Filter Chips -->
@@ -48,6 +57,7 @@ import isDesktop from '@/utils/isDesktop'
 import translation from '@/utils/translation'
 import { IonContent, IonList, IonModal, IonSearchbar } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
+import DefaultRangeFilter from './DefaultRangeFilter.vue'
 import DefaultSearchFilter from './DefaultSearchFilter.vue'
 /* Props */
 defineProps<{
