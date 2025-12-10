@@ -6,69 +6,17 @@
 
       <!-- Filters -->
       <div class="px-4 grid grid-cols-4">
-        <SolidButton
-          id="category-popover"
+        <DefaultSearchFilter
+          :context="'category'"
           color="primary"
           :label="translation('categories')"
-          expand="block"
-          @click="temporarySelectedCategories = [...selectedCategories]"
+          chip-key="name"
+          :items="categories"
         />
-
-        <div class="col-span-4 mt-2 flex flex-wrap gap-2">
-          <IonChip
-            v-for="(category, key) in selectedCategories.sort((a, b) => a.id - b.id)"
-            :key
-            color="primary"
-            class="text-xs px-2"
-            @click="
-              selectedCategories.splice(
-                selectedCategories.findIndex((c) => c.id === category.id),
-                1,
-              )
-            "
-          >
-            <IonLabel class="me-1">{{ translation(category.name) }}</IonLabel>
-            <IonIcon :icon="closeCircleOutline" />
-          </IonChip>
-        </div>
       </div>
 
-      <!-- Popovers -->
-      <IonPopover ref="categoryPopover" trigger="category-popover" @ion-popover-will-dismiss="temporarySelectedCategories = []">
-        <div class="flex flex-col gap-2 pt-5 px-5 pb-3">
-          <IonCheckbox
-            v-for="(category, key) in categories"
-            :key
-            :checked="selectedCategories.find((c) => c.id === category.id) !== undefined"
-            justify="space-between"
-            color="primary"
-            @ion-change="
-              $event.detail.checked
-                ? temporarySelectedCategories.push(category)
-                : temporarySelectedCategories.splice(
-                    temporarySelectedCategories.findIndex((c) => c.id === category.id),
-                    1,
-                  )
-            "
-          >
-            {{ translation(category.name) }}
-          </IonCheckbox>
-        </div>
-
-        <div class="flex justify-end pb-1 pe-2">
-          <IonButton fill="clear" @click="categoryPopover?.$el.dismiss()">{{ translation('cancel') }}</IonButton>
-          <IonButton
-            fill="clear"
-            @click="
-              () => {
-                selectedCategories = temporarySelectedCategories
-                categoryPopover?.$el.dismiss()
-              }
-            "
-            >Ok</IonButton
-          >
-        </div>
-      </IonPopover>
+      <!-- Filter Chips -->
+      <div id="chips-row" class="col-span-4 mt-2 flex flex-wrap gap-2 px-2"></div>
 
       <!-- List -->
       <IonList class="bg-light">
@@ -82,26 +30,14 @@
 <script setup lang="ts">
 /* Imports */
 import { Category, Characteristic, Product } from '$/types'
-import SolidButton from '@/components/ui/buttons/SolidButton.vue'
 import SearchProductItem from '@/components/ui/items/SearchProductItem.vue'
 import { useCategory } from '@/composables/category'
 import { useCharacteristic } from '@/composables/characteristic'
 import { useProduct } from '@/composables/product'
 import translation from '@/utils/translation'
-import {
-  IonButton,
-  IonCheckbox,
-  IonChip,
-  IonContent,
-  IonIcon,
-  IonLabel,
-  IonList,
-  IonModal,
-  IonPopover,
-  IonSearchbar,
-} from '@ionic/vue'
-import { closeCircleOutline } from 'ionicons/icons'
+import { IonContent, IonList, IonModal, IonSearchbar } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
+import DefaultSearchFilter from './DefaultSearchFilter.vue'
 
 /* Props */
 defineProps<{
@@ -115,9 +51,6 @@ const characteristicComposable = useCharacteristic()
 
 /* Refs */
 const searchText = ref<string>('')
-const selectedCategories = ref<Category[]>([])
-const temporarySelectedCategories = ref<Category[]>([])
-const categoryPopover = ref()
 const products = ref<Product[]>([])
 const categories = ref<Category[]>([])
 const characteristics = ref<Characteristic[]>([])
