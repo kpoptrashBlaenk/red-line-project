@@ -50,6 +50,8 @@ const props = defineProps<{
   categories: Category[]
   characteristics: Characteristic[]
   selectedCategories: Category[]
+  selectedCharacteristics: Characteristic[]
+  selectedPriceRange: { lower: number; upper: number } | undefined
 }>()
 
 /* Computeds */
@@ -67,7 +69,26 @@ const filteredProducts = computed(() => {
 
   // category filter
   if (props.selectedCategories.length > 0) {
-    results = results.filter((result) => props.selectedCategories.some((category) => category.id === result.id))
+    results = results.filter((result) => props.selectedCategories.some((category) => category.id === result.category_id))
+  }
+
+  // characteristics filter
+  if (props.selectedCharacteristics.length > 0) {
+    results = results.filter((result) =>
+      props.selectedCharacteristics.some(
+        (characteristic) =>
+          result.characteristics_performance_ids.find((charId) => charId === characteristic.id) ||
+          result.characteristics_scalability_ids.find((charId) => charId === characteristic.id) ||
+          result.characteristics_level_ids.find((charId) => charId === characteristic.id),
+      ),
+    )
+  }
+
+  // price range filter
+  if (props.selectedPriceRange) {
+    const { lower, upper } = props.selectedPriceRange
+
+    results = results.filter((result) => result.price >= lower && result.price <= upper)
   }
 
   // flatten

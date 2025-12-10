@@ -83,7 +83,12 @@ function dismiss() {
 
 function applySelected() {
   selected.value = temporaryRange.value
-  emit('update:filter', { lower: percentToRange(selected.value.lower), upper: percentToRange(selected.value.upper) })
+  emit(
+    'update:filter',
+    selected.value.lower !== defaultRange.lower || selected.value.upper !== defaultRange.upper
+      ? { lower: percentToRange(selected.value.lower), upper: percentToRange(selected.value.upper) }
+      : undefined,
+  )
   dismiss()
 }
 

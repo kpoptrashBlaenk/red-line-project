@@ -30,7 +30,7 @@
           :label="translation('price')"
           :min="[...products].sort((a, b) => a.price - b.price)[0].price"
           :max="[...products].sort((a, b) => b.price - a.price)[0].price"
-          @update:filter="console.log($event)"
+          @update:filter="selectedPriceRange = $event"
         />
       </div>
 
@@ -40,7 +40,15 @@
       <!-- List -->
       <IonList class="bg-light">
         <!-- Item -->
-        <SearchProductItem :search-text :products :categories :characteristics :selected-categories />
+        <SearchProductItem
+          :search-text
+          :products
+          :categories
+          :characteristics
+          :selected-categories
+          :selected-characteristics="selectedCharacteristics"
+          :selected-price-range
+        />
       </IonList>
     </IonContent>
   </IonModal>
@@ -75,7 +83,8 @@ const products = ref<Product[]>([])
 const categories = ref<Category[]>([])
 const characteristics = ref<Characteristic[]>([])
 const selectedCategories = ref<Category[]>([])
-const selectedCharacteristics = ref<Category[]>([])
+const selectedCharacteristics = ref<Characteristic[]>([])
+const selectedPriceRange = ref<{ lower: number; upper: number } | undefined>(undefined)
 
 /* Lifecycle Hooks */
 onMounted(async () => {
