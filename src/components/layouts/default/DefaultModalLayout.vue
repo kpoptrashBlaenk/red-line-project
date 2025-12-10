@@ -12,6 +12,7 @@
           :label="translation('categories')"
           chip-key="name"
           :items="categories"
+          @update:filter="selectedCategories = $event"
         />
 
         <!-- Filter Chips -->
@@ -21,7 +22,7 @@
       <!-- List -->
       <IonList class="bg-light">
         <!-- Item -->
-        <SearchProductItem :search-text :products :categories :characteristics />
+        <SearchProductItem :search-text :products :categories :characteristics :selected-categories />
       </IonList>
     </IonContent>
   </IonModal>
@@ -54,6 +55,7 @@ const searchText = ref<string>('')
 const products = ref<Product[]>([])
 const categories = ref<Category[]>([])
 const characteristics = ref<Characteristic[]>([])
+const selectedCategories = ref<Category[]>([])
 
 /* Lifecycle Hooks */
 onMounted(async () => {

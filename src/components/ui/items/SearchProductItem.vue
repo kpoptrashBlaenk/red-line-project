@@ -49,6 +49,7 @@ const props = defineProps<{
   products: Product[]
   categories: Category[]
   characteristics: Characteristic[]
+  selectedCategories: Category[]
 }>()
 
 /* Computeds */
@@ -63,6 +64,11 @@ const filteredProducts = computed(() => {
     'description_advantage',
     'description_security',
   ])
+
+  // category filter
+  if (props.selectedCategories.length > 0) {
+    results = results.filter((result) => props.selectedCategories.some((category) => category.id === result.id))
+  }
 
   // flatten
   return results.map((product) => ({

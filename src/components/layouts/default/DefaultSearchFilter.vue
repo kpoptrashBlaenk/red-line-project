@@ -83,7 +83,7 @@ function unselectItem(itemId: number) {
 }
 
 function isChecked(itemId: number) {
-  selected.value.find((item) => item.id === itemId)
+  return selected.value.find((item) => item.id === itemId)
 }
 
 function toggleSelect(checked: boolean, item: any) {
