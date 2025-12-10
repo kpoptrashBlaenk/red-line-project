@@ -1,11 +1,11 @@
 <template>
-  <IonModal :is-open :initial-breakpoint="0.75" :breakpoints="[0, 0.75]" @will-dismiss="$emit('close:search-modal')">
+  <IonModal :is-open :initial-breakpoint="0.75" :breakpoints="[0, 0.75, 1]" @will-dismiss="$emit('close:search-modal')">
     <IonContent color="light">
       <!-- Searchbar -->
       <IonSearchbar v-model="searchText" :placeholder="translation('search_product')" />
 
       <!-- Filters -->
-      <div class="px-4 grid grid-cols-4">
+      <div class="px-2 flex md:grid md:grid-cols-4 overflow-x-auto gap-2 scrollbar-none" :class="{ 'flex-wrap': isDesktop() }">
         <DefaultSearchFilter
           :context="'category'"
           color="primary"
@@ -15,9 +15,18 @@
           @update:filter="selectedCategories = $event"
         />
 
-        <!-- Filter Chips -->
-        <div id="chips-row" class="col-span-4 mt-2 flex flex-wrap gap-2"></div>
+        <DefaultSearchFilter
+          :context="'characteristic'"
+          color="secondary"
+          :label="translation('characteristics')"
+          chip-key="name"
+          :items="characteristics"
+          @update:filter="selectedCharacteristics = $event"
+        />
       </div>
+
+      <!-- Filter Chips -->
+      <div id="chips-row" class="flex gap-2 px-2 mt-2 overflow-x-auto scrollbar-none" :class="{ 'flex-wrap': isDesktop() }"></div>
 
       <!-- List -->
       <IonList class="bg-light">
@@ -35,11 +44,11 @@ import SearchProductItem from '@/components/ui/items/SearchProductItem.vue'
 import { useCategory } from '@/composables/category'
 import { useCharacteristic } from '@/composables/characteristic'
 import { useProduct } from '@/composables/product'
+import isDesktop from '@/utils/isDesktop'
 import translation from '@/utils/translation'
 import { IonContent, IonList, IonModal, IonSearchbar } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
 import DefaultSearchFilter from './DefaultSearchFilter.vue'
-
 /* Props */
 defineProps<{
   isOpen: boolean
@@ -56,6 +65,7 @@ const products = ref<Product[]>([])
 const categories = ref<Category[]>([])
 const characteristics = ref<Characteristic[]>([])
 const selectedCategories = ref<Category[]>([])
+const selectedCharacteristics = ref<Category[]>([])
 
 /* Lifecycle Hooks */
 onMounted(async () => {

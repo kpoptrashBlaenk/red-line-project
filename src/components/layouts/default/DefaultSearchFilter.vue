@@ -30,7 +30,7 @@
         v-for="(item, key) in selected.sort((a, b) => a.id - b.id)"
         :key
         :color
-        class="text-xs px-2"
+        class="text-xs px-2 shrink-0"
         @click="unselectItem(item.id)"
       >
         <IonLabel class="me-1">
