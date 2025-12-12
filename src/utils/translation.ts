@@ -48,6 +48,7 @@ const translationKeys = {
   new: 'new',
   no_file: 'no_file',
   not_an_image: 'not_an_image',
+  not_disponible: 'not_disponible',
   old: 'old',
   pages: 'pages',
   performance: 'performance',
@@ -248,6 +249,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   not_an_image: {
     en: 'The selected file is not an image',
     fr: "Le fichier sélectionné n'est pas une image",
+  },
+  not_disponible: {
+    en: 'Not available',
+    fr: 'Non disponible',
   },
   old: {
     en: 'Oldest',

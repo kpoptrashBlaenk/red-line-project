@@ -14,7 +14,8 @@
       <!-- Category & Price -->
       <div class="font-semibold text-lg text-end">
         <IonLabel color="primary">{{ translation(product.category?.name) }}</IonLabel>
-        <IonLabel color="secondary">{{ product.price }}€</IonLabel>
+        <IonLabel color="secondary" :class="{ 'line-through': !product.disponible }">{{ product.price }}€</IonLabel>
+        <IonLabel v-if="!product.disponible" color="tertiary">{{ translation('not_disponible') }}</IonLabel>
       </div>
 
       <!-- Characteristics -->
