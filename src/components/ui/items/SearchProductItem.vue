@@ -18,7 +18,7 @@
       </div>
 
       <!-- Characteristics -->
-      <div class="col-span-3 flex flex-wrap gap-2 mt-2">
+      <div class="col-span-3 flex flex-wrap gap-1 mt-2">
         <IonChip
           v-for="(characteristic, key) in product.characteristics"
           :key="key"

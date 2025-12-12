@@ -42,7 +42,7 @@
       </div>
 
       <!-- Filter Chips -->
-      <div id="chips-row" class="flex gap-2 px-2 mt-2 overflow-x-auto scrollbar-none" :class="{ 'flex-wrap': isDesktop() }"></div>
+      <div id="chips-row" class="flex gap-1 px-2 mt-2 overflow-x-auto scrollbar-none" :class="{ 'flex-wrap': isDesktop() }"></div>
 
       <!-- List -->
       <IonList class="bg-light">
