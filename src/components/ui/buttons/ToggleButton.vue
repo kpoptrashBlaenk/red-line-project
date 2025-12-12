@@ -14,10 +14,8 @@ const props = defineProps<{
   offLabel: string
   color: Color
   onByDefault?: boolean
+  onUpdate: (value: boolean) => void
 }>()
-
-/* Emits */
-const emit = defineEmits(['update:on'])
 
 /* Refs */
 const on = ref<boolean>(props.onByDefault ?? false)
@@ -25,7 +23,7 @@ const on = ref<boolean>(props.onByDefault ?? false)
 /* Functions */
 function onToggle() {
   on.value ? (on.value = false) : (on.value = true)
-  emit('update:on', on.value)
+  props.onUpdate(on.value)
 }
 </script>
 

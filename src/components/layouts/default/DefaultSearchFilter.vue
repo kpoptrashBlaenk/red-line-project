@@ -52,16 +52,14 @@ import { closeCircleOutline } from 'ionicons/icons'
 import { ref } from 'vue'
 
 /* Props */
-defineProps<{
+const props = defineProps<{
   context: string
   color: Color
   label: string
   chipKey: string
   items: any[]
+  onUpdate: (items: any[]) => void
 }>()
-
-/* Emits */
-const emit = defineEmits(['update:filter'])
 
 /* Refs */
 const selected = ref<any[]>([])
@@ -99,7 +97,7 @@ function dismiss() {
 
 function applySelected() {
   selected.value = temporarySelected.value
-  emit('update:filter', selected.value)
+  props.onUpdate(selected.value)
   dismiss()
 }
 </script>

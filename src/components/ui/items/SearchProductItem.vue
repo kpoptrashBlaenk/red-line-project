@@ -37,6 +37,7 @@
 <script setup lang="ts">
 /* Imports */
 import { Category, Characteristic, Product } from '$/types'
+import { useSearchFilter } from '@/stores/searchFilter'
 import findById from '@/utils/findById'
 import searchArray from '@/utils/searchArray'
 import translation from '@/utils/translation'
@@ -45,15 +46,13 @@ import { computed } from 'vue'
 
 /* Props */
 const props = defineProps<{
-  searchText: string
   products: Product[]
   categories: Category[]
   characteristics: Characteristic[]
-  selectedCategories: Category[]
-  selectedCharacteristics: Characteristic[]
-  selectedPriceRange: { lower: number; upper: number } | undefined
-  disponibleOnly: boolean
 }>()
+
+/* Constants */
+const searchFilterStore = useSearchFilter()
 
 /* Computeds */
 const filteredProducts = computed(() => {
@@ -61,26 +60,28 @@ const filteredProducts = computed(() => {
   let results = props.products
 
   // disponbility filter
-  if (props.disponibleOnly) {
+  if (searchFilterStore.disponibleOnly) {
     results = results.filter((result) => result.disponible)
   }
 
   // category filter
-  if (props.selectedCategories.length > 0) {
-    results = results.filter((result) => props.selectedCategories.some((category) => category.id === result.category_id))
+  if (searchFilterStore.selectedCategories.length > 0) {
+    results = results.filter((result) =>
+      searchFilterStore.selectedCategories.some((category) => category.id === result.category_id),
+    )
   }
 
   // price range filter
-  if (props.selectedPriceRange) {
-    const { lower, upper } = props.selectedPriceRange
+  if (searchFilterStore.selectedPriceRange) {
+    const { lower, upper } = searchFilterStore.selectedPriceRange
 
     results = results.filter((result) => result.price >= lower && result.price <= upper)
   }
 
   // characteristics filter
-  if (props.selectedCharacteristics.length > 0) {
+  if (searchFilterStore.selectedCharacteristics.length > 0) {
     results = results.filter((result) =>
-      props.selectedCharacteristics.some(
+      searchFilterStore.selectedCharacteristics.some(
         (characteristic) =>
           result.characteristics_performance_ids.find((charId) => charId === characteristic.id) ||
           result.characteristics_scalability_ids.find((charId) => charId === characteristic.id) ||
@@ -90,7 +91,7 @@ const filteredProducts = computed(() => {
   }
 
   // search
-  results = searchArray(results, props.searchText, [
+  results = searchArray(results, searchFilterStore.searchText, [
     'name',
     'description_functionality',
     'description_advantage',

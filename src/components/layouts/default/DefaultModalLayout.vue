@@ -2,7 +2,7 @@
   <IonModal :is-open :initial-breakpoint="0.75" :breakpoints="[0, 0.75, 1]" @will-dismiss="$emit('close:search-modal')">
     <IonContent color="light">
       <!-- Searchbar -->
-      <IonSearchbar v-model="searchText" :placeholder="translation('search_product')" />
+      <IonSearchbar v-model="searchFilterStore.searchText" :placeholder="translation('search_product')" />
 
       <!-- Filters -->
       <div class="px-2 flex md:grid md:grid-cols-4 overflow-x-auto gap-2 scrollbar-none" :class="{ 'flex-wrap': isDesktop() }">
@@ -12,7 +12,7 @@
           :label="translation('categories')"
           chip-key="name"
           :items="categories"
-          @update:filter="selectedCategories = $event"
+          :on-update="searchFilterStore.setSelectedCategories"
         />
 
         <DefaultSearchFilter
@@ -21,7 +21,7 @@
           :label="translation('characteristics')"
           chip-key="name"
           :items="characteristics"
-          @update:filter="selectedCharacteristics = $event"
+          :on-update="searchFilterStore.setSelectedCharacteristics"
         />
 
         <DefaultRangeFilter
@@ -30,14 +30,14 @@
           :label="translation('price')"
           :min="[...products].sort((a, b) => a.price - b.price)[0].price"
           :max="[...products].sort((a, b) => b.price - a.price)[0].price"
-          @update:filter="selectedPriceRange = $event"
+          :on-update="searchFilterStore.setSelectedPriceRange"
         />
 
         <ToggleButton
           color="primary"
           :on-label="translation('disponible_only')"
           :off-label="translation('all_services')"
-          @update:on="disponibleOnly = $event"
+          :on-update="searchFilterStore.setDisponibleOnly"
         />
       </div>
 
@@ -47,16 +47,7 @@
       <!-- List -->
       <IonList class="bg-light">
         <!-- Item -->
-        <SearchProductItem
-          :search-text
-          :products
-          :categories
-          :characteristics
-          :selected-categories
-          :selected-characteristics="selectedCharacteristics"
-          :selected-price-range
-          :disponible-only
-        />
+        <SearchProductItem :products :categories :characteristics />
       </IonList>
     </IonContent>
   </IonModal>
@@ -70,6 +61,7 @@ import SearchProductItem from '@/components/ui/items/SearchProductItem.vue'
 import { useCategory } from '@/composables/category'
 import { useCharacteristic } from '@/composables/characteristic'
 import { useProduct } from '@/composables/product'
+import { useSearchFilter } from '@/stores/searchFilter'
 import isDesktop from '@/utils/isDesktop'
 import translation from '@/utils/translation'
 import { IonContent, IonList, IonModal, IonSearchbar } from '@ionic/vue'
@@ -85,16 +77,12 @@ defineProps<{
 const productComposable = useProduct()
 const categoryComposable = useCategory()
 const characteristicComposable = useCharacteristic()
+const searchFilterStore = useSearchFilter()
 
 /* Refs */
-const searchText = ref<string>('')
 const products = ref<Product[]>([])
 const categories = ref<Category[]>([])
 const characteristics = ref<Characteristic[]>([])
-const selectedCategories = ref<Category[]>([])
-const selectedCharacteristics = ref<Characteristic[]>([])
-const selectedPriceRange = ref<{ lower: number; upper: number } | undefined>(undefined)
-const disponibleOnly = ref<boolean>(false)
 
 /* Lifecycle Hooks */
 onMounted(async () => {

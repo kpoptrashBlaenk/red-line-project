@@ -59,10 +59,8 @@ const props = defineProps<{
   label: string
   min: number
   max: number
+  onUpdate: (range: Range | undefined) => void
 }>()
-
-/* Emits */
-const emit = defineEmits(['update:filter'])
 
 /* Constants */
 const defaultRange: Range = { lower: 0, upper: 100 }
@@ -83,8 +81,7 @@ function dismiss() {
 
 function applySelected() {
   selected.value = temporaryRange.value
-  emit(
-    'update:filter',
+  props.onUpdate(
     selected.value.lower !== defaultRange.lower || selected.value.upper !== defaultRange.upper
       ? { lower: percentToRange(selected.value.lower), upper: percentToRange(selected.value.upper) }
       : undefined,
