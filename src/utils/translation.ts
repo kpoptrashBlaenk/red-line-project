@@ -13,6 +13,7 @@ const translationKeys = {
   admin_product_title: 'admin_product_title',
   alert_header: 'alert_header',
   alert_message: 'alert_message',
+  all_services: 'all_services',
   button_text: 'promotion_button',
   cancel: 'cancel',
   categories: 'categories',
@@ -25,6 +26,7 @@ const translationKeys = {
   description_security: 'description_security',
   details: 'details',
   disponible: 'disponible',
+  disponible_only: 'disponible_only',
   english: 'english',
   error_category_post_500: 'error_category_post_500',
   error_required: 'error_required',
@@ -101,6 +103,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'This action cannot be undone.',
     fr: 'Cette action est irréversible.',
   },
+  all_services: {
+    en: 'All Services',
+    fr: 'Tous les services',
+  },
   button_text: {
     en: 'Button text',
     fr: 'Texte du bouton',
@@ -148,6 +154,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   disponible: {
     en: 'Available',
     fr: 'Disponible',
+  },
+  disponible_only: {
+    en: 'Available Only',
+    fr: 'Services disponibles',
   },
   english: {
     en: 'English',

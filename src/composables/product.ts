@@ -267,7 +267,7 @@ export function useProduct() {
         name: { en: 'Cyna XDR', fr: 'Cyna XDR' },
         top: true,
         price: 250,
-        disponible: true,
+        disponible: false,
         index: 4,
         description_functionality: {
           en: 'Extended detection and response integrating multiple security layers.',

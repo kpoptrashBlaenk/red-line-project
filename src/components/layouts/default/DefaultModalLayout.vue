@@ -32,6 +32,13 @@
           :max="[...products].sort((a, b) => b.price - a.price)[0].price"
           @update:filter="selectedPriceRange = $event"
         />
+
+        <ToggleButton
+          color="primary"
+          :on-label="translation('disponible_only')"
+          :off-label="translation('all_services')"
+          @update:on="disponibleOnly = $event"
+        />
       </div>
 
       <!-- Filter Chips -->
@@ -48,6 +55,7 @@
           :selected-categories
           :selected-characteristics="selectedCharacteristics"
           :selected-price-range
+          :disponible-only
         />
       </IonList>
     </IonContent>
@@ -57,6 +65,7 @@
 <script setup lang="ts">
 /* Imports */
 import { Category, Characteristic, Product } from '$/types'
+import ToggleButton from '@/components/ui/buttons/ToggleButton.vue'
 import SearchProductItem from '@/components/ui/items/SearchProductItem.vue'
 import { useCategory } from '@/composables/category'
 import { useCharacteristic } from '@/composables/characteristic'
@@ -85,6 +94,7 @@ const characteristics = ref<Characteristic[]>([])
 const selectedCategories = ref<Category[]>([])
 const selectedCharacteristics = ref<Characteristic[]>([])
 const selectedPriceRange = ref<{ lower: number; upper: number } | undefined>(undefined)
+const disponibleOnly = ref<boolean>(false)
 
 /* Lifecycle Hooks */
 onMounted(async () => {
