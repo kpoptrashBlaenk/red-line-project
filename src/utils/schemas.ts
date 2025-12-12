@@ -15,7 +15,7 @@ export const promotionSchema = () =>
     button_fr: z.string(translation('error_required')).min(1, translation('error_required')),
 
     link: z.string(translation('error_required')).min(1, translation('error_required')),
-    image: z.array(z.union([z.instanceof(File), z.url()])).min(1, translation('error_required')),
+    image: z.array(z.union([z.instanceof(File), z.url()])).length(1, translation('error_required')),
   })
 export const promotionState = reactive<Partial<PromotionSchema>>({
   title_en: undefined,
@@ -47,7 +47,7 @@ export const categorySchema = () =>
     name_en: z.string(translation('error_required')).min(1, translation('error_required')),
     name_fr: z.string(translation('error_required')).min(1, translation('error_required')),
 
-    image: z.array(z.union([z.instanceof(File), z.url()])).min(1, translation('error_required')),
+    image: z.array(z.union([z.instanceof(File), z.url()])).length(1, translation('error_required')),
   })
 export const categoryState = reactive<Partial<CategorySchema>>({
   name_en: undefined,
