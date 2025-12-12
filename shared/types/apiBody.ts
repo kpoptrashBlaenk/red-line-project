@@ -1,7 +1,7 @@
 import { CategorySchema, CharacteristicSchema, HomeTextSchema, ProductSchema, PromotionSchema } from '@/utils/schemas'
 
 type Id = { id: number }
-type ImageString = { image?: string[] }
+type ImageString = { image: string[] }
 
 /**
  * Body for promotion api
