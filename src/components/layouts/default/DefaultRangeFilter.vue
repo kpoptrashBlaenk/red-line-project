@@ -30,7 +30,7 @@
         v-if="selected.lower !== defaultRange.lower || selected.upper !== defaultRange.upper"
         :color
         class="text-xs px-2 shrink-0"
-        @click="selected = defaultRange"
+        @click="unselectItem"
       >
         <IonLabel class="me-1"> {{ percentToRange(selected.lower) }}€ - {{ percentToRange(selected.upper) }}€ </IonLabel>
 
@@ -73,6 +73,12 @@ const popover = ref()
 /* Functions */
 function resetItems() {
   temporaryRange.value = { ...selected.value }
+}
+
+function unselectItem() {
+  selected.value = defaultRange
+
+  applySelected()
 }
 
 function dismiss() {

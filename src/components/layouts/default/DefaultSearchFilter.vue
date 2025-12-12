@@ -76,6 +76,8 @@ function unselectItem(itemId: number) {
     selected.value.findIndex((item) => item.id === itemId),
     1,
   )
+
+  applySelected()
 }
 
 function isChecked(itemId: number) {
