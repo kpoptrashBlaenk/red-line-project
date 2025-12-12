@@ -5,7 +5,7 @@ type Id = { id: number }
 /**
  * Body for promotion api
  */
-export type PromotionBody = Omit<PromotionSchema, 'image'> & Id
+export type PromotionBody = PromotionSchema & Id
 
 /**
  * Body for home text api
@@ -15,12 +15,12 @@ export type HomeTextBody = HomeTextSchema & Id
 /**
  * Body for category api
  */
-export type CategoryBody = Omit<CategorySchema, 'image'> & Id
+export type CategoryBody = CategorySchema & Id
 
 /**
  * Body for product api
  */
-export type ProductBody = Omit<ProductSchema, 'image'> & Id
+export type ProductBody = ProductSchema & Id
 
 /**
  * Body for characteristics api
