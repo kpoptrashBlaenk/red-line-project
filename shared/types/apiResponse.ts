@@ -10,10 +10,10 @@ export type LanguageRecord = Record<Language, string>
  */
 export type Promotion = {
   id: number
-  image: string // image url
+  image: string[]
   title: LanguageRecord
   subtitle: LanguageRecord
-  button: LanguageRecord // button text
+  button: LanguageRecord
   link: string
   index: number
 }
@@ -31,7 +31,7 @@ export type HomeText = {
  */
 export type Category = {
   id: number
-  image: string
+  image: string[]
   name: LanguageRecord
   index: number
 }
@@ -43,7 +43,7 @@ export type Product = {
   id: number
   category_id: number
   created_at: string
-  image: string
+  image: string[]
   name: LanguageRecord
   top: boolean
   price: number

@@ -15,10 +15,7 @@ export const promotionSchema = () =>
     button_fr: z.string(translation('error_required')).min(1, translation('error_required')),
 
     link: z.string(translation('error_required')).min(1, translation('error_required')),
-    image: z.union([
-      z.string(translation('error_required')).min(1, translation('error_required')),
-      z.instanceof(File).refine(Boolean, translation('error_required')),
-    ]),
+    image: z.array(z.union([z.instanceof(File), z.url()])).min(1, translation('error_required')),
   })
 export const promotionState = reactive<Partial<PromotionSchema>>({
   title_en: undefined,
@@ -28,7 +25,7 @@ export const promotionState = reactive<Partial<PromotionSchema>>({
   button_en: undefined,
   button_fr: undefined,
   link: undefined,
-  image: undefined,
+  image: [],
 })
 export type PromotionSchema = z.output<ReturnType<typeof promotionSchema>>
 
@@ -50,15 +47,12 @@ export const categorySchema = () =>
     name_en: z.string(translation('error_required')).min(1, translation('error_required')),
     name_fr: z.string(translation('error_required')).min(1, translation('error_required')),
 
-    image: z.union([
-      z.string(translation('error_required')).min(1, translation('error_required')),
-      z.instanceof(File).refine(Boolean, translation('error_required')),
-    ]),
+    image: z.array(z.union([z.instanceof(File), z.url()])).min(1, translation('error_required')),
   })
 export const categoryState = reactive<Partial<CategorySchema>>({
   name_en: undefined,
   name_fr: undefined,
-  image: undefined,
+  image: [],
 })
 export type CategorySchema = z.output<ReturnType<typeof categorySchema>>
 
@@ -84,10 +78,7 @@ export const productSchema = () =>
     characteristics_scalability_ids: z.array(z.number().min(1, translation('error_required'))),
     characteristics_level_ids: z.array(z.number().min(1, translation('error_required'))),
 
-    image: z.union([
-      z.string(translation('error_required')).min(1, translation('error_required')),
-      z.instanceof(File).refine(Boolean, translation('error_required')),
-    ]),
+    image: z.array(z.union([z.instanceof(File), z.url()])).min(1, translation('error_required')),
   })
 export const productState = reactive<Partial<ProductSchema>>({
   category_id: undefined,
@@ -109,7 +100,7 @@ export const productState = reactive<Partial<ProductSchema>>({
   characteristics_scalability_ids: [],
   characteristics_level_ids: [],
 
-  image: undefined,
+  image: [],
 })
 export type ProductSchema = z.output<ReturnType<typeof productSchema>>
 

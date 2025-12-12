@@ -105,7 +105,7 @@ export function usePromotion() {
     const promotions: Promotion[] = [
       {
         id: 6,
-        image: 'https://cyna-it.fr/wp-content/uploads/2025/01/dfm.png',
+        image: ['https://cyna-it.fr/wp-content/uploads/2025/01/dfm.png'],
         title: {
           en: "Integration of Cyna's 24/7 SOC Solution",
           fr: 'Intégration de la solution SOC 24/7 de Cyna',
@@ -123,7 +123,7 @@ export function usePromotion() {
       },
       {
         id: 1,
-        image: 'https://cyna-it.fr/wp-content/uploads/2025/01/hopital-st-camille.png',
+        image: ['https://cyna-it.fr/wp-content/uploads/2025/01/hopital-st-camille.png'],
         title: {
           en: 'Implementation of a Managed SOC',
           fr: "Mise en place d'un SOC Managé",
@@ -141,7 +141,7 @@ export function usePromotion() {
       },
       {
         id: 2,
-        image: 'https://cyna-it.fr/wp-content/uploads/2025/01/Groupe-ABCD.png',
+        image: ['https://cyna-it.fr/wp-content/uploads/2025/01/Groupe-ABCD.png'],
         title: {
           en: 'Cyberattack Incident Response',
           fr: "Réponse à incident d'une cyberattaque",
@@ -159,7 +159,7 @@ export function usePromotion() {
       },
       {
         id: 3,
-        image: 'https://cyna-it.fr/wp-content/uploads/2025/07/sincrone-it-logo.png',
+        image: ['https://cyna-it.fr/wp-content/uploads/2025/07/sincrone-it-logo.png'],
         title: {
           en: 'Complete Cybersecurity Supported by 24/7 SOC',
           fr: 'Une cybersécurité complète, portée par le SOC 24/7',
@@ -177,7 +177,7 @@ export function usePromotion() {
       },
       {
         id: 4,
-        image: 'https://cyna-it.fr/wp-content/uploads/2025/07/logo-actuelburo.png',
+        image: ['https://cyna-it.fr/wp-content/uploads/2025/07/logo-actuelburo.png'],
         title: {
           en: "Integration of Cyna's 24/7 SOC Offering",
           fr: "Intégration de l'offre SOC 24/7 de Cyna",
@@ -195,7 +195,7 @@ export function usePromotion() {
       },
       {
         id: 5,
-        image: 'https://cyna-it.fr/wp-content/uploads/2025/01/neobrain-1.png',
+        image: ['https://cyna-it.fr/wp-content/uploads/2025/01/neobrain-1.png'],
         title: {
           en: 'Simulation of an Attack (Black & Grey Box)',
           fr: "Simulation d'une attaque (Black & Grey Box)",

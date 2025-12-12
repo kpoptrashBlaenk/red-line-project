@@ -70,19 +70,19 @@ export function useCategory() {
     const categories: Category[] = [
       {
         id: 1,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
+        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
         name: { en: 'SOC Services', fr: 'Services SOC' },
         index: 1,
       },
       {
         id: 2,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
+        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
         name: { en: 'EDR Services', fr: 'Services EDR' },
         index: 2,
       },
       {
         id: 3,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
+        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
         name: { en: 'XDR Services', fr: 'Services XDR' },
         index: 3,
       },

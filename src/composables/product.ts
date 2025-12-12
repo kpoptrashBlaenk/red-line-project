@@ -144,6 +144,7 @@ export function useProduct() {
         element: 'image',
         name: 'image',
         label: translation('upload'),
+        multiple: true,
       },
     ]
 
@@ -188,7 +189,7 @@ export function useProduct() {
       {
         id: 1,
         category_id: 1,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
+        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
         name: { en: 'Cyna SOC', fr: 'Cyna SOC' },
         top: true,
         price: 120,
@@ -214,7 +215,7 @@ export function useProduct() {
       {
         id: 2,
         category_id: 1,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
+        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
         name: { en: 'Cyna SOC Advanced', fr: 'Cyna SOC Avancé' },
         top: false,
         price: 200,
@@ -240,7 +241,7 @@ export function useProduct() {
       {
         id: 3,
         category_id: 2,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
+        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
         name: { en: 'Cyna EDR', fr: 'Cyna EDR' },
         top: true,
         price: 150,
@@ -257,7 +258,7 @@ export function useProduct() {
         },
         description_security: {
           en: 'EDR solution with AI-based threat hunting and alerting.',
-          fr: 'Solution EDR avec chasse aux menaces et alertes basées sur l’IA.',
+          fr: "Solution EDR avec chasse aux menaces et alertes basées sur l'IA.",
         },
         characteristics_performance_ids: [1, 3],
         characteristics_scalability_ids: [5],
@@ -266,7 +267,7 @@ export function useProduct() {
       {
         id: 4,
         category_id: 3,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
+        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
         name: { en: 'Cyna XDR', fr: 'Cyna XDR' },
         top: true,
         price: 250,
@@ -334,6 +335,7 @@ export function useProduct() {
    * @param state The state that tracks the new values
    */
   async function modify(id: number, state: ProductSchema) {
+    console.log(state)
     // api request
     id
     state

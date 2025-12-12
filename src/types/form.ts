@@ -21,6 +21,7 @@ export interface DividerField {
  */
 export interface ImageField extends FormFieldWrapper {
   element: 'image'
+  multiple?: boolean
 }
 
 /**
