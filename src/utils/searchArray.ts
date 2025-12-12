@@ -1,5 +1,5 @@
 import { LanguageRecord } from '$/types'
-import levenshtein from './levenshtein'
+import charDifference from './charDifference'
 import translation from './translation'
 
 /**
@@ -31,7 +31,7 @@ export default function <T extends Record<string, any>>(items: T[], text: string
       .filter(
         (item) =>
           !results.find((result) => result.id === item.id) &&
-          keys.some((key) => levenshtein(translation(item[key] as LanguageRecord).toLowerCase(), search) === 1),
+          keys.some((key) => charDifference(translation(item[key] as LanguageRecord).toLowerCase(), search) === 1),
       )
       // attribute score
       .map((item) => ({ ...item, score: 3 })),
