@@ -194,6 +194,7 @@ export function useProduct() {
         price: 120,
         disponible: true,
         index: 1,
+        created_at: '2023-05-12T10:15:00Z',
         description_functionality: {
           en: 'Real-time monitoring and incident response for enterprise networks.',
           fr: 'Surveillance en temps réel et réponse aux incidents pour les réseaux d’entreprise.',
@@ -219,6 +220,7 @@ export function useProduct() {
         price: 200,
         disponible: true,
         index: 2,
+        created_at: '2023-11-02T14:45:00Z',
         description_functionality: {
           en: 'Advanced SOC platform with AI-driven threat analysis.',
           fr: 'Plateforme SOC avancée avec analyse des menaces pilotée par IA.',
@@ -244,6 +246,7 @@ export function useProduct() {
         price: 150,
         disponible: true,
         index: 3,
+        created_at: '2024-03-18T09:30:00Z',
         description_functionality: {
           en: 'Endpoint detection and response for multi-device environments.',
           fr: 'Détection et réponse aux incidents sur les terminaux multi-appareils.',
@@ -269,6 +272,7 @@ export function useProduct() {
         price: 250,
         disponible: false,
         index: 4,
+        created_at: '2024-07-01T16:20:00Z',
         description_functionality: {
           en: 'Extended detection and response integrating multiple security layers.',
           fr: 'Détection et réponse étendues intégrant plusieurs couches de sécurité.',

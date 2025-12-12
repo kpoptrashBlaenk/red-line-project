@@ -20,6 +20,7 @@ const translationKeys = {
   category: 'category',
   characteristics: 'characteristics',
   contact: 'contact',
+  default: 'default',
   delete: 'delete',
   description_advantage: 'description_advantage',
   description_functionality: 'description_functionality',
@@ -44,13 +45,18 @@ const translationKeys = {
   link: 'promotion_link',
   menu: 'menu',
   name: 'name',
+  new: 'new',
   no_file: 'no_file',
   not_an_image: 'not_an_image',
+  old: 'old',
   pages: 'pages',
   performance: 'performance',
   price: 'price',
+  priceHL: 'priceHL',
+  priceLH: 'priceLH',
   scalability: 'scalability',
   search_product: 'search_product',
+  sort: 'sort',
   submit: 'submit',
   subtitle: 'promotion_subtitle',
   text: 'text',
@@ -134,6 +140,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   delete: {
     en: 'Delete',
     fr: 'Supprimer',
+  },
+  default: {
+    en: 'Default',
+    fr: 'Par défaut',
   },
   description_advantage: {
     en: 'Advantages Description',
@@ -227,6 +237,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Name',
     fr: 'Nom',
   },
+  new: {
+    en: 'Newest',
+    fr: 'Nouveauté : récent',
+  },
   no_file: {
     en: 'No file selected',
     fr: 'Aucun fichier sélectionné',
@@ -234,6 +248,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   not_an_image: {
     en: 'The selected file is not an image',
     fr: "Le fichier sélectionné n'est pas une image",
+  },
+  old: {
+    en: 'Oldest',
+    fr: 'Nouveauté : ancien',
   },
   pages: {
     en: 'Pages',
@@ -247,6 +265,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Price',
     fr: 'Prix',
   },
+  priceLH: {
+    en: 'Price: Low to High',
+    fr: 'Prix : du plus bas au plus élevé',
+  },
+  priceHL: {
+    en: 'Price: High to Low',
+    fr: 'Prix : du plus élevé au plus bas',
+  },
   scalability: {
     en: 'Scalability',
     fr: 'Scalabilité',
@@ -254,6 +280,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   search_product: {
     en: 'Search for products...',
     fr: 'Rechercher des produits...',
+  },
+  sort: {
+    en: 'Sort',
+    fr: 'Trier',
   },
   submit: {
     en: 'Submit',

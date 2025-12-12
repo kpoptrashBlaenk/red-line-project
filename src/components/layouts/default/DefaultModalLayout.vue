@@ -5,9 +5,9 @@
       <IonSearchbar v-model="searchFilterStore.searchText" :placeholder="translation('search_product')" />
 
       <!-- Filters -->
-      <div class="px-2 flex md:grid md:grid-cols-4 overflow-x-auto gap-2 scrollbar-none" :class="{ 'flex-wrap': isDesktop() }">
+      <div class="px-2 flex md:grid md:grid-cols-5 overflow-x-auto gap-2 scrollbar-none" :class="{ 'flex-wrap': isDesktop() }">
         <DefaultSearchFilter
-          :context="'category'"
+          context="category"
           color="primary"
           :label="translation('categories')"
           chip-key="name"
@@ -16,7 +16,7 @@
         />
 
         <DefaultSearchFilter
-          :context="'characteristic'"
+          context="characteristic"
           color="secondary"
           :label="translation('characteristics')"
           chip-key="name"
@@ -25,7 +25,7 @@
         />
 
         <DefaultRangeFilter
-          :context="'price'"
+          context="price"
           color="tertiary"
           :label="translation('price')"
           :min="[...products].sort((a, b) => a.price - b.price)[0].price"
@@ -38,6 +38,21 @@
           :on-label="translation('disponible_only')"
           :off-label="translation('all_services')"
           :on-update="searchFilterStore.setDisponibleOnly"
+        />
+
+        <DefaultSortByFilter
+          context="sort"
+          color="secondary"
+          :label="translation('sort')"
+          :items="[
+            { value: 'default', label: translation('default') },
+            { value: 'priceLH', label: translation('priceLH') },
+            { value: 'priceHL', label: translation('priceHL') },
+            { value: 'new', label: translation('new') },
+            { value: 'old', label: translation('old') },
+            { value: 'disponible', label: translation('disponible') },
+          ]"
+          :on-update="(item) => searchFilterStore.setSortBy(item)"
         />
       </div>
 
@@ -68,6 +83,7 @@ import { IonContent, IonList, IonModal, IonSearchbar } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
 import DefaultRangeFilter from './DefaultRangeFilter.vue'
 import DefaultSearchFilter from './DefaultSearchFilter.vue'
+import DefaultSortByFilter from './DefaultSortByFilter.vue'
 /* Props */
 defineProps<{
   isOpen: boolean

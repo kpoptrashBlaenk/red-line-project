@@ -1,5 +1,7 @@
 <template>
-  <IonButton color="primary" :fill="on ? 'solid' : 'outline'" @click="onToggle">{{ on ? onLabel : offLabel }}</IonButton>
+  <IonButton color="primary" :fill="on ? 'solid' : 'outline'" @click="onToggle" class="font-extrabold">{{
+    on ? onLabel : offLabel
+  }}</IonButton>
 </template>
 
 <script setup lang="ts">

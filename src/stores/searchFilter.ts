@@ -1,4 +1,5 @@
 import { Category, Characteristic } from '$/types'
+import { SortOption } from '@/types'
 import { defineStore } from 'pinia'
 
 export const useSearchFilter = defineStore('searchFilter', {
@@ -8,6 +9,7 @@ export const useSearchFilter = defineStore('searchFilter', {
     selectedCharacteristics: [] as Characteristic[],
     selectedPriceRange: undefined as { lower: number; upper: number } | undefined,
     disponibleOnly: false as boolean,
+    sortBy: 'default' as SortOption,
   }),
 
   actions: {
@@ -25,6 +27,10 @@ export const useSearchFilter = defineStore('searchFilter', {
 
     setDisponibleOnly(disponbile: boolean) {
       this.disponibleOnly = disponbile
+    },
+
+    setSortBy(option: SortOption) {
+      this.sortBy = option
     },
   },
 })

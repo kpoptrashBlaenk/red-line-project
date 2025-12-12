@@ -98,6 +98,24 @@ const filteredProducts = computed(() => {
     'description_security',
   ])
 
+  // sort
+  results = results.sort((a, b) => {
+    switch (searchFilterStore.sortBy) {
+      case 'disponible':
+        return (b.disponible ? 1 : 0) - (a.disponible ? 1 : 0)
+      case 'new':
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      case 'old':
+        return new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+      case 'priceHL':
+        return b.price - a.price
+      case 'priceLH':
+        return a.price - b.price
+      default:
+        return 0
+    }
+  })
+
   // flatten
   return results.map((product) => ({
     ...product,
