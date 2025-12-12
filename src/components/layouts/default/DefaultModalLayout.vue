@@ -1,5 +1,11 @@
 <template>
-  <IonModal :is-open :initial-breakpoint="0.75" :breakpoints="[0, 0.75, 1]" @will-dismiss="$emit('close:search-modal')">
+  <IonModal
+    :is-open
+    :initial-breakpoint="0.75"
+    :breakpoints="[0, 0.75, 1]"
+    @will-dismiss="$emit('close:search-modal')"
+    :expand-to-scroll="false"
+  >
     <IonContent color="light">
       <!-- Searchbar -->
       <IonSearchbar v-model="searchFilterStore.searchText" :placeholder="translation('search_product')" />
