@@ -12,6 +12,7 @@
           :label="translation('categories')"
           chip-key="name"
           :items="categories"
+          :default="searchFilterStore.selectedCategories"
           :on-update="searchFilterStore.setSelectedCategories"
         />
 
@@ -21,6 +22,7 @@
           :label="translation('characteristics')"
           chip-key="name"
           :items="characteristics"
+          :default="searchFilterStore.selectedCharacteristics"
           :on-update="searchFilterStore.setSelectedCharacteristics"
         />
 
@@ -30,6 +32,7 @@
           :label="translation('price')"
           :min="[...products].sort((a, b) => a.price - b.price)[0].price"
           :max="[...products].sort((a, b) => b.price - a.price)[0].price"
+          :default="searchFilterStore.selectedPriceRange"
           :on-update="searchFilterStore.setSelectedPriceRange"
         />
 
@@ -37,6 +40,7 @@
           color="primary"
           :on-label="translation('disponible_only')"
           :off-label="translation('all_services')"
+          :default="searchFilterStore.disponibleOnly"
           :on-update="searchFilterStore.setDisponibleOnly"
         />
 
@@ -52,6 +56,7 @@
             { value: 'old', label: translation('old') },
             { value: 'disponible', label: translation('disponible') },
           ]"
+          :default="searchFilterStore.sortBy"
           :on-update="(item) => searchFilterStore.setSortBy(item)"
         />
       </div>

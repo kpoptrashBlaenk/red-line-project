@@ -59,6 +59,7 @@ const props = defineProps<{
   label: string
   min: number
   max: number
+  default: Range | undefined
   onUpdate: (range: Range | undefined) => void
 }>()
 
@@ -66,8 +67,10 @@ const props = defineProps<{
 const defaultRange: Range = { lower: 0, upper: 100 }
 
 /* Refs */
-const selected = ref<Range>(defaultRange)
-const temporaryRange = ref<Range>(defaultRange)
+const selected = ref<Range>(
+  props.default ? { lower: rangeToPercentage(props.default.lower), upper: rangeToPercentage(props.default.upper) } : defaultRange,
+)
+const temporaryRange = ref<Range>(selected.value)
 const popover = ref()
 
 /* Functions */
@@ -97,5 +100,9 @@ function applySelected() {
 
 function percentToRange(value: number) {
   return Math.round(props.min + (value / 100) * (props.max - props.min))
+}
+
+function rangeToPercentage(value: number) {
+  return Math.round(((value - props.min) / (props.max - props.min)) * 100)
 }
 </script>

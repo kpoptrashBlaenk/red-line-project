@@ -3,7 +3,7 @@
   <SolidButton :id="`${context}-popover`" :color :label :icon="funnelOutline" expand="block" @click="resetItems" />
 
   <!-- Sort Popover -->
-  <IonPopover ref="popover" :trigger="`${context}-popover`" @ion-popover-did-dismiss="temporarySelected = 'default'">
+  <IonPopover ref="popover" :trigger="`${context}-popover`" @ion-popover-did-dismiss="temporarySelected = selected">
     <IonList lines="none">
       <IonRadioGroup v-model="temporarySelected" :value="selected">
         <IonItem v-for="(item, key) in items" :key>
@@ -18,7 +18,7 @@
   </IonPopover>
 
   <Teleport defer to="#chips-row">
-    <IonChip v-if="selected !== items[0].value" :color class="text-xs px-2 shrink-0" @click="selected = items[0].value">
+    <IonChip v-if="selected !== items[0].value" :color class="text-xs px-2 shrink-0" @click="unselectItem">
       <IonIcon :icon="funnelOutline" />
 
       <IonLabel class="mx-1">
@@ -45,17 +45,23 @@ const props = defineProps<{
   color: Color
   label: string
   items: { value: SortOption; label: string }[]
+  default: SortOption
   onUpdate: (item: SortOption) => void
 }>()
 
 /* Refs */
-const selected = ref<SortOption>(props.items[0].value)
-const temporarySelected = ref<SortOption>(props.items[0].value)
+const selected = ref<SortOption>(props.default)
+const temporarySelected = ref<SortOption>(props.default)
 const popover = ref()
 
 /* Functions */
 function resetItems() {
   temporarySelected.value = selected.value
+}
+
+function unselectItem() {
+  temporarySelected.value = props.items[0].value
+  applySelected()
 }
 
 function dismiss() {

@@ -15,12 +15,12 @@ const props = defineProps<{
   onLabel: string
   offLabel: string
   color: Color
-  onByDefault?: boolean
+  default: boolean
   onUpdate: (value: boolean) => void
 }>()
 
 /* Refs */
-const on = ref<boolean>(props.onByDefault ?? false)
+const on = ref<boolean>(props.default)
 
 /* Functions */
 function onToggle() {

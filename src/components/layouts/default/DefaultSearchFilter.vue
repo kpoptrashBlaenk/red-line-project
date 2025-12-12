@@ -4,7 +4,7 @@
     <SolidButton :id="`${context}-popover`" :color :label expand="block" @click="resetItems" />
 
     <!-- Filter Popover -->
-    <IonPopover ref="popover" :trigger="`${context}-popover`" @ion-popover-did-dismiss="temporarySelected = []">
+    <IonPopover ref="popover" :trigger="`${context}-popover`" @ion-popover-did-dismiss="temporarySelected = selected">
       <div class="flex flex-col gap-2 pt-5 px-5 pb-3">
         <IonCheckbox
           v-for="(item, key) in items"
@@ -58,12 +58,13 @@ const props = defineProps<{
   label: string
   chipKey: string
   items: any[]
+  default: any[]
   onUpdate: (items: any[]) => void
 }>()
 
 /* Refs */
-const selected = ref<any[]>([])
-const temporarySelected = ref<any[]>([])
+const selected = ref<any[]>(props.default)
+const temporarySelected = ref<any[]>(props.default)
 const popover = ref()
 
 /* Functions */
