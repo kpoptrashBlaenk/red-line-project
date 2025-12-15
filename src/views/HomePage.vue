@@ -12,12 +12,12 @@
       <SeparatorComponent size="sm" />
 
       <TitleComponent :text="translation('home_category_title')" color="secondary" />
-      <HomeCategoryGrid :categories color="secondary" />
+      <HomeCategoryGrid :categories color="secondary" class="pt-5" />
 
       <SeparatorComponent size="md" />
 
       <TitleComponent :text="translation('home_product_title')" color="primary" />
-      <HomeProductGrid :products color="primary" />
+      <HomeProductGrid :products color="primary" context="home" class="pt-5" />
 
       <SeparatorComponent size="md" />
     </div>
@@ -28,7 +28,7 @@
 /* Imports */
 import { Category, HomeText, Product, Promotion } from '$/types'
 import HomeCategoryGrid from '@/components/grids/HomeCategoryGrid.vue'
-import HomeProductGrid from '@/components/grids/HomeProductGrid.vue'
+import HomeProductGrid from '@/components/grids/ProductGrid.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
 import HomeSwiper from '@/components/swiper/HomeSwiper.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'

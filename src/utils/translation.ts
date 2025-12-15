@@ -18,6 +18,7 @@ const translationKeys = {
   cancel: 'cancel',
   categories: 'categories',
   category: 'category',
+  category_products_title: 'category_products_title',
   characteristics: 'characteristics',
   contact: 'contact',
   default: 'default',
@@ -131,6 +132,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   category: {
     en: 'Category',
     fr: 'Catégorie',
+  },
+  category_products_title: {
+    en: `Our ${totTitle('services')} in this ${totTitle('category')}`,
+    fr: `Nos ${totTitle('services')} dans cette ${totTitle('catégorie')}`,
   },
   characteristics: {
     en: 'Characteristics',

@@ -1,11 +1,13 @@
 <template>
-  <div class="flex flex-wrap justify-center gap-5 mt-10">
+  <div class="flex flex-wrap justify-center gap-5">
     <ImageTitleCard
       v-for="(product, key) in products"
       :key
       :color
       :image="product.image[0]"
       :title="translation(product.name)"
+      :subtitle="isHome() ? undefined : `${product.price}€`"
+      :note="isHome() ? undefined : product.disponible ? undefined : translation('not_disponible')"
       :link="`/product/${product.id}`"
     />
   </div>
@@ -19,8 +21,13 @@ import translation from '@/utils/translation'
 import ImageTitleCard from '../ui/cards/ImageTitleCard.vue'
 
 /* Props */
-defineProps<{
+const props = defineProps<{
   products: Product[]
   color: Color
+  context: 'home' | 'category'
 }>()
+
+function isHome() {
+  return props.context === 'home'
+}
 </script>

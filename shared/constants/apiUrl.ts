@@ -20,8 +20,9 @@ const urls = {
   // product
   product_get: 'product',
   product_top: 'product/top',
+  product_category: 'product/category/:id',
   product_post: 'product',
-  product__reorder: 'product/reorder',
+  product_reorder: 'product/reorder',
   product_put: 'product/:id',
   product_delete: 'product/:id',
 
@@ -33,6 +34,14 @@ const urls = {
   promotion_delete: 'promotion/:id',
 }
 
-export default function (url: keyof typeof urls) {
-  return `http://localhost:3000/api/${urls[url]}`
+/**
+ * Create url to send a request to the backend or to use as backend api url
+ *
+ * @param urlKey The {@link urls} key to get the url
+ * @param id Replace :id with the actual id in the frontend
+ */
+export default function (urlKey: keyof typeof urls, id?: number) {
+  const url = `http://localhost:3000/api/${urls[urlKey]}`
+
+  return id ? url.replace(':id', id.toString()) : url
 }

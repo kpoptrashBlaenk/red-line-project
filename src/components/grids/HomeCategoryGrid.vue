@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap justify-center gap-5 mt-10">
+  <div class="flex flex-wrap justify-center gap-5">
     <ImageTitleCard
       v-for="(category, key) in categories"
       :key

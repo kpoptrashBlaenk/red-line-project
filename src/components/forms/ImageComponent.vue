@@ -39,6 +39,7 @@
 /* Imports */
 import maxFileSize from '$/constants/maxFileSize'
 import type { ImageField } from '@/types'
+import isLengthZero from '@/utils/isLengthZero'
 import translation from '@/utils/translation'
 import { FilePicker } from '@capawesome/capacitor-file-picker'
 import { IonButton, IonIcon, IonReorder, IonReorderGroup, ReorderEndCustomEvent } from '@ionic/vue'
@@ -80,7 +81,7 @@ async function openGallery() {
     const files = (await FilePicker.pickImages({ limit: field.value.multiple ? 0 : 1, ordered: true })).files
 
     // no file
-    if (!files || files.length === 0) throw new Error(translation('no_file'))
+    if (!files || isLengthZero(files)) throw new Error(translation('no_file'))
 
     // not an image
     for (const file of files) {

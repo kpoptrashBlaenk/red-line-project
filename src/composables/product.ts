@@ -314,6 +314,15 @@ export function useProduct() {
   }
 
   /**
+   * Get all products by category id
+   */
+  async function category(id: number) {
+    const products: Product[] = (await get()).filter((product) => product.category_id === id)
+
+    return products ?? []
+  }
+
+  /**
    * Reorder the products
    *
    * @param items Items in new order
@@ -370,6 +379,7 @@ export function useProduct() {
     flatten,
     get,
     top,
+    category,
     reorder,
     create,
     modify,
