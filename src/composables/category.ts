@@ -25,6 +25,11 @@ export function useCategory() {
         name: 'name_en',
         label: translation('name'),
       },
+      {
+        element: 'input',
+        name: 'description_en',
+        label: translation('description'),
+      },
 
       // fr
       {
@@ -35,6 +40,11 @@ export function useCategory() {
         element: 'input',
         name: 'name_fr',
         label: translation('name'),
+      },
+      {
+        element: 'input',
+        name: 'description_fr',
+        label: translation('description'),
       },
 
       // image
@@ -71,24 +81,54 @@ export function useCategory() {
       {
         id: 1,
         image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
-        name: { en: 'SOC Services', fr: 'Services SOC' },
+        name: {
+          en: 'SOC Services',
+          fr: 'Services SOC',
+        },
+        description: {
+          en: 'Security Operations Center services for continuous monitoring and incident response.',
+          fr: 'Services de centre des opérations de sécurité pour une surveillance continue et une réponse aux incidents.',
+        },
         index: 1,
       },
       {
         id: 2,
         image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
-        name: { en: 'EDR Services', fr: 'Services EDR' },
+        name: {
+          en: 'EDR Services',
+          fr: 'Services EDR',
+        },
+        description: {
+          en: 'Endpoint Detection and Response solutions to protect and monitor endpoints.',
+          fr: 'Solutions de détection et de réponse sur les terminaux pour protéger et surveiller les postes.',
+        },
         index: 2,
       },
       {
         id: 3,
         image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
-        name: { en: 'XDR Services', fr: 'Services XDR' },
+        name: {
+          en: 'XDR Services',
+          fr: 'Services XDR',
+        },
+        description: {
+          en: 'Extended Detection and Response services integrating multiple security layers.',
+          fr: 'Services de détection et de réponse étendues intégrant plusieurs couches de sécurité.',
+        },
         index: 3,
       },
     ]
 
     return categories ?? []
+  }
+
+  /**
+   * Find category by id
+   */
+  async function find(id: number) {
+    const category = (await get()).find((category) => category.id === id)
+
+    return category
   }
 
   /**
@@ -158,6 +198,7 @@ export function useCategory() {
     createFields,
     flatten,
     get,
+    find,
     reorder,
     create,
     modify,

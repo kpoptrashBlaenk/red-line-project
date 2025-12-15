@@ -22,6 +22,7 @@ const translationKeys = {
   contact: 'contact',
   default: 'default',
   delete: 'delete',
+  description: 'description',
   description_advantage: 'description_advantage',
   description_functionality: 'description_functionality',
   description_security: 'description_security',
@@ -146,6 +147,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   default: {
     en: 'Default',
     fr: 'Par défaut',
+  },
+  description: {
+    en: 'Description',
+    fr: 'Description',
   },
   description_advantage: {
     en: 'Advantages Description',

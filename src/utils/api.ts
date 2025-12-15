@@ -1,7 +1,7 @@
 import { useSettingsStore } from '@/stores/settings'
 import { useUserStore } from '@/stores/user'
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
-import apiUrl from './apiUrl'
+import apiUrl from '$/constants/apiUrl'
 apiUrl // ignore that (lint)
 
 /**

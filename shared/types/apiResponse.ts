@@ -33,6 +33,7 @@ export type Category = {
   id: number
   image: string[]
   name: LanguageRecord
+  description: LanguageRecord
   index: number
 }
 
