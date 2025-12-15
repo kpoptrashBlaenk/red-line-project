@@ -29,7 +29,7 @@
     :space-between="50"
     effect="slide"
   >
-    <SwiperSlide v-for="(promotion, key) in promotions" :key="key" class="bg-primary max-w-80 md:max-w-110 max-h-80">
+    <SwiperSlide v-for="(promotion, key) in promotions" :key="key" class="max-w-80 md:max-w-110 max-h-80">
       <HomeSwiperCard :promotion="promotion" />
     </SwiperSlide>
   </Swiper>

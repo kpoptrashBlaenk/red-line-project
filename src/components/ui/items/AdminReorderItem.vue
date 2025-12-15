@@ -5,7 +5,7 @@
       <div
         class="grid gap-3 items-center py-2 overflow-hidden h-16"
         :style="{
-          gridTemplateColumns: [reorder, imageKey, true]
+          gridTemplateColumns: [reorder, image, true]
             .filter((col) => col)
             .map((col, index) => (index === 0 ? '1fr' : 'min-content'))
             .reverse()
@@ -13,10 +13,10 @@
         }"
       >
         <IonReorder v-if="reorder" />
-        <IonImg v-if="imageKey" :src="item[imageKey]" class="w-12" />
+        <IonImg v-if="image" :src="image(item)" class="w-12" />
         <div class="overflow-hidden">
-          <IonLabel v-if="textKey" class="truncate text-ellipsis">{{ translation(item[textKey]) }}</IonLabel>
-          <IonNote v-if="noteKey" class="truncate text-ellipsis">{{ translation(item[noteKey]) }}</IonNote>
+          <div v-if="text" class="truncate text-ellipsis">{{ text(item) }}</div>
+          <div v-if="note" class="truncate text-ellipsis text-gray-500 text-sm">{{ note(item) }}</div>
         </div>
       </div>
 
@@ -26,10 +26,10 @@
 
     <!-- Item Options when Slide open -->
     <IonItemOptions v-if="modify || remove" side="end">
-      <IonItemOption v-if="modify" color="warning" @click="$emit('open:modal-form', apiMethods.put)">
+      <IonItemOption v-if="modify" color="warning" @click="$emit('open:modal-form', apiMethod.put)">
         <IonIcon :icon="pencilOutline" class="text-xl p-3" />
       </IonItemOption>
-      <IonItemOption v-if="remove" color="danger" @click="$emit('open:modal-form', apiMethods.delete)">
+      <IonItemOption v-if="remove" color="danger" @click="$emit('open:modal-form', apiMethod.delete)">
         <IonIcon :icon="trashBinOutline" class="text-xl p-3" />
       </IonItemOption>
     </IonItemOptions>
@@ -39,18 +39,7 @@
 <script setup lang="ts">
 /* Imports */
 import apiMethods from '@/constants/apiMethod'
-import translation from '@/utils/translation'
-import {
-  IonIcon,
-  IonImg,
-  IonItem,
-  IonItemOption,
-  IonItemOptions,
-  IonItemSliding,
-  IonLabel,
-  IonNote,
-  IonReorder,
-} from '@ionic/vue'
+import { IonIcon, IonImg, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonReorder } from '@ionic/vue'
 import { pencilOutline, trashBinOutline } from 'ionicons/icons'
 import { ref } from 'vue'
 import ClearButton from '../buttons/ClearButton.vue'
@@ -59,13 +48,16 @@ import ClearButton from '../buttons/ClearButton.vue'
 defineProps<{
   item: any
   last: boolean
-  textKey?: string
-  noteKey?: string
-  imageKey?: string
+  text?: (item: any) => string
+  note?: (item: any) => string
+  image?: (item: any) => string
   reorder?: boolean
   modify?: boolean
   remove?: boolean
 }>()
+
+/* Constants */ // because ts thinks these are supposed to be props
+const apiMethod = apiMethods
 
 /* Refs */
 const sliding = ref()

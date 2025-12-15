@@ -12,9 +12,9 @@
             :key
             :item
             :last="key === items.length - 1"
-            :image-key
-            :text-key
-            :note-key
+            :image
+            :text
+            :note
             :reorder
             :modify
             :remove
@@ -25,11 +25,11 @@
 
       <div v-if="add" class="px-5 pb-5">
         <SolidButton
-          :label="translation('add')"
+          :label="translate('add')"
           color="success"
           class="mt-2"
           expand="block"
-          @click="$emit('open:modal-form', value, apiMethods.post)"
+          @click="$emit('open:modal-form', value, apiMethod.post)"
         />
       </div>
     </div>
@@ -50,15 +50,19 @@ const props = defineProps<{
   title: string
   value: AdminSectionKey
   items: any[]
-  textKey?: string
-  noteKey?: string
-  imageKey?: string
+  text?: (item: any) => string
+  note?: (item: any) => string
+  image?: (item: any) => string
   reorderCallback?: (items: any) => Promise<void>
   reorder?: boolean
   add?: boolean
   modify?: boolean
   remove?: boolean
 }>()
+
+/* Constants */ // because ts thinks these are supposed to be props
+const apiMethod = apiMethods
+const translate = translation
 
 /* Functions */
 function onReorderEnd(event: ReorderEndCustomEvent) {

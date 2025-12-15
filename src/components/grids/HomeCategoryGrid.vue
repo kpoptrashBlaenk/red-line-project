@@ -3,7 +3,7 @@
     <ImageTitleCard
       v-for="(category, key) in categories"
       :key
-      :image="category.image"
+      :image="category.image[0]"
       :title="translation(category.name)"
       :link="`/category/${category.id}`"
       :color
@@ -14,9 +14,9 @@
 <script setup lang="ts">
 /* Imports */
 import { Category } from '$/types'
+import { Color } from '@/types'
 import translation from '@/utils/translation'
 import ImageTitleCard from '../ui/cards/ImageTitleCard.vue'
-import { Color } from '@/types'
 
 /* Props */
 defineProps<{

@@ -1,9 +1,10 @@
 import { Category } from '$/types'
 import { FormField } from '@/types'
+import { apiPost } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { CategorySchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
+import { alertCircleOutline, checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do category related queries
@@ -69,19 +70,19 @@ export function useCategory() {
     const categories: Category[] = [
       {
         id: 1,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
+        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
         name: { en: 'SOC Services', fr: 'Services SOC' },
         index: 1,
       },
       {
         id: 2,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
+        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
         name: { en: 'EDR Services', fr: 'Services EDR' },
         index: 2,
       },
       {
         id: 3,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
+        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
         name: { en: 'XDR Services', fr: 'Services XDR' },
         index: 3,
       },
@@ -108,10 +109,22 @@ export function useCategory() {
    * @param state The state that tracks the new values
    */
   async function create(state: CategorySchema) {
-    // api request
-    state
+    try {
+      // create promotion
+      const response = await apiPost<Category>('/api/promotion', state)
 
-    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+      // check response
+      if (!response) {
+        throw new Error(translation('error_category_post_500'))
+      }
+
+      // success
+      await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+
+      // catch
+    } catch (error: any) {
+      await presentToast(error.message, 'danger', alertCircleOutline)
+    }
   }
 
   /**

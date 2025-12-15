@@ -108,5 +108,3 @@ export async function apiDelete<T>(url: string, config?: AxiosRequestConfig): Pr
   const { data } = await api.delete<T>(url, config)
   return data
 }
-
-export default api

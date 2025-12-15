@@ -7,18 +7,29 @@ const translationKeys = {
   add: 'add',
   admin: 'admin',
   admin_category_title: 'admin_category_title',
+  admin_characteristic_title: 'admin_characteristic_title',
   admin_home_carousel_title: 'admin_home_carousel_title',
   admin_home_text_title: 'admin_home_carousel_title',
   admin_product_title: 'admin_product_title',
   alert_header: 'alert_header',
   alert_message: 'alert_message',
+  all_services: 'all_services',
   button_text: 'promotion_button',
   cancel: 'cancel',
+  categories: 'categories',
   category: 'category',
+  characteristics: 'characteristics',
   contact: 'contact',
+  default: 'default',
   delete: 'delete',
+  description_advantage: 'description_advantage',
+  description_functionality: 'description_functionality',
+  description_security: 'description_security',
   details: 'details',
+  disponible: 'disponible',
+  disponible_only: 'disponible_only',
   english: 'english',
+  error_category_post_500: 'error_category_post_500',
   error_required: 'error_required',
   file_too_big: 'file_too_big',
   french: 'french',
@@ -30,12 +41,23 @@ const translationKeys = {
   home_product_title: 'home_product_title',
   image: 'image',
   legal_mentions: 'legal_mentions',
+  level: 'level',
   link: 'promotion_link',
   menu: 'menu',
   name: 'name',
+  new: 'new',
   no_file: 'no_file',
   not_an_image: 'not_an_image',
+  not_disponible: 'not_disponible',
+  old: 'old',
   pages: 'pages',
+  performance: 'performance',
+  price: 'price',
+  priceHL: 'priceHL',
+  priceLH: 'priceLH',
+  scalability: 'scalability',
+  search_product: 'search_product',
+  sort: 'sort',
   submit: 'submit',
   subtitle: 'promotion_subtitle',
   text: 'text',
@@ -45,6 +67,7 @@ const translationKeys = {
   toast_modified: 'toast_modified',
   toast_reordered: 'toast_reordered',
   top: 'top',
+  type: 'type',
   upload: 'upload',
 }
 
@@ -62,6 +85,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   admin_category_title: {
     en: 'Categories',
     fr: 'Catégories',
+  },
+  admin_characteristic_title: {
+    en: 'Characteristics',
+    fr: 'Caractéristiques',
   },
   admin_home_carousel_title: {
     en: 'Home Promotion Carousel',
@@ -83,6 +110,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'This action cannot be undone.',
     fr: 'Cette action est irréversible.',
   },
+  all_services: {
+    en: 'All Services',
+    fr: 'Tous les services',
+  },
   button_text: {
     en: 'Button text',
     fr: 'Texte du bouton',
@@ -91,9 +122,17 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Cancel',
     fr: 'Annuler',
   },
+  categories: {
+    en: 'Categories',
+    fr: 'Catégories',
+  },
   category: {
     en: 'Category',
     fr: 'Catégorie',
+  },
+  characteristics: {
+    en: 'Characteristics',
+    fr: 'Caractéristiques',
   },
   contact: {
     en: 'Contact',
@@ -103,13 +142,41 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Delete',
     fr: 'Supprimer',
   },
+  default: {
+    en: 'Default',
+    fr: 'Par défaut',
+  },
+  description_advantage: {
+    en: 'Advantages Description',
+    fr: 'Description des avantages',
+  },
+  description_functionality: {
+    en: 'Functionality Description',
+    fr: 'Description des fonctionnalités',
+  },
+  description_security: {
+    en: 'Security Description',
+    fr: 'Description de la sécurité',
+  },
   details: {
     en: 'Details',
     fr: 'Détails',
   },
+  disponible: {
+    en: 'Available',
+    fr: 'Disponible',
+  },
+  disponible_only: {
+    en: 'Available Only',
+    fr: 'Services disponibles',
+  },
   english: {
     en: 'English',
     fr: 'Anglais',
+  },
+  error_category_post_500: {
+    en: "Couldn't create category",
+    fr: 'Impossible de créer la catégorie',
   },
   error_required: {
     en: 'Please fill out this field',
@@ -159,6 +226,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Legal Mentions',
     fr: 'Mentions légales',
   },
+  level: {
+    en: 'Level',
+    fr: 'Niveau',
+  },
   menu: {
     en: 'Menu',
     fr: 'Menu',
@@ -166,6 +237,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   name: {
     en: 'Name',
     fr: 'Nom',
+  },
+  new: {
+    en: 'Newest',
+    fr: 'Nouveauté : récent',
   },
   no_file: {
     en: 'No file selected',
@@ -175,9 +250,45 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'The selected file is not an image',
     fr: "Le fichier sélectionné n'est pas une image",
   },
+  not_disponible: {
+    en: 'Not available',
+    fr: 'Non disponible',
+  },
+  old: {
+    en: 'Oldest',
+    fr: 'Nouveauté : ancien',
+  },
   pages: {
     en: 'Pages',
     fr: 'Pages',
+  },
+  performance: {
+    en: 'Performance',
+    fr: 'Performance',
+  },
+  price: {
+    en: 'Price',
+    fr: 'Prix',
+  },
+  priceLH: {
+    en: 'Price: Low to High',
+    fr: 'Prix : du plus bas au plus élevé',
+  },
+  priceHL: {
+    en: 'Price: High to Low',
+    fr: 'Prix : du plus élevé au plus bas',
+  },
+  scalability: {
+    en: 'Scalability',
+    fr: 'Scalabilité',
+  },
+  search_product: {
+    en: 'Search for products...',
+    fr: 'Rechercher des produits...',
+  },
+  sort: {
+    en: 'Sort',
+    fr: 'Trier',
   },
   submit: {
     en: 'Submit',
@@ -215,6 +326,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Top',
     fr: 'Top',
   },
+  type: {
+    en: 'Type',
+    fr: 'Type',
+  },
   upload: {
     en: 'Upload',
     fr: 'Upload',
@@ -227,7 +342,9 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
  *
  * @param record Translation key or an entire language record
  */
-export default function (record: TranslationKey | LanguageRecord) {
+export default function (record: TranslationKey | LanguageRecord | undefined) {
+  if (!record) return ''
+
   const setttingsStore = useSettingsStore()
 
   if (typeof record === 'string') {

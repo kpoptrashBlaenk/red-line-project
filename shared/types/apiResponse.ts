@@ -10,10 +10,10 @@ export type LanguageRecord = Record<Language, string>
  */
 export type Promotion = {
   id: number
-  image: string // image url
+  image: string[]
   title: LanguageRecord
   subtitle: LanguageRecord
-  button: LanguageRecord // button text
+  button: LanguageRecord
   link: string
   index: number
 }
@@ -31,7 +31,7 @@ export type HomeText = {
  */
 export type Category = {
   id: number
-  image: string
+  image: string[]
   name: LanguageRecord
   index: number
 }
@@ -42,10 +42,30 @@ export type Category = {
 export type Product = {
   id: number
   category_id: number
-  image: string
+  created_at: string
+  image: string[]
   name: LanguageRecord
   top: boolean
+  price: number
+  disponible: boolean
   index: number
+
+  description_functionality: LanguageRecord
+  description_advantage: LanguageRecord
+  description_security: LanguageRecord
+
+  characteristics_performance_ids: number[]
+  characteristics_scalability_ids: number[]
+  characteristics_level_ids: number[]
+}
+
+/**
+ * Characteristics
+ */
+export type Characteristic = {
+  id: number
+  name: LanguageRecord
+  type: 'performance' | 'scalability' | 'level'
 }
 
 /**

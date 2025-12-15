@@ -1,8 +1,25 @@
 <template>
-  <div class="ps-5 pt-2">
-    <div class="flex justify-center">
-      <img v-if="image" :src="image" class="mt-2 rounded-2xl object-fit max-w-62 max-h-62 border border-primary" />
-    </div>
+  <div>
+    <IonReorderGroup :disabled="!field.multiple" class="ps-5" @ion-reorder-end="reorder">
+      <div v-for="(image, key) in images" :key class="mb-2 relative">
+        <IonReorder class="rounded-2xl">
+          <div class="flex justify-center">
+            <img v-if="image" :src="image.preview" class="rounded-2xl object-fit border border-primary" />
+          </div>
+        </IonReorder>
+
+        <IonButton
+          v-if="field.multiple"
+          shape="round"
+          color="danger"
+          class="absolute z-10"
+          style="top: -5px; right: -5px"
+          @click="removeImage(image)"
+        >
+          <IonIcon slot="icon-only" :icon="closeCircleOutline" />
+        </IonButton>
+      </div>
+    </IonReorderGroup>
 
     <SolidButton
       :aria-label="field.label"
@@ -24,8 +41,9 @@ import maxFileSize from '$/constants/maxFileSize'
 import type { ImageField } from '@/types'
 import translation from '@/utils/translation'
 import { FilePicker } from '@capawesome/capacitor-file-picker'
-import { cloudUploadOutline } from 'ionicons/icons'
-import { ref, toRef } from 'vue'
+import { IonButton, IonIcon, IonReorder, IonReorderGroup, ReorderEndCustomEvent } from '@ionic/vue'
+import { closeCircleOutline, cloudUploadOutline } from 'ionicons/icons'
+import { nextTick, ref, toRef, watch } from 'vue'
 import z from 'zod'
 import SolidButton from '../ui/buttons/SolidButton.vue'
 
@@ -39,49 +57,70 @@ const props = defineProps<{
 /* Refs */
 const field = toRef(props, 'field')
 const state = toRef(props, 'state')
-const image = ref<string | undefined>(state.value[field.value.name])
+const images = ref<{ file: File; preview: string }[]>(
+  state.value[field.value.name]?.map((f: any) => ({
+    file: f,
+    preview: typeof f === 'string' ? f : URL.createObjectURL(f),
+  })) || [],
+)
+
+/* Watches */
+watch(
+  images,
+  (newImages) => {
+    state.value[field.value.name] = newImages.map((image) => image.file)
+  },
+  { deep: true },
+)
 
 /* Functions */
 async function openGallery() {
-  const chosen = (value: Blob | undefined, error?: string) => {
-    state.value[field.value.name] = value
-    image.value = value ? URL.createObjectURL(value) : value
-    field.value.error = error ?? ''
-    markTouched()
-  }
-
   try {
     // open gallery
-    const file = (await FilePicker.pickImages({ limit: 1 })).files[0]
+    const files = (await FilePicker.pickImages({ limit: field.value.multiple ? 0 : 1, ordered: true })).files
 
     // no file
-    if (!file) {
-      chosen(undefined, translation('no_file'))
-      return
-    }
+    if (!files || files.length === 0) throw new Error(translation('no_file'))
 
     // not an image
-    if ((!file.mimeType.startsWith('data:image') && !file.mimeType.startsWith('image')) || !file.blob) {
-      chosen(undefined, translation('not_an_image'))
-      return
+    for (const file of files) {
+      if ((!file.mimeType.startsWith('data:image') && !file.mimeType.startsWith('image')) || !file.blob) {
+        throw new Error(translation('not_an_image'))
+      }
+
+      // image too big
+      if (file.size > maxFileSize) {
+        throw new Error(translation('file_too_big'))
+      }
+
+      // push/replace
+      if (field.value.multiple) {
+        images.value.push({
+          file: new File([file.blob], file.name, { type: file.blob.type }),
+          preview: URL.createObjectURL(file.blob),
+        })
+      } else {
+        images.value = [
+          {
+            file: new File([file.blob], file.name, { type: file.blob.type }),
+            preview: URL.createObjectURL(file.blob),
+          },
+        ]
+      }
     }
+    field.value.error = ''
 
-    // image too big
-    if (file.size > maxFileSize) {
-      chosen(undefined, translation('file_too_big'))
-      return
-    }
-
-    // preview
-    chosen(file.blob)
-
-    // error (usually on selection cancel)
-  } catch (error) {
-    return
+    // error (selection cancel too)
+  } catch (error: any) {
+    field.value.error = error
   }
+
+  markTouched()
 }
 
-function validate() {
+async function validate() {
+  await nextTick()
+
   const result = props.schema!.safeParse(state.value)
 
   if (!result.success) {
@@ -95,5 +134,17 @@ function validate() {
 function markTouched() {
   field.value.touched = true
   validate()
+}
+
+function reorder(event: ReorderEndCustomEvent) {
+  event.detail.complete(images.value)
+}
+
+function removeImage(image: { file: File; preview: string }) {
+  const index = images.value.findIndex((i) => i.preview === image.preview)
+  if (index !== -1) {
+    images.value.splice(index, 1)
+    markTouched()
+  }
 }
 </script>

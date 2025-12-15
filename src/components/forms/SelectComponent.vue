@@ -11,6 +11,7 @@
     @ionBlur="markTouched"
     :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
     class="ps-5!"
+    :multiple="field.multiple"
   >
     <IonSelectOption v-for="(item, key) in field.items" :key :value="item[field.itemValueKey]">
       {{ translation(item[field.itemLabelKey]) }}

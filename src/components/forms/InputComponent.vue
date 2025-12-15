@@ -1,13 +1,14 @@
 <template>
   <IonInput
-    v-model="state[field.name]"
+    :value="state[field.name]"
     :label="field.label"
     :aria-label="field.label"
     label-placement="floating"
     clear-input
     fill="solid"
+    :type="field.type"
     :error-text="field.error"
-    @ionInput="validate"
+    @ionInput="onInput"
     @ionBlur="markTouched"
     :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
     mode="md"
@@ -47,6 +48,18 @@ function validate() {
 
 function markTouched() {
   field.value.touched = true
+  validate()
+}
+
+function onInput(event: CustomEvent) {
+  const value = event.detail.value
+
+  if (value && field.value.type === 'number') {
+    state.value[field.value.name] = Number(value.replace(/[\d]/g, '')) ?? ''
+  } else {
+    state.value[field.value.name] = value
+  }
+
   validate()
 }
 </script>
