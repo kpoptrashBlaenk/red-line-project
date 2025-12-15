@@ -55,6 +55,7 @@ const translationKeys = {
   price: 'price',
   priceHL: 'priceHL',
   priceLH: 'priceLH',
+  priority: 'priority',
   scalability: 'scalability',
   search_product: 'search_product',
   sort: 'sort',
@@ -277,6 +278,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   priceHL: {
     en: 'Price: High to Low',
     fr: 'Prix : du plus élevé au plus bas',
+  },
+  priority: {
+    en: 'Priority',
+    fr: 'Priorité',
   },
   scalability: {
     en: 'Scalability',

@@ -46,6 +46,7 @@ export type Product = {
   image: string[]
   name: LanguageRecord
   top: boolean
+  priority: boolean
   price: number
   disponible: boolean
   index: number

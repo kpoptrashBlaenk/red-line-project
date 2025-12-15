@@ -51,7 +51,7 @@ const modal = ref()
 @media (min-width: 768px) {
   ion-modal {
     --border-radius: 25px;
-    --min-height: 610px;
+    --min-height: 750px;
     --min-width: 75%;
   }
 }

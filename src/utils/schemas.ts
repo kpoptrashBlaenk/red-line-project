@@ -61,6 +61,7 @@ export const productSchema = () =>
   z.object({
     category_id: z.number(translation('error_required')),
     top: z.boolean(translation('error_required')),
+    priority: z.boolean(translation('error_required')),
     price: z.number(translation('error_required')),
     disponible: z.boolean(translation('error_required')),
 
@@ -83,6 +84,7 @@ export const productSchema = () =>
 export const productState = reactive<Partial<ProductSchema>>({
   category_id: undefined,
   top: false,
+  priority: false,
   price: undefined,
   disponible: false,
 
