@@ -5,8 +5,9 @@
       :key
       :image="category.image[0]"
       :title="translation(category.name)"
-      :link="`/category/${category.id}`"
       :color
+      :link="`/category/${category.id}`"
+      router-direction="forward"
     />
   </div>
 </template>
