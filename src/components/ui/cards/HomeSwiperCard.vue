@@ -1,6 +1,6 @@
 <template>
   <IonCard class="w-full h-78 flex flex-col" :class="isDesktop() ? 'rounded-2xl' : 'rounded-none mb-0.5'">
-    <IonImg :src="promotion.image" class="bg-primary h-32 p-2" />
+    <IonImg :src="promotion.image[0]" class="bg-primary h-32 p-2" />
 
     <IonCardHeader class="px-3 pt-3 text-start">
       <IonCardTitle class="text-2xl font-semibold">{{ translation(promotion.title) }}</IonCardTitle>

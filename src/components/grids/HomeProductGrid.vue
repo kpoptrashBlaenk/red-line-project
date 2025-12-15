@@ -4,7 +4,7 @@
       v-for="(product, key) in products"
       :key
       :color
-      :image="product.image"
+      :image="product.image[0]"
       :title="translation(product.name)"
       :link="`/product/${product.id}`"
     />

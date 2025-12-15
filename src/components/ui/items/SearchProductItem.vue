@@ -3,7 +3,7 @@
   <IonItem v-for="(product, key) in filteredProducts" :key button detail color="light" :router-link="`/product/${product.id}`">
     <div class="grid grid-cols-[80px_1fr_auto] py-3 gap-4 items-start w-full">
       <!-- Image -->
-      <IonImg :src="product.image" class="my-auto" />
+      <IonImg :src="product.image[0]" class="my-auto" />
 
       <!-- Name & Description -->
       <div>

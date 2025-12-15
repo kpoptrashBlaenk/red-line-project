@@ -87,12 +87,14 @@ const homeText = ref<HomeText[]>([])
 const categories = ref<Category[]>([])
 const products = ref<Product[]>([])
 const characteristics = ref<Characteristic[]>([])
-const contextItemMap = ref<ContextItem>({
+const contextItemMap = ref<
+  Record<AdminSectionKey, ContextItem<Promotion> | ContextItem<Product> | ContextItem<HomeText> | ContextItem<Characteristic>>
+>({
   promotion: {
     title: translation('admin_home_carousel_title'),
     value: 'promotion',
     itemsRef: promotions,
-    image: (item: Promotion) => item.image,
+    image: (item: Promotion) => item.image[0],
     text: (item: Promotion) => translation(item.title),
     note: (item: Promotion) => translation(item.subtitle),
     reorder: true,
@@ -120,7 +122,7 @@ const contextItemMap = ref<ContextItem>({
     title: translation('admin_category_title'),
     value: 'category',
     itemsRef: categories,
-    image: (item: Category) => item.image,
+    image: (item: Category) => item.image[0],
     text: (item: Category) => translation(item.name),
     reorder: true,
     add: true,
@@ -136,7 +138,7 @@ const contextItemMap = ref<ContextItem>({
     title: translation('admin_product_title'),
     value: 'product',
     itemsRef: products,
-    image: (item: Product) => item.image,
+    image: (item: Product) => item.image[0],
     text: (item: Product) => translation(item.name),
     note: (item: Product) => `${translation(item.description_functionality)} (${item.price}€)`,
     reorder: true,

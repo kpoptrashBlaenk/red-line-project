@@ -12,6 +12,7 @@
     "test:unit": "vitest",
     "server": "node server/server.ts",
     "lint": "eslint .",
+    "type-check": "vue-tsc",
     "format": "prettier --write ."
   },
   "dependencies": {
