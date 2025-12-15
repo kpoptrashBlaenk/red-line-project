@@ -1,6 +1,15 @@
 <template>
   <!-- Item -->
-  <IonItem v-for="(product, key) in filteredProducts" :key button detail color="light" :router-link="`/product/${product.id}`">
+  <IonItem
+    v-for="(product, key) in filteredProducts"
+    :key
+    button
+    detail
+    color="light"
+    lines="full"
+    :router-link="`/product/${product.id}`"
+    :class="{ 'opacity-60': !product.disponible }"
+  >
     <div class="grid grid-cols-[80px_1fr_auto] py-3 gap-4 items-start w-full">
       <!-- Image -->
       <IonImg :src="product.image[0]" class="my-auto" />
