@@ -1,7 +1,7 @@
 export interface Promotional {
   id: number
   title_en: string
-  titele_fr: string
+  title_fr: string
   subtitle_en: string | null
   subtitle_fr: string | null
   button_en: string | null
