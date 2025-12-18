@@ -91,6 +91,11 @@ export function useProduct() {
         label: translation('top'),
       },
       {
+        element: 'toggle',
+        name: 'priority',
+        label: translation('priority'),
+      },
+      {
         element: 'input',
         name: 'price',
         label: `${translation('price')} (€)`,
@@ -192,6 +197,7 @@ export function useProduct() {
         image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
         name: { en: 'Cyna SOC', fr: 'Cyna SOC' },
         top: true,
+        priority: false,
         price: 120,
         disponible: true,
         index: 1,
@@ -218,6 +224,7 @@ export function useProduct() {
         image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
         name: { en: 'Cyna SOC Advanced', fr: 'Cyna SOC Avancé' },
         top: false,
+        priority: false,
         price: 200,
         disponible: true,
         index: 2,
@@ -244,6 +251,7 @@ export function useProduct() {
         image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
         name: { en: 'Cyna EDR', fr: 'Cyna EDR' },
         top: true,
+        priority: false,
         price: 150,
         disponible: true,
         index: 3,
@@ -270,6 +278,7 @@ export function useProduct() {
         image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
         name: { en: 'Cyna XDR', fr: 'Cyna XDR' },
         top: true,
+        priority: false,
         price: 250,
         disponible: false,
         index: 4,
@@ -300,6 +309,15 @@ export function useProduct() {
    */
   async function top() {
     const products: Product[] = (await get()).filter((product) => product.top)
+
+    return products ?? []
+  }
+
+  /**
+   * Get all products by category id
+   */
+  async function category(id: number) {
+    const products: Product[] = (await get()).filter((product) => product.category_id === id)
 
     return products ?? []
   }
@@ -361,6 +379,7 @@ export function useProduct() {
     flatten,
     get,
     top,
+    category,
     reorder,
     create,
     modify,

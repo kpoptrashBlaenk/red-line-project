@@ -1,12 +1,13 @@
 <template>
-  <div class="flex flex-wrap justify-center gap-5 mt-10">
+  <div class="flex flex-wrap justify-center gap-5">
     <ImageTitleCard
       v-for="(category, key) in categories"
       :key
       :image="category.image[0]"
       :title="translation(category.name)"
-      :link="`/category/${category.id}`"
       :color
+      :link="`/category/${category.id}`"
+      router-direction="forward"
     />
   </div>
 </template>

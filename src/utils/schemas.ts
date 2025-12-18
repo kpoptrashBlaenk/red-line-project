@@ -47,11 +47,17 @@ export const categorySchema = () =>
     name_en: z.string(translation('error_required')).min(1, translation('error_required')),
     name_fr: z.string(translation('error_required')).min(1, translation('error_required')),
 
+    description_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    description_fr: z.string(translation('error_required')).min(1, translation('error_required')),
+
     image: z.array(z.union([z.instanceof(File), z.url()])).length(1, translation('error_required')),
   })
 export const categoryState = reactive<Partial<CategorySchema>>({
   name_en: undefined,
   name_fr: undefined,
+
+  description_en: undefined,
+  description_fr: undefined,
   image: [],
 })
 export type CategorySchema = z.output<ReturnType<typeof categorySchema>>
@@ -61,6 +67,7 @@ export const productSchema = () =>
   z.object({
     category_id: z.number(translation('error_required')),
     top: z.boolean(translation('error_required')),
+    priority: z.boolean(translation('error_required')),
     price: z.number(translation('error_required')),
     disponible: z.boolean(translation('error_required')),
 
@@ -83,6 +90,7 @@ export const productSchema = () =>
 export const productState = reactive<Partial<ProductSchema>>({
   category_id: undefined,
   top: false,
+  priority: false,
   price: undefined,
   disponible: false,
 

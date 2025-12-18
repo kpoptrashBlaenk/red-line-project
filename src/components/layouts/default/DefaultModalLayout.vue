@@ -73,7 +73,7 @@
       <!-- List -->
       <IonList class="bg-light">
         <!-- Item -->
-        <SearchProductItem :products :categories :characteristics />
+        <SearchProductItem :products :categories :characteristics color="light" />
       </IonList>
     </IonContent>
   </IonModal>

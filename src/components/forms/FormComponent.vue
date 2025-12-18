@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit" class="grid grid-cols-2 px-10 pb-5">
+  <form @submit.prevent="handleSubmit" class="grid grid-cols-4 px-10 pb-5">
     <FormFieldComponent v-for="(field, key) in fields" :key :field :state :schema />
   </form>
 </template>

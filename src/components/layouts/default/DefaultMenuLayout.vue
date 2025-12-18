@@ -16,11 +16,9 @@
             v-if="!(page.mobileOnly && isDesktop())"
             :key
             :color="route.fullPath.startsWith(page.url) ? 'primary' : 'light'"
-            :router-link="page.url"
-            :router-direction="page.url === pages.home.url ? 'back' : 'forward'"
             button
             detail
-            @click="handleRoute(page.url)"
+            @click="handleRoute(route, router, page.url, () => menu.$el.close())"
           >
             <IonLabel class="text-xl! ms-2">{{ translation(page.translationKey) }}</IonLabel>
           </IonItem>
@@ -33,7 +31,7 @@
 <script setup lang="ts">
 /* Imports */
 import pages from '@/constants/pages'
-import { getLastRoute } from '@/router'
+import handleRoute from '@/utils/handleRoute'
 import isDesktop from '@/utils/isDesktop'
 import translation from '@/utils/translation'
 import { IonContent, IonHeader, IonItem, IonLabel, IonList, IonMenu, IonTitle, IonToolbar } from '@ionic/vue'
@@ -46,21 +44,4 @@ const router = useRouter()
 
 /* Refs */
 const menu = ref()
-
-/* Functions */
-function handleRoute(url: string) {
-  menu.value.$el.close()
-
-  if (route.fullPath.startsWith('/home')) {
-    router.push(url)
-    return
-  }
-
-  if (url.startsWith('/home')) {
-    getLastRoute()?.startsWith('/home') ? router.back() : router.push(url)
-    return
-  }
-
-  router.replace(url)
-}
 </script>

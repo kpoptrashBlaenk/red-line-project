@@ -18,10 +18,12 @@ const translationKeys = {
   cancel: 'cancel',
   categories: 'categories',
   category: 'category',
+  category_products_title: 'category_products_title',
   characteristics: 'characteristics',
   contact: 'contact',
   default: 'default',
   delete: 'delete',
+  description: 'description',
   description_advantage: 'description_advantage',
   description_functionality: 'description_functionality',
   description_security: 'description_security',
@@ -55,6 +57,7 @@ const translationKeys = {
   price: 'price',
   priceHL: 'priceHL',
   priceLH: 'priceLH',
+  priority: 'priority',
   scalability: 'scalability',
   search_product: 'search_product',
   sort: 'sort',
@@ -130,6 +133,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Category',
     fr: 'Catégorie',
   },
+  category_products_title: {
+    en: `Our ${totTitle('services')} in this ${totTitle('category')}`,
+    fr: `Nos ${totTitle('services')} dans cette ${totTitle('catégorie')}`,
+  },
   characteristics: {
     en: 'Characteristics',
     fr: 'Caractéristiques',
@@ -145,6 +152,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   default: {
     en: 'Default',
     fr: 'Par défaut',
+  },
+  description: {
+    en: 'Description',
+    fr: 'Description',
   },
   description_advantage: {
     en: 'Advantages Description',
@@ -277,6 +288,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   priceHL: {
     en: 'Price: High to Low',
     fr: 'Prix : du plus élevé au plus bas',
+  },
+  priority: {
+    en: 'Priority',
+    fr: 'Priorité',
   },
   scalability: {
     en: 'Scalability',

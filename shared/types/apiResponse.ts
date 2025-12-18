@@ -33,6 +33,7 @@ export type Category = {
   id: number
   image: string[]
   name: LanguageRecord
+  description: LanguageRecord
   index: number
 }
 
@@ -46,6 +47,7 @@ export type Product = {
   image: string[]
   name: LanguageRecord
   top: boolean
+  priority: boolean
   price: number
   disponible: boolean
   index: number

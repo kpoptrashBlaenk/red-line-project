@@ -88,7 +88,10 @@ const categories = ref<Category[]>([])
 const products = ref<Product[]>([])
 const characteristics = ref<Characteristic[]>([])
 const contextItemMap = ref<
-  Record<AdminSectionKey, ContextItem<Promotion> | ContextItem<Product> | ContextItem<HomeText> | ContextItem<Characteristic>>
+  Record<
+    AdminSectionKey,
+    ContextItem<Promotion> | ContextItem<Product> | ContextItem<HomeText> | ContextItem<Category> | ContextItem<Characteristic>
+  >
 >({
   promotion: {
     title: translation('admin_home_carousel_title'),
