@@ -35,7 +35,7 @@ describe('TextareaComponent.vue', () => {
     expect(ionTextarea.classes()).toContain('ion-invalid')
 
     // input valid value
-    // await ionTextarea.setValue('Test')
+    await ionTextarea.setValue('Test')
     await ionTextarea.vm.$emit('ionInput') // trigger input but set value with set value
 
     // expect error to be removed
