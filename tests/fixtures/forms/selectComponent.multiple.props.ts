@@ -1,0 +1,29 @@
+import { Props, SelectField } from '@/types'
+import z from 'zod'
+
+export default function (
+  overrides = {},
+): Props<{ field: SelectField; state: { test: number[] | undefined }; schema: z.ZodType<{ test: number[] }> }> {
+  return {
+    props: {
+      field: {
+        element: 'select',
+        name: 'test',
+        label: 'Test',
+        items: [
+          { value: 1, label: 'Test 1' },
+          { value: 2, label: 'Test 2' },
+        ],
+        itemValueKey: 'value',
+        itemLabelKey: 'label',
+
+        multiple: true,
+      },
+      state: { test: undefined },
+      schema: z.object({
+        test: z.array(z.number('required')).min(1, 'required'),
+      }),
+      ...overrides,
+    },
+  }
+}
