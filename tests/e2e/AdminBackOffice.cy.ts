@@ -119,4 +119,18 @@ describe('Admin Admin Back Office', () => {
     cy.get('[data-cy="form-modal-submit"]').click()
     cy.get('ion-modal').should('not.be.visible')
   })
+
+  // Delete
+  it('should be able to delete a record', () => {
+    // open accordion & slide first item
+    cy.get('ion-accordion').eq(0).click()
+    cy.get('ion-accordion').eq(0).find('ion-item-sliding').first().find('ion-button').click()
+
+    // click edit
+    cy.get('ion-accordion').eq(0).find('ion-item-option').eq(1).click()
+
+    // delete & check success
+    cy.get('ion-alert').find('button').last().click()
+    cy.get('ion-alert').should('not.be.visible')
+  })
 })
