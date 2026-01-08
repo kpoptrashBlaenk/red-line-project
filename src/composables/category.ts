@@ -69,6 +69,8 @@ export function useCategory() {
     return {
       name_en: category.name.en,
       name_fr: category.name.fr,
+      description_en: category.description.en,
+      description_fr: category.description.fr,
       image: category.image,
     }
   }

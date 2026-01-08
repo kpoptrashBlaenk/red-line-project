@@ -5,7 +5,7 @@ describe('Search', () => {
   })
 
   it('searches products by text', () => {
-    cy.get('[data-cy="searchbar"]').find('input').type('soc')
+    cy.get('[data-cy="searchbar"]').type('soc')
     cy.get('ion-modal ion-item').should('have.length', 2)
   })
 

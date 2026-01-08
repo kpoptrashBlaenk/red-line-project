@@ -17,7 +17,7 @@
       <IonToolbar color="light">
         <div class="flex">
           <ClearButton :label="'Cancel'" color="dark" size="large" class="flex-1" @click="modal.$el.dismiss()" />
-          <ClearButton :label="'Submit'" color="dark" size="large" form="modal-form" class="flex-1" />
+          <ClearButton :label="'Submit'" color="dark" size="large" form="modal-form" class="flex-1" data-cy="form-modal-submit" />
         </div>
       </IonToolbar>
     </IonFooter>

@@ -127,6 +127,7 @@ const contextItemMap = ref<
     itemsRef: categories,
     image: (item: Category) => item.image[0],
     text: (item: Category) => translation(item.name),
+    note: (item: Category) => translation(item.description),
     reorder: true,
     add: true,
     modify: true,

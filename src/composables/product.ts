@@ -168,6 +168,7 @@ export function useProduct() {
       price: product.price,
       disponible: product.disponible,
       index: product.index,
+      priority: product.priority,
       image: product.image,
 
       name_en: product.name.en,

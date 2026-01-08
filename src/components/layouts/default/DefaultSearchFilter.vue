@@ -1,7 +1,14 @@
 <template>
   <div>
     <!-- Filter Button -->
-    <SolidButton :id="`${context}-popover`" :color :label expand="block" :data-cy="`filter-button-${context}`" @click="resetItems" />
+    <SolidButton
+      :id="`${context}-popover`"
+      :color
+      :label
+      expand="block"
+      :data-cy="`filter-button-${context}`"
+      @click="resetItems"
+    />
 
     <!-- Filter Popover -->
     <IonPopover ref="popover" :trigger="`${context}-popover`" @ion-popover-did-dismiss="temporarySelected = selected">
@@ -18,7 +25,7 @@
         </IonCheckbox>
       </div>
 
-      <CancelOkButtons :color  :on-cancel="dismiss" :on-ok="applySelected" />
+      <CancelOkButtons :color :on-cancel="dismiss" :on-ok="applySelected" />
     </IonPopover>
 
     <!-- Filter Chips but teleported to chip-wrapper -->
