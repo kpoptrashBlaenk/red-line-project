@@ -8,7 +8,7 @@
   >
     <IonContent color="light">
       <!-- Searchbar -->
-      <IonSearchbar v-model="searchFilterStore.searchText" :placeholder="translation('search_product')" />
+      <IonSearchbar v-model="searchFilterStore.searchText" :placeholder="translation('search_product')" data-cy="searchbar" />
 
       <!-- Filters -->
       <div class="px-2 flex md:grid md:grid-cols-5 overflow-x-auto gap-2 scrollbar-none" :class="{ 'flex-wrap': isDesktop() }">
@@ -47,6 +47,7 @@
           :on-label="translation('disponible_only')"
           :off-label="translation('all_services')"
           :default="searchFilterStore.disponibleOnly"
+          data-cy="filter-button-toggle"
           :on-update="searchFilterStore.setDisponibleOnly"
         />
 
