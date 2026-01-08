@@ -10,7 +10,7 @@
         <IonButton fill="clear" size="large">
           <IonIcon :icon="cartOutline" />
         </IonButton>
-        <IonMenuButton />
+        <IonMenuButton data-cy="menu-button" />
       </IonButtons>
     </IonToolbar>
   </IonHeader>
