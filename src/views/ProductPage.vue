@@ -1,7 +1,7 @@
 <template>
   <DefaultContentLayout>
-    <HeroComponent :title="translation(product?.name)">
-      <ProductSwiper> </ProductSwiper>
+    <HeroComponent>
+      <ProductSwiper v-if="product" :product> </ProductSwiper>
     </HeroComponent>
 
     <div class="wrap">
@@ -20,7 +20,6 @@ import ProductSwiper from '@/components/swiper/ProductSwiper.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useProduct } from '@/composables/product'
-import translation from '@/utils/translation'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 

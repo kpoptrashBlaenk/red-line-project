@@ -89,6 +89,6 @@ onMounted(async () => {
   const id = Number(route.params.id)
 
   category.value = await categoryComposable.find(id)
-  products.value = await productComposable.get()
+  products.value = await productComposable.getByCategory(id)
 })
 </script>

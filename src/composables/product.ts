@@ -1,5 +1,6 @@
 import { Product } from '$/types'
 import { FormField } from '@/types'
+import placeholderImages from '@/utils/placeholderImages'
 import presentToast from '@/utils/presentToast'
 import { ProductSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
@@ -195,7 +196,7 @@ export function useProduct() {
       {
         id: 1,
         category_id: 1,
-        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
+        image: placeholderImages(['Cyna SOC', '1', '2', '3', '4', '5', '6']),
         name: { en: 'Cyna SOC', fr: 'Cyna SOC' },
         top: true,
         priority: false,
@@ -222,7 +223,7 @@ export function useProduct() {
       {
         id: 2,
         category_id: 1,
-        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
+        image: placeholderImages(['Cyna SOC Advanced', '1', '2', '3', '4', '5', '6']),
         name: { en: 'Cyna SOC Advanced', fr: 'Cyna SOC Avancé' },
         top: false,
         priority: false,
@@ -249,7 +250,7 @@ export function useProduct() {
       {
         id: 3,
         category_id: 2,
-        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
+        image: placeholderImages(['Cyna EDR', '1', '2', '3', '4', '5', '6']),
         name: { en: 'Cyna EDR', fr: 'Cyna EDR' },
         top: true,
         priority: false,
@@ -276,7 +277,7 @@ export function useProduct() {
       {
         id: 4,
         category_id: 3,
-        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
+        image: placeholderImages(['Cyna XDR', '1', '2', '3', '4', '5', '6']),
         name: { en: 'Cyna XDR', fr: 'Cyna XDR' },
         top: true,
         priority: false,
@@ -303,6 +304,15 @@ export function useProduct() {
     ]
 
     return products ?? []
+  }
+
+  /**
+   * Get all products by category
+   */
+  async function getByCategory(categoryId: number) {
+    const products = await get()
+
+    return products.filter((product) => product.category_id === categoryId)
   }
 
   /**
@@ -388,6 +398,7 @@ export function useProduct() {
     createFields,
     flatten,
     get,
+    getByCategory,
     find,
     top,
     category,
