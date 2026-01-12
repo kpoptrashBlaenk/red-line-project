@@ -11,6 +11,7 @@ const translationKeys = {
   admin_home_carousel_title: 'admin_home_carousel_title',
   admin_home_text_title: 'admin_home_carousel_title',
   admin_product_title: 'admin_product_title',
+  advantages: 'advantages',
   alert_header: 'alert_header',
   alert_message: 'alert_message',
   all_services: 'all_services',
@@ -35,6 +36,7 @@ const translationKeys = {
   error_required: 'error_required',
   file_too_big: 'file_too_big',
   french: 'french',
+  functionalities: 'functionalities',
   general: 'general',
   general_conditions: 'general_conditions',
   home: 'home',
@@ -60,6 +62,7 @@ const translationKeys = {
   priority: 'priority',
   scalability: 'scalability',
   search_product: 'search_product',
+  securities: 'securities',
   sort: 'sort',
   submit: 'submit',
   subtitle: 'promotion_subtitle',
@@ -104,6 +107,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   admin_product_title: {
     en: 'Products',
     fr: 'Produits',
+  },
+  advantages: {
+    en: 'Your benefits',
+    fr: 'Vos avantages',
   },
   alert_header: {
     en: 'Are you sure?',
@@ -200,6 +207,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   french: {
     en: 'French',
     fr: 'Français',
+  },
+  functionalities: {
+    en: 'Functionalities',
+    fr: 'Fonctionnalités',
   },
   general: {
     en: 'General',
@@ -300,6 +311,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   search_product: {
     en: 'Search for products...',
     fr: 'Rechercher des produits...',
+  },
+  securities: {
+    en: 'Securities',
+    fr: 'Sécurités',
   },
   sort: {
     en: 'Sort',

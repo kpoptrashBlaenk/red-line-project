@@ -10,7 +10,7 @@
       <SwiperSlide
         v-for="(image, key) in product.image"
         :key
-        class="cursor-pointer max-h-32 relative"
+        class="cursor-pointer max-h-48 relative"
         @click="swiper?.$el.swiper.slideTo(key)"
       >
         <IonImg :src="image" :class="{ 'brightness-70': swiper?.$el.swiper.activeIndex !== key }" />
