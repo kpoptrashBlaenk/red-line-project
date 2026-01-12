@@ -306,6 +306,15 @@ export function useProduct() {
   }
 
   /**
+   * Find product by id
+   */
+  async function find(id: number) {
+    const product = (await get()).find((product) => product.id === id)
+
+    return product
+  }
+
+  /**
    * Get all top products
    */
   async function top() {
@@ -379,6 +388,7 @@ export function useProduct() {
     createFields,
     flatten,
     get,
+    find,
     top,
     category,
     reorder,
