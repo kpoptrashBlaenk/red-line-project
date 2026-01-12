@@ -8,6 +8,7 @@
       :color
       :link="`/category/${category.id}`"
       router-direction="forward"
+      :data-cy="`home-category-card-${category.id}`"
     />
   </div>
 </template>

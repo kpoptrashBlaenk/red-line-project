@@ -18,6 +18,7 @@
             :color="route.fullPath.startsWith(page.url) ? 'primary' : 'light'"
             button
             detail
+            :data-cy="`${key}-menu-item`"
             @click="handleRoute(route, router, page.url, () => menu.$el.close())"
           >
             <IonLabel class="text-xl! ms-2">{{ translation(page.translationKey) }}</IonLabel>

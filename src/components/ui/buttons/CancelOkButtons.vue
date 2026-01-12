@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-end pb-1 pe-2">
     <IonButton fill="clear" :color @click="onCancel">{{ translation('cancel') }}</IonButton>
-    <IonButton fill="clear" :color @click="onOk">OK</IonButton>
+    <IonButton fill="clear" :color data-cy="filter-button-ok" @click="onOk">OK</IonButton>
   </div>
 </template>
 

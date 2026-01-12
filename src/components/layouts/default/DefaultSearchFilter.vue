@@ -1,7 +1,14 @@
 <template>
   <div>
     <!-- Filter Button -->
-    <SolidButton :id="`${context}-popover`" :color :label expand="block" @click="resetItems" />
+    <SolidButton
+      :id="`${context}-popover`"
+      :color
+      :label
+      expand="block"
+      :data-cy="`filter-button-${context}`"
+      @click="resetItems"
+    />
 
     <!-- Filter Popover -->
     <IonPopover ref="popover" :trigger="`${context}-popover`" @ion-popover-did-dismiss="temporarySelected = selected">

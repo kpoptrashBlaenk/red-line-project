@@ -4,13 +4,13 @@
       <LogoComponent slot="start" :light="!isScrolled" />
 
       <IonButtons slot="end">
-        <IonButton fill="clear" size="large" @click="$emit('open:search-modal')">
+        <IonButton fill="clear" size="large" data-cy="search-button" @click="$emit('open:search-modal')">
           <IonIcon :icon="searchOutline" />
         </IonButton>
         <IonButton fill="clear" size="large">
           <IonIcon :icon="cartOutline" />
         </IonButton>
-        <IonMenuButton />
+        <IonMenuButton data-cy="menu-button" />
       </IonButtons>
     </IonToolbar>
   </IonHeader>
