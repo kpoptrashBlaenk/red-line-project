@@ -30,6 +30,7 @@
           class="mt-2"
           expand="block"
           @click="$emit('open:modal-form', value, apiMethod.post)"
+          data-cy="admin-add-button"
         />
       </div>
     </div>
