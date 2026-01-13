@@ -29,16 +29,14 @@
 
       <!-- Characteristics -->
       <div class="col-span-3 flex flex-wrap gap-1 mt-2">
-        <IonChip
+        <ChipComponent
           v-for="(characteristic, key) in product.characteristics"
           :key="key"
+          :label="translation(characteristic?.name)"
           :color="
             characteristic?.type === 'performance' ? 'primary' : characteristic?.type === 'scalability' ? 'secondary' : 'tertiary'
           "
-          class="px-2 text-xs pointer-events-none"
-        >
-          {{ translation(characteristic?.name) }}
-        </IonChip>
+        />
       </div>
     </div>
   </IonItem>
@@ -51,8 +49,9 @@ import { useSearchFilter } from '@/stores/searchFilter'
 import findById from '@/utils/findById'
 import searchArray from '@/utils/searchArray'
 import translation from '@/utils/translation'
-import { IonChip, IonImg, IonItem, IonLabel } from '@ionic/vue'
+import { IonImg, IonItem, IonLabel } from '@ionic/vue'
 import { computed } from 'vue'
+import ChipComponent from '../ChipComponent.vue'
 
 /* Props */
 const props = defineProps<{

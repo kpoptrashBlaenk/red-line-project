@@ -60,6 +60,7 @@ const translationKeys = {
   priceHL: 'priceHL',
   priceLH: 'priceLH',
   priority: 'priority',
+  product_characteristics_title: 'product_characteristics_title',
   scalability: 'scalability',
   search_product: 'search_product',
   securities: 'securities',
@@ -303,6 +304,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   priority: {
     en: 'Priority',
     fr: 'Priorité',
+  },
+  product_characteristics_title: {
+    en: 'Service <title>Characteristics</title>',
+    fr: '<title>Caractéristiques</title> du service',
   },
   scalability: {
     en: 'Scalability',
