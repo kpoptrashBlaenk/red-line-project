@@ -104,7 +104,9 @@ const similarProducts = computed(() => {
   let similarProducts = [] as Product[]
 
   // products of same category but random order
-  const categoryProducts = shuffle(products.value.filter((p) => p.category_id === product.value?.category_id))
+  const categoryProducts = shuffle(
+    products.value.filter((p) => p.category_id === product.value?.category_id && p.id !== product.value?.id),
+  )
 
   // priority
   similarProducts = categoryProducts.filter((p) => p.priority && p.disponible)

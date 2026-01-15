@@ -1,5 +1,11 @@
 <template>
-  <IonButton fill="solid" :color="color" :router-link="link" class="font-extrabold" :class="{ selected: selected }">
+  <IonButton
+    fill="solid"
+    :color="color"
+    class="font-extrabold"
+    :class="{ selected: selected }"
+    @click="link ? handleRoute(route, router, link) : false"
+  >
     {{ label }}
     <IonIcon v-if="icon" :icon class="ms-1" />
   </IonButton>
@@ -8,7 +14,9 @@
 <script setup lang="ts">
 /* Imports */
 import { Color } from '@/types'
+import handleRoute from '@/utils/handleRoute'
 import { IonButton, IonIcon } from '@ionic/vue'
+import { useRoute, useRouter } from 'vue-router'
 
 /* Props */
 defineProps<{
@@ -18,6 +26,10 @@ defineProps<{
   icon?: string
   selected?: boolean
 }>()
+
+/* Constants */
+const router = useRouter()
+const route = useRoute()
 </script>
 
 <style lang="css" scoped>

@@ -10,7 +10,7 @@
     </IonCardHeader>
 
     <div class="flex justify-end mt-auto">
-      <OutlineButton :label="translation(promotion.button)" :link="promotion.link" chevron color="primary" />
+      <ClearButton :label="translation(promotion.button)" :link="promotion.link" chevron color="primary" />
     </div>
   </IonCard>
 </template>
@@ -21,7 +21,7 @@ import { Promotion } from '$/types'
 import isDesktop from '@/utils/isDesktop'
 import translation from '@/utils/translation'
 import { IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/vue'
-import OutlineButton from '../buttons/ClearButton.vue'
+import ClearButton from '../buttons/ClearButton.vue'
 
 /* Props */
 defineProps<{

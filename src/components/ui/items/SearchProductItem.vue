@@ -7,9 +7,13 @@
     detail
     color="light"
     lines="full"
-    :router-link="`/product/${product.id}`"
     :class="{ 'opacity-60': !product.disponible }"
-    @click="$emit('close:search-modal')"
+    @click="
+      () => {
+        $emit('close:search-modal')
+        handleRoute(route, router, `/product/${product.id}`)
+      }
+    "
   >
     <div class="grid grid-cols-[80px_1fr_auto] py-3 gap-4 items-start w-full">
       <!-- Image -->
@@ -48,10 +52,12 @@
 import { Category, Characteristic, Product } from '$/types'
 import { useSearchFilter } from '@/stores/searchFilter'
 import findById from '@/utils/findById'
+import handleRoute from '@/utils/handleRoute'
 import searchArray from '@/utils/searchArray'
 import translation from '@/utils/translation'
 import { IonImg, IonItem, IonLabel } from '@ionic/vue'
 import { computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import ChipComponent from '../ChipComponent.vue'
 
 /* Props */
@@ -61,8 +67,13 @@ const props = defineProps<{
   characteristics: Characteristic[]
 }>()
 
+/* Emits */
+defineEmits(['close:search-modal'])
+
 /* Constants */
 const searchFilterStore = useSearchFilter()
+const router = useRouter()
+const route = useRoute()
 
 /* Computeds */
 const filteredProducts = computed(() => {
