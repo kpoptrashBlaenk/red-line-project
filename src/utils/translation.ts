@@ -1,7 +1,7 @@
 import { LanguageRecord } from '$/types'
 import { useSettingsStore } from '@/stores/settings'
 import { Language } from '@/types'
-import totTitle from './totTitle'
+import toTitle from './toTitle'
 
 const translationKeys = {
   add: 'add',
@@ -11,6 +11,7 @@ const translationKeys = {
   admin_home_carousel_title: 'admin_home_carousel_title',
   admin_home_text_title: 'admin_home_carousel_title',
   admin_product_title: 'admin_product_title',
+  advantages: 'advantages',
   alert_header: 'alert_header',
   alert_message: 'alert_message',
   all_services: 'all_services',
@@ -35,6 +36,7 @@ const translationKeys = {
   error_required: 'error_required',
   file_too_big: 'file_too_big',
   french: 'french',
+  functionalities: 'functionalities',
   general: 'general',
   general_conditions: 'general_conditions',
   home: 'home',
@@ -46,6 +48,7 @@ const translationKeys = {
   level: 'level',
   link: 'promotion_link',
   menu: 'menu',
+  monthly: 'monthly',
   name: 'name',
   new: 'new',
   no_file: 'no_file',
@@ -53,15 +56,21 @@ const translationKeys = {
   not_disponible: 'not_disponible',
   old: 'old',
   pages: 'pages',
+  per_user: 'per_user',
+  per_device: 'per_device',
   performance: 'performance',
   price: 'price',
   priceHL: 'priceHL',
   priceLH: 'priceLH',
   priority: 'priority',
+  product_characteristics_title: 'product_characteristics_title',
+  product_price_title: 'product_price_title',
   scalability: 'scalability',
   search_product: 'search_product',
+  securities: 'securities',
   sort: 'sort',
   submit: 'submit',
+  subscribe_now: 'subscribe_now',
   subtitle: 'promotion_subtitle',
   text: 'text',
   title: 'promotion_title',
@@ -72,6 +81,7 @@ const translationKeys = {
   top: 'top',
   type: 'type',
   upload: 'upload',
+  yearly: 'yearly',
 }
 
 export type TranslationKey = keyof typeof translationKeys
@@ -105,6 +115,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Products',
     fr: 'Produits',
   },
+  advantages: {
+    en: 'Your benefits',
+    fr: 'Vos avantages',
+  },
   alert_header: {
     en: 'Are you sure?',
     fr: 'Êtes-vous sûr?',
@@ -134,8 +148,8 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     fr: 'Catégorie',
   },
   category_products_title: {
-    en: `Our ${totTitle('services')} in this ${totTitle('category')}`,
-    fr: `Nos ${totTitle('services')} dans cette ${totTitle('catégorie')}`,
+    en: `Our ${toTitle('services')} in this ${toTitle('category')}`,
+    fr: `Nos ${toTitle('services')} dans cette ${toTitle('catégorie')}`,
   },
   characteristics: {
     en: 'Characteristics',
@@ -201,6 +215,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'French',
     fr: 'Français',
   },
+  functionalities: {
+    en: 'Functionalities',
+    fr: 'Fonctionnalités',
+  },
   general: {
     en: 'General',
     fr: 'Général',
@@ -218,12 +236,12 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     fr: 'Nos Promotions',
   },
   home_category_title: {
-    en: `Explore Our ${totTitle('Categories')}`,
-    fr: `Découvrez nos ${totTitle('catégories')}`,
+    en: `Explore Our ${toTitle('Categories')}`,
+    fr: `Découvrez nos ${toTitle('catégories')}`,
   },
   home_product_title: {
-    en: `Check Out Our ${totTitle('Top Products')}`,
-    fr: `Parcourez nos ${totTitle('Meilleurs Produits')}`,
+    en: `Check Out Our ${toTitle('Top Products')}`,
+    fr: `Parcourez nos ${toTitle('Meilleurs Produits')}`,
   },
   image: {
     en: 'Image',
@@ -244,6 +262,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   menu: {
     en: 'Menu',
     fr: 'Menu',
+  },
+  monthly: {
+    en: 'Monthly',
+    fr: 'Mensuel',
   },
   name: {
     en: 'Name',
@@ -273,6 +295,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Pages',
     fr: 'Pages',
   },
+  per_user: {
+    en: 'Per User',
+    fr: 'Par Utilisateur',
+  },
+  per_device: {
+    en: 'Per Device',
+    fr: 'Par Appareil',
+  },
   performance: {
     en: 'Performance',
     fr: 'Performance',
@@ -293,6 +323,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Priority',
     fr: 'Priorité',
   },
+  product_characteristics_title: {
+    en: 'Service <title>Characteristics</title>',
+    fr: '<title>Caractéristiques</title> du service',
+  },
+  product_price_title: {
+    en: '<title>Prices</title> for this Product',
+    fr: '<title>Prix</title> pour ce Produit',
+  },
   scalability: {
     en: 'Scalability',
     fr: 'Scalabilité',
@@ -300,6 +338,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   search_product: {
     en: 'Search for products...',
     fr: 'Rechercher des produits...',
+  },
+  securities: {
+    en: 'Securities',
+    fr: 'Sécurités',
   },
   sort: {
     en: 'Sort',
@@ -312,6 +354,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   subtitle: {
     en: 'Subtitle',
     fr: 'Sous-titre',
+  },
+  subscribe_now: {
+    en: 'Subscribe Now',
+    fr: "S'abonner maintenant",
   },
   text: {
     en: 'Text',
@@ -348,6 +394,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   upload: {
     en: 'Upload',
     fr: 'Upload',
+  },
+  yearly: {
+    en: 'Yearly',
+    fr: 'Annuel',
   },
 }
 

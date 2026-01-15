@@ -30,8 +30,6 @@ describe('Admin Admin Back Office', () => {
       cy.get('ion-alert').find('button').last().click()
     })
 
-    cy.get('ion-button').eq(30).click()
-
     // submit & check success
     cy.get('[data-cy="form-modal-submit"]').click()
     cy.get('ion-modal').should('be.visible')

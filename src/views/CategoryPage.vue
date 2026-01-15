@@ -36,7 +36,7 @@
 
 <script setup lang="ts">
 /* Imports */
-import { Category, Characteristic, Product } from '$/types'
+import { Category, Product } from '$/types'
 import HomeProductGrid from '@/components/grids/ProductGrid.vue'
 import CategoryHero from '@/components/heroes/CategoryHero.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
@@ -44,7 +44,6 @@ import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import TitleComponent from '@/components/ui/text/TitleComponent.vue'
 import { useCategory } from '@/composables/category'
-import { useCharacteristic } from '@/composables/characteristic'
 import { useProduct } from '@/composables/product'
 import isLengthZero from '@/utils/isLengthZero'
 import translation from '@/utils/translation'
@@ -55,12 +54,10 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 const productComposable = useProduct()
 const categoryComposable = useCategory()
-const characteristicComposable = useCharacteristic()
 
 /* Refs */
 const category = ref<Category>()
 const products = ref<Product[]>([])
-const characteristics = ref<Characteristic[]>([])
 
 /* Computeds */
 const separatedProducts = computed(() => {
@@ -81,7 +78,7 @@ const separatedProducts = computed(() => {
       return
     }
 
-    separatedProducts.priority.push(product)
+    separatedProducts.default.push(product)
   })
 
   return separatedProducts
@@ -92,8 +89,6 @@ onMounted(async () => {
   const id = Number(route.params.id)
 
   category.value = await categoryComposable.find(id)
-  products.value = await productComposable.get()
-
-  characteristics.value = await characteristicComposable.get()
+  products.value = await productComposable.getByCategory(id)
 })
 </script>

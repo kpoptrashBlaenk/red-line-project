@@ -89,6 +89,14 @@ export function useCharacteristic() {
   }
 
   /**
+   * Find characteristics by id
+   */
+  async function findMultiple(ids: number[]) {
+    const characteristics = await get()
+    return characteristics.filter((characteristic) => ids.includes(characteristic.id))
+  }
+
+  /**
    * Create a new characteristic
    *
    * @param state The state that tracks the new values
@@ -131,6 +139,7 @@ export function useCharacteristic() {
     createFields,
     flatten,
     get,
+    findMultiple,
     create,
     modify,
     remove,

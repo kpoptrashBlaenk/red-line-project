@@ -7,8 +7,13 @@
     detail
     color="light"
     lines="full"
-    :router-link="`/product/${product.id}`"
     :class="{ 'opacity-60': !product.disponible }"
+    @click="
+      () => {
+        $emit('close:search-modal')
+        handleRoute(route, router, `/product/${product.id}`)
+      }
+    "
   >
     <div class="grid grid-cols-[80px_1fr_auto] py-3 gap-4 items-start w-full">
       <!-- Image -->
@@ -29,16 +34,14 @@
 
       <!-- Characteristics -->
       <div class="col-span-3 flex flex-wrap gap-1 mt-2">
-        <IonChip
+        <ChipComponent
           v-for="(characteristic, key) in product.characteristics"
           :key="key"
+          :label="translation(characteristic?.name)"
           :color="
             characteristic?.type === 'performance' ? 'primary' : characteristic?.type === 'scalability' ? 'secondary' : 'tertiary'
           "
-          class="px-2 text-xs pointer-events-none"
-        >
-          {{ translation(characteristic?.name) }}
-        </IonChip>
+        />
       </div>
     </div>
   </IonItem>
@@ -49,10 +52,13 @@
 import { Category, Characteristic, Product } from '$/types'
 import { useSearchFilter } from '@/stores/searchFilter'
 import findById from '@/utils/findById'
+import handleRoute from '@/utils/handleRoute'
 import searchArray from '@/utils/searchArray'
 import translation from '@/utils/translation'
-import { IonChip, IonImg, IonItem, IonLabel } from '@ionic/vue'
+import { IonImg, IonItem, IonLabel } from '@ionic/vue'
 import { computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import ChipComponent from '../ChipComponent.vue'
 
 /* Props */
 const props = defineProps<{
@@ -61,8 +67,13 @@ const props = defineProps<{
   characteristics: Characteristic[]
 }>()
 
+/* Emits */
+defineEmits(['close:search-modal'])
+
 /* Constants */
 const searchFilterStore = useSearchFilter()
+const router = useRouter()
+const route = useRoute()
 
 /* Computeds */
 const filteredProducts = computed(() => {

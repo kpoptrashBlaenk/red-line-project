@@ -1,5 +1,7 @@
 import { Product } from '$/types'
 import { FormField } from '@/types'
+import findById from '@/utils/findById'
+import placeholderImages from '@/utils/placeholderImages'
 import presentToast from '@/utils/presentToast'
 import { ProductSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
@@ -195,7 +197,7 @@ export function useProduct() {
       {
         id: 1,
         category_id: 1,
-        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
+        image: placeholderImages(['Cyna SOC', '1', '2', '3', '4', '5', '6']),
         name: { en: 'Cyna SOC', fr: 'Cyna SOC' },
         top: true,
         priority: false,
@@ -222,7 +224,7 @@ export function useProduct() {
       {
         id: 2,
         category_id: 1,
-        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
+        image: placeholderImages(['Cyna SOC Advanced', '1', '2', '3', '4', '5', '6']),
         name: { en: 'Cyna SOC Advanced', fr: 'Cyna SOC Avancé' },
         top: false,
         priority: false,
@@ -249,10 +251,10 @@ export function useProduct() {
       {
         id: 3,
         category_id: 2,
-        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
+        image: placeholderImages(['Cyna EDR', '1', '2', '3', '4', '5', '6']),
         name: { en: 'Cyna EDR', fr: 'Cyna EDR' },
         top: true,
-        priority: false,
+        priority: true,
         price: 150,
         disponible: true,
         index: 3,
@@ -276,10 +278,10 @@ export function useProduct() {
       {
         id: 4,
         category_id: 3,
-        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
+        image: placeholderImages(['Cyna XDR', '1', '2', '3', '4', '5', '6']),
         name: { en: 'Cyna XDR', fr: 'Cyna XDR' },
         top: true,
-        priority: false,
+        priority: true,
         price: 250,
         disponible: false,
         index: 4,
@@ -300,9 +302,244 @@ export function useProduct() {
         characteristics_scalability_ids: [5, 6],
         characteristics_level_ids: [8],
       },
+      // --- MORE PRODUCTS ---
+      {
+        id: 5,
+        category_id: 1,
+        image: placeholderImages(['Cyna SOC Pro', '1', '2', '3', '4', '5', '6']),
+        name: { en: 'Cyna SOC Pro', fr: 'Cyna SOC Pro' },
+        top: false,
+        priority: true,
+        price: 180,
+        disponible: true,
+        index: 5,
+        created_at: '2024-01-12T11:00:00Z',
+        description_functionality: {
+          en: 'SOC with compliance reporting and alerting automation.',
+          fr: 'SOC avec rapports de conformité et automatisation des alertes.',
+        },
+        description_advantage: {
+          en: 'Reduces manual monitoring and improves response times.',
+          fr: 'Réduit la surveillance manuelle et améliore les temps de réponse.',
+        },
+        description_security: {
+          en: 'AI-driven SOC with real-time dashboards and incident logs.',
+          fr: 'SOC piloté par IA avec tableaux de bord en temps réel et journaux d’incidents.',
+        },
+        characteristics_performance_ids: [3, 4],
+        characteristics_scalability_ids: [1, 2],
+        characteristics_level_ids: [9],
+      },
+      {
+        id: 6,
+        category_id: 2,
+        image: placeholderImages(['Cyna EDR Pro', '1', '2', '3', '4', '5', '6']),
+        name: { en: 'Cyna EDR Pro', fr: 'Cyna EDR Pro' },
+        top: false,
+        priority: false,
+        price: 170,
+        disponible: true,
+        index: 6,
+        created_at: '2024-02-25T13:30:00Z',
+        description_functionality: {
+          en: 'Enhanced EDR with cloud telemetry and automated remediation.',
+          fr: 'EDR amélioré avec télémétrie cloud et remédiation automatisée.',
+        },
+        description_advantage: {
+          en: 'Faster endpoint threat neutralization and reporting.',
+          fr: 'Neutralisation et rapport des menaces plus rapide sur les terminaux.',
+        },
+        description_security: {
+          en: 'Includes sandboxing, AI threat detection, and live alerts.',
+          fr: 'Inclut sandboxing, détection des menaces par IA et alertes en direct.',
+        },
+        characteristics_performance_ids: [5, 6],
+        characteristics_scalability_ids: [3, 4],
+        characteristics_level_ids: [7],
+      },
+      {
+        id: 7,
+        category_id: 3,
+        image: placeholderImages(['Cyna XDR Pro', '1', '2', '3', '4', '5', '6']),
+        name: { en: 'Cyna XDR Pro', fr: 'Cyna XDR Pro' },
+        top: true,
+        priority: true,
+        price: 300,
+        disponible: true,
+        index: 7,
+        created_at: '2024-05-10T08:45:00Z',
+        description_functionality: {
+          en: 'Comprehensive XDR platform for multi-cloud environments.',
+          fr: 'Plateforme XDR complète pour environnements multi-cloud.',
+        },
+        description_advantage: {
+          en: 'Simplifies enterprise security and centralizes monitoring.',
+          fr: 'Simplifie la sécurité de l’entreprise et centralise la surveillance.',
+        },
+        description_security: {
+          en: 'Supports multi-layer detection, incident response, and analytics.',
+          fr: 'Prend en charge la détection multi-couche, la réponse aux incidents et l’analyse.',
+        },
+        characteristics_performance_ids: [7, 8],
+        characteristics_scalability_ids: [6, 7],
+        characteristics_level_ids: [9],
+      },
+      {
+        id: 8,
+        category_id: 1,
+        image: placeholderImages(['Cyna SOC Lite', '1', '2', '3', '4', '5', '6']),
+        name: { en: 'Cyna SOC Lite', fr: 'Cyna SOC Lite' },
+        top: false,
+        priority: false,
+        price: 90,
+        disponible: true,
+        index: 8,
+        created_at: '2024-06-15T09:10:00Z',
+        description_functionality: {
+          en: 'Light SOC with basic monitoring and alerting.',
+          fr: 'SOC léger avec surveillance et alertes de base.',
+        },
+        description_advantage: {
+          en: 'Affordable entry-level SOC for small teams.',
+          fr: 'SOC d’entrée de gamme abordable pour petites équipes.',
+        },
+        description_security: {
+          en: 'Basic logs and alerts with simple dashboard.',
+          fr: 'Journaux et alertes basiques avec tableau de bord simple.',
+        },
+        characteristics_performance_ids: [1, 2],
+        characteristics_scalability_ids: [1],
+        characteristics_level_ids: [6],
+      },
+      {
+        id: 9,
+        category_id: 2,
+        image: placeholderImages(['Cyna EDR Lite', '1', '2', '3', '4', '5', '6']),
+        name: { en: 'Cyna EDR Lite', fr: 'Cyna EDR Lite' },
+        top: false,
+        priority: false,
+        price: 110,
+        disponible: true,
+        index: 9,
+        created_at: '2024-07-20T14:00:00Z',
+        description_functionality: {
+          en: 'Light EDR solution for small networks.',
+          fr: 'Solution EDR légère pour petits réseaux.',
+        },
+        description_advantage: {
+          en: 'Simple deployment with basic endpoint protection.',
+          fr: 'Déploiement simple avec protection basique des terminaux.',
+        },
+        description_security: {
+          en: 'Minimal AI-based detection and alerting.',
+          fr: 'Détection et alertes basiques basées sur l’IA.',
+        },
+        characteristics_performance_ids: [1, 3],
+        characteristics_scalability_ids: [2, 3],
+        characteristics_level_ids: [6],
+      },
+      {
+        id: 10,
+        category_id: 3,
+        image: placeholderImages(['Cyna XDR Lite', '1', '2', '3', '4', '5', '6']),
+        name: { en: 'Cyna XDR Lite', fr: 'Cyna XDR Lite' },
+        top: false,
+        priority: false,
+        price: 200,
+        disponible: false,
+        index: 10,
+        created_at: '2024-08-01T12:30:00Z',
+        description_functionality: {
+          en: 'Simplified XDR for SMBs with essential monitoring.',
+          fr: 'XDR simplifié pour PME avec surveillance essentielle.',
+        },
+        description_advantage: {
+          en: 'Cost-effective solution with basic alerts.',
+          fr: 'Solution économique avec alertes de base.',
+        },
+        description_security: {
+          en: 'Core XDR functions without advanced analytics.',
+          fr: 'Fonctions XDR de base sans analyse avancée.',
+        },
+        characteristics_performance_ids: [4, 5],
+        characteristics_scalability_ids: [5, 6],
+        characteristics_level_ids: [7],
+      },
+      {
+        id: 11,
+        category_id: 1,
+        image: placeholderImages(['Cyna SOC Enterprise', '1', '2', '3', '4', '5', '6']),
+        name: { en: 'Cyna SOC Enterprise', fr: 'Cyna SOC Enterprise' },
+        top: true,
+        priority: true,
+        price: 350,
+        disponible: true,
+        index: 11,
+        created_at: '2024-09-10T15:20:00Z',
+        description_functionality: {
+          en: 'Enterprise SOC with advanced compliance and monitoring.',
+          fr: 'SOC d’entreprise avec conformité avancée et surveillance.',
+        },
+        description_advantage: {
+          en: 'Full automation and SLA-backed incident response.',
+          fr: 'Automatisation complète et réponse aux incidents SLA.',
+        },
+        description_security: {
+          en: 'Full SOC suite with AI, dashboards, and alerts.',
+          fr: 'Suite complète SOC avec IA, tableaux de bord et alertes.',
+        },
+        characteristics_performance_ids: [6, 7],
+        characteristics_scalability_ids: [6, 7],
+        characteristics_level_ids: [9],
+      },
+      {
+        id: 12,
+        category_id: 2,
+        image: placeholderImages(['Cyna EDR Enterprise', '1', '2', '3', '4', '5', '6']),
+        name: { en: 'Cyna EDR Enterprise', fr: 'Cyna EDR Enterprise' },
+        top: true,
+        priority: true,
+        price: 300,
+        disponible: true,
+        index: 12,
+        created_at: '2024-10-05T10:10:00Z',
+        description_functionality: {
+          en: 'Enterprise-grade EDR for multi-device environments.',
+          fr: 'EDR de niveau entreprise pour environnements multi-appareils.',
+        },
+        description_advantage: {
+          en: 'Centralized monitoring, AI detection, and automated remediation.',
+          fr: 'Surveillance centralisée, détection par IA et remédiation automatisée.',
+        },
+        description_security: {
+          en: 'Advanced EDR with analytics, threat hunting, and alerts.',
+          fr: 'EDR avancé avec analyse, chasse aux menaces et alertes.',
+        },
+        characteristics_performance_ids: [7, 8],
+        characteristics_scalability_ids: [7, 8],
+        characteristics_level_ids: [9],
+      },
     ]
 
     return products ?? []
+  }
+
+  /**
+   * Get all products by category
+   */
+  async function getByCategory(categoryId: number) {
+    const products = await get()
+
+    return products.filter((product) => product.category_id === categoryId)
+  }
+
+  /**
+   * Find product by id
+   */
+  async function find(id: number) {
+    const product = findById(await get(), id)
+
+    return product
   }
 
   /**
@@ -379,6 +616,8 @@ export function useProduct() {
     createFields,
     flatten,
     get,
+    getByCategory,
+    find,
     top,
     category,
     reorder,

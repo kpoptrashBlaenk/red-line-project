@@ -1,6 +1,8 @@
 import { Category } from '$/types'
 import { FormField } from '@/types'
 import { apiPost } from '@/utils/api'
+import findById from '@/utils/findById'
+import placeholderImages from '@/utils/placeholderImages'
 import presentToast from '@/utils/presentToast'
 import { CategorySchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
@@ -82,7 +84,7 @@ export function useCategory() {
     const categories: Category[] = [
       {
         id: 1,
-        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
+        image: placeholderImages(['SOC Services']),
         name: {
           en: 'SOC Services',
           fr: 'Services SOC',
@@ -95,7 +97,7 @@ export function useCategory() {
       },
       {
         id: 2,
-        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
+        image: placeholderImages(['EDR Services']),
         name: {
           en: 'EDR Services',
           fr: 'Services EDR',
@@ -108,7 +110,7 @@ export function useCategory() {
       },
       {
         id: 3,
-        image: ['https://ionicframework.com/docs/img/demos/card-media.png'],
+        image: placeholderImages(['XDR Services']),
         name: {
           en: 'XDR Services',
           fr: 'Services XDR',
@@ -128,7 +130,7 @@ export function useCategory() {
    * Find category by id
    */
   async function find(id: number) {
-    const category = (await get()).find((category) => category.id === id)
+    const category = findById(await get(), id)
 
     return category
   }
