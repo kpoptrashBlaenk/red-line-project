@@ -18,18 +18,7 @@
       <SeparatorComponent size="xs" />
 
       <div class="w-fit mx-auto">
-        <div v-for="(characteristic, key) in characteristics" :key class="flex">
-          <div class="w-32 me-5 font-bold text-xl">{{ characteristic.title }}</div>
-          <div class="flex flex-wrap gap-1 items-center mb-3">
-            <ChipComponent
-              v-for="(char, key) in characteristic.characteristics"
-              :key="key"
-              :label="translation(char?.name)"
-              :color="characteristic.color"
-              class="text-lg!"
-            />
-          </div>
-        </div>
+        <ProductCharacteristicGrid :characteristics />
       </div>
 
       <SeparatorComponent size="md" />
@@ -40,10 +29,10 @@
 <script setup lang="ts">
 /* Imports */
 import { Characteristic, Product } from '$/types'
+import ProductCharacteristicGrid from '@/components/grids/ProductCharacteristicGrid.vue'
 import ProductDescriptionGrid from '@/components/grids/ProductDescriptionGrid.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
 import ProductSwiper from '@/components/swiper/ProductSwiper.vue'
-import ChipComponent from '@/components/ui/ChipComponent.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import TitleComponent from '@/components/ui/text/TitleComponent.vue'
