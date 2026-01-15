@@ -9,6 +9,7 @@
     lines="full"
     :router-link="`/product/${product.id}`"
     :class="{ 'opacity-60': !product.disponible }"
+    @click="$emit('close:search-modal')"
   >
     <div class="grid grid-cols-[80px_1fr_auto] py-3 gap-4 items-start w-full">
       <!-- Image -->

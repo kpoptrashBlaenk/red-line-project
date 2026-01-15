@@ -74,7 +74,13 @@
       <!-- List -->
       <IonList class="bg-light">
         <!-- Item -->
-        <SearchProductItem :products :categories :characteristics color="light" />
+        <SearchProductItem
+          :products
+          :categories
+          :characteristics
+          color="light"
+          @close:search-modal="$emit('close:search-modal')"
+        />
       </IonList>
     </IonContent>
   </IonModal>
