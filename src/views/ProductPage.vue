@@ -33,6 +33,15 @@
         </IonCardContent>
       </IonCard>
 
+      <SolidButton
+        :label="product?.disponible ? translation('subscribe_now') : translation('not_disponible')"
+        color="primary"
+        size="large"
+        class="mt-5 mx-auto"
+        expand="block"
+        :disabled="!product?.disponible"
+      />
+
       <SeparatorComponent size="md" />
     </div>
   </DefaultContentLayout>
@@ -46,6 +55,7 @@ import ProductDescriptionGrid from '@/components/grids/ProductDescriptionGrid.vu
 import ProductPriceGrid from '@/components/grids/ProductPriceGrid.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
 import ProductSwiper from '@/components/swiper/ProductSwiper.vue'
+import SolidButton from '@/components/ui/buttons/SolidButton.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import TitleComponent from '@/components/ui/text/TitleComponent.vue'

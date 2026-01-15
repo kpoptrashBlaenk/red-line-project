@@ -70,6 +70,7 @@ const translationKeys = {
   securities: 'securities',
   sort: 'sort',
   submit: 'submit',
+  subscribe_now: 'subscribe_now',
   subtitle: 'promotion_subtitle',
   text: 'text',
   title: 'promotion_title',
@@ -353,6 +354,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   subtitle: {
     en: 'Subtitle',
     fr: 'Sous-titre',
+  },
+  subscribe_now: {
+    en: 'Subscribe Now',
+    fr: "S'abonner maintenant",
   },
   text: {
     en: 'Text',
