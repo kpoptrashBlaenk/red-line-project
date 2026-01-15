@@ -1,7 +1,7 @@
 import { LanguageRecord } from '$/types'
 import { useSettingsStore } from '@/stores/settings'
 import { Language } from '@/types'
-import totTitle from './totTitle'
+import toTitle from './toTitle'
 
 const translationKeys = {
   add: 'add',
@@ -148,8 +148,8 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     fr: 'Catégorie',
   },
   category_products_title: {
-    en: `Our ${totTitle('services')} in this ${totTitle('category')}`,
-    fr: `Nos ${totTitle('services')} dans cette ${totTitle('catégorie')}`,
+    en: `Our ${toTitle('services')} in this ${toTitle('category')}`,
+    fr: `Nos ${toTitle('services')} dans cette ${toTitle('catégorie')}`,
   },
   characteristics: {
     en: 'Characteristics',
@@ -236,12 +236,12 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     fr: 'Nos Promotions',
   },
   home_category_title: {
-    en: `Explore Our ${totTitle('Categories')}`,
-    fr: `Découvrez nos ${totTitle('catégories')}`,
+    en: `Explore Our ${toTitle('Categories')}`,
+    fr: `Découvrez nos ${toTitle('catégories')}`,
   },
   home_product_title: {
-    en: `Check Out Our ${totTitle('Top Products')}`,
-    fr: `Parcourez nos ${totTitle('Meilleurs Produits')}`,
+    en: `Check Out Our ${toTitle('Top Products')}`,
+    fr: `Parcourez nos ${toTitle('Meilleurs Produits')}`,
   },
   image: {
     en: 'Image',
