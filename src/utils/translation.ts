@@ -48,6 +48,7 @@ const translationKeys = {
   level: 'level',
   link: 'promotion_link',
   menu: 'menu',
+  monthly: 'monthly',
   name: 'name',
   new: 'new',
   no_file: 'no_file',
@@ -55,12 +56,15 @@ const translationKeys = {
   not_disponible: 'not_disponible',
   old: 'old',
   pages: 'pages',
+  per_user: 'per_user',
+  per_device: 'per_device',
   performance: 'performance',
   price: 'price',
   priceHL: 'priceHL',
   priceLH: 'priceLH',
   priority: 'priority',
   product_characteristics_title: 'product_characteristics_title',
+  product_price_title: 'product_price_title',
   scalability: 'scalability',
   search_product: 'search_product',
   securities: 'securities',
@@ -76,6 +80,7 @@ const translationKeys = {
   top: 'top',
   type: 'type',
   upload: 'upload',
+  yearly: 'yearly',
 }
 
 export type TranslationKey = keyof typeof translationKeys
@@ -257,6 +262,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Menu',
     fr: 'Menu',
   },
+  monthly: {
+    en: 'Monthly',
+    fr: 'Mensuel',
+  },
   name: {
     en: 'Name',
     fr: 'Nom',
@@ -285,6 +294,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Pages',
     fr: 'Pages',
   },
+  per_user: {
+    en: 'Per User',
+    fr: 'Par Utilisateur',
+  },
+  per_device: {
+    en: 'Per Device',
+    fr: 'Par Appareil',
+  },
   performance: {
     en: 'Performance',
     fr: 'Performance',
@@ -308,6 +325,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   product_characteristics_title: {
     en: 'Service <title>Characteristics</title>',
     fr: '<title>Caractéristiques</title> du service',
+  },
+  product_price_title: {
+    en: '<title>Prices</title> for this Product',
+    fr: '<title>Prix</title> pour ce Produit',
   },
   scalability: {
     en: 'Scalability',
@@ -368,6 +389,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   upload: {
     en: 'Upload',
     fr: 'Upload',
+  },
+  yearly: {
+    en: 'Yearly',
+    fr: 'Annuel',
   },
 }
 

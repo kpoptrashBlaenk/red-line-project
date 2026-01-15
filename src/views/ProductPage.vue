@@ -9,17 +9,29 @@
     </HeroComponent>
 
     <div class="wrap">
+      <!-- Description -->
       <SeparatorComponent size="xs" />
       <ProductDescriptionGrid v-if="product" :product />
 
       <SeparatorComponent size="sm" />
 
+      <!-- Characteristics -->
       <TitleComponent :text="translation('product_characteristics_title')" color="secondary" />
       <SeparatorComponent size="xs" />
-
       <div class="w-fit mx-auto">
         <ProductCharacteristicGrid :characteristics />
       </div>
+
+      <SeparatorComponent size="sm" />
+
+      <!-- Price -->
+      <TitleComponent :text="translation('product_price_title')" color="primary" />
+      <SeparatorComponent size="xs" />
+      <IonCard color="light" class="py-5 lg:py-10">
+        <IonCardContent>
+          <ProductPriceGrid v-if="product" :product />
+        </IonCardContent>
+      </IonCard>
 
       <SeparatorComponent size="md" />
     </div>
@@ -31,6 +43,7 @@
 import { Characteristic, Product } from '$/types'
 import ProductCharacteristicGrid from '@/components/grids/ProductCharacteristicGrid.vue'
 import ProductDescriptionGrid from '@/components/grids/ProductDescriptionGrid.vue'
+import ProductPriceGrid from '@/components/grids/ProductPriceGrid.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
 import ProductSwiper from '@/components/swiper/ProductSwiper.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
@@ -40,6 +53,7 @@ import { useCharacteristic } from '@/composables/characteristic'
 import { useProduct } from '@/composables/product'
 import { Color } from '@/types'
 import translation from '@/utils/translation'
+import { IonCard, IonCardContent } from '@ionic/vue'
 import { onMounted, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
