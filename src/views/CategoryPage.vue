@@ -78,7 +78,7 @@ const separatedProducts = computed(() => {
       return
     }
 
-    separatedProducts.priority.push(product)
+    separatedProducts.default.push(product)
   })
 
   return separatedProducts

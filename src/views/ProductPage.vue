@@ -42,6 +42,12 @@
         :disabled="!product?.disponible"
       />
 
+      <SeparatorComponent size="sm" />
+
+      <!-- Similar Products -->
+      <TitleComponent :text="'<title>Similar</title> Products'" color="secondary" />
+      <ProductGrid :products="similarProducts" color="secondary" context="category" class="mt-5" />
+
       <SeparatorComponent size="md" />
     </div>
   </DefaultContentLayout>
@@ -52,6 +58,7 @@
 import { Characteristic, Product } from '$/types'
 import ProductCharacteristicGrid from '@/components/grids/ProductCharacteristicGrid.vue'
 import ProductDescriptionGrid from '@/components/grids/ProductDescriptionGrid.vue'
+import ProductGrid from '@/components/grids/ProductGrid.vue'
 import ProductPriceGrid from '@/components/grids/ProductPriceGrid.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
 import ProductSwiper from '@/components/swiper/ProductSwiper.vue'
@@ -62,9 +69,10 @@ import TitleComponent from '@/components/ui/text/TitleComponent.vue'
 import { useCharacteristic } from '@/composables/characteristic'
 import { useProduct } from '@/composables/product'
 import { Color } from '@/types'
+import shuffle from '@/utils/shuffle'
 import translation from '@/utils/translation'
 import { IonCard, IonCardContent } from '@ionic/vue'
-import { onMounted, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 const productComposable = useProduct()
@@ -72,6 +80,7 @@ const characteristicComposable = useCharacteristic()
 
 /* Refs */
 const product = ref<Product>()
+const products = ref<Product[]>([])
 const characteristics = reactive<{ [key: string]: { title: string; color: Color; characteristics: Characteristic[] } }>({
   performance: {
     title: translation('performance'),
@@ -90,6 +99,30 @@ const characteristics = reactive<{ [key: string]: { title: string; color: Color;
   },
 })
 
+/* Computeds */
+const similarProducts = computed(() => {
+  let similarProducts = [] as Product[]
+
+  // products of same category but random order
+  const categoryProducts = shuffle(products.value.filter((p) => p.category_id === product.value?.category_id))
+
+  // priority
+  similarProducts = categoryProducts.filter((p) => p.priority && p.disponible)
+
+  // other available
+  if (similarProducts.length < 6) {
+    for (let i = 0; i < categoryProducts.length && similarProducts.length < 6; i++) {
+      const newProduct = categoryProducts[i]
+
+      if (newProduct.disponible && !similarProducts.includes(newProduct)) {
+        similarProducts.push(newProduct)
+      }
+    }
+  }
+
+  return similarProducts
+})
+
 /* Lifecycle Hooks */
 onMounted(async () => {
   const id = Number(route.params.id)
@@ -103,5 +136,7 @@ onMounted(async () => {
   characteristics.performance.characteristics = characteristicsApi.filter((c) => c.type === 'performance')
   characteristics.scalability.characteristics = characteristicsApi.filter((c) => c.type === 'scalability')
   characteristics.level.characteristics = characteristicsApi.filter((c) => c.type === 'level')
+
+  if (product.value) products.value = await productComposable.getByCategory(product.value.category_id)
 })
 </script>

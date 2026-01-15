@@ -1,6 +1,6 @@
 <template>
   <IonCard
-    class="active:scale-105 hover:scale-105 transition-all cursor-pointer sm:w-auto"
+    class="active:scale-105 hover:scale-105 transition-all cursor-pointer h-min"
     :class="{ 'opacity-60': note }"
     @click="handleRoute(route, router, link)"
   >
