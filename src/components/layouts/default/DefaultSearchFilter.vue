@@ -53,6 +53,7 @@ import { LanguageRecord } from '$/types'
 import CancelOkButtons from '@/components/ui/buttons/CancelOkButtons.vue'
 import SolidButton from '@/components/ui/buttons/SolidButton.vue'
 import { Color } from '@/types'
+import findById from '@/utils/findById'
 import translation from '@/utils/translation'
 import { IonCheckbox, IonChip, IonIcon, IonLabel, IonPopover } from '@ionic/vue'
 import { closeCircleOutline } from 'ionicons/icons'
@@ -89,7 +90,7 @@ function unselectItem(itemId: number) {
 }
 
 function isChecked(itemId: number) {
-  return selected.value.find((item) => item.id === itemId)
+  return findById(selected.value, itemId)
 }
 
 function toggleSelect(checked: boolean, item: any) {

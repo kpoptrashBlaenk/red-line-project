@@ -1,5 +1,6 @@
 import { Product } from '$/types'
 import { FormField } from '@/types'
+import findById from '@/utils/findById'
 import placeholderImages from '@/utils/placeholderImages'
 import presentToast from '@/utils/presentToast'
 import { ProductSchema } from '@/utils/schemas'
@@ -536,7 +537,7 @@ export function useProduct() {
    * Find product by id
    */
   async function find(id: number) {
-    const product = (await get()).find((product) => product.id === id)
+    const product = findById(await get(), id)
 
     return product
   }

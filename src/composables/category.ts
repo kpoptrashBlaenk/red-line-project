@@ -1,6 +1,7 @@
 import { Category } from '$/types'
 import { FormField } from '@/types'
 import { apiPost } from '@/utils/api'
+import findById from '@/utils/findById'
 import placeholderImages from '@/utils/placeholderImages'
 import presentToast from '@/utils/presentToast'
 import { CategorySchema } from '@/utils/schemas'
@@ -129,7 +130,7 @@ export function useCategory() {
    * Find category by id
    */
   async function find(id: number) {
-    const category = (await get()).find((category) => category.id === id)
+    const category = findById(await get(), id)
 
     return category
   }
