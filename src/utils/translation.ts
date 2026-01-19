@@ -22,6 +22,7 @@ const translationKeys = {
   category_products_title: 'category_products_title',
   characteristics: 'characteristics',
   contact: 'contact',
+  confirm_password: 'confirm_password',
   default: 'default',
   delete: 'delete',
   description: 'description',
@@ -31,10 +32,21 @@ const translationKeys = {
   details: 'details',
   disponible: 'disponible',
   disponible_only: 'disponible_only',
+  email: 'email',
   english: 'english',
+
   error_category_post_500: 'error_category_post_500',
+  error_password_lowercase: 'error_password_lowercase',
+  error_password_min: 'error_password_min',
+  error_password_max: 'error_password_max',
+  error_password_no_spaces: 'error_password_no_spaces',
+  error_password_number: 'error_password_number',
+  error_password_special: 'error_password_special',
+  error_password_uppercase: 'error_password_uppercase',
   error_required: 'error_required',
+
   file_too_big: 'file_too_big',
+  first_name: 'first_name',
   french: 'french',
   functionalities: 'functionalities',
   general: 'general',
@@ -44,6 +56,7 @@ const translationKeys = {
   home_category_title: 'home_category_title',
   home_product_title: 'home_product_title',
   image: 'image',
+  last_name: 'last_name',
   legal_mentions: 'legal_mentions',
   level: 'level',
   link: 'link',
@@ -57,9 +70,11 @@ const translationKeys = {
   not_disponible: 'not_disponible',
   old: 'old',
   pages: 'pages',
+  password: 'password',
   per_user: 'per_user',
   per_device: 'per_device',
   performance: 'performance',
+  phone: 'phone',
   price: 'price',
   priceHL: 'priceHL',
   priceLH: 'priceLH',
@@ -67,6 +82,7 @@ const translationKeys = {
   product_characteristics_title: 'product_characteristics_title',
   product_price_title: 'product_price_title',
   register: 'register',
+  register_info: 'register_info',
   scalability: 'scalability',
   search_product: 'search_product',
   securities: 'securities',
@@ -161,6 +177,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Contact',
     fr: 'Contacte',
   },
+  confirm_password: {
+    en: 'Confirm Password',
+    fr: 'Confirmer le mot de passe',
+  },
   delete: {
     en: 'Delete',
     fr: 'Supprimer',
@@ -201,6 +221,11 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'English',
     fr: 'Anglais',
   },
+  email: {
+    en: 'Email',
+    fr: 'Email',
+  },
+
   error_category_post_500: {
     en: "Couldn't create category",
     fr: 'Impossible de créer la catégorie',
@@ -209,9 +234,42 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Please fill out this field',
     fr: 'Veuillez remplir ce champ',
   },
+  error_password_lowercase: {
+    en: 'Password must contain at least one lowercase letter',
+    fr: 'Le mot de passe doit contenir au moins une lettre minuscule',
+  },
+  error_password_max: {
+    en: 'Password must be at most 128 characters long',
+    fr: 'Le mot de passe doit contenir au maximum 128 caractères',
+  },
+  error_password_min: {
+    en: 'Password must be at least 8 characters long',
+    fr: 'Le mot de passe doit contenir au moins 8 caractères',
+  },
+  error_password_no_spaces: {
+    en: 'Password must not contain spaces',
+    fr: "Le mot de passe ne doit pas contenir d'espaces",
+  },
+  error_password_number: {
+    en: 'Password must contain at least one number',
+    fr: 'Le mot de passe doit contenir au moins un chiffre',
+  },
+  error_password_special: {
+    en: 'Password must contain at least one special character',
+    fr: 'Le mot de passe doit contenir au moins un caractère spécial',
+  },
+  error_password_uppercase: {
+    en: 'Password must contain at least one uppercase letter',
+    fr: 'Le mot de passe doit contenir au moins une lettre majuscule',
+  },
+
   file_too_big: {
     en: 'The selected file is too large',
     fr: 'Le fichier sélectionné est trop volumineux',
+  },
+  first_name: {
+    en: 'First Name',
+    fr: 'Prénom',
   },
   french: {
     en: 'French',
@@ -248,6 +306,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   image: {
     en: 'Image',
     fr: 'Image',
+  },
+  last_name: {
+    en: 'Last Name',
+    fr: 'Nom',
   },
   link: {
     en: 'Link',
@@ -301,6 +363,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Pages',
     fr: 'Pages',
   },
+  password: {
+    en: 'Password',
+    fr: 'Mot de passe',
+  },
   per_user: {
     en: 'Per User',
     fr: 'Par Utilisateur',
@@ -312,6 +378,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   performance: {
     en: 'Performance',
     fr: 'Performance',
+  },
+  phone: {
+    en: 'Phone',
+    fr: 'Téléphone',
   },
   price: {
     en: 'Price',
@@ -340,6 +410,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   register: {
     en: 'Register',
     fr: "S'inscrire",
+  },
+  register_info: {
+    en: 'Please fill out the information below to create your account.',
+    fr: 'Veuillez remplir les informations ci-dessous pour créer votre compte.',
   },
   scalability: {
     en: 'Scalability',

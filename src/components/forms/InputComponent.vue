@@ -8,18 +8,20 @@
     fill="solid"
     :type="field.type"
     :error-text="field.error"
+    :clear-on-edit="false"
     @ionInput="onInput"
     @ionBlur="markTouched"
     :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
     mode="md"
-    class="ps-5!"
-  ></IonInput>
+  >
+    <IonInputPasswordToggle v-if="field.type === 'password'" slot="end" class="-ms-17!" />
+  </IonInput>
 </template>
 
 <script setup lang="ts">
 /* Imports */
 import type { InputField } from '@/types'
-import { IonInput } from '@ionic/vue'
+import { IonInput, IonInputPasswordToggle } from '@ionic/vue'
 import { toRef } from 'vue'
 import z from 'zod'
 

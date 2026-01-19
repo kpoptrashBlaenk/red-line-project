@@ -4,6 +4,7 @@
     :color="color"
     class="font-extrabold"
     :class="{ selected: selected }"
+    :form
     @click="link ? handleRoute(route, router, link) : false"
   >
     {{ label }}
@@ -25,6 +26,7 @@ defineProps<{
   color: Color
   icon?: string
   selected?: boolean
+  form?: string
 }>()
 
 /* Constants */

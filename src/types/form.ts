@@ -4,6 +4,7 @@
 export interface FormFieldWrapper {
   label: string
   name: string
+  no_padding?: boolean
   error?: string
   touched?: boolean
 }
@@ -29,7 +30,7 @@ export interface ImageField extends FormFieldWrapper {
  */
 export interface InputField extends FormFieldWrapper {
   element: 'input'
-  type?: 'number'
+  type?: 'number' | 'password'
 }
 
 /**

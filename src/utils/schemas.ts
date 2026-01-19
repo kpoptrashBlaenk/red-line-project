@@ -125,3 +125,31 @@ export const characteristicsState = reactive<Partial<CharacteristicSchema>>({
   type: undefined,
 })
 export type CharacteristicSchema = z.output<ReturnType<typeof characteristicSchema>>
+
+/* Register */
+export const registerSchema = () =>
+  z.object({
+    first_name: z.string(translation('error_required')).min(1, translation('error_required')),
+    last_name: z.string(translation('error_required')).min(1, translation('error_required')),
+    email: z.email(translation('error_required')),
+    password: z
+      .string(translation('error_required'))
+      .min(8, translation('error_password_min'))
+      .max(128, translation('error_password_max'))
+      .regex(/[A-Z]/, translation('error_password_uppercase'))
+      .regex(/[a-z]/, translation('error_password_lowercase'))
+      .regex(/[0-9]/, translation('error_password_number'))
+      .regex(/[!@#$%^&*(),.?":{}|<>]/, translation('error_password_special'))
+      .refine((val) => !/\s/.test(val), translation('error_password_no_spaces')),
+    confirm_password: z.string(translation('error_required')).min(8, translation('error_required')),
+    phone: z.string(translation('error_required')).min(1, translation('error_required')),
+  })
+export const registerState = reactive<Partial<RegisterSchema>>({
+  first_name: undefined,
+  last_name: undefined,
+  email: undefined,
+  password: undefined,
+  confirm_password: undefined,
+  phone: undefined,
+})
+export type RegisterSchema = z.output<ReturnType<typeof registerSchema>>

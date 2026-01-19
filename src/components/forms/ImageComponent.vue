@@ -1,6 +1,6 @@
 <template>
   <div>
-    <IonReorderGroup :disabled="!field.multiple" class="ps-5" @ion-reorder-end="reorder">
+    <IonReorderGroup :disabled="!field.multiple" @ion-reorder-end="reorder">
       <div v-for="(image, key) in images" :key class="mb-2 relative">
         <IonReorder class="rounded-2xl">
           <div class="flex justify-center">

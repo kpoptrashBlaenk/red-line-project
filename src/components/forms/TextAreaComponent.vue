@@ -11,7 +11,6 @@
     @ionInput="validate"
     @ionBlur="markTouched"
     :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
-    class="ps-5!"
     :rows="1"
   ></IonTextarea>
 </template>
