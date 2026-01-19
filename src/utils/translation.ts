@@ -36,6 +36,7 @@ const translationKeys = {
   english: 'english',
 
   error_category_post_500: 'error_category_post_500',
+  error_password_confirm: 'error_password_confirm',
   error_password_lowercase: 'error_password_lowercase',
   error_password_min: 'error_password_min',
   error_password_max: 'error_password_max',
@@ -230,9 +231,9 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: "Couldn't create category",
     fr: 'Impossible de créer la catégorie',
   },
-  error_required: {
-    en: 'Please fill out this field',
-    fr: 'Veuillez remplir ce champ',
+  error_password_confirm: {
+    en: "Passwords don't match",
+    fr: 'Les mots de passe ne correspondent pas',
   },
   error_password_lowercase: {
     en: 'Password must contain at least one lowercase letter',
@@ -261,6 +262,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   error_password_uppercase: {
     en: 'Password must contain at least one uppercase letter',
     fr: 'Le mot de passe doit contenir au moins une lettre majuscule',
+  },
+  error_required: {
+    en: 'Please fill out this field',
+    fr: 'Veuillez remplir ce champ',
   },
 
   file_too_big: {

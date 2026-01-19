@@ -14,7 +14,7 @@
             }"
             class="text-center px-10 mb-5"
           />
-          <FormComponent id="register-form" :fields :state :schema :on-submit />
+          <FormComponent id="register-form" :fields :state :schema :on-submit="onSubmit" />
           <SolidButton color="primary" :label="translation('submit')" expand="block" form="register-form" class="mx-10" />
         </IonCardContent>
       </IonCard>

@@ -5,6 +5,7 @@
     class="font-extrabold"
     :class="{ selected: selected }"
     :form
+    type="submit"
     @click="link ? handleRoute(route, router, link) : false"
   >
     {{ label }}
