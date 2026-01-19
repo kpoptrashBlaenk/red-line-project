@@ -7,6 +7,7 @@
     clear-input
     fill="solid"
     :type="field.type"
+    :pattern="field.type === 'number' ? '/\D/g' : undefined"
     :error-text="field.error"
     :clear-on-edit="false"
     @ionInput="onInput"
@@ -54,13 +55,7 @@ function markTouched() {
 }
 
 function onInput(event: CustomEvent) {
-  const value = event.detail.value
-
-  if (value && field.value.type === 'number') {
-    state.value[field.value.name] = Number(value.replace(/[\d]/g, '')) ?? ''
-  } else {
-    state.value[field.value.name] = value
-  }
+  state.value[field.value.name] = event.detail.value
 
   validate()
 }

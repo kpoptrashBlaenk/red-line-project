@@ -31,7 +31,7 @@ export interface ImageField extends FormFieldWrapper {
  */
 export interface InputField extends FormFieldWrapper {
   element: 'input'
-  type?: 'number' | 'password'
+  type?: 'number' | 'password' | 'tel'
 }
 
 /**

@@ -81,6 +81,7 @@ const fields = ref([
     element: 'input',
     name: 'phone',
     label: translation('phone'),
+    type: 'number',
     no_padding: true,
     stacked: true,
   },
