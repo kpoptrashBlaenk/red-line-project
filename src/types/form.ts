@@ -5,6 +5,7 @@ export interface FormFieldWrapper {
   label: string
   name: string
   no_padding?: boolean
+  stacked?: boolean
   error?: string
   touched?: boolean
 }

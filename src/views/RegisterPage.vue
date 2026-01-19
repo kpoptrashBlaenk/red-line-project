@@ -45,24 +45,28 @@ const fields = ref([
     name: 'first_name',
     label: translation('first_name'),
     no_padding: true,
+    stacked: true,
   },
   {
     element: 'input',
     name: 'last_name',
     label: translation('last_name'),
     no_padding: true,
+    stacked: true,
   },
   {
     element: 'input',
     name: 'email',
     label: translation('email'),
     no_padding: true,
+    stacked: true,
   },
   {
     element: 'input',
     name: 'password',
     label: translation('password'),
     no_padding: true,
+    stacked: true,
     type: 'password',
   },
   {
@@ -70,6 +74,7 @@ const fields = ref([
     name: 'confirm_password',
     label: translation('confirm_password'),
     no_padding: true,
+    stacked: true,
     type: 'password',
   },
   {
@@ -77,6 +82,7 @@ const fields = ref([
     name: 'phone',
     label: translation('phone'),
     no_padding: true,
+    stacked: true,
   },
 ] as FormField[])
 const state = ref(registerState)

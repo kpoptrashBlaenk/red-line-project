@@ -3,7 +3,7 @@
     v-model="state[field.name]"
     :label="field.label"
     :aria-label="field.label"
-    label-placement="floating"
+    :label-placement="field.stacked ? 'stacked' : 'floating'"
     clear-input
     auto-grow
     fill="solid"

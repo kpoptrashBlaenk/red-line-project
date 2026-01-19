@@ -3,7 +3,7 @@
     :value="state[field.name]"
     :label="field.label"
     :aria-label="field.label"
-    label-placement="floating"
+    :label-placement="field.stacked ? 'stacked' : 'floating'"
     clear-input
     fill="solid"
     :type="field.type"
@@ -14,7 +14,7 @@
     :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
     mode="md"
   >
-    <IonInputPasswordToggle v-if="field.type === 'password'" slot="end" class="-ms-17!" />
+    <IonInputPasswordToggle v-if="field.type === 'password'" slot="end" class="-ms-2!" />
   </IonInput>
 </template>
 
