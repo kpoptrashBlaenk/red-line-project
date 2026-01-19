@@ -46,7 +46,8 @@ const translationKeys = {
   image: 'image',
   legal_mentions: 'legal_mentions',
   level: 'level',
-  link: 'promotion_link',
+  link: 'link',
+  login: 'login',
   menu: 'menu',
   monthly: 'monthly',
   name: 'name',
@@ -65,6 +66,7 @@ const translationKeys = {
   priority: 'priority',
   product_characteristics_title: 'product_characteristics_title',
   product_price_title: 'product_price_title',
+  register: 'register',
   scalability: 'scalability',
   search_product: 'search_product',
   securities: 'securities',
@@ -259,6 +261,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Level',
     fr: 'Niveau',
   },
+  login: {
+    en: 'Login',
+    fr: 'Se connecter',
+  },
   menu: {
     en: 'Menu',
     fr: 'Menu',
@@ -330,6 +336,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   product_price_title: {
     en: '<title>Prices</title> for this Product',
     fr: '<title>Prix</title> pour ce Produit',
+  },
+  register: {
+    en: 'Register',
+    fr: "S'inscrire",
   },
   scalability: {
     en: 'Scalability',

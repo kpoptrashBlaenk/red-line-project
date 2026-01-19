@@ -6,6 +6,8 @@ const pageKeys = {
   general_conditions: 'general_conditions',
   contact: 'contact',
   admin: 'admin',
+  register: 'register',
+  login: 'login',
 } as const
 
 type PageKey = keyof typeof pageKeys
@@ -38,6 +40,14 @@ const pages: Record<PageKey, Page> = {
   admin: {
     translationKey: pageKeys.admin,
     url: '/admin',
+  },
+  register: {
+    translationKey: pageKeys.register,
+    url: '/register',
+  },
+  login: {
+    translationKey: pageKeys.login,
+    url: '/login',
   },
 }
 

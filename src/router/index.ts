@@ -2,7 +2,9 @@ import DefaultLayout from '@/components/layouts/default/DefaultLayout.vue'
 import AdminPage from '@/views/AdminPage.vue'
 import CategoryPage from '@/views/CategoryPage.vue'
 import HomePage from '@/views/HomePage.vue'
+import LoginPage from '@/views/LoginPage.vue'
 import ProductPage from '@/views/ProductPage.vue'
+import RegisterPage from '@/views/RegisterPage.vue'
 import TestPage from '@/views/TestPage.vue'
 import { createRouter, createWebHistory } from '@ionic/vue-router'
 import { RouteRecordRaw } from 'vue-router'
@@ -32,6 +34,14 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'product/:id',
         component: ProductPage,
+      },
+      {
+        path: 'register',
+        component: RegisterPage,
+      },
+      {
+        path: 'login',
+        component: LoginPage,
       },
     ],
   },
