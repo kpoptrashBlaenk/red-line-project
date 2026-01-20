@@ -8,6 +8,7 @@ import CategoryPage from '@/views/CategoryPage.vue'
 import HomePage from '@/views/HomePage.vue'
 import LoginPage from '@/views/LoginPage.vue'
 import ProductPage from '@/views/ProductPage.vue'
+import ProductsPage from '@/views/ProductsPage.vue'
 import RegisterPage from '@/views/RegisterPage.vue'
 import TestPage from '@/views/TestPage.vue'
 import { createRouter, createWebHistory } from '@ionic/vue-router'
@@ -40,6 +41,10 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'category/:id',
         component: CategoryPage,
+      },
+      {
+        path: 'products',
+        component: ProductsPage,
       },
       {
         path: 'product/:id',

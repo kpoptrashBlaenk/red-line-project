@@ -84,6 +84,7 @@ const translationKeys = {
   priority: 'priority',
   product_characteristics_title: 'product_characteristics_title',
   product_price_title: 'product_price_title',
+  products: 'products',
   register: 'register',
   register_info: 'register_info',
   scalability: 'scalability',
@@ -421,6 +422,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   product_price_title: {
     en: '<title>Prices</title> for this Product',
     fr: '<title>Prix</title> pour ce Produit',
+  },
+  products: {
+    en: 'Products',
+    fr: 'Produits',
   },
   register: {
     en: 'Register',

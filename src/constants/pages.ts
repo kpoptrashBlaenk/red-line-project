@@ -3,6 +3,7 @@ import { TranslationKey } from '@/utils/translation'
 const pageKeys = {
   home: 'home',
   categories: 'categories',
+  products: 'products',
   legal_mentions: 'legal_mentions',
   general_conditions: 'general_conditions',
   contact: 'contact',
@@ -28,6 +29,10 @@ const pages: Record<PageKey, Page> = {
   categories: {
     translationKey: pageKeys.categories,
     url: '/categories',
+  },
+  products: {
+    translationKey: pageKeys.products,
+    url: '/products',
   },
   contact: {
     translationKey: pageKeys.contact,

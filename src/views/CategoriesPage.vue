@@ -5,6 +5,8 @@
         <HomeCategoryGrid :categories color="primary" class="py-5" />
       </div>
     </HeroComponent>
+
+    <SeparatorComponent size="xl" />
   </DefaultContentLayout>
 </template>
 
@@ -14,6 +16,7 @@ import { Category } from '$/types'
 import HomeCategoryGrid from '@/components/grids/HomeCategoryGrid.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
+import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useCategory } from '@/composables/category'
 import translation from '@/utils/translation'
 import { onMounted, ref } from 'vue'

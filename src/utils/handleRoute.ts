@@ -2,7 +2,7 @@ import { getLastRoute } from '@/router'
 import { RouteLocationNormalizedLoaded, Router } from 'vue-router'
 
 const home = '/home'
-const linearRoutes = [home, '/category', '/product']
+const linearRoutes = [home, '/category', '/product', '/products', '/categories']
 // const nonLinearRoutes = ['/admin']
 
 export default function (route: RouteLocationNormalizedLoaded, router: Router, url: string, before?: () => void) {
