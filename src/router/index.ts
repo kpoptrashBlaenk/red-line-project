@@ -1,4 +1,7 @@
 import DefaultLayout from '@/components/layouts/default/DefaultLayout.vue'
+import { authOnly } from '@/middleware/auth'
+import { guestOnly } from '@/middleware/guest'
+import restore from '@/middleware/restore'
 import AdminPage from '@/views/AdminPage.vue'
 import CategoryPage from '@/views/CategoryPage.vue'
 import HomePage from '@/views/HomePage.vue'
@@ -18,6 +21,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     component: DefaultLayout,
+    beforeEnter: restore,
     children: [
       {
         path: 'home',
@@ -26,6 +30,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'admin',
         component: AdminPage,
+        beforeEnter: authOnly,
       },
       {
         path: 'category/:id',
@@ -38,10 +43,12 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'register',
         component: RegisterPage,
+        beforeEnter: guestOnly,
       },
       {
         path: 'login',
         component: LoginPage,
+        beforeEnter: guestOnly,
       },
     ],
   },

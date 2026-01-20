@@ -104,7 +104,10 @@ export function useAuth() {
       token: 'ABSOLUTELY_HASHED_TOKEN',
     }
 
-    userStore.setUser(user)
+    if (user) {
+      userStore.setUser(user)
+      rememberUser(user.token)
+    }
   }
 
   /**
@@ -126,8 +129,42 @@ export function useAuth() {
       token: 'ABSOLUTELY_HASHED_TOKEN',
     }
 
-    userStore.setUser(user)
+    if (user) {
+      userStore.setUser(user)
+      rememberUser(user.token)
+      return user
+    }
   }
 
-  return { createRegisterFields, createLoginFields, register, login }
+  /**
+   * Restore the user session
+   */
+  async function restore() {
+    const token = localStorage.getItem('token')
+    // login which returns user
+
+    if (token) {
+      const user: User = {
+        id: 1,
+        first_name: 'Aldin',
+        last_name: 'Music',
+        email: 'email@email.com',
+        phone: '0101010101',
+        prefix: '+33',
+        token: 'ABSOLUTELY_HASHED_TOKEN',
+      }
+
+      if (user) {
+        userStore.setUser(user)
+        rememberUser(user.token)
+        return user
+      }
+    }
+  }
+
+  function rememberUser(token: string) {
+    localStorage.setItem('token', token)
+  }
+
+  return { createRegisterFields, createLoginFields, register, login, restore }
 }
