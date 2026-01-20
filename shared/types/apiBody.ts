@@ -1,4 +1,11 @@
-import { CategorySchema, CharacteristicSchema, HomeTextSchema, ProductSchema, PromotionSchema } from '@/utils/schemas'
+import {
+  CategorySchema,
+  CharacteristicSchema,
+  HomeTextSchema,
+  ProductSchema,
+  PromotionSchema,
+  RegisterSchema,
+} from '@/utils/schemas'
 
 type Id = { id: number }
 type ImageString = { image: string[] }
@@ -27,3 +34,8 @@ export type ProductBody = Omit<ProductSchema, 'image'> & Id & ImageString
  * Body for characteristics api
  */
 export type CharacteristicBody = CharacteristicSchema & Id
+
+/**
+ * Body for register api
+ */
+export type RegisterBody = RegisterSchema

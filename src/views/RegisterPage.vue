@@ -18,63 +18,21 @@ import DefaultContentLayout from '@/components/layouts/default/DefaultContentLay
 import AuthCard from '@/components/ui/cards/AuthCard.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
-import { FormField } from '@/types'
+import { useAuth } from '@/composables/auth'
 import { registerSchema, registerState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { ref } from 'vue'
 
+/* Constants */
+const authComposable = useAuth()
+
 /* Refs */
-const fields = ref([
-  {
-    element: 'input',
-    name: 'first_name',
-    label: translation('first_name'),
-    no_padding: true,
-    stacked: true,
-  },
-  {
-    element: 'input',
-    name: 'last_name',
-    label: translation('last_name'),
-    no_padding: true,
-    stacked: true,
-  },
-  {
-    element: 'input',
-    name: 'email',
-    label: translation('email'),
-    no_padding: true,
-    stacked: true,
-  },
-  {
-    element: 'input',
-    name: 'password',
-    label: translation('password'),
-    no_padding: true,
-    stacked: true,
-    type: 'password',
-  },
-  {
-    element: 'input',
-    name: 'confirm_password',
-    label: translation('confirm_password'),
-    no_padding: true,
-    stacked: true,
-    type: 'password',
-  },
-  {
-    element: 'phone',
-    name: 'phone',
-    label: translation('phone'),
-    no_padding: true,
-    stacked: true,
-  },
-] as FormField[])
+const fields = ref(authComposable.createRegisterFields())
 const state = ref(registerState)
 const schema = ref(registerSchema())
 
 /* Functions */
 async function onSubmit(state: any) {
-  console.log(state)
+  await authComposable.register(state)
 }
 </script>
