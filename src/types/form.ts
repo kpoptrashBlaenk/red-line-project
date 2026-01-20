@@ -31,7 +31,14 @@ export interface ImageField extends FormFieldWrapper {
  */
 export interface InputField extends FormFieldWrapper {
   element: 'input'
-  type?: 'number' | 'password' | 'tel'
+  type?: 'number' | 'password'
+}
+
+/**
+ * Input Form Field
+ */
+export interface PhoneField extends FormFieldWrapper {
+  element: 'phone'
 }
 
 /**
@@ -62,4 +69,4 @@ export interface SelectField extends FormFieldWrapper {
 /**
  * Form Field
  */
-export type FormField = DividerField | ImageField | InputField | TextareaField | ToggleField | SelectField
+export type FormField = DividerField | ImageField | InputField | TextareaField | ToggleField | SelectField | PhoneField

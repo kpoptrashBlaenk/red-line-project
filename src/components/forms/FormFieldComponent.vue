@@ -16,6 +16,14 @@
     class="col-span-4"
     :class="{ 'ps-5!': !field.no_padding }"
   />
+  <PhoneComponent
+    v-else-if="field.element === 'phone'"
+    :field
+    :state
+    :schema
+    class="col-span-4"
+    :class="{ 'ps-5!': !field.no_padding }"
+  />
   <TextAreaComponent
     v-else-if="field.element === 'textarea'"
     :field
@@ -49,6 +57,7 @@ import z from 'zod'
 import DividerComponent from './DividerComponent.vue'
 import ImageComponent from './ImageComponent.vue'
 import InputComponent from './InputComponent.vue'
+import PhoneComponent from './PhoneComponent.vue'
 import SelectComponent from './SelectComponent.vue'
 import TextAreaComponent from './TextAreaComponent.vue'
 import ToggleComponent from './ToggleComponent.vue'

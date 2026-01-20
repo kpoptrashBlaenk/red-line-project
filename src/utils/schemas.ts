@@ -144,6 +144,7 @@ export const registerSchema = () =>
         .refine((val) => !/\s/.test(val), translation('error_password_no_spaces')),
       confirm_password: z.string(translation('error_required')).min(1, translation('error_required')),
       phone: z.string(translation('error_required')).min(1, translation('error_required')),
+      prefix: z.string(translation('error_required')).min(1, translation('error_required')),
     })
     .superRefine(({ confirm_password, password }, ctx) => {
       if (confirm_password !== password) {
@@ -161,5 +162,6 @@ export const registerState = reactive<Partial<RegisterSchema>>({
   password: undefined,
   confirm_password: undefined,
   phone: undefined,
+  prefix: undefined,
 })
 export type RegisterSchema = z.output<ReturnType<typeof registerSchema>>
