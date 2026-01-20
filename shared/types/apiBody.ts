@@ -2,6 +2,7 @@ import {
   CategorySchema,
   CharacteristicSchema,
   HomeTextSchema,
+  LoginSchema,
   ProductSchema,
   PromotionSchema,
   RegisterSchema,
@@ -39,3 +40,8 @@ export type CharacteristicBody = CharacteristicSchema & Id
  * Body for register api
  */
 export type RegisterBody = RegisterSchema
+
+/**
+ * Body for login api
+ */
+export type LoginBody = LoginSchema

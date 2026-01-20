@@ -165,3 +165,15 @@ export const registerState = reactive<Partial<RegisterSchema>>({
   prefix: undefined,
 })
 export type RegisterSchema = z.output<ReturnType<typeof registerSchema>>
+
+/* Login */
+export const loginSchema = () =>
+  z.object({
+    email: z.string(translation('error_required')).min(1, translation('error_required')),
+    password: z.string(translation('error_required')).min(1, translation('error_required')),
+  })
+export const loginState = reactive<Partial<LoginSchema>>({
+  email: undefined,
+  password: undefined,
+})
+export type LoginSchema = z.output<ReturnType<typeof loginSchema>>

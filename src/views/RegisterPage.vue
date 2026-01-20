@@ -19,7 +19,7 @@ import AuthCard from '@/components/ui/cards/AuthCard.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useAuth } from '@/composables/auth'
-import { registerSchema, registerState } from '@/utils/schemas'
+import { RegisterSchema, registerSchema, registerState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { ref } from 'vue'
 
@@ -32,7 +32,7 @@ const state = ref(registerState)
 const schema = ref(registerSchema())
 
 /* Functions */
-async function onSubmit(state: any) {
+async function onSubmit(state: RegisterSchema) {
   await authComposable.register(state)
 }
 </script>

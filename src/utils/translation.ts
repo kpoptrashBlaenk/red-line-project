@@ -62,6 +62,7 @@ const translationKeys = {
   level: 'level',
   link: 'link',
   login: 'login',
+  login_info: 'login_info',
   menu: 'menu',
   monthly: 'monthly',
   name: 'name',
@@ -332,6 +333,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Login',
     fr: 'Se connecter',
   },
+  login_info: {
+    en: 'Please fill out the information below to log in',
+    fr: 'Veuillez remplir les informations ci-dessous pour vous connecter',
+  },
   menu: {
     en: 'Menu',
     fr: 'Menu',
@@ -417,8 +422,8 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     fr: "S'inscrire",
   },
   register_info: {
-    en: 'Please fill out the information below to create your account.',
-    fr: 'Veuillez remplir les informations ci-dessous pour créer votre compte.',
+    en: 'Please fill out the information below to create your account',
+    fr: 'Veuillez remplir les informations ci-dessous pour créer votre compte',
   },
   scalability: {
     en: 'Scalability',
