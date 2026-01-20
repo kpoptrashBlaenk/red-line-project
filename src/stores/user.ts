@@ -12,7 +12,7 @@ export const useUserStore = defineStore('user', {
      *
      * @param user Logged in user
      */
-    setUser(user: User) {
+    setUser(user: User | undefined) {
       this.user = user
     },
 

@@ -15,6 +15,7 @@ type Page = {
   translationKey: TranslationKey
   url: string
   mobileOnly?: boolean
+  auth?: 'auth' | 'guest'
 }
 
 const pages: Record<PageKey, Page> = {
@@ -40,14 +41,17 @@ const pages: Record<PageKey, Page> = {
   admin: {
     translationKey: pageKeys.admin,
     url: '/admin',
+    auth: 'auth',
   },
   register: {
     translationKey: pageKeys.register,
     url: '/register',
+    auth: 'guest',
   },
   login: {
     translationKey: pageKeys.login,
     url: '/login',
+    auth: 'guest',
   },
 }
 

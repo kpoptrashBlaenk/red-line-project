@@ -107,6 +107,7 @@ export function useAuth() {
     if (user) {
       userStore.setUser(user)
       rememberUser(user.token)
+      return user
     }
   }
 
@@ -162,9 +163,18 @@ export function useAuth() {
     }
   }
 
+  /**
+   * Logout the user
+   */
+  async function logout() {
+    localStorage.removeItem('token')
+
+    userStore.setUser(undefined)
+  }
+
   function rememberUser(token: string) {
     localStorage.setItem('token', token)
   }
 
-  return { createRegisterFields, createLoginFields, register, login, restore }
+  return { createRegisterFields, createLoginFields, register, login, restore, logout }
 }

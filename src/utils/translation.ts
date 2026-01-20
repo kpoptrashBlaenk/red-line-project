@@ -63,6 +63,7 @@ const translationKeys = {
   link: 'link',
   login: 'login',
   login_info: 'login_info',
+  logout: 'logout',
   menu: 'menu',
   monthly: 'monthly',
   name: 'name',
@@ -336,6 +337,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   login_info: {
     en: 'Please fill out the information below to log in',
     fr: 'Veuillez remplir les informations ci-dessous pour vous connecter',
+  },
+  logout: {
+    en: 'Logout',
+    fr: 'Se déconnecter',
   },
   menu: {
     en: 'Menu',
