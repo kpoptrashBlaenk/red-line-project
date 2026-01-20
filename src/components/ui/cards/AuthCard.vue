@@ -10,6 +10,8 @@
       />
       <FormComponent id="auth-form" :fields :state :schema :on-submit="onSubmit" />
       <SolidButton color="primary" :label="translation('submit')" expand="block" form="auth-form" class="mx-10" />
+
+      <slot></slot>
     </IonCardContent>
   </IonCard>
 </template>

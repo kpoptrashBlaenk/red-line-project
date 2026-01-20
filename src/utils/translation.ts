@@ -15,6 +15,7 @@ const translationKeys = {
   alert_header: 'alert_header',
   alert_message: 'alert_message',
   all_services: 'all_services',
+  already_account: 'already_account',
   button_text: 'promotion_button',
   cancel: 'cancel',
   categories: 'categories',
@@ -68,6 +69,7 @@ const translationKeys = {
   monthly: 'monthly',
   name: 'name',
   new: 'new',
+  no_account: 'no_account',
   no_file: 'no_file',
   not_an_image: 'not_an_image',
   not_disponible: 'not_disponible',
@@ -87,9 +89,11 @@ const translationKeys = {
   products: 'products',
   register: 'register',
   register_info: 'register_info',
+  register_now: 'register_now',
   scalability: 'scalability',
   search_product: 'search_product',
   securities: 'securities',
+  sign_in_now: 'sign_in_now',
   sort: 'sort',
   submit: 'submit',
   subscribe_now: 'subscribe_now',
@@ -152,6 +156,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   all_services: {
     en: 'All Services',
     fr: 'Tous les services',
+  },
+  already_account: {
+    en: 'Already have an account?',
+    fr: 'Vous avez déjà un compte?',
   },
   button_text: {
     en: 'Button text',
@@ -363,6 +371,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'No file selected',
     fr: 'Aucun fichier sélectionné',
   },
+  no_account: {
+    en: 'No account?',
+    fr: 'Pas de compte?',
+  },
   not_an_image: {
     en: 'The selected file is not an image',
     fr: "Le fichier sélectionné n'est pas une image",
@@ -435,6 +447,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Please fill out the information below to create your account',
     fr: 'Veuillez remplir les informations ci-dessous pour créer votre compte',
   },
+  register_now: {
+    en: 'Register now!',
+    fr: 'Inscrivez vous maintenant!',
+  },
   scalability: {
     en: 'Scalability',
     fr: 'Scalabilité',
@@ -462,6 +478,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   subscribe_now: {
     en: 'Subscribe Now',
     fr: "S'abonner maintenant",
+  },
+  sign_in_now: {
+    en: 'Sign in now!',
+    fr: 'Connectez-vous maintenant!',
   },
   text: {
     en: 'Text',

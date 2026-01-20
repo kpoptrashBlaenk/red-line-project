@@ -5,7 +5,14 @@
     <div class="wrap">
       <SeparatorComponent size="sm" />
 
-      <AuthCard :label="translation('register_info')" :fields :state :schema :on-submit="onSubmit" />
+      <AuthCard :label="translation('register_info')" :fields :state :schema :on-submit="onSubmit">
+        <div class="text-center mt-5">
+          {{ translation('already_account') }}
+          <span class="text-primary cursor-pointer" @click="handleRoute(route, router, '/login')">{{
+            translation('sign_in_now')
+          }}</span>
+        </div>
+      </AuthCard>
 
       <SeparatorComponent size="sm" />
     </div>
@@ -20,6 +27,7 @@ import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useAuth } from '@/composables/auth'
 import { getLastRoute } from '@/router'
+import handleRoute from '@/utils/handleRoute'
 import { RegisterSchema, registerSchema, registerState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { ref } from 'vue'

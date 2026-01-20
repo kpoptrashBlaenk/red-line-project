@@ -1,12 +1,14 @@
 <template>
   <DefaultContentLayout>
-    <HeroComponent :title="translation('categories')">
-      <div class="wrap">
-        <HomeCategoryGrid :categories color="primary" class="py-5" />
-      </div>
-    </HeroComponent>
+    <HeroComponent :title="translation('categories')" />
 
-    <SeparatorComponent size="xl" />
+    <SeparatorComponent size="sm" />
+
+    <div class="wrap">
+      <HomeCategoryGrid :categories color="primary" />
+    </div>
+
+    <SeparatorComponent size="sm" />
   </DefaultContentLayout>
 </template>
 
