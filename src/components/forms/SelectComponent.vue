@@ -3,14 +3,13 @@
     v-model="state[field.name]"
     :label="field.label"
     :aria-label="field.label"
-    label-placement="floating"
+    :label-placement="field.stacked ? 'stacked' : 'floating'"
     justify="start"
     fill="solid"
     :error-text="field.error"
     @ionChange="validate"
     @ionBlur="markTouched"
     :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
-    class="ps-5!"
     :multiple="field.multiple"
   >
     <IonSelectOption v-for="(item, key) in field.items" :key :value="item[field.itemValueKey]">

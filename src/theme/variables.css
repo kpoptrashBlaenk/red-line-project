@@ -170,3 +170,15 @@ ion-toast.toast-danger {
 ion-button::part(native) {
   white-space: nowrap !important;
 }
+
+/* ---------- INPUT ---------- */
+/* --------------------------- */
+input[type='password']::-ms-reveal,
+input[type='password']::-ms-clear {
+  display: none;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

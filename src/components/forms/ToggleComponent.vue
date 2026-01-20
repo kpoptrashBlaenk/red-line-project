@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="ms-5 pt-5 ps-4 border-b border-primary" style="padding-bottom: 13px">
+    <div class="pt-5 ps-4 border-b border-primary" style="padding-bottom: 13px">
       <IonToggle
         v-model="state[field.name]"
         :aria-label="field.label"

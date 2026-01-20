@@ -3,7 +3,7 @@
     v-model="state[field.name]"
     :label="field.label"
     :aria-label="field.label"
-    label-placement="floating"
+    :label-placement="field.stacked ? 'stacked' : 'floating'"
     clear-input
     auto-grow
     fill="solid"
@@ -11,7 +11,6 @@
     @ionInput="validate"
     @ionBlur="markTouched"
     :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
-    class="ps-5!"
     :rows="1"
   ></IonTextarea>
 </template>

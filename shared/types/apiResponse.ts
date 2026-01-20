@@ -70,6 +70,16 @@ export type Characteristic = {
   type: 'performance' | 'scalability' | 'level'
 }
 
+export type User = {
+  id: number
+  first_name: string
+  last_name: string
+  email: string
+  phone: string
+  prefix: string
+  token: string
+}
+
 /**
  * Social links for the footer
  */

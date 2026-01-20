@@ -3,23 +3,26 @@
     :value="state[field.name]"
     :label="field.label"
     :aria-label="field.label"
-    label-placement="floating"
+    :label-placement="field.stacked ? 'stacked' : 'floating'"
     clear-input
     fill="solid"
     :type="field.type"
+    :pattern="field.type === 'number' ? '/\D/g' : undefined"
     :error-text="field.error"
+    :clear-on-edit="false"
     @ionInput="onInput"
     @ionBlur="markTouched"
     :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
     mode="md"
-    class="ps-5!"
-  ></IonInput>
+  >
+    <IonInputPasswordToggle v-if="field.type === 'password'" slot="end" class="-ms-2!" />
+  </IonInput>
 </template>
 
 <script setup lang="ts">
 /* Imports */
 import type { InputField } from '@/types'
-import { IonInput } from '@ionic/vue'
+import { IonInput, IonInputPasswordToggle } from '@ionic/vue'
 import { toRef } from 'vue'
 import z from 'zod'
 
@@ -52,13 +55,7 @@ function markTouched() {
 }
 
 function onInput(event: CustomEvent) {
-  const value = event.detail.value
-
-  if (value && field.value.type === 'number') {
-    state.value[field.value.name] = Number(value.replace(/[\d]/g, '')) ?? ''
-  } else {
-    state.value[field.value.name] = value
-  }
+  state.value[field.value.name] = event.detail.value
 
   validate()
 }

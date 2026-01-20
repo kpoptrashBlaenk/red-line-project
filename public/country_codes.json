@@ -1,0 +1,2126 @@
+[
+  {
+    "name": {
+      "en": "Afghanistan",
+      "fr": "Afghanistan"
+    },
+    "code": "AF",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/af.svg",
+    "prefix": "+93"
+  },
+  {
+    "name": {
+      "en": "Albania",
+      "fr": "Albanie"
+    },
+    "code": "AL",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/al.svg",
+    "prefix": "+355"
+  },
+  {
+    "name": {
+      "en": "Andorra",
+      "fr": "Andorre"
+    },
+    "code": "AD",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ad.svg",
+    "prefix": "+376"
+  },
+  {
+    "name": {
+      "en": "Angola",
+      "fr": "Angola"
+    },
+    "code": "AO",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ao.svg",
+    "prefix": "+244"
+  },
+  {
+    "name": {
+      "en": "Anguilla",
+      "fr": "Anguilla"
+    },
+    "code": "AI",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ai.svg",
+    "prefix": "+1264"
+  },
+  {
+    "name": {
+      "en": "Antarctica",
+      "fr": "Antarctique"
+    },
+    "code": "AQ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/aq.svg",
+    "prefix": "+672"
+  },
+  {
+    "name": {
+      "en": "Antigua & Barbuda",
+      "fr": "Antigua-et-Barbuda"
+    },
+    "code": "AG",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ag.svg",
+    "prefix": "+1268"
+  },
+  {
+    "name": {
+      "en": "Argentina",
+      "fr": "Argentine"
+    },
+    "code": "AR",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ar.svg",
+    "prefix": "+54"
+  },
+  {
+    "name": {
+      "en": "Armenia",
+      "fr": "Arménie"
+    },
+    "code": "AM",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/am.svg",
+    "prefix": "+374"
+  },
+  {
+    "name": {
+      "en": "Aruba",
+      "fr": "Aruba"
+    },
+    "code": "AW",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/aw.svg",
+    "prefix": "+297"
+  },
+  {
+    "name": {
+      "en": "Australia",
+      "fr": "Australie"
+    },
+    "code": "AU",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/au.svg",
+    "prefix": "+61"
+  },
+  {
+    "name": {
+      "en": "Austria",
+      "fr": "Autriche"
+    },
+    "code": "AT",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/at.svg",
+    "prefix": "+43"
+  },
+  {
+    "name": {
+      "en": "Azerbaijan",
+      "fr": "Azerbaïdjan"
+    },
+    "code": "AZ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/az.svg",
+    "prefix": "+994"
+  },
+  {
+    "name": {
+      "en": "Bahamas",
+      "fr": "Bahamas"
+    },
+    "code": "BS",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/bs.svg",
+    "prefix": "+1242"
+  },
+  {
+    "name": {
+      "en": "Bahrain",
+      "fr": "Bahreïn"
+    },
+    "code": "BH",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/bh.svg",
+    "prefix": "+973"
+  },
+  {
+    "name": {
+      "en": "Bangladesh",
+      "fr": "Bangladesh"
+    },
+    "code": "BD",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/bd.svg",
+    "prefix": "+880"
+  },
+  {
+    "name": {
+      "en": "Barbados",
+      "fr": "Barbade"
+    },
+    "code": "BB",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/bb.svg",
+    "prefix": "+1246"
+  },
+  {
+    "name": {
+      "en": "Belarus",
+      "fr": "Biélorussie"
+    },
+    "code": "BY",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/by.svg",
+    "prefix": "+375"
+  },
+  {
+    "name": {
+      "en": "Belgium",
+      "fr": "Belgique"
+    },
+    "code": "BE",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/be.svg",
+    "prefix": "+32"
+  },
+  {
+    "name": {
+      "en": "Belize",
+      "fr": "Belize"
+    },
+    "code": "BZ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/bz.svg",
+    "prefix": "+501"
+  },
+  {
+    "name": {
+      "en": "Benin",
+      "fr": "Bénin"
+    },
+    "code": "BJ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/bj.svg",
+    "prefix": "+229"
+  },
+  {
+    "name": {
+      "en": "Bermuda",
+      "fr": "Bermudes"
+    },
+    "code": "BM",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/bm.svg",
+    "prefix": "+1441"
+  },
+  {
+    "name": {
+      "en": "Bhutan",
+      "fr": "Bhoutan"
+    },
+    "code": "BT",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/bt.svg",
+    "prefix": "+975"
+  },
+  {
+    "name": {
+      "en": "Bolivia",
+      "fr": "Bolivie"
+    },
+    "code": "BO",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/bo.svg",
+    "prefix": "+591"
+  },
+  {
+    "name": {
+      "en": "Bosnia & Herzegovina",
+      "fr": "Bosnie-Herzégovine"
+    },
+    "code": "BA",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ba.svg",
+    "prefix": "+387"
+  },
+  {
+    "name": {
+      "en": "Botswana",
+      "fr": "Botswana"
+    },
+    "code": "BW",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/bw.svg",
+    "prefix": "+267"
+  },
+  {
+    "name": {
+      "en": "Brazil",
+      "fr": "Brésil"
+    },
+    "code": "BR",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/br.svg",
+    "prefix": "+55"
+  },
+  {
+    "name": {
+      "en": "British Indian Ocean Territory",
+      "fr": "Territoire britannique de l’océan Indien"
+    },
+    "code": "IO",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/io.svg",
+    "prefix": "+246"
+  },
+  {
+    "name": {
+      "en": "Brunei",
+      "fr": "Brunei"
+    },
+    "code": "BN",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/bn.svg",
+    "prefix": "+673"
+  },
+  {
+    "name": {
+      "en": "Bulgaria",
+      "fr": "Bulgarie"
+    },
+    "code": "BG",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/bg.svg",
+    "prefix": "+359"
+  },
+  {
+    "name": {
+      "en": "Burkina Faso",
+      "fr": "Burkina Faso"
+    },
+    "code": "BF",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/bf.svg",
+    "prefix": "+226"
+  },
+  {
+    "name": {
+      "en": "Burundi",
+      "fr": "Burundi"
+    },
+    "code": "BI",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/bi.svg",
+    "prefix": "+257"
+  },
+  {
+    "name": {
+      "en": "Cabo Verde",
+      "fr": "Cap-Vert"
+    },
+    "code": "CV",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/cv.svg",
+    "prefix": "+238"
+  },
+  {
+    "name": {
+      "en": "Cambodia",
+      "fr": "Cambodge"
+    },
+    "code": "KH",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/kh.svg",
+    "prefix": "+855"
+  },
+  {
+    "name": {
+      "en": "Cameroon",
+      "fr": "Cameroun"
+    },
+    "code": "CM",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/cm.svg",
+    "prefix": "+237"
+  },
+  {
+    "name": {
+      "en": "Canada",
+      "fr": "Canada"
+    },
+    "code": "CA",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ca.svg",
+    "prefix": "+1"
+  },
+  {
+    "name": {
+      "en": "Cayman Islands",
+      "fr": "Îles Caïmans"
+    },
+    "code": "KY",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ky.svg",
+    "prefix": "+1345"
+  },
+  {
+    "name": {
+      "en": "Central African Republic",
+      "fr": "République centrafricaine"
+    },
+    "code": "CF",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/cf.svg",
+    "prefix": "+236"
+  },
+  {
+    "name": {
+      "en": "Chad",
+      "fr": "Tchad"
+    },
+    "code": "TD",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/td.svg",
+    "prefix": "+235"
+  },
+  {
+    "name": {
+      "en": "Chile",
+      "fr": "Chili"
+    },
+    "code": "CL",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/cl.svg",
+    "prefix": "+56"
+  },
+  {
+    "name": {
+      "en": "China",
+      "fr": "Chine"
+    },
+    "code": "CN",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/cn.svg",
+    "prefix": "+86"
+  },
+  {
+    "name": {
+      "en": "Christmas Island",
+      "fr": "Île Christmas"
+    },
+    "code": "CX",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/cx.svg",
+    "prefix": "+61"
+  },
+  {
+    "name": {
+      "en": "Cocos (Keeling) Islands",
+      "fr": "Îles Cocos"
+    },
+    "code": "CC",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/cc.svg",
+    "prefix": "+61"
+  },
+  {
+    "name": {
+      "en": "Colombia",
+      "fr": "Colombie"
+    },
+    "code": "CO",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/co.svg",
+    "prefix": "+57"
+  },
+  {
+    "name": {
+      "en": "Comoros",
+      "fr": "Comores"
+    },
+    "code": "KM",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/km.svg",
+    "prefix": "+269"
+  },
+  {
+    "name": {
+      "en": "Congo",
+      "fr": "Congo"
+    },
+    "code": "CG",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/cg.svg",
+    "prefix": "+242"
+  },
+  {
+    "name": {
+      "en": "Congo (DRC)",
+      "fr": "Congo (République démocratique du)"
+    },
+    "code": "CD",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/cd.svg",
+    "prefix": "+243"
+  },
+  {
+    "name": {
+      "en": "Cook Islands",
+      "fr": "Îles Cook"
+    },
+    "code": "CK",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ck.svg",
+    "prefix": "+682"
+  },
+  {
+    "name": {
+      "en": "Costa Rica",
+      "fr": "Costa Rica"
+    },
+    "code": "CR",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/cr.svg",
+    "prefix": "+506"
+  },
+  {
+    "name": {
+      "en": "Croatia",
+      "fr": "Croatie"
+    },
+    "code": "HR",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/hr.svg",
+    "prefix": "+385"
+  },
+  {
+    "name": {
+      "en": "Cuba",
+      "fr": "Cuba"
+    },
+    "code": "CU",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/cu.svg",
+    "prefix": "+53"
+  },
+  {
+    "name": {
+      "en": "Curaçao",
+      "fr": "Curaçao"
+    },
+    "code": "CW",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/cw.svg",
+    "prefix": "+599"
+  },
+  {
+    "name": {
+      "en": "Cyprus",
+      "fr": "Chypre"
+    },
+    "code": "CY",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/cy.svg",
+    "prefix": "+357"
+  },
+  {
+    "name": {
+      "en": "Czechia",
+      "fr": "Tchéquie"
+    },
+    "code": "CZ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/cz.svg",
+    "prefix": "+420"
+  },
+  {
+    "name": {
+      "en": "Côte d’Ivoire",
+      "fr": "Côte d’Ivoire"
+    },
+    "code": "CI",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ci.svg",
+    "prefix": "+225"
+  },
+  {
+    "name": {
+      "en": "Denmark",
+      "fr": "Danemark"
+    },
+    "code": "DK",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/dk.svg",
+    "prefix": "+45"
+  },
+  {
+    "name": {
+      "en": "Djibouti",
+      "fr": "Djibouti"
+    },
+    "code": "DJ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/dj.svg",
+    "prefix": "+253"
+  },
+  {
+    "name": {
+      "en": "Dominica",
+      "fr": "Dominique"
+    },
+    "code": "DM",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/dm.svg",
+    "prefix": "+1767"
+  },
+  {
+    "name": {
+      "en": "Dominican Republic",
+      "fr": "République dominicaine"
+    },
+    "code": "DO",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/do.svg",
+    "prefix": "+1 809"
+  },
+  {
+    "name": {
+      "en": "Ecuador",
+      "fr": "Équateur"
+    },
+    "code": "EC",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ec.svg",
+    "prefix": "+593"
+  },
+  {
+    "name": {
+      "en": "Egypt",
+      "fr": "Égypte"
+    },
+    "code": "EG",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/eg.svg",
+    "prefix": "+20"
+  },
+  {
+    "name": {
+      "en": "El Salvador",
+      "fr": "Salvador"
+    },
+    "code": "SV",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/sv.svg",
+    "prefix": "+503"
+  },
+  {
+    "name": {
+      "en": "Equatorial Guinea",
+      "fr": "Guinée équatoriale"
+    },
+    "code": "GQ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gq.svg",
+    "prefix": "+240"
+  },
+  {
+    "name": {
+      "en": "Eritrea",
+      "fr": "Érythrée"
+    },
+    "code": "ER",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/er.svg",
+    "prefix": "+291"
+  },
+  {
+    "name": {
+      "en": "Estonia",
+      "fr": "Estonie"
+    },
+    "code": "EE",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ee.svg",
+    "prefix": "+372"
+  },
+  {
+    "name": {
+      "en": "Eswatini",
+      "fr": "Eswatini"
+    },
+    "code": "SZ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/sz.svg",
+    "prefix": "+268"
+  },
+  {
+    "name": {
+      "en": "Ethiopia",
+      "fr": "Éthiopie"
+    },
+    "code": "ET",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/et.svg",
+    "prefix": "+251"
+  },
+  {
+    "name": {
+      "en": "Falkland Islands",
+      "fr": "Îles Malouines"
+    },
+    "code": "FK",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/fk.svg",
+    "prefix": "+500"
+  },
+  {
+    "name": {
+      "en": "Faroe Islands",
+      "fr": "Îles Féroé"
+    },
+    "code": "FO",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/fo.svg",
+    "prefix": "+298"
+  },
+  {
+    "name": {
+      "en": "Fiji",
+      "fr": "Fidji"
+    },
+    "code": "FJ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/fj.svg",
+    "prefix": "+679"
+  },
+  {
+    "name": {
+      "en": "Finland",
+      "fr": "Finlande"
+    },
+    "code": "FI",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/fi.svg",
+    "prefix": "+358"
+  },
+  {
+    "name": {
+      "en": "France",
+      "fr": "France"
+    },
+    "code": "FR",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/fr.svg",
+    "prefix": "+33"
+  },
+  {
+    "name": {
+      "en": "French Guiana",
+      "fr": "Guyane française"
+    },
+    "code": "GF",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gf.svg",
+    "prefix": "+594"
+  },
+  {
+    "name": {
+      "en": "French Polynesia",
+      "fr": "Polynésie française"
+    },
+    "code": "PF",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/pf.svg",
+    "prefix": "+689"
+  },
+  {
+    "name": {
+      "en": "French Southern Territories",
+      "fr": "Terres australes françaises"
+    },
+    "code": "TF",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/tf.svg",
+    "prefix": "+262"
+  },
+  {
+    "name": {
+      "en": "Gabon",
+      "fr": "Gabon"
+    },
+    "code": "GA",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ga.svg",
+    "prefix": "+241"
+  },
+  {
+    "name": {
+      "en": "Gambia",
+      "fr": "Gambie"
+    },
+    "code": "GM",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gm.svg",
+    "prefix": "+220"
+  },
+  {
+    "name": {
+      "en": "Georgia",
+      "fr": "Géorgie"
+    },
+    "code": "GE",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ge.svg",
+    "prefix": "+995"
+  },
+  {
+    "name": {
+      "en": "Germany",
+      "fr": "Allemagne"
+    },
+    "code": "DE",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/de.svg",
+    "prefix": "+49"
+  },
+  {
+    "name": {
+      "en": "Ghana",
+      "fr": "Ghana"
+    },
+    "code": "GH",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gh.svg",
+    "prefix": "+233"
+  },
+  {
+    "name": {
+      "en": "Gibraltar",
+      "fr": "Gibraltar"
+    },
+    "code": "GI",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gi.svg",
+    "prefix": "+350"
+  },
+  {
+    "name": {
+      "en": "Greece",
+      "fr": "Grèce"
+    },
+    "code": "GR",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gr.svg",
+    "prefix": "+30"
+  },
+  {
+    "name": {
+      "en": "Greenland",
+      "fr": "Groenland"
+    },
+    "code": "GL",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gl.svg",
+    "prefix": "+299"
+  },
+  {
+    "name": {
+      "en": "Grenada",
+      "fr": "Grenade"
+    },
+    "code": "GD",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gd.svg",
+    "prefix": "+1473"
+  },
+  {
+    "name": {
+      "en": "Guadeloupe",
+      "fr": "Guadeloupe"
+    },
+    "code": "GP",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gp.svg",
+    "prefix": "+590"
+  },
+  {
+    "name": {
+      "en": "Guam",
+      "fr": "Guam"
+    },
+    "code": "GU",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gu.svg",
+    "prefix": "+1671"
+  },
+  {
+    "name": {
+      "en": "Guatemala",
+      "fr": "Guatemala"
+    },
+    "code": "GT",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gt.svg",
+    "prefix": "+502"
+  },
+  {
+    "name": {
+      "en": "Guernsey",
+      "fr": "Guernesey"
+    },
+    "code": "GG",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gg.svg",
+    "prefix": "+44"
+  },
+  {
+    "name": {
+      "en": "Guinea",
+      "fr": "Guinée"
+    },
+    "code": "GN",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gn.svg",
+    "prefix": "+224"
+  },
+  {
+    "name": {
+      "en": "Guinea-Bissau",
+      "fr": "Guinée-Bissau"
+    },
+    "code": "GW",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gw.svg",
+    "prefix": "+245"
+  },
+  {
+    "name": {
+      "en": "Guyana",
+      "fr": "Guyana"
+    },
+    "code": "GY",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gy.svg",
+    "prefix": "+592"
+  },
+  {
+    "name": {
+      "en": "Haiti",
+      "fr": "Haïti"
+    },
+    "code": "HT",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ht.svg",
+    "prefix": "+509"
+  },
+  {
+    "name": {
+      "en": "Heard & McDonald Islands",
+      "fr": "Îles Heard-et-MacDonald"
+    },
+    "code": "HM",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/hm.svg",
+    "prefix": "+672"
+  },
+  {
+    "name": {
+      "en": "Honduras",
+      "fr": "Honduras"
+    },
+    "code": "HN",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/hn.svg",
+    "prefix": "+504"
+  },
+  {
+    "name": {
+      "en": "Hong Kong SAR",
+      "fr": "R.A.S. chinoise de Hong Kong"
+    },
+    "code": "HK",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/hk.svg",
+    "prefix": "+852"
+  },
+  {
+    "name": {
+      "en": "Hungary",
+      "fr": "Hongrie"
+    },
+    "code": "HU",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/hu.svg",
+    "prefix": "+36"
+  },
+  {
+    "name": {
+      "en": "Iceland",
+      "fr": "Islande"
+    },
+    "code": "IS",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/is.svg",
+    "prefix": "+354"
+  },
+  {
+    "name": {
+      "en": "India",
+      "fr": "Inde"
+    },
+    "code": "IN",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/in.svg",
+    "prefix": "+91"
+  },
+  {
+    "name": {
+      "en": "Indonesia",
+      "fr": "Indonésie"
+    },
+    "code": "ID",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/id.svg",
+    "prefix": "+62"
+  },
+  {
+    "name": {
+      "en": "Iran",
+      "fr": "Iran"
+    },
+    "code": "IR",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ir.svg",
+    "prefix": "+98"
+  },
+  {
+    "name": {
+      "en": "Iraq",
+      "fr": "Irak"
+    },
+    "code": "IQ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/iq.svg",
+    "prefix": "+964"
+  },
+  {
+    "name": {
+      "en": "Ireland",
+      "fr": "Irlande"
+    },
+    "code": "IE",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ie.svg",
+    "prefix": "+353"
+  },
+  {
+    "name": {
+      "en": "Isle of Man",
+      "fr": "Île de Man"
+    },
+    "code": "IM",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/im.svg",
+    "prefix": "+44"
+  },
+  {
+    "name": {
+      "en": "Israel",
+      "fr": "Israël"
+    },
+    "code": "IL",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/il.svg",
+    "prefix": "+972"
+  },
+  {
+    "name": {
+      "en": "Italy",
+      "fr": "Italie"
+    },
+    "code": "IT",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/it.svg",
+    "prefix": "+39"
+  },
+  {
+    "name": {
+      "en": "Jamaica",
+      "fr": "Jamaïque"
+    },
+    "code": "JM",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/jm.svg",
+    "prefix": "+1 876"
+  },
+  {
+    "name": {
+      "en": "Japan",
+      "fr": "Japon"
+    },
+    "code": "JP",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/jp.svg",
+    "prefix": "+81"
+  },
+  {
+    "name": {
+      "en": "Jersey",
+      "fr": "Jersey"
+    },
+    "code": "JE",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/je.svg",
+    "prefix": "+44"
+  },
+  {
+    "name": {
+      "en": "Jordan",
+      "fr": "Jordanie"
+    },
+    "code": "JO",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/jo.svg",
+    "prefix": "+962"
+  },
+  {
+    "name": {
+      "en": "Kazakhstan",
+      "fr": "Kazakhstan"
+    },
+    "code": "KZ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/kz.svg",
+    "prefix": "+7"
+  },
+  {
+    "name": {
+      "en": "Kenya",
+      "fr": "Kenya"
+    },
+    "code": "KE",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ke.svg",
+    "prefix": "+254"
+  },
+  {
+    "name": {
+      "en": "Kiribati",
+      "fr": "Kiribati"
+    },
+    "code": "KI",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ki.svg",
+    "prefix": "+686"
+  },
+  {
+    "name": {
+      "en": "Kosovo",
+      "fr": "Kosovo"
+    },
+    "code": "XK",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/xk.svg",
+    "prefix": "+383"
+  },
+  {
+    "name": {
+      "en": "Kuwait",
+      "fr": "Koweït"
+    },
+    "code": "KW",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/kw.svg",
+    "prefix": "+965"
+  },
+  {
+    "name": {
+      "en": "Kyrgyzstan",
+      "fr": "Kirghizstan"
+    },
+    "code": "KG",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/kg.svg",
+    "prefix": "+996"
+  },
+  {
+    "name": {
+      "en": "Laos",
+      "fr": "Laos"
+    },
+    "code": "LA",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/la.svg",
+    "prefix": "+856"
+  },
+  {
+    "name": {
+      "en": "Latvia",
+      "fr": "Lettonie"
+    },
+    "code": "LV",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/lv.svg",
+    "prefix": "+371"
+  },
+  {
+    "name": {
+      "en": "Lebanon",
+      "fr": "Liban"
+    },
+    "code": "LB",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/lb.svg",
+    "prefix": "+961"
+  },
+  {
+    "name": {
+      "en": "Lesotho",
+      "fr": "Lesotho"
+    },
+    "code": "LS",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ls.svg",
+    "prefix": "+266"
+  },
+  {
+    "name": {
+      "en": "Liberia",
+      "fr": "Liberia"
+    },
+    "code": "LR",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/lr.svg",
+    "prefix": "+231"
+  },
+  {
+    "name": {
+      "en": "Libya",
+      "fr": "Libye"
+    },
+    "code": "LY",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ly.svg",
+    "prefix": "+218"
+  },
+  {
+    "name": {
+      "en": "Liechtenstein",
+      "fr": "Liechtenstein"
+    },
+    "code": "LI",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/li.svg",
+    "prefix": "+423"
+  },
+  {
+    "name": {
+      "en": "Lithuania",
+      "fr": "Lituanie"
+    },
+    "code": "LT",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/lt.svg",
+    "prefix": "+370"
+  },
+  {
+    "name": {
+      "en": "Luxembourg",
+      "fr": "Luxembourg"
+    },
+    "code": "LU",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/lu.svg",
+    "prefix": "+352"
+  },
+  {
+    "name": {
+      "en": "Macao SAR",
+      "fr": "R.A.S. chinoise de Macao"
+    },
+    "code": "MO",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/mo.svg",
+    "prefix": "+853"
+  },
+  {
+    "name": {
+      "en": "Madagascar",
+      "fr": "Madagascar"
+    },
+    "code": "MG",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/mg.svg",
+    "prefix": "+261"
+  },
+  {
+    "name": {
+      "en": "Malawi",
+      "fr": "Malawi"
+    },
+    "code": "MW",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/mw.svg",
+    "prefix": "+265"
+  },
+  {
+    "name": {
+      "en": "Malaysia",
+      "fr": "Malaisie"
+    },
+    "code": "MY",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/my.svg",
+    "prefix": "+60"
+  },
+  {
+    "name": {
+      "en": "Maldives",
+      "fr": "Maldives"
+    },
+    "code": "MV",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/mv.svg",
+    "prefix": "+960"
+  },
+  {
+    "name": {
+      "en": "Mali",
+      "fr": "Mali"
+    },
+    "code": "ML",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ml.svg",
+    "prefix": "+223"
+  },
+  {
+    "name": {
+      "en": "Malta",
+      "fr": "Malte"
+    },
+    "code": "MT",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/mt.svg",
+    "prefix": "+356"
+  },
+  {
+    "name": {
+      "en": "Marshall Islands",
+      "fr": "Îles Marshall"
+    },
+    "code": "MH",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/mh.svg",
+    "prefix": "+692"
+  },
+  {
+    "name": {
+      "en": "Martinique",
+      "fr": "Martinique"
+    },
+    "code": "MQ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/mq.svg",
+    "prefix": "+596"
+  },
+  {
+    "name": {
+      "en": "Mauritania",
+      "fr": "Mauritanie"
+    },
+    "code": "MR",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/mr.svg",
+    "prefix": "+222"
+  },
+  {
+    "name": {
+      "en": "Mauritius",
+      "fr": "Maurice"
+    },
+    "code": "MU",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/mu.svg",
+    "prefix": "+230"
+  },
+  {
+    "name": {
+      "en": "Mayotte",
+      "fr": "Mayotte"
+    },
+    "code": "YT",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/yt.svg",
+    "prefix": "+262"
+  },
+  {
+    "name": {
+      "en": "Mexico",
+      "fr": "Mexique"
+    },
+    "code": "MX",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/mx.svg",
+    "prefix": "+52"
+  },
+  {
+    "name": {
+      "en": "Micronesia",
+      "fr": "Micronésie"
+    },
+    "code": "FM",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/fm.svg",
+    "prefix": "+691"
+  },
+  {
+    "name": {
+      "en": "Moldova",
+      "fr": "Moldavie"
+    },
+    "code": "MD",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/md.svg",
+    "prefix": "+373"
+  },
+  {
+    "name": {
+      "en": "Monaco",
+      "fr": "Monaco"
+    },
+    "code": "MC",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/mc.svg",
+    "prefix": "+377"
+  },
+  {
+    "name": {
+      "en": "Mongolia",
+      "fr": "Mongolie"
+    },
+    "code": "MN",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/mn.svg",
+    "prefix": "+976"
+  },
+  {
+    "name": {
+      "en": "Montenegro",
+      "fr": "Monténégro"
+    },
+    "code": "ME",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/me.svg",
+    "prefix": "+382"
+  },
+  {
+    "name": {
+      "en": "Montserrat",
+      "fr": "Montserrat"
+    },
+    "code": "MS",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ms.svg",
+    "prefix": "+1 664"
+  },
+  {
+    "name": {
+      "en": "Morocco",
+      "fr": "Maroc"
+    },
+    "code": "MA",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ma.svg",
+    "prefix": "+212"
+  },
+  {
+    "name": {
+      "en": "Mozambique",
+      "fr": "Mozambique"
+    },
+    "code": "MZ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/mz.svg",
+    "prefix": "+258"
+  },
+  {
+    "name": {
+      "en": "Myanmar",
+      "fr": "Myanmar (Birmanie)"
+    },
+    "code": "MM",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/mm.svg",
+    "prefix": "+95"
+  },
+  {
+    "name": {
+      "en": "Namibia",
+      "fr": "Namibie"
+    },
+    "code": "NA",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/na.svg",
+    "prefix": "+264"
+  },
+  {
+    "name": {
+      "en": "Nauru",
+      "fr": "Nauru"
+    },
+    "code": "NR",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/nr.svg",
+    "prefix": "+674"
+  },
+  {
+    "name": {
+      "en": "Nepal",
+      "fr": "Népal"
+    },
+    "code": "NP",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/np.svg",
+    "prefix": "+977"
+  },
+  {
+    "name": {
+      "en": "Netherlands",
+      "fr": "Pays-Bas"
+    },
+    "code": "NL",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/nl.svg",
+    "prefix": "+31"
+  },
+  {
+    "name": {
+      "en": "New Caledonia",
+      "fr": "Nouvelle-Calédonie"
+    },
+    "code": "NC",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/nc.svg",
+    "prefix": "+687"
+  },
+  {
+    "name": {
+      "en": "New Zealand",
+      "fr": "Nouvelle-Zélande"
+    },
+    "code": "NZ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/nz.svg",
+    "prefix": "+64"
+  },
+  {
+    "name": {
+      "en": "Nicaragua",
+      "fr": "Nicaragua"
+    },
+    "code": "NI",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ni.svg",
+    "prefix": "+505"
+  },
+  {
+    "name": {
+      "en": "Niger",
+      "fr": "Niger"
+    },
+    "code": "NE",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ne.svg",
+    "prefix": "+227"
+  },
+  {
+    "name": {
+      "en": "Nigeria",
+      "fr": "Nigeria"
+    },
+    "code": "NG",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ng.svg",
+    "prefix": "+234"
+  },
+  {
+    "name": {
+      "en": "Niue",
+      "fr": "Niue"
+    },
+    "code": "NU",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/nu.svg",
+    "prefix": "+683"
+  },
+  {
+    "name": {
+      "en": "Norfolk Island",
+      "fr": "Île Norfolk"
+    },
+    "code": "NF",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/nf.svg",
+    "prefix": "+672"
+  },
+  {
+    "name": {
+      "en": "North Korea",
+      "fr": "Corée du Nord"
+    },
+    "code": "KP",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/kp.svg",
+    "prefix": "+850"
+  },
+  {
+    "name": {
+      "en": "Northern Mariana Islands",
+      "fr": "Îles Mariannes du Nord"
+    },
+    "code": "MP",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/mp.svg",
+    "prefix": "+1 670"
+  },
+  {
+    "name": {
+      "en": "Norway",
+      "fr": "Norvège"
+    },
+    "code": "NO",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/no.svg",
+    "prefix": "+47"
+  },
+  {
+    "name": {
+      "en": "Oman",
+      "fr": "Oman"
+    },
+    "code": "OM",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/om.svg",
+    "prefix": "+968"
+  },
+  {
+    "name": {
+      "en": "Pakistan",
+      "fr": "Pakistan"
+    },
+    "code": "PK",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/pk.svg",
+    "prefix": "+92"
+  },
+  {
+    "name": {
+      "en": "Palau",
+      "fr": "Palaos"
+    },
+    "code": "PW",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/pw.svg",
+    "prefix": "+680"
+  },
+  {
+    "name": {
+      "en": "Palestinian Authority",
+      "fr": "Autorité palestinienne"
+    },
+    "code": "PS",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ps.svg",
+    "prefix": "+970"
+  },
+  {
+    "name": {
+      "en": "Panama",
+      "fr": "Panama"
+    },
+    "code": "PA",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/pa.svg",
+    "prefix": "+507"
+  },
+  {
+    "name": {
+      "en": "Papua New Guinea",
+      "fr": "Papouasie-Nouvelle-Guinée"
+    },
+    "code": "PG",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/pg.svg",
+    "prefix": "+675"
+  },
+  {
+    "name": {
+      "en": "Paraguay",
+      "fr": "Paraguay"
+    },
+    "code": "PY",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/py.svg",
+    "prefix": "+595"
+  },
+  {
+    "name": {
+      "en": "Peru",
+      "fr": "Pérou"
+    },
+    "code": "PE",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/pe.svg",
+    "prefix": "+51"
+  },
+  {
+    "name": {
+      "en": "Philippines",
+      "fr": "Philippines"
+    },
+    "code": "PH",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ph.svg",
+    "prefix": "+63"
+  },
+  {
+    "name": {
+      "en": "Pitcairn Islands",
+      "fr": "Îles Pitcairn"
+    },
+    "code": "PN",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/pn.svg",
+    "prefix": "+64"
+  },
+  {
+    "name": {
+      "en": "Poland",
+      "fr": "Pologne"
+    },
+    "code": "PL",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/pl.svg",
+    "prefix": "+48"
+  },
+  {
+    "name": {
+      "en": "Portugal",
+      "fr": "Portugal"
+    },
+    "code": "PT",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/pt.svg",
+    "prefix": "+351"
+  },
+  {
+    "name": {
+      "en": "Puerto Rico",
+      "fr": "Porto Rico"
+    },
+    "code": "PR",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/pr.svg",
+    "prefix": "+1 787"
+  },
+  {
+    "name": {
+      "en": "Qatar",
+      "fr": "Qatar"
+    },
+    "code": "QA",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/qa.svg",
+    "prefix": "+974"
+  },
+  {
+    "name": {
+      "en": "Réunion",
+      "fr": "La Réunion"
+    },
+    "code": "RE",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/re.svg",
+    "prefix": "+262"
+  },
+  {
+    "name": {
+      "en": "Romania",
+      "fr": "Roumanie"
+    },
+    "code": "RO",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ro.svg",
+    "prefix": "+40"
+  },
+  {
+    "name": {
+      "en": "Russia",
+      "fr": "Russie"
+    },
+    "code": "RU",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ru.svg",
+    "prefix": "+7"
+  },
+  {
+    "name": {
+      "en": "Rwanda",
+      "fr": "Rwanda"
+    },
+    "code": "RW",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/rw.svg",
+    "prefix": "+250"
+  },
+  {
+    "name": {
+      "en": "St. Barthélemy",
+      "fr": "Saint-Barthélemy"
+    },
+    "code": "BL",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/bl.svg",
+    "prefix": "+590"
+  },
+  {
+    "name": {
+      "en": "St Helena, Ascension, Tristan da Cunha",
+      "fr": "Sainte-Hélène"
+    },
+    "code": "SH",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/sh.svg",
+    "prefix": "+290"
+  },
+  {
+    "name": {
+      "en": "St. Kitts & Nevis",
+      "fr": "Saint-Christophe-et-Niévès"
+    },
+    "code": "KN",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/kn.svg",
+    "prefix": "+1 869"
+  },
+  {
+    "name": {
+      "en": "St. Lucia",
+      "fr": "Sainte-Lucie"
+    },
+    "code": "LC",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/lc.svg",
+    "prefix": "+1 758"
+  },
+  {
+    "name": {
+      "en": "St. Martin",
+      "fr": "Saint-Martin"
+    },
+    "code": "MF",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/mf.svg",
+    "prefix": "+590"
+  },
+  {
+    "name": {
+      "en": "St. Pierre & Miquelon",
+      "fr": "Saint-Pierre-et-Miquelon"
+    },
+    "code": "PM",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/pm.svg",
+    "prefix": "+508"
+  },
+  {
+    "name": {
+      "en": "Samoa",
+      "fr": "Samoa"
+    },
+    "code": "WS",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ws.svg",
+    "prefix": "+685"
+  },
+  {
+    "name": {
+      "en": "San Marino",
+      "fr": "Saint-Marin"
+    },
+    "code": "SM",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/sm.svg",
+    "prefix": "+378"
+  },
+  {
+    "name": {
+      "en": "São Tomé & Príncipe",
+      "fr": "Sao Tomé-et-Principe"
+    },
+    "code": "ST",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/st.svg",
+    "prefix": "+239"
+  },
+  {
+    "name": {
+      "en": "Saudi Arabia",
+      "fr": "Arabie saoudite"
+    },
+    "code": "SA",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/sa.svg",
+    "prefix": "+966"
+  },
+  {
+    "name": {
+      "en": "Senegal",
+      "fr": "Sénégal"
+    },
+    "code": "SN",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/sn.svg",
+    "prefix": "+221"
+  },
+  {
+    "name": {
+      "en": "Serbia",
+      "fr": "Serbie"
+    },
+    "code": "RS",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/rs.svg",
+    "prefix": "+381"
+  },
+  {
+    "name": {
+      "en": "Seychelles",
+      "fr": "Seychelles"
+    },
+    "code": "SC",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/sc.svg",
+    "prefix": "+248"
+  },
+  {
+    "name": {
+      "en": "Sierra Leone",
+      "fr": "Sierra Leone"
+    },
+    "code": "SL",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/sl.svg",
+    "prefix": "+232"
+  },
+  {
+    "name": {
+      "en": "Singapore",
+      "fr": "Singapour"
+    },
+    "code": "SG",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/sg.svg",
+    "prefix": "+65"
+  },
+  {
+    "name": {
+      "en": "Sint Maarten",
+      "fr": "Saint-Martin (partie néerlandaise)"
+    },
+    "code": "SX",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/sx.svg",
+    "prefix": "+1 721"
+  },
+  {
+    "name": {
+      "en": "Slovakia",
+      "fr": "Slovaquie"
+    },
+    "code": "SK",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/sk.svg",
+    "prefix": "+421"
+  },
+  {
+    "name": {
+      "en": "Slovenia",
+      "fr": "Slovénie"
+    },
+    "code": "SI",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/si.svg",
+    "prefix": "+386"
+  },
+  {
+    "name": {
+      "en": "Solomon Islands",
+      "fr": "Îles Salomon"
+    },
+    "code": "SB",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/sb.svg",
+    "prefix": "+677"
+  },
+  {
+    "name": {
+      "en": "Somalia",
+      "fr": "Somalie"
+    },
+    "code": "SO",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/so.svg",
+    "prefix": "+252"
+  },
+  {
+    "name": {
+      "en": "South Africa",
+      "fr": "Afrique du Sud"
+    },
+    "code": "ZA",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/za.svg",
+    "prefix": "+27"
+  },
+  {
+    "name": {
+      "en": "South Georgia & South Sandwich Islands",
+      "fr": "Géorgie du Sud-et-les Îles Sandwich du Sud"
+    },
+    "code": "GS",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gs.svg",
+    "prefix": "+500"
+  },
+  {
+    "name": {
+      "en": "Korea",
+      "fr": "Corée du Sud"
+    },
+    "code": "KR",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/kr.svg",
+    "prefix": "+82"
+  },
+  {
+    "name": {
+      "en": "South Sudan",
+      "fr": "Soudan du Sud"
+    },
+    "code": "SS",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ss.svg",
+    "prefix": "+211"
+  },
+  {
+    "name": {
+      "en": "Spain",
+      "fr": "Espagne"
+    },
+    "code": "ES",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/es.svg",
+    "prefix": "+34"
+  },
+  {
+    "name": {
+      "en": "Sri Lanka",
+      "fr": "Sri Lanka"
+    },
+    "code": "LK",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/lk.svg",
+    "prefix": "+94"
+  },
+  {
+    "name": {
+      "en": "Sudan",
+      "fr": "Soudan"
+    },
+    "code": "SD",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/sd.svg",
+    "prefix": "+249"
+  },
+  {
+    "name": {
+      "en": "Suriname",
+      "fr": "Suriname"
+    },
+    "code": "SR",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/sr.svg",
+    "prefix": "+597"
+  },
+  {
+    "name": {
+      "en": "Svalbard & Jan Mayen",
+      "fr": "Svalbard et Jan Mayen"
+    },
+    "code": "SJ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/sj.svg",
+    "prefix": "+47"
+  },
+  {
+    "name": {
+      "en": "Sweden",
+      "fr": "Suède"
+    },
+    "code": "SE",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/se.svg",
+    "prefix": "+46"
+  },
+  {
+    "name": {
+      "en": "Switzerland",
+      "fr": "Suisse"
+    },
+    "code": "CH",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ch.svg",
+    "prefix": "+41"
+  },
+  {
+    "name": {
+      "en": "Syria",
+      "fr": "Syrie"
+    },
+    "code": "SY",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/sy.svg",
+    "prefix": "+963"
+  },
+  {
+    "name": {
+      "en": "Taiwan",
+      "fr": "Taïwan"
+    },
+    "code": "TW",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/tw.svg",
+    "prefix": "+886"
+  },
+  {
+    "name": {
+      "en": "Tajikistan",
+      "fr": "Tadjikistan"
+    },
+    "code": "TJ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/tj.svg",
+    "prefix": "+992"
+  },
+  {
+    "name": {
+      "en": "Tanzania",
+      "fr": "Tanzanie"
+    },
+    "code": "TZ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/tz.svg",
+    "prefix": "+255"
+  },
+  {
+    "name": {
+      "en": "Thailand",
+      "fr": "Thaïlande"
+    },
+    "code": "TH",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/th.svg",
+    "prefix": "+66"
+  },
+  {
+    "name": {
+      "en": "Timor-Leste",
+      "fr": "Timor oriental"
+    },
+    "code": "TL",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/tl.svg",
+    "prefix": "+670"
+  },
+  {
+    "name": {
+      "en": "Togo",
+      "fr": "Togo"
+    },
+    "code": "TG",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/tg.svg",
+    "prefix": "+228"
+  },
+  {
+    "name": {
+      "en": "Tokelau",
+      "fr": "Tokelau"
+    },
+    "code": "TK",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/tk.svg",
+    "prefix": "+690"
+  },
+  {
+    "name": {
+      "en": "Tonga",
+      "fr": "Tonga"
+    },
+    "code": "TO",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/to.svg",
+    "prefix": "+676"
+  },
+  {
+    "name": {
+      "en": "Trinidad & Tobago",
+      "fr": "Trinité-et-Tobago"
+    },
+    "code": "TT",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/tt.svg",
+    "prefix": "+1 868"
+  },
+  {
+    "name": {
+      "en": "Tunisia",
+      "fr": "Tunisie"
+    },
+    "code": "TN",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/tn.svg",
+    "prefix": "+216"
+  },
+  {
+    "name": {
+      "en": "Türkiye",
+      "fr": "Turquie"
+    },
+    "code": "TR",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/tr.svg",
+    "prefix": "+90"
+  },
+  {
+    "name": {
+      "en": "Turkmenistan",
+      "fr": "Turkménistan"
+    },
+    "code": "TM",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/tm.svg",
+    "prefix": "+993"
+  },
+  {
+    "name": {
+      "en": "Turks & Caicos Islands",
+      "fr": "Îles Turques-et-Caïques"
+    },
+    "code": "TC",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/tc.svg",
+    "prefix": "+1 649"
+  },
+  {
+    "name": {
+      "en": "Tuvalu",
+      "fr": "Tuvalu"
+    },
+    "code": "TV",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/tv.svg",
+    "prefix": "+688"
+  },
+  {
+    "name": {
+      "en": "Uganda",
+      "fr": "Ouganda"
+    },
+    "code": "UG",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ug.svg",
+    "prefix": "+256"
+  },
+  {
+    "name": {
+      "en": "Ukraine",
+      "fr": "Ukraine"
+    },
+    "code": "UA",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ua.svg",
+    "prefix": "+380"
+  },
+  {
+    "name": {
+      "en": "United Arab Emirates",
+      "fr": "Émirats arabes unis"
+    },
+    "code": "AE",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ae.svg",
+    "prefix": "+971"
+  },
+  {
+    "name": {
+      "en": "United Kingdom",
+      "fr": "Royaume-Uni"
+    },
+    "code": "GB",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/gb.svg",
+    "prefix": "+44"
+  },
+  {
+    "name": {
+      "en": "United States",
+      "fr": "États-Unis"
+    },
+    "code": "US",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/us.svg",
+    "prefix": "+1"
+  },
+  {
+    "name": {
+      "en": "Uruguay",
+      "fr": "Uruguay"
+    },
+    "code": "UY",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/uy.svg",
+    "prefix": "+598"
+  },
+  {
+    "name": {
+      "en": "Uzbekistan",
+      "fr": "Ouzbékistan"
+    },
+    "code": "UZ",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/uz.svg",
+    "prefix": "+998"
+  },
+  {
+    "name": {
+      "en": "Vanuatu",
+      "fr": "Vanuatu"
+    },
+    "code": "VU",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/vu.svg",
+    "prefix": "+678"
+  },
+  {
+    "name": {
+      "en": "Vatican City",
+      "fr": "État de la Cité du Vatican"
+    },
+    "code": "VA",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/va.svg",
+    "prefix": "+379"
+  },
+  {
+    "name": {
+      "en": "Venezuela",
+      "fr": "Venezuela"
+    },
+    "code": "VE",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ve.svg",
+    "prefix": "+58"
+  },
+  {
+    "name": {
+      "en": "Vietnam",
+      "fr": "Viêt Nam"
+    },
+    "code": "VN",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/vn.svg",
+    "prefix": "+84"
+  },
+  {
+    "name": {
+      "en": "Wallis & Futuna",
+      "fr": "Wallis-et-Futuna"
+    },
+    "code": "WF",
+    "image": "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/wf.svg",
+    "prefix": "+681"
+  }
+]

@@ -41,7 +41,3 @@ export type ApiHandlerItem = {
   schema: z.ZodType<any>
   onSubmit: (state: any) => Promise<void>
 }
-
-export type User = {
-  token: string
-}

@@ -1,8 +1,15 @@
 import DefaultLayout from '@/components/layouts/default/DefaultLayout.vue'
+import { authOnly } from '@/middleware/auth'
+import { guestOnly } from '@/middleware/guest'
+import restore from '@/middleware/restore'
 import AdminPage from '@/views/AdminPage.vue'
+import CategoriesPage from '@/views/CategoriesPage.vue'
 import CategoryPage from '@/views/CategoryPage.vue'
 import HomePage from '@/views/HomePage.vue'
+import LoginPage from '@/views/LoginPage.vue'
 import ProductPage from '@/views/ProductPage.vue'
+import ProductsPage from '@/views/ProductsPage.vue'
+import RegisterPage from '@/views/RegisterPage.vue'
 import TestPage from '@/views/TestPage.vue'
 import { createRouter, createWebHistory } from '@ionic/vue-router'
 import { RouteRecordRaw } from 'vue-router'
@@ -16,6 +23,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     component: DefaultLayout,
+    beforeEnter: restore,
     children: [
       {
         path: 'home',
@@ -24,14 +32,33 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'admin',
         component: AdminPage,
+        beforeEnter: authOnly,
+      },
+      {
+        path: 'categories',
+        component: CategoriesPage,
       },
       {
         path: 'category/:id',
         component: CategoryPage,
       },
       {
+        path: 'products',
+        component: ProductsPage,
+      },
+      {
         path: 'product/:id',
         component: ProductPage,
+      },
+      {
+        path: 'register',
+        component: RegisterPage,
+        beforeEnter: guestOnly,
+      },
+      {
+        path: 'login',
+        component: LoginPage,
+        beforeEnter: guestOnly,
       },
     ],
   },
