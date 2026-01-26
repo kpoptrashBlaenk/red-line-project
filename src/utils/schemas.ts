@@ -199,9 +199,11 @@ export const emailSchema = () =>
       email: z.email(translation('error_required')),
       verify_password: z.string(translation('error_required')).min(1, translation('error_required')),
     })
-    .superRefine(async (data, ctx) => {
+    .superRefine(async ({ verify_password }, ctx) => {
+      if (ctx.issues.length > 0 && ctx.issues.some((issue) => !issue.path?.includes('verify_password'))) return
+
       const { verifyPassword } = useAuth()
-      const result = await verifyPassword(data.verify_password)
+      const result = await verifyPassword(verify_password)
 
       if (!result) {
         ctx.addIssue({
@@ -230,3 +232,49 @@ export const phoneState = reactive<Partial<PhoneSchema>>({
   prefix: undefined,
 })
 export type PhoneSchema = z.output<ReturnType<typeof phoneSchema>>
+
+/* Password */
+export const passwordSchema = () =>
+  z
+    .object({
+      password: z
+        .string(translation('error_required'))
+        .min(8, translation('error_password_min'))
+        .max(128, translation('error_password_max'))
+        .regex(/[A-Z]/, translation('error_password_uppercase'))
+        .regex(/[a-z]/, translation('error_password_lowercase'))
+        .regex(/[0-9]/, translation('error_password_number'))
+        .regex(/[!@#$%^&*(),.?":{}|<>]/, translation('error_password_special'))
+        .refine((val) => !/\s/.test(val), translation('error_password_no_spaces')),
+      confirm_password: z.string(translation('error_required')).min(1, translation('error_required')),
+      verify_password: z.string(translation('error_required')).min(1, translation('error_required')),
+    })
+    .superRefine(async ({ password, confirm_password, verify_password }, ctx) => {
+      if (confirm_password !== password) {
+        ctx.addIssue({
+          code: 'custom',
+          message: translation('error_password_confirm'),
+          path: ['confirm_password'],
+        })
+
+        return
+      }
+
+      const { verifyPassword } = useAuth()
+      const result = await verifyPassword(verify_password)
+
+      if (!result) {
+        ctx.addIssue({
+          code: 'custom',
+          message: translation('error_password_verify'),
+          path: ['verify_password'],
+        })
+      }
+    })
+
+export const passwordState = reactive<Partial<PasswordSchema>>({
+  password: undefined,
+  confirm_password: undefined,
+  verify_password: undefined,
+})
+export type PasswordSchema = z.output<ReturnType<typeof passwordSchema>>

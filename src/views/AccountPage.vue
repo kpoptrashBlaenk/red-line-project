@@ -41,15 +41,33 @@ import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useUser } from '@/composables/user'
 import { AccountGroup, AccountItem, FormField } from '@/types'
-import { emailSchema, emailState, nameSchema, nameState, phoneSchema, phoneState } from '@/utils/schemas'
+import {
+  emailSchema,
+  emailState,
+  nameSchema,
+  nameState,
+  passwordSchema,
+  passwordState,
+  phoneSchema,
+  phoneState,
+} from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonIcon, IonItem, IonList } from '@ionic/vue'
-import { callOutline, mailOutline, personOutline } from 'ionicons/icons'
+import { callOutline, lockClosedOutline, mailOutline, personOutline } from 'ionicons/icons'
 import { ref } from 'vue'
 import { ZodType } from 'zod'
 
 /* Constants */
-const { createNameFields, modifyName, createPhoneFields, modifyPhone, createEmailFields, modifyEmail } = useUser()
+const {
+  createNameFields,
+  modifyName,
+  createPhoneFields,
+  modifyPhone,
+  createEmailFields,
+  modifyEmail,
+  createPasswordFields,
+  modifyPassword,
+} = useUser()
 const groups: AccountGroup[] = [
   {
     header: translation('user_info'),
@@ -86,15 +104,15 @@ const groups: AccountGroup[] = [
         schema: emailSchema(),
         onSubmit: modifyEmail,
       },
-      //     {
-      //       label: translation('password'),
-      //       icon: lockClosedOutline,
-      //       type: 'item',
-      //       fields: createNameFields(),
-      //       state: any,
-      //       schema: any,
-      //       onSubmit: any,
-      //     },
+      {
+        label: translation('password'),
+        icon: lockClosedOutline,
+        type: 'item',
+        fields: createPasswordFields(),
+        state: passwordState,
+        schema: passwordSchema(),
+        onSubmit: modifyPassword,
+      },
     ],
   },
 ]

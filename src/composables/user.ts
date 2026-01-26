@@ -2,7 +2,7 @@ import { User } from '$/types'
 import { useUserStore } from '@/stores/user'
 import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
-import { EmailSchema, NameSchema, PhoneSchema } from '@/utils/schemas'
+import { EmailSchema, NameSchema, PasswordSchema, PhoneSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { checkmarkCircleOutline } from 'ionicons/icons'
 
@@ -112,6 +112,7 @@ export function useUser() {
         name: 'verify_password',
         label: translation('verify_password'),
         no_padding: true,
+        type: 'password',
       },
     ] as FormField[]
   }
@@ -141,5 +142,68 @@ export function useUser() {
     }
   }
 
-  return { createNameFields, modifyName, createPhoneFields, modifyPhone, createEmailFields, modifyEmail }
+  /**
+   * Create Password Form Fields
+   */
+  function createPasswordFields() {
+    return [
+      {
+        element: 'input',
+        name: 'password',
+        label: translation('password'),
+        no_padding: true,
+        type: 'password',
+      },
+      {
+        element: 'input',
+        name: 'confirm_password',
+        label: translation('confirm_password'),
+        no_padding: true,
+        type: 'password',
+      },
+      {
+        element: 'input',
+        name: 'verify_password',
+        label: translation('verify_password'),
+        no_padding: true,
+        type: 'password',
+      },
+    ] as FormField[]
+  }
+
+  /**
+   * Modify the password
+   *
+   * @param state The state that tracks the new values
+   */
+  async function modifyPassword(state: PasswordSchema) {
+    state
+    // modify name and return user
+
+    const user: User = {
+      id: 1,
+      first_name: 'Aldin',
+      last_name: 'Music',
+      email: 'email@email.com',
+      phone: '0101010101',
+      prefix: '+33',
+      token: 'ABSOLUTELY_HASHED_TOKEN',
+    }
+
+    if (user) {
+      userStore.setUser(user)
+      presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+    }
+  }
+
+  return {
+    createNameFields,
+    modifyName,
+    createPhoneFields,
+    modifyPhone,
+    createEmailFields,
+    modifyEmail,
+    createPasswordFields,
+    modifyPassword,
+  }
 }
