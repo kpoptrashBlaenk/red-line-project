@@ -105,12 +105,14 @@ export function useUser() {
         name: 'email',
         label: translation('email'),
         no_padding: true,
+        stacked: true,
       },
       {
         element: 'input',
         name: 'verify_password',
         label: translation('verify_password'),
         no_padding: true,
+        stacked: true,
         type: 'password',
       },
     ] as FormField[]
@@ -151,6 +153,7 @@ export function useUser() {
         name: 'password',
         label: translation('password'),
         no_padding: true,
+        stacked: true,
         type: 'password',
       },
       {
@@ -158,6 +161,7 @@ export function useUser() {
         name: 'confirm_password',
         label: translation('confirm_password'),
         no_padding: true,
+        stacked: true,
         type: 'password',
       },
       {
@@ -165,6 +169,7 @@ export function useUser() {
         name: 'verify_password',
         label: translation('verify_password'),
         no_padding: true,
+        stacked: true,
         type: 'password',
       },
     ] as FormField[]

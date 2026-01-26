@@ -3,30 +3,18 @@
     <HeroComponent :title="translation('account')" />
 
     <div class="wrap">
-      <!-- Admin Form Modal -->
+      <!-- Account Form Modal -->
       <FormModal ref="modal" :is-open="modalOpen" :fields :state :schema @submit="onSubmit" @did-dismiss="modalOpen = false" />
 
-      <!-- Admin Form Alert -->
+      <!-- Account Form Alert -->
       <FormAlert ref="alert" :is-open="alertOpen" @submit="onAlertSubmit" @did-dismiss="alertOpen = false" />
 
       <SeparatorComponent size="xs" />
 
-      <template v-for="(group, key) in groups" :key="key">
-        <div class="mx-2 mb-3 ps-2 text-xl font-bold border-b border-gray-400">
-          {{ group.header }}
-        </div>
+      <!-- Account List -->
+      <AccountList :on-modal-open="onModalOpen" />
 
-        <IonList class="mb-10! rounded-2xl border-2 border-primary p-0!">
-          <IonItem v-for="(item, key) in group.items" :key="key" color="primary" button @click="onModalOpen(item)">
-            <IonIcon :icon="item.icon" slot="start" class="me-5" />
-
-            <div class="flex h-18 items-center pt-1 text-2xl">
-              {{ item.label }}
-            </div>
-          </IonItem>
-        </IonList>
-      </template>
-
+      <!-- Account Delete -->
       <SolidButton
         :icon="alertCircleOutline"
         :label="translation('delete')"
@@ -48,86 +36,17 @@ import FormModal from '@/components/forms/FormModal.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
 import SolidButton from '@/components/ui/buttons/SolidButton.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
+import AccountList from '@/components/ui/items/AccountList.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useAuth } from '@/composables/auth'
-import { useUser } from '@/composables/user'
-import { AccountGroup, AccountItem, FormField } from '@/types'
-import {
-  emailSchema,
-  emailState,
-  nameSchema,
-  nameState,
-  passwordSchema,
-  passwordState,
-  phoneSchema,
-  phoneState,
-} from '@/utils/schemas'
+import { AccountItem, FormField } from '@/types'
 import translation from '@/utils/translation'
-import { IonIcon, IonItem, IonList } from '@ionic/vue'
-import { alertCircleOutline, callOutline, lockClosedOutline, mailOutline, personOutline } from 'ionicons/icons'
+import { alertCircleOutline } from 'ionicons/icons'
 import { ref } from 'vue'
 import { ZodType } from 'zod'
 
 /* Constants */
-const {
-  createNameFields,
-  modifyName,
-  createPhoneFields,
-  modifyPhone,
-  createEmailFields,
-  modifyEmail,
-  createPasswordFields,
-  modifyPassword,
-} = useUser()
 const { deleteUser } = useAuth()
-const groups: AccountGroup[] = [
-  {
-    header: translation('user_info'),
-    items: [
-      {
-        label: translation('name'),
-        icon: personOutline,
-        type: 'item',
-        fields: createNameFields(),
-        state: nameState,
-        schema: nameSchema(),
-        onSubmit: modifyName,
-      },
-      {
-        label: translation('phone'),
-        icon: callOutline,
-        type: 'item',
-        fields: createPhoneFields(),
-        state: phoneState,
-        schema: phoneSchema(),
-        onSubmit: modifyPhone,
-      },
-    ],
-  },
-  {
-    header: translation('authentication'),
-    items: [
-      {
-        label: translation('email'),
-        icon: mailOutline,
-        type: 'item',
-        fields: createEmailFields(),
-        state: emailState,
-        schema: emailSchema(),
-        onSubmit: modifyEmail,
-      },
-      {
-        label: translation('password'),
-        icon: lockClosedOutline,
-        type: 'item',
-        fields: createPasswordFields(),
-        state: passwordState,
-        schema: passwordSchema(),
-        onSubmit: modifyPassword,
-      },
-    ],
-  },
-]
 
 /* Refs */
 const modal = ref()
