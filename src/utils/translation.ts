@@ -18,6 +18,7 @@ const translationKeys = {
   alert_message: 'alert_message',
   all_services: 'all_services',
   already_account: 'already_account',
+  authentication: 'authentication',
 
   // B
   button_text: 'promotion_button',
@@ -142,6 +143,7 @@ const translationKeys = {
 
   // U
   upload: 'upload',
+  user_info: 'user_info',
 
   // Y
   yearly: 'yearly',
@@ -202,6 +204,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   already_account: {
     en: 'Already have an account?',
     fr: 'Vous avez déjà un compte?',
+  },
+  authentication: {
+    en: 'Authentication',
+    fr: 'Authentification',
   },
 
   // B
@@ -593,6 +599,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   upload: {
     en: 'Upload',
     fr: 'Upload',
+  },
+  user_info: {
+    en: 'User Information',
+    fr: 'Informations Utilisateur',
   },
 
   // Y
