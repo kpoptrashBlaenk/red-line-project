@@ -18,7 +18,13 @@
               (page.auth === 'auth' ? userStore.user : page.auth === 'guest' ? !userStore.user : true)
             "
             :key
-            :color="route.fullPath.startsWith(page.url) ? 'primary' : 'light'"
+            :color="
+              route.fullPath.startsWith(page.url) ||
+              (route.fullPath.includes('product') && page.url.includes('products')) ||
+              (route.fullPath.includes('category') && page.url.includes('categories'))
+                ? 'primary'
+                : 'light'
+            "
             button
             detail
             :data-cy="`${key}-menu-item`"

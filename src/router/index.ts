@@ -2,6 +2,7 @@ import DefaultLayout from '@/components/layouts/default/DefaultLayout.vue'
 import { authOnly } from '@/middleware/auth'
 import { guestOnly } from '@/middleware/guest'
 import restore from '@/middleware/restore'
+import AccountPage from '@/views/AccountPage.vue'
 import AdminPage from '@/views/AdminPage.vue'
 import CategoriesPage from '@/views/CategoriesPage.vue'
 import CategoryPage from '@/views/CategoryPage.vue'
@@ -32,6 +33,11 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'admin',
         component: AdminPage,
+        beforeEnter: authOnly,
+      },
+      {
+        path: 'account',
+        component: AccountPage,
         beforeEnter: authOnly,
       },
       {

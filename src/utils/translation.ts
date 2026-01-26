@@ -4,6 +4,8 @@ import { Language } from '@/types'
 import toTitle from './toTitle'
 
 const translationKeys = {
+  // A
+  account: 'account',
   add: 'add',
   admin: 'admin',
   admin_category_title: 'admin_category_title',
@@ -16,7 +18,11 @@ const translationKeys = {
   alert_message: 'alert_message',
   all_services: 'all_services',
   already_account: 'already_account',
+
+  // B
   button_text: 'promotion_button',
+
+  // C
   cancel: 'cancel',
   categories: 'categories',
   category: 'category',
@@ -24,6 +30,8 @@ const translationKeys = {
   characteristics: 'characteristics',
   contact: 'contact',
   confirm_password: 'confirm_password',
+
+  // D
   default: 'default',
   delete: 'delete',
   description: 'description',
@@ -33,6 +41,8 @@ const translationKeys = {
   details: 'details',
   disponible: 'disponible',
   disponible_only: 'disponible_only',
+
+  // E
   email: 'email',
   english: 'english',
 
@@ -47,17 +57,26 @@ const translationKeys = {
   error_password_uppercase: 'error_password_uppercase',
   error_required: 'error_required',
 
+  // F
   file_too_big: 'file_too_big',
   first_name: 'first_name',
   french: 'french',
   functionalities: 'functionalities',
+
+  // G
   general: 'general',
   general_conditions: 'general_conditions',
+
+  // H
   home: 'home',
   home_carousel_title: 'home_carousel_title',
   home_category_title: 'home_category_title',
   home_product_title: 'home_product_title',
+
+  // I
   image: 'image',
+
+  // L
   last_name: 'last_name',
   legal_mentions: 'legal_mentions',
   level: 'level',
@@ -65,15 +84,23 @@ const translationKeys = {
   login: 'login',
   login_info: 'login_info',
   logout: 'logout',
+
+  // M
   menu: 'menu',
   monthly: 'monthly',
+
+  // N
   name: 'name',
   new: 'new',
   no_account: 'no_account',
   no_file: 'no_file',
   not_an_image: 'not_an_image',
   not_disponible: 'not_disponible',
+
+  // O
   old: 'old',
+
+  // P
   pages: 'pages',
   password: 'password',
   per_user: 'per_user',
@@ -87,9 +114,13 @@ const translationKeys = {
   product_characteristics_title: 'product_characteristics_title',
   product_price_title: 'product_price_title',
   products: 'products',
+
+  // R
   register: 'register',
   register_info: 'register_info',
   register_now: 'register_now',
+
+  // S
   scalability: 'scalability',
   search_product: 'search_product',
   securities: 'securities',
@@ -98,6 +129,8 @@ const translationKeys = {
   submit: 'submit',
   subscribe_now: 'subscribe_now',
   subtitle: 'promotion_subtitle',
+
+  // T
   text: 'text',
   title: 'promotion_title',
   toast_added: 'toast_added',
@@ -106,13 +139,22 @@ const translationKeys = {
   toast_reordered: 'toast_reordered',
   top: 'top',
   type: 'type',
+
+  // U
   upload: 'upload',
+
+  // Y
   yearly: 'yearly',
 }
 
 export type TranslationKey = keyof typeof translationKeys
 
 const translations: Record<TranslationKey, Record<Language, string>> = {
+  // A
+  account: {
+    en: 'Account',
+    fr: 'Compte',
+  },
   add: {
     en: 'Add',
     fr: 'Ajouter',
@@ -161,10 +203,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Already have an account?',
     fr: 'Vous avez déjà un compte?',
   },
+
+  // B
   button_text: {
     en: 'Button text',
     fr: 'Texte du bouton',
   },
+
+  // C
   cancel: {
     en: 'Cancel',
     fr: 'Annuler',
@@ -197,6 +243,8 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Delete',
     fr: 'Supprimer',
   },
+
+  // D
   default: {
     en: 'Default',
     fr: 'Par défaut',
@@ -229,6 +277,8 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Available Only',
     fr: 'Services disponibles',
   },
+
+  // E
   english: {
     en: 'English',
     fr: 'Anglais',
@@ -279,6 +329,7 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     fr: 'Veuillez remplir ce champ',
   },
 
+  // F
   file_too_big: {
     en: 'The selected file is too large',
     fr: 'Le fichier sélectionné est trop volumineux',
@@ -295,6 +346,8 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Functionalities',
     fr: 'Fonctionnalités',
   },
+
+  // G
   general: {
     en: 'General',
     fr: 'Général',
@@ -303,6 +356,8 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'General Conditions',
     fr: 'Conditions générales',
   },
+
+  // H
   home: {
     en: 'Home',
     fr: 'Accueil',
@@ -319,10 +374,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: `Check Out Our ${toTitle('Top Products')}`,
     fr: `Parcourez nos ${toTitle('Meilleurs Produits')}`,
   },
+
+  // I
   image: {
     en: 'Image',
     fr: 'Image',
   },
+
+  // L
   last_name: {
     en: 'Last Name',
     fr: 'Nom',
@@ -351,6 +410,8 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Logout',
     fr: 'Se déconnecter',
   },
+
+  // M
   menu: {
     en: 'Menu',
     fr: 'Menu',
@@ -359,6 +420,8 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Monthly',
     fr: 'Mensuel',
   },
+
+  // N
   name: {
     en: 'Name',
     fr: 'Nom',
@@ -383,10 +446,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Not available',
     fr: 'Non disponible',
   },
+
+  // O
   old: {
     en: 'Oldest',
     fr: 'Nouveauté : ancien',
   },
+
+  // P
   pages: {
     en: 'Pages',
     fr: 'Pages',
@@ -439,6 +506,8 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Products',
     fr: 'Produits',
   },
+
+  // R
   register: {
     en: 'Register',
     fr: "S'inscrire",
@@ -451,6 +520,8 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Register now!',
     fr: 'Inscrivez vous maintenant!',
   },
+
+  // S
   scalability: {
     en: 'Scalability',
     fr: 'Scalabilité',
@@ -483,6 +554,8 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Sign in now!',
     fr: 'Connectez-vous maintenant!',
   },
+
+  // T
   text: {
     en: 'Text',
     fr: 'Texte',
@@ -515,10 +588,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Type',
     fr: 'Type',
   },
+
+  // U
   upload: {
     en: 'Upload',
     fr: 'Upload',
   },
+
+  // Y
   yearly: {
     en: 'Yearly',
     fr: 'Annuel',

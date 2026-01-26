@@ -8,6 +8,11 @@ const linearRoutes = [home, '/category', '/product', '/categories', '/products']
 export default function (route: RouteLocationNormalizedLoaded, router: Router, url: string, before?: () => void) {
   before?.()
 
+  // if going to home & already at home, do nothing
+  if (url.startsWith(home) && route.fullPath.startsWith(home)) {
+    return
+  }
+
   // if going to home & last route is home, go back
   if (url.startsWith(home) && getLastRoute()?.startsWith(home)) {
     router.back()
@@ -16,8 +21,8 @@ export default function (route: RouteLocationNormalizedLoaded, router: Router, u
 
   // if going to home & last route is not home, go back to first and replace with home
   if (url.startsWith(home)) {
-    router.options.history.go(-router.options.history.state.position! + 1)
-    router.replace(home)
+    router.options.history.go(-router.options.history.state.position!)
+    // router.replace(home)
     return
   }
 
