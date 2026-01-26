@@ -189,5 +189,11 @@ export function useAuth() {
     return true
   }
 
-  return { createRegisterFields, createLoginFields, register, login, restore, logout, verifyPassword }
+  async function deleteUser() {
+    logout()
+
+    // delete user from backend
+  }
+
+  return { createRegisterFields, createLoginFields, register, login, restore, logout, verifyPassword, deleteUser }
 }

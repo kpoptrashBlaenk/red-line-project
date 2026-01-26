@@ -1,5 +1,6 @@
 <template>
   <IonAlert
+    :is-open
     :header="translation('alert_header')"
     :message="translation('alert_message')"
     :buttons="[

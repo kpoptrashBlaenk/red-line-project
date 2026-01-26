@@ -11,7 +11,6 @@ import { checkmarkCircleOutline } from 'ionicons/icons'
  */
 export function useUser() {
   const userStore = useUserStore()
-
   /**
    * Create Names Form Fields
    */

@@ -7,7 +7,7 @@
       <FormModal ref="modal" :is-open="modalOpen" :fields :state :schema @submit="onSubmit" @did-dismiss="modalOpen = false" />
 
       <!-- Admin Form Alert -->
-      <FormAlert ref="alert" :is-open="alertOpen" @submit="onSubmit" @did-dismiss="alertOpen = false" />
+      <FormAlert ref="alert" :is-open="alertOpen" @submit="onAlertSubmit" @did-dismiss="alertOpen = false" />
 
       <SeparatorComponent size="xs" />
 
@@ -27,6 +27,15 @@
         </IonList>
       </template>
 
+      <SolidButton
+        :icon="alertCircleOutline"
+        :label="translation('delete')"
+        color="danger"
+        size="large"
+        expand="block"
+        @click="alertOpen = true"
+      />
+
       <SeparatorComponent size="sm" />
     </div>
   </DefaultContentLayout>
@@ -37,8 +46,10 @@
 import FormAlert from '@/components/forms/FormAlert.vue'
 import FormModal from '@/components/forms/FormModal.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
+import SolidButton from '@/components/ui/buttons/SolidButton.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
+import { useAuth } from '@/composables/auth'
 import { useUser } from '@/composables/user'
 import { AccountGroup, AccountItem, FormField } from '@/types'
 import {
@@ -53,7 +64,7 @@ import {
 } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonIcon, IonItem, IonList } from '@ionic/vue'
-import { callOutline, lockClosedOutline, mailOutline, personOutline } from 'ionicons/icons'
+import { alertCircleOutline, callOutline, lockClosedOutline, mailOutline, personOutline } from 'ionicons/icons'
 import { ref } from 'vue'
 import { ZodType } from 'zod'
 
@@ -68,6 +79,7 @@ const {
   createPasswordFields,
   modifyPassword,
 } = useUser()
+const { deleteUser } = useAuth()
 const groups: AccountGroup[] = [
   {
     header: translation('user_info'),
@@ -119,13 +131,16 @@ const groups: AccountGroup[] = [
 
 /* Refs */
 const modal = ref()
-const alert = ref()
 const modalOpen = ref<boolean>(false)
 const alertOpen = ref<boolean>(false)
 const fields = ref<FormField[]>([])
 const state = ref<any>({})
 const schema = ref<ZodType<any>>()
 const onSubmit = ref<(state?: any) => Promise<void>>(async () => {})
+const onAlertSubmit = ref<() => Promise<void>>(async () => {
+  await deleteUser()
+  location.reload()
+})
 
 /* Functions */
 async function onModalOpen(item: AccountItem) {
