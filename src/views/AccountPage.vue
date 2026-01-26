@@ -39,6 +39,7 @@ import HeroComponent from '@/components/ui/HeroComponent.vue'
 import AccountList from '@/components/ui/items/AccountList.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useAuth } from '@/composables/auth'
+import { useUserStore } from '@/stores/user'
 import { AccountItem, FormField } from '@/types'
 import translation from '@/utils/translation'
 import { alertCircleOutline } from 'ionicons/icons'
@@ -47,6 +48,7 @@ import { ZodType } from 'zod'
 
 /* Constants */
 const { deleteUser } = useAuth()
+const userStore = useUserStore()
 
 /* Refs */
 const modal = ref()
@@ -64,7 +66,7 @@ const onAlertSubmit = ref<() => Promise<void>>(async () => {
 /* Functions */
 async function onModalOpen(item: AccountItem) {
   fields.value = item.fields
-  state.value = item.state
+  state.value = userStore.user
   schema.value = item.schema
   onSubmit.value = async (state: any) => {
     await item.onSubmit(state)
