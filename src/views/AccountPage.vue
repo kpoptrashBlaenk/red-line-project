@@ -41,15 +41,15 @@ import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useUser } from '@/composables/user'
 import { AccountGroup, AccountItem, FormField } from '@/types'
-import { nameSchema, nameState } from '@/utils/schemas'
+import { emailSchema, emailState, nameSchema, nameState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonIcon, IonItem, IonList } from '@ionic/vue'
-import { personOutline } from 'ionicons/icons'
+import { mailOutline, personOutline } from 'ionicons/icons'
 import { ref } from 'vue'
 import z from 'zod'
 
 /* Constants */
-const { createNameFields, modifyName } = useUser()
+const { createNameFields, modifyName, createEmailFields, modifyEmail } = useUser()
 const groups: AccountGroup[] = [
   {
     header: translation('user_info'),
@@ -67,36 +67,36 @@ const groups: AccountGroup[] = [
       //   label: translation('phone'),
       //   icon: callOutline,
       //   type: 'item',
-      //   fields: createNameFields(),
-      //   state: any,
-      //   schema: any,
-      //   onSubmit: any,
+      //   fields: createEmailFields(),
+      //   state: emailState,
+      //   schema: emailSchema(),
+      //   onSubmit: modifyEmail,
       // },
     ],
   },
-  // {
-  //   header: translation('authentication'),
-  //   items: [
-  //     {
-  //       label: translation('email'),
-  //       icon: mailOutline,
-  //       type: 'item',
-  //       fields: createNameFields(),
-  //       state: any,
-  //       schema: any,
-  //       onSubmit: any,
-  //     },
-  //     {
-  //       label: translation('password'),
-  //       icon: lockClosedOutline,
-  //       type: 'item',
-  //       fields: createNameFields(),
-  //       state: any,
-  //       schema: any,
-  //       onSubmit: any,
-  //     },
-  //   ],
-  // },
+  {
+    header: translation('authentication'),
+    items: [
+      {
+        label: translation('email'),
+        icon: mailOutline,
+        type: 'item',
+        fields: createEmailFields(),
+        state: emailState,
+        schema: emailSchema(),
+        onSubmit: modifyEmail,
+      },
+      //     {
+      //       label: translation('password'),
+      //       icon: lockClosedOutline,
+      //       type: 'item',
+      //       fields: createNameFields(),
+      //       state: any,
+      //       schema: any,
+      //       onSubmit: any,
+      //     },
+    ],
+  },
 ]
 
 /* Refs */

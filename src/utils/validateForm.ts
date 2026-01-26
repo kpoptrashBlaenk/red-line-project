@@ -1,5 +1,5 @@
 import { FormField } from '@/types'
-import z from 'zod'
+import { ZodType } from 'zod'
 
 /**
  * Validate a form.
@@ -13,8 +13,8 @@ import z from 'zod'
  * @param  schema - The Zod schema to validate against.
  * @returns  True if the form is valid; false if there are validation errors.
  */
-export function validateForm(fields: FormField[], state: Record<string, any>, schema: z.output<any>) {
-  const result = schema.safeParse(state)
+export async function validateForm(fields: FormField[], state: Record<string, any>, schema: ZodType<any>) {
+  const result = await schema.safeParseAsync(state)
 
   let valid = true
 

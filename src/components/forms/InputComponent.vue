@@ -38,8 +38,8 @@ const field = toRef(props, 'field')
 const state = toRef(props, 'state')
 
 /* Functions */
-function validate() {
-  const result = props.schema!.safeParse(state.value)
+async function validate() {
+  const result = await props.schema!.safeParseAsync(state.value)
 
   if (!result.success) {
     const issue = result.error.issues.find((issue) => issue.path[0] === field.value.name)

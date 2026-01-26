@@ -56,6 +56,7 @@ const translationKeys = {
   error_password_number: 'error_password_number',
   error_password_special: 'error_password_special',
   error_password_uppercase: 'error_password_uppercase',
+  error_password_verify: 'error_password_verify',
   error_required: 'error_required',
 
   // F
@@ -144,6 +145,9 @@ const translationKeys = {
   // U
   upload: 'upload',
   user_info: 'user_info',
+
+  // V
+  verify_password: 'verify_password',
 
   // Y
   yearly: 'yearly',
@@ -329,6 +333,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   error_password_uppercase: {
     en: 'Password must contain at least one uppercase letter',
     fr: 'Le mot de passe doit contenir au moins une lettre majuscule',
+  },
+  error_password_verify: {
+    en: 'Incorrect password',
+    fr: 'Mot de passe incorrect',
   },
   error_required: {
     en: 'Please fill out this field',
@@ -603,6 +611,12 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   user_info: {
     en: 'User Information',
     fr: 'Informations Utilisateur',
+  },
+
+  // V
+  verify_password: {
+    en: 'Verify Password',
+    fr: 'Vérifier le mot de passe',
   },
 
   // Y

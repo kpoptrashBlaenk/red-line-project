@@ -172,9 +172,22 @@ export function useAuth() {
     userStore.setUser(undefined)
   }
 
+  /**
+   * Remember the user session
+   */
   function rememberUser(token: string) {
     localStorage.setItem('token', token)
   }
 
-  return { createRegisterFields, createLoginFields, register, login, restore, logout }
+  /**
+   * Verify password
+   */
+  async function verifyPassword(password: string) {
+    password
+    // use user store email to verify if password is correct
+
+    return true
+  }
+
+  return { createRegisterFields, createLoginFields, register, login, restore, logout, verifyPassword }
 }

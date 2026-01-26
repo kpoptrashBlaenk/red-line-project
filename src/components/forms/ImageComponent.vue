@@ -122,7 +122,7 @@ async function openGallery() {
 async function validate() {
   await nextTick()
 
-  const result = props.schema!.safeParse(state.value)
+  const result = await props.schema!.safeParseAsync(state.value)
 
   if (!result.success) {
     const issue = result.error.issues.find((issue) => issue.path[0] === field.value.name)

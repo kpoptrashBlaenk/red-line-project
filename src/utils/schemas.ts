@@ -1,3 +1,4 @@
+import { useAuth } from '@/composables/auth'
 import { reactive } from 'vue'
 import z from 'zod'
 import translation from './translation'
@@ -190,3 +191,29 @@ export const nameState = reactive<Partial<NameSchema>>({
   last_name: undefined,
 })
 export type NameSchema = z.output<ReturnType<typeof nameSchema>>
+
+/* Email */
+export const emailSchema = () =>
+  z
+    .object({
+      email: z.email(translation('error_required')),
+      verify_password: z.string(translation('error_required')).min(1, translation('error_required')),
+    })
+    .superRefine(async (data, ctx) => {
+      const { verifyPassword } = useAuth()
+      const result = await verifyPassword(data.verify_password)
+
+      if (!result) {
+        ctx.addIssue({
+          code: 'custom',
+          message: translation('error_password_verify'),
+          path: ['verify_password'],
+        })
+      }
+    })
+
+export const emailState = reactive<Partial<EmailSchema>>({
+  email: undefined,
+  verify_password: undefined,
+})
+export type EmailSchema = z.output<ReturnType<typeof emailSchema>>
