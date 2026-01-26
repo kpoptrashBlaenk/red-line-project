@@ -1,5 +1,5 @@
 import type { PredefinedColors } from '@ionic/core/dist/types/interface'
-import z from 'zod'
+import { ZodType } from 'zod'
 import { FormField } from './form'
 
 /**
@@ -21,7 +21,7 @@ export type AccountItem = {
   type: string
   fields: FormField[]
   state: any
-  schema: z.ZodType<any>
+  schema: ZodType<any>
   onSubmit: (state?: any) => Promise<void>
 }
 

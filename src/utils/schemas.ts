@@ -217,3 +217,16 @@ export const emailState = reactive<Partial<EmailSchema>>({
   verify_password: undefined,
 })
 export type EmailSchema = z.output<ReturnType<typeof emailSchema>>
+
+/* Phone */
+export const phoneSchema = () =>
+  z.object({
+    phone: z.string(translation('error_required')).min(1, translation('error_required')),
+    prefix: z.string(translation('error_required')).min(1, translation('error_required')),
+  })
+
+export const phoneState = reactive<Partial<PhoneSchema>>({
+  phone: undefined,
+  prefix: undefined,
+})
+export type PhoneSchema = z.output<ReturnType<typeof phoneSchema>>

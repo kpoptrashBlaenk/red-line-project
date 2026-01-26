@@ -1,6 +1,6 @@
 import { AdminSectionKey } from '@/constants/adminPages'
 import { Ref } from 'vue'
-import z from 'zod'
+import { ZodType } from 'zod'
 import { FormField } from './form'
 
 /**
@@ -28,7 +28,7 @@ export type ContextItem<T> = {
     remove?: (id: number) => Promise<void>
   }
   defaultState: any
-  schema: z.ZodType<any>
+  schema: ZodType<any>
   ref: Ref<any, any>
 }
 
@@ -38,6 +38,6 @@ export type ContextItem<T> = {
 export type ApiHandlerItem = {
   fields: FormField[]
   state: Partial<unknown>
-  schema: z.ZodType<any>
+  schema: ZodType<any>
   onSubmit: (state: any) => Promise<void>
 }

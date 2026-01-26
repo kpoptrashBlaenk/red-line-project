@@ -1,9 +1,9 @@
 import { InputField, Props } from '@/types'
-import z from 'zod'
+import z, { ZodType } from 'zod'
 
 export default function (
   overrides = {},
-): Props<{ field: InputField; state: { test: number | undefined }; schema: z.ZodType<{ test: number }> }> {
+): Props<{ field: InputField; state: { test: number | undefined }; schema: ZodType<{ test: number }> }> {
   return {
     props: {
       field: {

@@ -1,9 +1,9 @@
 import { ImageField, Props } from '@/types'
-import z from 'zod'
+import z, { ZodType } from 'zod'
 
 export default function (
   overrides = {},
-): Props<{ field: ImageField; state: { test: string[] | [] }; schema: z.ZodType<{ test: string[] }> }> {
+): Props<{ field: ImageField; state: { test: string[] | [] }; schema: ZodType<{ test: string[] }> }> {
   return {
     props: {
       field: {

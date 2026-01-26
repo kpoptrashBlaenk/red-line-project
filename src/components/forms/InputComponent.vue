@@ -24,13 +24,13 @@
 import type { InputField } from '@/types'
 import { IonInput, IonInputPasswordToggle } from '@ionic/vue'
 import { toRef } from 'vue'
-import z from 'zod'
+import { ZodType } from 'zod'
 
 /* Props */
 const props = defineProps<{
   field: InputField
   state: Record<string, any>
-  schema: z.ZodType<any> | undefined
+  schema: ZodType<any> | undefined
 }>()
 
 /* Refs */

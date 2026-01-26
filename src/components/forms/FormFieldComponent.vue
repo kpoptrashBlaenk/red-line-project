@@ -53,7 +53,7 @@
 <script setup lang="ts">
 /* Imports */
 import type { FormField } from '@/types'
-import z from 'zod'
+import { ZodType } from 'zod'
 import DividerComponent from './DividerComponent.vue'
 import ImageComponent from './ImageComponent.vue'
 import InputComponent from './InputComponent.vue'
@@ -66,6 +66,6 @@ import ToggleComponent from './ToggleComponent.vue'
 defineProps<{
   field: FormField
   state: Record<string, any>
-  schema: z.ZodType<any> | undefined
+  schema: ZodType<any> | undefined
 }>()
 </script>

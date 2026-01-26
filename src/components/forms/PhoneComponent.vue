@@ -1,7 +1,7 @@
 <template>
-  <div class="grid grid-cols-[90px_1fr] items-start">
+  <div class="grid grid-cols-[110px_1fr] items-start">
     <IonItem button lines="none" class="mt-2 border-primary" @click="isOpen = true">
-      <div class="flex gap-2" v-if="selectedCode">
+      <div class="flex gap-2 pt-2 w-full justify-center" v-if="selectedCode">
         <img :src="selectedCode.image" class="h-5 w-5" />
         <div>{{ selectedCode.prefix }}</div>
       </div>
@@ -49,7 +49,7 @@ import type { CountryCode, PhoneField } from '@/types'
 import translation from '@/utils/translation'
 import { IonContent, IonInput, IonItem, IonList, IonPopover, IonSearchbar } from '@ionic/vue'
 import { computed, onMounted, ref, toRef } from 'vue'
-import z from 'zod'
+import { ZodType } from 'zod'
 
 /* Types */
 
@@ -57,7 +57,7 @@ import z from 'zod'
 const props = defineProps<{
   field: PhoneField
   state: Record<string, any>
-  schema: z.ZodType<any> | undefined
+  schema: ZodType<any> | undefined
 }>()
 
 /* Refs */
@@ -88,7 +88,7 @@ async function validate() {
   const result = await props.schema!.safeParseAsync(state.value)
 
   if (!result.success) {
-    const issue = result.error.issues.find((issue) => issue.path[0] === field.value.name)
+    const issue = result.error.issues.find((issue) => issue.path[0] === field.value.name || issue.path[0] === 'prefix')
     field.value.error = issue ? issue.message : ''
   } else {
     field.value.error = ''
@@ -110,6 +110,7 @@ function onSelect(prefix: string) {
   isOpen.value = false
 
   state.value.prefix = prefix
+  validate()
 }
 </script>
 

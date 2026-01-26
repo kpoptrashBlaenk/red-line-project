@@ -62,7 +62,7 @@ import {
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
-import z from 'zod'
+import { ZodType } from 'zod'
 
 /* Constants */
 const promotionComposable = usePromotion()
@@ -78,7 +78,7 @@ const modalOpen = ref<boolean>(false)
 const alertOpen = ref<boolean>(false)
 const fields = ref<FormField[]>([])
 const state = ref<any>({})
-const schema = ref<z.ZodType<any>>()
+const schema = ref<ZodType<any>>()
 const onSubmit = ref<(state?: any) => Promise<void>>(async () => {})
 
 /* Refs */

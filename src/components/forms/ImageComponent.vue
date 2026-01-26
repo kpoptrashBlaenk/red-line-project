@@ -45,14 +45,14 @@ import { FilePicker } from '@capawesome/capacitor-file-picker'
 import { IonButton, IonIcon, IonReorder, IonReorderGroup, ReorderEndCustomEvent } from '@ionic/vue'
 import { closeCircleOutline, cloudUploadOutline } from 'ionicons/icons'
 import { nextTick, ref, toRef, watch } from 'vue'
-import z from 'zod'
+import { ZodType } from 'zod'
 import SolidButton from '../ui/buttons/SolidButton.vue'
 
 /* Props */
 const props = defineProps<{
   field: ImageField
   state: Record<string, any>
-  schema: z.ZodType<any> | undefined
+  schema: ZodType<any> | undefined
 }>()
 
 /* Refs */

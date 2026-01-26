@@ -1,9 +1,9 @@
 import { Props, ToggleField } from '@/types'
-import z from 'zod'
+import z, { ZodType } from 'zod'
 
 export default function (
   overrides = {},
-): Props<{ field: ToggleField; state: { test: boolean }; schema: z.ZodType<{ test: boolean }> }> {
+): Props<{ field: ToggleField; state: { test: boolean }; schema: ZodType<{ test: boolean }> }> {
   return {
     props: {
       field: {

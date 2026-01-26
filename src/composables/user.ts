@@ -2,7 +2,7 @@ import { User } from '$/types'
 import { useUserStore } from '@/stores/user'
 import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
-import { EmailSchema, NameSchema } from '@/utils/schemas'
+import { EmailSchema, NameSchema, PhoneSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { checkmarkCircleOutline } from 'ionicons/icons'
 
@@ -40,6 +40,45 @@ export function useUser() {
   async function modifyName(state: NameSchema) {
     state
     // modify name and return user
+
+    const user: User = {
+      id: 1,
+      first_name: 'Aldin',
+      last_name: 'Music',
+      email: 'email@email.com',
+      phone: '0101010101',
+      prefix: '+33',
+      token: 'ABSOLUTELY_HASHED_TOKEN',
+    }
+
+    if (user) {
+      userStore.setUser(user)
+      presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+    }
+  }
+
+  /**
+   * Create Phone Form Fields
+   */
+  function createPhoneFields() {
+    return [
+      {
+        element: 'phone',
+        name: 'phone',
+        label: translation('phone'),
+        no_padding: true,
+      },
+    ] as FormField[]
+  }
+
+  /**
+   * Modify the names
+   *
+   * @param state The state that tracks the new values
+   */
+  async function modifyPhone(state: PhoneSchema) {
+    state
+    // modify phone and return user
 
     const user: User = {
       id: 1,
@@ -102,5 +141,5 @@ export function useUser() {
     }
   }
 
-  return { createNameFields, modifyName, createEmailFields, modifyEmail }
+  return { createNameFields, modifyName, createPhoneFields, modifyPhone, createEmailFields, modifyEmail }
 }

@@ -1,9 +1,9 @@
 import { Props, TextareaField } from '@/types'
-import z from 'zod'
+import z, { ZodType } from 'zod'
 
 export default function (
   overrides = {},
-): Props<{ field: TextareaField; state: { test: string | undefined }; schema: z.ZodType<{ test: string }> }> {
+): Props<{ field: TextareaField; state: { test: string | undefined }; schema: ZodType<{ test: string }> }> {
   return {
     props: {
       field: {

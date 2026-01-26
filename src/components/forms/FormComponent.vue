@@ -15,7 +15,7 @@ import FormFieldComponent from './FormFieldComponent.vue'
 const props = defineProps<{
   fields: FormField[]
   state: any
-  schema: ZodType<any>
+  schema: ZodType<any> | undefined
   onSubmit: (state: any) => Promise<void>
 }>()
 

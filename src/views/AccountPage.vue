@@ -41,15 +41,15 @@ import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useUser } from '@/composables/user'
 import { AccountGroup, AccountItem, FormField } from '@/types'
-import { emailSchema, emailState, nameSchema, nameState } from '@/utils/schemas'
+import { emailSchema, emailState, nameSchema, nameState, phoneSchema, phoneState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonIcon, IonItem, IonList } from '@ionic/vue'
-import { mailOutline, personOutline } from 'ionicons/icons'
+import { callOutline, mailOutline, personOutline } from 'ionicons/icons'
 import { ref } from 'vue'
-import z from 'zod'
+import { ZodType } from 'zod'
 
 /* Constants */
-const { createNameFields, modifyName, createEmailFields, modifyEmail } = useUser()
+const { createNameFields, modifyName, createPhoneFields, modifyPhone, createEmailFields, modifyEmail } = useUser()
 const groups: AccountGroup[] = [
   {
     header: translation('user_info'),
@@ -63,15 +63,15 @@ const groups: AccountGroup[] = [
         schema: nameSchema(),
         onSubmit: modifyName,
       },
-      // {
-      //   label: translation('phone'),
-      //   icon: callOutline,
-      //   type: 'item',
-      //   fields: createEmailFields(),
-      //   state: emailState,
-      //   schema: emailSchema(),
-      //   onSubmit: modifyEmail,
-      // },
+      {
+        label: translation('phone'),
+        icon: callOutline,
+        type: 'item',
+        fields: createPhoneFields(),
+        state: phoneState,
+        schema: phoneSchema(),
+        onSubmit: modifyPhone,
+      },
     ],
   },
   {
@@ -106,7 +106,7 @@ const modalOpen = ref<boolean>(false)
 const alertOpen = ref<boolean>(false)
 const fields = ref<FormField[]>([])
 const state = ref<any>({})
-const schema = ref<z.ZodType<any>>()
+const schema = ref<ZodType<any>>()
 const onSubmit = ref<(state?: any) => Promise<void>>(async () => {})
 
 /* Functions */

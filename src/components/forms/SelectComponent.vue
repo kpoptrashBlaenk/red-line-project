@@ -24,13 +24,13 @@ import type { SelectField } from '@/types'
 import translation from '@/utils/translation'
 import { IonSelect, IonSelectOption } from '@ionic/vue'
 import { toRef } from 'vue'
-import z from 'zod'
+import { ZodType } from 'zod'
 
 /* Props */
 const props = defineProps<{
   field: SelectField
   state: Record<string, any>
-  schema: z.ZodType<any> | undefined
+  schema: ZodType<any> | undefined
 }>()
 
 /* Refs */

@@ -30,7 +30,7 @@ import { FormField } from '@/types'
 import translation from '@/utils/translation'
 import { IonContent, IonFooter, IonHeader, IonModal, IonTitle, IonToolbar } from '@ionic/vue'
 import { ref } from 'vue'
-import z from 'zod'
+import { ZodType } from 'zod'
 import ClearButton from '../ui/buttons/ClearButton.vue'
 import FormComponent from './FormComponent.vue'
 
@@ -39,7 +39,7 @@ defineProps<{
   isOpen: boolean
   fields: FormField[]
   state: any
-  schema: z.ZodType<any> | undefined
+  schema: ZodType<any> | undefined
   onSubmit: (state: any) => Promise<void>
 }>()
 

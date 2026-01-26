@@ -24,13 +24,13 @@
 import type { ToggleField } from '@/types'
 import { IonToggle } from '@ionic/vue'
 import { toRef } from 'vue'
-import z from 'zod'
+import { ZodType } from 'zod'
 
 /* Props */
 const props = defineProps<{
   field: ToggleField
   state: Record<string, any>
-  schema: z.ZodType<any> | undefined
+  schema: ZodType<any> | undefined
 }>()
 
 /* Refs */
