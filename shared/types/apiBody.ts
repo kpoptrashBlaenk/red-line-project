@@ -1,8 +1,12 @@
 import {
   CategorySchema,
   CharacteristicSchema,
+  EmailSchema,
   HomeTextSchema,
   LoginSchema,
+  NameSchema,
+  PasswordSchema,
+  PhoneSchema,
   ProductSchema,
   PromotionSchema,
   RegisterSchema,
@@ -45,3 +49,28 @@ export type RegisterBody = RegisterSchema
  * Body for login api
  */
 export type LoginBody = LoginSchema
+
+/**
+ * Body for verify password api
+ */
+export type VerifyPasswordBody = { password: string }
+
+/**
+ * Body for name api
+ */
+export type NameBody = NameSchema
+
+/**
+ * Body for phone api
+ */
+export type PhoneBody = PhoneSchema
+
+/**
+ * Body for email api
+ */
+export type EmailBody = EmailSchema
+
+/**
+ * Body for password api
+ */
+export type PasswordBody = PasswordSchema

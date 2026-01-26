@@ -88,3 +88,8 @@ export type Social = {
   logo: string
   link: string
 }
+
+/**
+ * Password verification
+ */
+export type VerifyPassword = boolean

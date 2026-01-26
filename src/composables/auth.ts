@@ -1,4 +1,4 @@
-import { User } from '$/types'
+import { User, VerifyPassword } from '$/types'
 import { useUserStore } from '@/stores/user'
 import { FormField } from '@/types'
 import { LoginSchema, RegisterSchema } from '@/utils/schemas'
@@ -184,9 +184,9 @@ export function useAuth() {
    */
   async function verifyPassword(password: string) {
     password
-    // use user store email to verify if password is correct
+    // use token to verify if password is correct
 
-    return true
+    return true as VerifyPassword
   }
 
   async function deleteUser() {
