@@ -4,6 +4,8 @@
 export interface FormFieldWrapper {
   label: string
   name: string
+  no_padding?: boolean
+  stacked?: boolean
   error?: string
   touched?: boolean
 }
@@ -21,6 +23,7 @@ export interface DividerField {
  */
 export interface ImageField extends FormFieldWrapper {
   element: 'image'
+  multiple?: boolean
 }
 
 /**
@@ -28,6 +31,14 @@ export interface ImageField extends FormFieldWrapper {
  */
 export interface InputField extends FormFieldWrapper {
   element: 'input'
+  type?: 'number' | 'password'
+}
+
+/**
+ * Input Form Field
+ */
+export interface PhoneField extends FormFieldWrapper {
+  element: 'phone'
 }
 
 /**
@@ -38,6 +49,24 @@ export interface TextareaField extends FormFieldWrapper {
 }
 
 /**
+ * Toggle Form Field
+ */
+export interface ToggleField extends FormFieldWrapper {
+  element: 'toggle'
+}
+
+/**
+ * Select Form Field
+ */
+export interface SelectField extends FormFieldWrapper {
+  element: 'select'
+  items: any[]
+  itemValueKey: string
+  itemLabelKey: string
+  multiple: boolean
+}
+
+/**
  * Form Field
  */
-export type FormField = DividerField | ImageField | InputField | TextareaField
+export type FormField = DividerField | ImageField | InputField | TextareaField | ToggleField | SelectField | PhoneField

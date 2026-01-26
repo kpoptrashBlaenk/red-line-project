@@ -10,10 +10,10 @@ export type LanguageRecord = Record<Language, string>
  */
 export type Promotion = {
   id: number
-  image: string // image url
+  image: string[]
   title: LanguageRecord
   subtitle: LanguageRecord
-  button: LanguageRecord // button text
+  button: LanguageRecord
   link: string
   index: number
 }
@@ -31,9 +31,53 @@ export type HomeText = {
  */
 export type Category = {
   id: number
-  image: string
+  image: string[]
   name: LanguageRecord
+  description: LanguageRecord
   index: number
+}
+
+/**
+ * Products
+ */
+export type Product = {
+  id: number
+  category_id: number
+  created_at: string
+  image: string[]
+  name: LanguageRecord
+  top: boolean
+  priority: boolean
+  price: number
+  disponible: boolean
+  index: number
+
+  description_functionality: LanguageRecord
+  description_advantage: LanguageRecord
+  description_security: LanguageRecord
+
+  characteristics_performance_ids: number[]
+  characteristics_scalability_ids: number[]
+  characteristics_level_ids: number[]
+}
+
+/**
+ * Characteristics
+ */
+export type Characteristic = {
+  id: number
+  name: LanguageRecord
+  type: 'performance' | 'scalability' | 'level'
+}
+
+export type User = {
+  id: number
+  first_name: string
+  last_name: string
+  email: string
+  phone: string
+  prefix: string
+  token: string
 }
 
 /**
@@ -44,3 +88,8 @@ export type Social = {
   logo: string
   link: string
 }
+
+/**
+ * Password verification
+ */
+export type VerifyPassword = boolean

@@ -4,16 +4,17 @@
       <IonLabel class="font-semibold">{{ title }}</IonLabel>
     </IonItem>
 
-    <div class="p-5" slot="content">
+    <div slot="content">
       <IonList>
         <IonReorderGroup :disabled="false" @ionReorderEnd="onReorderEnd">
           <AdminReorderItem
             v-for="(item, key) in items"
             :key
             :item
-            :image-key
-            :text-key
-            :note-key
+            :last="key === items.length - 1"
+            :image
+            :text
+            :note
             :reorder
             :modify
             :remove
@@ -22,14 +23,16 @@
         </IonReorderGroup>
       </IonList>
 
-      <SolidButton
-        v-if="add"
-        :label="translation('add')"
-        color="success"
-        class="mt-2"
-        expand="block"
-        @click="$emit('open:modal-form', value, apiMethods.post)"
-      />
+      <div v-if="add" class="px-5 pb-5">
+        <SolidButton
+          :label="translate('add')"
+          color="success"
+          class="mt-2"
+          expand="block"
+          @click="$emit('open:modal-form', value, apiMethod.post)"
+          data-cy="admin-add-button"
+        />
+      </div>
     </div>
   </IonAccordion>
 </template>
@@ -48,15 +51,19 @@ const props = defineProps<{
   title: string
   value: AdminSectionKey
   items: any[]
-  textKey?: string
-  noteKey?: string
-  imageKey?: string
+  text?: (item: any) => string
+  note?: (item: any) => string
+  image?: (item: any) => string
   reorderCallback?: (items: any) => Promise<void>
   reorder?: boolean
   add?: boolean
   modify?: boolean
   remove?: boolean
 }>()
+
+/* Constants */ // because ts thinks these are supposed to be props
+const apiMethod = apiMethods
+const translate = translation
 
 /* Functions */
 function onReorderEnd(event: ReorderEndCustomEvent) {

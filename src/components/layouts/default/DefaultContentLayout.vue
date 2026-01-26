@@ -1,13 +1,15 @@
 <template>
   <IonPage>
-    <DefaultModalLayout />
+    <DefaultModalLayout :is-open="isOpenSearchModal" @close:search-modal="isOpenSearchModal = false" />
 
-    <DefaultHeaderLayout :is-scrolled />
+    <DefaultHeaderLayout :is-scrolled @open:search-modal="isOpenSearchModal = true" />
 
     <IonContent id="main-content" scroll-events @ion-scroll="handleScroll">
-      <slot></slot>
+      <div class="h-full flex flex-col">
+        <slot></slot>
 
-      <DefaultFooter v-if="isDesktop()" />
+        <DefaultFooter v-if="isDesktop()" class="mt-auto" />
+      </div>
     </IonContent>
   </IonPage>
 </template>
@@ -23,6 +25,7 @@ import DefaultModalLayout from './DefaultModalLayout.vue'
 
 /* Refs */
 const isScrolled = ref<boolean>(false)
+const isOpenSearchModal = ref<boolean>(false)
 
 /* Functions */
 function handleScroll(event: CustomEvent) {

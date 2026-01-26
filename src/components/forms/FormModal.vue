@@ -17,7 +17,7 @@
       <IonToolbar color="light">
         <div class="flex">
           <ClearButton :label="'Cancel'" color="dark" size="large" class="flex-1" @click="modal.$el.dismiss()" />
-          <ClearButton :label="'Submit'" color="dark" size="large" form="modal-form" class="flex-1" />
+          <ClearButton :label="'Submit'" color="dark" size="large" form="modal-form" class="flex-1" data-cy="form-modal-submit" />
         </div>
       </IonToolbar>
     </IonFooter>
@@ -30,7 +30,7 @@ import { FormField } from '@/types'
 import translation from '@/utils/translation'
 import { IonContent, IonFooter, IonHeader, IonModal, IonTitle, IonToolbar } from '@ionic/vue'
 import { ref } from 'vue'
-import z from 'zod'
+import { ZodType } from 'zod'
 import ClearButton from '../ui/buttons/ClearButton.vue'
 import FormComponent from './FormComponent.vue'
 
@@ -39,7 +39,7 @@ defineProps<{
   isOpen: boolean
   fields: FormField[]
   state: any
-  schema: z.ZodType<any> | undefined
+  schema: ZodType<any> | undefined
   onSubmit: (state: any) => Promise<void>
 }>()
 
@@ -51,7 +51,7 @@ const modal = ref()
 @media (min-width: 768px) {
   ion-modal {
     --border-radius: 25px;
-    --min-height: 610px;
+    --min-height: 750px;
     --min-width: 75%;
   }
 }

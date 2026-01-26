@@ -1,4 +1,3 @@
-/* @import url(./buttons.css); */
 @import 'tailwindcss';
 
 /* ---------- BREAKPOINTS ---------- */
@@ -154,4 +153,32 @@ ion-toast.toast-danger {
 
 .alert-button.ion-focusable {
   border-radius: 4px;
+}
+
+/* ---------- SCROLLBAR ---------- */
+/* ------------------------------- */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- BUTTONS ---------- */
+/* ----------------------------- */
+ion-button::part(native) {
+  white-space: nowrap !important;
+}
+
+/* ---------- INPUT ---------- */
+/* --------------------------- */
+input[type='password']::-ms-reveal,
+input[type='password']::-ms-clear {
+  display: none;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

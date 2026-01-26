@@ -1,3 +1,4 @@
+import { useAuth } from '@/composables/auth'
 import { reactive } from 'vue'
 import z from 'zod'
 import translation from './translation'
@@ -5,59 +6,275 @@ import translation from './translation'
 /* Promotion */
 export const promotionSchema = () =>
   z.object({
-    title_en: z.string().min(1, translation('error_required')),
-    title_fr: z.string().min(1, translation('error_required')),
+    title_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    title_fr: z.string(translation('error_required')).min(1, translation('error_required')),
 
-    subtitle_en: z.string().min(1, translation('error_required')),
-    subtitle_fr: z.string().min(1, translation('error_required')),
+    subtitle_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    subtitle_fr: z.string(translation('error_required')).min(1, translation('error_required')),
 
-    button_en: z.string().min(1, translation('error_required')),
-    button_fr: z.string().min(1, translation('error_required')),
+    button_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    button_fr: z.string(translation('error_required')).min(1, translation('error_required')),
 
-    link: z.string().min(1, translation('error_required')),
-    image: z.union([
-      z.string().min(1, translation('error_required')),
-      z.instanceof(File).refine(Boolean, translation('error_required')),
-    ]),
+    link: z.string(translation('error_required')).min(1, translation('error_required')),
+    image: z.array(z.union([z.instanceof(File), z.url()])).length(1, translation('error_required')),
   })
 export const promotionState = reactive<Partial<PromotionSchema>>({
-  title_en: '',
-  title_fr: '',
-  subtitle_en: '',
-  subtitle_fr: '',
-  button_en: '',
-  button_fr: '',
-  link: '',
-  image: '',
+  title_en: undefined,
+  title_fr: undefined,
+  subtitle_en: undefined,
+  subtitle_fr: undefined,
+  button_en: undefined,
+  button_fr: undefined,
+  link: undefined,
+  image: [],
 })
 export type PromotionSchema = z.output<ReturnType<typeof promotionSchema>>
 
 /* HomeText */
 export const homeTextSchema = () =>
   z.object({
-    text_en: z.string().min(1, translation('error_required')),
-    text_fr: z.string().min(1, translation('error_required')),
+    text_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    text_fr: z.string(translation('error_required')).min(1, translation('error_required')),
   })
 export const homeTextState = reactive<Partial<HomeTextSchema>>({
-  text_en: '',
-  text_fr: '',
+  text_en: undefined,
+  text_fr: undefined,
 })
 export type HomeTextSchema = z.output<ReturnType<typeof homeTextSchema>>
 
 /* Category */
 export const categorySchema = () =>
   z.object({
-    name_en: z.string().min(1, translation('error_required')),
-    name_fr: z.string().min(1, translation('error_required')),
+    name_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    name_fr: z.string(translation('error_required')).min(1, translation('error_required')),
 
-    image: z.union([
-      z.string().min(1, translation('error_required')),
-      z.instanceof(File).refine(Boolean, translation('error_required')),
-    ]),
+    description_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    description_fr: z.string(translation('error_required')).min(1, translation('error_required')),
+
+    image: z.array(z.union([z.instanceof(File), z.url()])).length(1, translation('error_required')),
   })
 export const categoryState = reactive<Partial<CategorySchema>>({
-  name_en: '',
-  name_fr: '',
-  image: '',
+  name_en: undefined,
+  name_fr: undefined,
+
+  description_en: undefined,
+  description_fr: undefined,
+  image: [],
 })
 export type CategorySchema = z.output<ReturnType<typeof categorySchema>>
+
+/* Product */
+export const productSchema = () =>
+  z.object({
+    category_id: z.number(translation('error_required')),
+    top: z.boolean(translation('error_required')),
+    priority: z.boolean(translation('error_required')),
+    price: z.number(translation('error_required')),
+    disponible: z.boolean(translation('error_required')),
+
+    name_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    name_fr: z.string(translation('error_required')).min(1, translation('error_required')),
+
+    description_functionality_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    description_functionality_fr: z.string(translation('error_required')).min(1, translation('error_required')),
+    description_advantage_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    description_advantage_fr: z.string(translation('error_required')).min(1, translation('error_required')),
+    description_security_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    description_security_fr: z.string(translation('error_required')).min(1, translation('error_required')),
+
+    characteristics_performance_ids: z.array(z.number().min(1, translation('error_required'))),
+    characteristics_scalability_ids: z.array(z.number().min(1, translation('error_required'))),
+    characteristics_level_ids: z.array(z.number().min(1, translation('error_required'))),
+
+    image: z.array(z.union([z.instanceof(File), z.url()])).min(1, translation('error_required')),
+  })
+export const productState = reactive<Partial<ProductSchema>>({
+  category_id: undefined,
+  top: false,
+  priority: false,
+  price: undefined,
+  disponible: false,
+
+  name_en: undefined,
+  name_fr: undefined,
+
+  description_functionality_en: undefined,
+  description_functionality_fr: undefined,
+  description_advantage_en: undefined,
+  description_advantage_fr: undefined,
+  description_security_en: undefined,
+  description_security_fr: undefined,
+
+  characteristics_performance_ids: [],
+  characteristics_scalability_ids: [],
+  characteristics_level_ids: [],
+
+  image: [],
+})
+export type ProductSchema = z.output<ReturnType<typeof productSchema>>
+
+/* Characteristics */
+export const characteristicSchema = () =>
+  z.object({
+    name_en: z.string(translation('error_required')).min(1, translation('error_required')),
+    name_fr: z.string(translation('error_required')).min(1, translation('error_required')),
+    type: z.enum(['performance', 'scalability', 'level'], translation('error_required')),
+  })
+export const characteristicsState = reactive<Partial<CharacteristicSchema>>({
+  name_en: undefined,
+  name_fr: undefined,
+  type: undefined,
+})
+export type CharacteristicSchema = z.output<ReturnType<typeof characteristicSchema>>
+
+/* Register */
+export const registerSchema = () =>
+  z
+    .object({
+      first_name: z.string(translation('error_required')).min(1, translation('error_required')),
+      last_name: z.string(translation('error_required')).min(1, translation('error_required')),
+      email: z.email(translation('error_required')),
+      password: z
+        .string(translation('error_required'))
+        .min(8, translation('error_password_min'))
+        .max(128, translation('error_password_max'))
+        .regex(/[A-Z]/, translation('error_password_uppercase'))
+        .regex(/[a-z]/, translation('error_password_lowercase'))
+        .regex(/[0-9]/, translation('error_password_number'))
+        .regex(/[!@#$%^&*(),.?":{}|<>]/, translation('error_password_special'))
+        .refine((val) => !/\s/.test(val), translation('error_password_no_spaces')),
+      confirm_password: z.string(translation('error_required')).min(1, translation('error_required')),
+      phone: z.string(translation('error_required')).min(1, translation('error_required')),
+      prefix: z.string(translation('error_required')).min(1, translation('error_required')),
+    })
+    .superRefine(({ confirm_password, password }, ctx) => {
+      if (confirm_password !== password) {
+        ctx.addIssue({
+          code: 'custom',
+          message: translation('error_password_confirm'),
+          path: ['confirm_password'],
+        })
+      }
+    })
+export const registerState = reactive<Partial<RegisterSchema>>({
+  first_name: undefined,
+  last_name: undefined,
+  email: undefined,
+  password: undefined,
+  confirm_password: undefined,
+  phone: undefined,
+  prefix: undefined,
+})
+export type RegisterSchema = z.output<ReturnType<typeof registerSchema>>
+
+/* Login */
+export const loginSchema = () =>
+  z.object({
+    email: z.string(translation('error_required')).min(1, translation('error_required')),
+    password: z.string(translation('error_required')).min(1, translation('error_required')),
+  })
+export const loginState = reactive<Partial<LoginSchema>>({
+  email: undefined,
+  password: undefined,
+})
+export type LoginSchema = z.output<ReturnType<typeof loginSchema>>
+
+/* Name */
+export const nameSchema = () =>
+  z.object({
+    first_name: z.string(translation('error_required')).min(1, translation('error_required')),
+    last_name: z.string(translation('error_required')).min(1, translation('error_required')),
+  })
+
+export const nameState = reactive<Partial<NameSchema>>({
+  first_name: undefined,
+  last_name: undefined,
+})
+export type NameSchema = z.output<ReturnType<typeof nameSchema>>
+
+/* Email */
+export const emailSchema = () =>
+  z
+    .object({
+      email: z.email(translation('error_required')),
+      verify_password: z.string(translation('error_required')).min(1, translation('error_required')),
+    })
+    .superRefine(async ({ verify_password }, ctx) => {
+      if (ctx.issues.length > 0 && ctx.issues.some((issue) => !issue.path?.includes('verify_password'))) return
+
+      const { verifyPassword } = useAuth()
+      const result = await verifyPassword(verify_password)
+
+      if (!result) {
+        ctx.addIssue({
+          code: 'custom',
+          message: translation('error_password_verify'),
+          path: ['verify_password'],
+        })
+      }
+    })
+
+export const emailState = reactive<Partial<EmailSchema>>({
+  email: undefined,
+  verify_password: undefined,
+})
+export type EmailSchema = z.output<ReturnType<typeof emailSchema>>
+
+/* Phone */
+export const phoneSchema = () =>
+  z.object({
+    phone: z.string(translation('error_required')).min(1, translation('error_required')),
+    prefix: z.string(translation('error_required')).min(1, translation('error_required')),
+  })
+
+export const phoneState = reactive<Partial<PhoneSchema>>({
+  phone: undefined,
+  prefix: undefined,
+})
+export type PhoneSchema = z.output<ReturnType<typeof phoneSchema>>
+
+/* Password */
+export const passwordSchema = () =>
+  z
+    .object({
+      password: z
+        .string(translation('error_required'))
+        .min(8, translation('error_password_min'))
+        .max(128, translation('error_password_max'))
+        .regex(/[A-Z]/, translation('error_password_uppercase'))
+        .regex(/[a-z]/, translation('error_password_lowercase'))
+        .regex(/[0-9]/, translation('error_password_number'))
+        .regex(/[!@#$%^&*(),.?":{}|<>]/, translation('error_password_special'))
+        .refine((val) => !/\s/.test(val), translation('error_password_no_spaces')),
+      confirm_password: z.string(translation('error_required')).min(1, translation('error_required')),
+      verify_password: z.string(translation('error_required')).min(1, translation('error_required')),
+    })
+    .superRefine(async ({ password, confirm_password, verify_password }, ctx) => {
+      if (confirm_password !== password) {
+        ctx.addIssue({
+          code: 'custom',
+          message: translation('error_password_confirm'),
+          path: ['confirm_password'],
+        })
+
+        return
+      }
+
+      const { verifyPassword } = useAuth()
+      const result = await verifyPassword(verify_password)
+
+      if (!result) {
+        ctx.addIssue({
+          code: 'custom',
+          message: translation('error_password_verify'),
+          path: ['verify_password'],
+        })
+      }
+    })
+
+export const passwordState = reactive<Partial<PasswordSchema>>({
+  password: undefined,
+  confirm_password: undefined,
+  verify_password: undefined,
+})
+export type PasswordSchema = z.output<ReturnType<typeof passwordSchema>>

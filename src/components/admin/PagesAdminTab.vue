@@ -16,9 +16,9 @@
         :title="item.title"
         :value="item.value"
         :items="item.itemsRef"
-        :image-key="item.imageKey"
-        :text-key="item.textKey"
-        :note-key="item.noteKey"
+        :image="item.image"
+        :text="item.text"
+        :note="item.note"
         :reorder="item.reorder"
         :add="item.add"
         :modify="item.modify"
@@ -34,27 +34,42 @@
 
 <script setup lang="ts">
 /* Imports */
-import { Category, HomeText, Promotion } from '$/types'
+import { Category, Characteristic, HomeText, Product, Promotion } from '$/types'
 import FormAlert from '@/components/forms/FormAlert.vue'
 import FormModal from '@/components/forms/FormModal.vue'
 import AdminAccordionItem from '@/components/ui/items/AdminAccordionItem.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useCategory } from '@/composables/category'
+import { useCharacteristic } from '@/composables/characteristic'
 import { useHomeText } from '@/composables/homeText'
+import { useProduct } from '@/composables/product'
 import { usePromotion } from '@/composables/promotion'
 import { AdminSectionKey } from '@/constants/adminPages'
 import { ApiMethod } from '@/constants/apiMethod'
 import { ApiHandlerItem, ContextItem, FormField } from '@/types'
-import { categorySchema, categoryState, homeTextSchema, homeTextState, promotionSchema, promotionState } from '@/utils/schemas'
+import {
+  categorySchema,
+  categoryState,
+  characteristicSchema,
+  characteristicsState,
+  homeTextSchema,
+  homeTextState,
+  productSchema,
+  productState,
+  promotionSchema,
+  promotionState,
+} from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
-import z from 'zod'
+import { ZodType } from 'zod'
 
 /* Constants */
 const promotionComposable = usePromotion()
 const homeTextComposable = useHomeText()
 const categoryComposable = useCategory()
+const productComposable = useProduct()
+const characteristicComposable = useCharacteristic()
 
 /* Form Refs */
 const modal = ref()
@@ -63,21 +78,28 @@ const modalOpen = ref<boolean>(false)
 const alertOpen = ref<boolean>(false)
 const fields = ref<FormField[]>([])
 const state = ref<any>({})
-const schema = ref<z.ZodType<any>>()
+const schema = ref<ZodType<any>>()
 const onSubmit = ref<(state?: any) => Promise<void>>(async () => {})
 
 /* Refs */
 const promotions = ref<Promotion[]>([])
 const homeText = ref<HomeText[]>([])
 const categories = ref<Category[]>([])
-const contextItemMap = ref<ContextItem>({
+const products = ref<Product[]>([])
+const characteristics = ref<Characteristic[]>([])
+const contextItemMap = ref<
+  Record<
+    AdminSectionKey,
+    ContextItem<Promotion> | ContextItem<Product> | ContextItem<HomeText> | ContextItem<Category> | ContextItem<Characteristic>
+  >
+>({
   promotion: {
     title: translation('admin_home_carousel_title'),
     value: 'promotion',
     itemsRef: promotions,
-    imageKey: 'image',
-    textKey: 'title',
-    noteKey: 'subtitle',
+    image: (item: Promotion) => item.image[0],
+    text: (item: Promotion) => translation(item.title),
+    note: (item: Promotion) => translation(item.subtitle),
     reorder: true,
     add: true,
     modify: true,
@@ -92,7 +114,7 @@ const contextItemMap = ref<ContextItem>({
     title: translation('admin_home_text_title'),
     value: 'homeText',
     itemsRef: homeText,
-    textKey: 'text',
+    text: (item: HomeText) => translation(item.text),
     modify: true,
     composable: homeTextComposable,
     schema: homeTextSchema(),
@@ -103,8 +125,9 @@ const contextItemMap = ref<ContextItem>({
     title: translation('admin_category_title'),
     value: 'category',
     itemsRef: categories,
-    imageKey: 'image',
-    textKey: 'name',
+    image: (item: Category) => item.image[0],
+    text: (item: Category) => translation(item.name),
+    note: (item: Category) => translation(item.description),
     reorder: true,
     add: true,
     modify: true,
@@ -115,6 +138,37 @@ const contextItemMap = ref<ContextItem>({
     defaultState: categoryState,
     ref: categories,
   },
+  product: {
+    title: translation('admin_product_title'),
+    value: 'product',
+    itemsRef: products,
+    image: (item: Product) => item.image[0],
+    text: (item: Product) => translation(item.name),
+    note: (item: Product) => `${translation(item.description_functionality)} (${item.price}€)`,
+    reorder: true,
+    add: true,
+    modify: true,
+    remove: true,
+    reorderCallback: productComposable.reorder,
+    composable: productComposable,
+    schema: productSchema(),
+    defaultState: productState,
+    ref: products,
+  },
+  characteristic: {
+    title: translation('admin_characteristic_title'),
+    value: 'characteristic',
+    itemsRef: characteristics,
+    text: (item: Characteristic) => translation(item.name),
+    note: (item: Characteristic) => translation(item.type),
+    add: true,
+    modify: true,
+    remove: true,
+    composable: characteristicComposable,
+    schema: characteristicSchema(),
+    defaultState: characteristicsState,
+    ref: characteristics,
+  },
 })
 
 /* Lifecycle Hooks */
@@ -122,15 +176,17 @@ onMounted(async () => {
   promotions.value = await promotionComposable.get()
   homeText.value = await homeTextComposable.get()
   categories.value = await categoryComposable.get()
+  products.value = await productComposable.get()
+  characteristics.value = await characteristicComposable.get()
 })
 
 /* Functions */
-function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: any) {
+async function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: any) {
   const contextItem = contextItemMap.value[context]
 
   const apiHandlerItem: ApiHandlerItem = {
     // create form fields
-    fields: contextItem.composable.createFields?.() ?? [],
+    fields: (await contextItem.composable.createFields?.()) ?? [],
     // flatten item if it exists (prepare for modify), if not then create new state
     state: item ? { ...contextItem.composable.flatten?.(item) } : { ...contextItem.defaultState },
     // validation schema
