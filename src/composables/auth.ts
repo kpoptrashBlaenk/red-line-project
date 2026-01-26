@@ -5,13 +5,13 @@ import { LoginSchema, RegisterSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
 
 /**
- * Use this composable to do category related queries
+ * Use this composable to do auth related queries
  */
 export function useAuth() {
   const userStore = useUserStore()
 
   /**
-   * Create Category Form Fields
+   * Create Auth Form Fields
    */
   function createRegisterFields() {
     return [

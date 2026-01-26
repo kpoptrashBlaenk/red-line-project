@@ -177,3 +177,16 @@ export const loginState = reactive<Partial<LoginSchema>>({
   password: undefined,
 })
 export type LoginSchema = z.output<ReturnType<typeof loginSchema>>
+
+/* Name */
+export const nameSchema = () =>
+  z.object({
+    first_name: z.string(translation('error_required')).min(1, translation('error_required')),
+    last_name: z.string(translation('error_required')).min(1, translation('error_required')),
+  })
+
+export const nameState = reactive<Partial<NameSchema>>({
+  first_name: undefined,
+  last_name: undefined,
+})
+export type NameSchema = z.output<ReturnType<typeof nameSchema>>
