@@ -24,7 +24,7 @@ import SolidButton from '@/components/ui/buttons/SolidButton.vue'
 import { FormField } from '@/types'
 import translation from '@/utils/translation'
 import { IonCard, IonCardContent } from '@ionic/vue'
-import z, { ZodType } from 'zod'
+import { ZodType } from 'zod'
 
 /* Props */
 defineProps<{
