@@ -1,8 +1,10 @@
 import { User, VerifyPassword } from '$/types'
 import { useUserStore } from '@/stores/user'
 import { FormField } from '@/types'
-import { LoginSchema, RegisterSchema } from '@/utils/schemas'
+import presentToast from '@/utils/presentToast'
+import { ForgotPasswordSchema, LoginSchema, RegisterSchema, ResetPasswordSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
+import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do auth related queries
@@ -189,11 +191,82 @@ export function useAuth() {
     return true as VerifyPassword
   }
 
+  /**
+   * Create Forgot Password Form Fields
+   */
+  function createForgotPasswordFields() {
+    return [
+      {
+        element: 'input',
+        name: 'email',
+        label: translation('email'),
+        no_padding: true,
+      },
+    ] as FormField[]
+  }
+
+  /**
+   * Forgot password
+   */
+  async function forgotPassword(state: ForgotPasswordSchema) {
+    state
+    // send email to password, if email doesnt exist, ignore
+
+    presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+  }
+
+  /**
+   * Create Reset Password Form Fields
+   */
+  function createResetPasswordFields() {
+    return [
+      {
+        element: 'input',
+        name: 'password',
+        label: translation('password'),
+        no_padding: true,
+        stacked: true,
+        type: 'password',
+      },
+      {
+        element: 'input',
+        name: 'confirm_password',
+        label: translation('confirm_password'),
+        no_padding: true,
+        stacked: true,
+        type: 'password',
+      },
+    ] as FormField[]
+  }
+
+  /**
+   * Reset password
+   */
+  async function resetPassword(state: ResetPasswordSchema) {
+    state
+    // send email to password, if email doesnt exist, ignore
+
+    presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+  }
+
   async function deleteUser() {
     logout()
 
     // delete user from backend
   }
 
-  return { createRegisterFields, createLoginFields, register, login, restore, logout, verifyPassword, deleteUser }
+  return {
+    createRegisterFields,
+    createLoginFields,
+    register,
+    login,
+    restore,
+    logout,
+    verifyPassword,
+    createForgotPasswordFields,
+    forgotPassword,
+    createResetPasswordFields,
+    resetPassword,
+    deleteUser,
+  }
 }

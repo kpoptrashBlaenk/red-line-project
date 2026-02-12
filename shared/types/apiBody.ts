@@ -3,6 +3,7 @@ import {
   CategorySchema,
   CharacteristicSchema,
   EmailSchema,
+  ForgotPasswordSchema,
   HomeTextSchema,
   LoginSchema,
   NameSchema,
@@ -11,6 +12,7 @@ import {
   ProductSchema,
   PromotionSchema,
   RegisterSchema,
+  ResetPasswordSchema,
 } from '@/utils/schemas'
 
 type Id = { id: number }
@@ -80,3 +82,13 @@ export type PasswordBody = PasswordSchema
  * Body for password api
  */
 export type AddressBody = AddressSchema
+
+/**
+ * Body for forgot password api
+ */
+export type ForgotPasswordBody = ForgotPasswordSchema
+
+/**
+ * Body for reset password api
+ */
+export type ResetPasswordBody = ResetPasswordSchema & { token: string }
