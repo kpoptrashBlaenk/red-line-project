@@ -8,7 +8,7 @@ import { FormField } from './form'
  */
 export type ContextItem<T> = {
   title: string
-  value: AdminSectionKey | 'address'
+  value: AdminSectionKey | 'address' | 'payment'
   itemsRef: Ref<any, any[]>
   image?: (item: T) => string | undefined
   text?: (item: T) => string

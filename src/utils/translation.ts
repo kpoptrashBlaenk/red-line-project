@@ -112,6 +112,7 @@ const translationKeys = {
   // P
   pages: 'pages',
   password: 'password',
+  payment_methods: 'payment_methods',
   per_user: 'per_user',
   per_device: 'per_device',
   performance: 'performance',
@@ -516,6 +517,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   password: {
     en: 'Password',
     fr: 'Mot de passe',
+  },
+  payment_methods: {
+    en: 'Payment Methods',
+    fr: 'Méthodes de paiement',
   },
   per_user: {
     en: 'Per User',
