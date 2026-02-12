@@ -10,7 +10,7 @@ export type ContextItem<T> = {
   title: string
   value: AdminSectionKey | 'address'
   itemsRef: Ref<any, any[]>
-  image?: (item: T) => string
+  image?: (item: T) => string | undefined
   text?: (item: T) => string
   note?: (item: T) => string
   reorder?: boolean

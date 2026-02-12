@@ -67,6 +67,7 @@ import { useAuth } from '@/composables/auth'
 import { ApiMethod } from '@/constants/apiMethod'
 import { useUserStore } from '@/stores/user'
 import { ApiHandlerItem, ContextItem, FormField } from '@/types'
+import placeholderImages from '@/utils/placeholderImages'
 import { addressSchema, addressState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
@@ -93,6 +94,7 @@ const contextItemMap = ref<Record<'address', ContextItem<Address>>>({
     title: translation('addresses'),
     value: 'address',
     itemsRef: addresses,
+    image: (item: Address) => (item.index === 0 ? placeholderImages(['Default'])[0] : undefined),
     text: (item: Address) => item.street_address,
     note: (item: Address) => item.locality,
     reorder: true,

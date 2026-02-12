@@ -52,7 +52,7 @@ const props = defineProps<{
   items: any[]
   text?: (item: any) => string
   note?: (item: any) => string
-  image?: (item: any) => string
+  image?: (item: any) => string | undefined
   reorderCallback?: (items: any) => Promise<void>
   reorder?: boolean
   add?: boolean
