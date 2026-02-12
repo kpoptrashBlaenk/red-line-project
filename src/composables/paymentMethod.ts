@@ -47,16 +47,14 @@ export function usePaymentMethod() {
       {
         id: 1,
         name: 'John Doe',
-        card_number: 4242424242424242,
+        last4: 4242,
         expiration: '12/28',
-        cvv: 123,
       },
       {
         id: 2,
         name: 'Marie Curie',
-        card_number: 5555555555554444,
+        last4: 4444,
         expiration: '07/27',
-        cvv: 456,
       },
     ]
 
@@ -72,20 +70,6 @@ export function usePaymentMethod() {
     state
 
     await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
-  }
-
-  /**
-   * Modify a payment method
-   *
-   * @param id The id of the record to modify
-   * @param state The state that tracks the new values
-   */
-  async function modify(id: number, state: PaymentMethodSchema) {
-    // api request
-    id
-    state
-
-    await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
   }
 
   /**
@@ -105,7 +89,6 @@ export function usePaymentMethod() {
     createFields,
     get,
     create,
-    modify,
     remove,
   }
 }

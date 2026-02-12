@@ -117,7 +117,6 @@ export type Address = {
 export type PaymentMethod = {
   id: number
   name: string
-  card_number: number
+  last4: number
   expiration: string
-  cvv: number
 }
