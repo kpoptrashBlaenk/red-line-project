@@ -95,7 +95,7 @@ export type Social = {
 export type VerifyPassword = boolean
 
 /**
- * Payment Address
+ * Payment address
  */
 export type Address = {
   id: number
@@ -112,7 +112,7 @@ export type Address = {
 }
 
 /**
- * Payment Address
+ * Payment method
  */
 export type PaymentMethod = {
   id: number

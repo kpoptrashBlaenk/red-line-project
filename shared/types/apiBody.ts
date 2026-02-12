@@ -14,33 +14,32 @@ import {
   RegisterSchema,
 } from '@/utils/schemas'
 
-type Id = { id?: number }
 type ImageString = { image: string[] }
 
 /**
  * Body for promotion api
  */
-export type PromotionBody = Omit<PromotionSchema, 'image'> & Id & ImageString
+export type PromotionBody = Omit<PromotionSchema, 'image'> & ImageString
 
 /**
  * Body for home text api
  */
-export type HomeTextBody = HomeTextSchema & Id
+export type HomeTextBody = HomeTextSchema
 
 /**
  * Body for category api
  */
-export type CategoryBody = Omit<CategorySchema, 'image'> & Id & ImageString
+export type CategoryBody = Omit<CategorySchema, 'image'> & ImageString
 
 /**
  * Body for product api
  */
-export type ProductBody = Omit<ProductSchema, 'image'> & Id & ImageString
+export type ProductBody = Omit<ProductSchema, 'image'> & ImageString
 
 /**
  * Body for characteristics api
  */
-export type CharacteristicBody = CharacteristicSchema & Id
+export type CharacteristicBody = CharacteristicSchema
 
 /**
  * Body for register api
@@ -80,9 +79,9 @@ export type PasswordBody = PasswordSchema
 /**
  * Body for address api
  */
-export type AddressBody = AddressSchema & Id
+export type AddressBody = AddressSchema
 
 /**
  * Body for payment method api
  */
-export type paymentMethodBody = PaymentMethodSchema & Id
+export type PaymentMethodBody = PaymentMethodSchema
