@@ -591,7 +591,6 @@ export function useProduct() {
    * @param state The state that tracks the new values
    */
   async function modify(id: number, state: ProductSchema) {
-    console.log(state)
     // api request
     id
     state

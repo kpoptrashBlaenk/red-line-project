@@ -69,7 +69,7 @@ export const productSchema = () =>
     category_id: z.number(translation('error_required')),
     top: z.boolean(translation('error_required')),
     priority: z.boolean(translation('error_required')),
-    price: z.number(translation('error_required')),
+    price: z.coerce.number(translation('error_required')).min(1, translation('error_required')),
     disponible: z.boolean(translation('error_required')),
 
     name_en: z.string(translation('error_required')).min(1, translation('error_required')),
@@ -287,7 +287,7 @@ export const addressSchema = () =>
     street_address: z.string(translation('error_required')).min(1, translation('error_required')),
     extended_address: z.string(translation('error_required')).optional(),
     locality: z.string(translation('error_required')).min(1, translation('error_required')),
-    postal_code: z.number(translation('error_required')).min(1, translation('error_required')),
+    postal_code: z.coerce.number(translation('error_required')).min(1, translation('error_required')),
     country_code: z.string(translation('error_required')).min(1, translation('error_required')),
   })
 

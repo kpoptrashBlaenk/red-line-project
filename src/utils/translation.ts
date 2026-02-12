@@ -105,6 +105,7 @@ const translationKeys = {
 
   // O
   old: 'old',
+  optional: 'optional',
 
   // P
   pages: 'pages',
@@ -486,6 +487,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   old: {
     en: 'Oldest',
     fr: 'Nouveauté : ancien',
+  },
+  optional: {
+    en: 'optional',
+    fr: 'optionnel',
   },
 
   // P

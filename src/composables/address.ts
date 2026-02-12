@@ -32,7 +32,7 @@ export function useAddress() {
       {
         element: 'input',
         name: 'extended_address',
-        label: translation('extended_address'),
+        label: `${translation('extended_address')} (${translation('optional')})`,
       },
       {
         element: 'input',
@@ -43,6 +43,7 @@ export function useAddress() {
         element: 'input',
         name: 'postal_code',
         label: translation('postal_code'),
+        type: 'number',
       },
       {
         element: 'input',
