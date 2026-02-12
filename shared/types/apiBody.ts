@@ -13,7 +13,7 @@ import {
   RegisterSchema,
 } from '@/utils/schemas'
 
-type Id = { id: number }
+type Id = { id?: number }
 type ImageString = { image: string[] }
 
 /**
@@ -79,4 +79,4 @@ export type PasswordBody = PasswordSchema
 /**
  * Body for password api
  */
-export type AddressBody = AddressSchema
+export type AddressBody = AddressSchema & Id
