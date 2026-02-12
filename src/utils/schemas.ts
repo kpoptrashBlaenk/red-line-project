@@ -325,12 +325,14 @@ export type AddressSchema = z.output<ReturnType<typeof addressSchema>>
 export const paymentMethodSchema = () =>
   z.object({
     name: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
+    card_number: z.coerce.number(ERROR.error_required()).min(1, ERROR.error_required()),
     expiration: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
     cvv: z.coerce.number(ERROR.error_required()).min(1, ERROR.error_required()),
   })
 
 export const paymentMethodState = reactive<Partial<PaymentMethodSchema>>({
   name: undefined,
+  card_number: undefined,
   expiration: undefined,
   cvv: undefined,
 })
