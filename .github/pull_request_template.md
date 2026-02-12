@@ -6,6 +6,7 @@ Brief description of changements.
 
 ## Checklist
 
+- [ ] Update version number
 - [ ] Tested locally
 - [ ] Ran `npm run format`
 - [ ] Ran `npm run lint` and fixed errors
