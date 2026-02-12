@@ -1,8 +1,6 @@
 <template>
   <template v-for="(group, key) in groups" :key="key">
-    <div class="mx-2 mb-3 ps-2 text-xl font-bold border-b border-gray-400">
-      {{ group.header }}
-    </div>
+    <ListGroupTitle :title="group.header" />
 
     <IonList class="mb-10! rounded-2xl border-2 border-primary p-0!">
       <IonItem v-for="(item, key) in group.items" :key="key" color="primary" button @click="onModalOpen(item)">
@@ -33,6 +31,7 @@ import {
 import translation from '@/utils/translation'
 import { IonIcon, IonItem, IonList } from '@ionic/vue'
 import { callOutline, lockClosedOutline, mailOutline, personOutline } from 'ionicons/icons'
+import ListGroupTitle from '../text/ListGroupTitle.vue'
 
 /* Props */
 defineProps<{
