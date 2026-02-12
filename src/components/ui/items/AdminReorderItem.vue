@@ -50,7 +50,7 @@ defineProps<{
   last: boolean
   text?: (item: any) => string
   note?: (item: any) => string
-  image?: (item: any) => string
+  image?: (item: any) => string | undefined
   reorder?: boolean
   modify?: boolean
   remove?: boolean
