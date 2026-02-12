@@ -124,6 +124,7 @@ const translationKeys = {
   products: 'products',
 
   // R
+  region: 'region',
   register: 'register',
   register_info: 'register_info',
   register_now: 'register_now',
@@ -552,6 +553,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   },
 
   // R
+  region: {
+    en: 'Region',
+    fr: 'Région',
+  },
   register: {
     en: 'Register',
     fr: "S'inscrire",

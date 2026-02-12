@@ -41,6 +41,11 @@ export function useAddress() {
       },
       {
         element: 'input',
+        name: 'region',
+        label: translation('region'),
+      },
+      {
+        element: 'input',
         name: 'postal_code',
         label: translation('postal_code'),
         type: 'number',
@@ -53,6 +58,11 @@ export function useAddress() {
         itemValueKey: 'code',
         itemLabelKey: 'name',
       },
+      {
+        element: 'phone',
+        name: 'phone',
+        label: translation('phone'),
+      },
     ] as FormField[]
   }
 
@@ -63,41 +73,33 @@ export function useAddress() {
     const addresses: Address[] = [
       {
         id: 1,
-        index: 0,
         first_name: 'John',
         last_name: 'Doe',
         street_address: '123 Main Street',
         extended_address: 'Apt 4B',
         locality: 'New York',
+        region: 'NY',
         postal_code: 10001,
         country_code: 'US',
+        phone: '5551234567',
+        prefix: '+1',
       },
       {
         id: 2,
-        index: 1,
         first_name: 'Marie',
         last_name: 'Curie',
         street_address: '456 Rue de la République',
         extended_address: '',
         locality: 'Paris',
+        region: 'Île-de-France',
         postal_code: 75001,
         country_code: 'FR',
+        phone: '0145678901',
+        prefix: '+33',
       },
     ]
 
     return addresses ?? []
-  }
-
-  /**
-   * Reorder the addresses
-   *
-   * @param items Items in new order
-   */
-  async function reorder(items: Address[]) {
-    // api request
-    items
-
-    await presentToast(translation('toast_reordered'), 'success', checkmarkCircleOutline)
   }
 
   /**
@@ -141,7 +143,6 @@ export function useAddress() {
   return {
     createFields,
     get,
-    reorder,
     create,
     modify,
     remove,

@@ -99,12 +99,14 @@ export type VerifyPassword = boolean
  */
 export type Address = {
   id: number
-  index: number
   first_name: string
   last_name: string
   street_address: string
   extended_address: string
   locality: string // city
+  region: string
   postal_code: number
   country_code: string
+  phone: string
+  prefix: string
 }

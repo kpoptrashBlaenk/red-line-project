@@ -300,8 +300,11 @@ export const addressSchema = () =>
     street_address: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
     extended_address: z.string(ERROR.error_required()).optional(),
     locality: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
+    region: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
     postal_code: z.coerce.number(ERROR.error_required()).min(1, ERROR.error_required()),
     country_code: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
+    phone: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
+    prefix: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
   })
 
 export const addressState = reactive<Partial<AddressSchema>>({
@@ -310,7 +313,10 @@ export const addressState = reactive<Partial<AddressSchema>>({
   street_address: undefined,
   extended_address: undefined,
   locality: undefined,
+  region: undefined,
   postal_code: undefined,
   country_code: undefined,
+  phone: undefined,
+  prefix: undefined,
 })
 export type AddressSchema = z.output<ReturnType<typeof addressSchema>>
