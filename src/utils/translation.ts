@@ -13,6 +13,7 @@ const translationKeys = {
   admin_home_carousel_title: 'admin_home_carousel_title',
   admin_home_text_title: 'admin_home_carousel_title',
   admin_product_title: 'admin_product_title',
+  addresses: 'addresses',
   advantages: 'advantages',
   alert_header: 'alert_header',
   alert_message: 'alert_message',
@@ -193,6 +194,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   admin_product_title: {
     en: 'Products',
     fr: 'Produits',
+  },
+  addresses: {
+    en: 'Addresses',
+    fr: 'Adresses',
   },
   advantages: {
     en: 'Your benefits',

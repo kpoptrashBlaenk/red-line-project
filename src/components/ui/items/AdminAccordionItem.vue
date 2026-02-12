@@ -39,7 +39,6 @@
 
 <script setup lang="ts">
 /* Imports */
-import { AdminSectionKey } from '@/constants/adminPages'
 import apiMethods from '@/constants/apiMethod'
 import translation from '@/utils/translation'
 import { IonAccordion, IonItem, IonLabel, IonList, IonReorderGroup, ReorderEndCustomEvent } from '@ionic/vue'
@@ -49,7 +48,7 @@ import AdminReorderItem from './AdminReorderItem.vue'
 /* Props */
 const props = defineProps<{
   title: string
-  value: AdminSectionKey
+  value: string
   items: any[]
   text?: (item: any) => string
   note?: (item: any) => string

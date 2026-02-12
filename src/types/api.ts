@@ -8,7 +8,7 @@ import { FormField } from './form'
  */
 export type ContextItem<T> = {
   title: string
-  value: AdminSectionKey
+  value: AdminSectionKey | 'address'
   itemsRef: Ref<any, any[]>
   image?: (item: T) => string
   text?: (item: T) => string
@@ -29,7 +29,6 @@ export type ContextItem<T> = {
   }
   defaultState: any
   schema: ZodType<any>
-  ref: Ref<any, any>
 }
 
 /**

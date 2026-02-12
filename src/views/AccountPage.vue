@@ -17,7 +17,22 @@
       <!-- Payment Information -->
       <ListGroupTitle :title="'Payment Information'" />
       <IonAccordionGroup expand="inset" class="mb-10">
-        <AdminAccordionItem v-for="(key, information) in paymentInformation" :key />
+        <AdminAccordionItem
+          v-for="(item, key) in Object.values(contextItemMap)"
+          :key
+          :title="item.title"
+          :value="item.value"
+          :items="item.itemsRef"
+          :image="item.image"
+          :text="item.text"
+          :note="item.note"
+          :reorder="item.reorder"
+          :add="item.add"
+          :modify="item.modify"
+          :remove="item.remove"
+          :reorder-callback="item.reorderCallback"
+          @open:modal-form="onModalOpen"
+        />
       </IonAccordionGroup>
 
       <!-- Account Delete -->
@@ -37,6 +52,7 @@
 
 <script setup lang="ts">
 /* Imports */
+import { Address } from '$/types'
 import FormAlert from '@/components/forms/FormAlert.vue'
 import FormModal from '@/components/forms/FormModal.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
@@ -46,9 +62,12 @@ import AccountList from '@/components/ui/items/AccountList.vue'
 import AdminAccordionItem from '@/components/ui/items/AdminAccordionItem.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import ListGroupTitle from '@/components/ui/text/ListGroupTitle.vue'
+import { useAddress } from '@/composables/address'
 import { useAuth } from '@/composables/auth'
+import { ApiMethod } from '@/constants/apiMethod'
 import { useUserStore } from '@/stores/user'
-import { AccountItem, FormField } from '@/types'
+import { ApiHandlerItem, ContextItem, FormField } from '@/types'
+import { addressSchema, addressState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
 import { alertCircleOutline } from 'ionicons/icons'
@@ -58,8 +77,10 @@ import { ZodType } from 'zod'
 /* Constants */
 const { deleteUser } = useAuth()
 const userStore = useUserStore()
+const addressComposable = useAddress()
 
 /* Refs */
+const alert = ref()
 const modal = ref()
 const modalOpen = ref<boolean>(false)
 const alertOpen = ref<boolean>(false)
@@ -71,17 +92,77 @@ const onAlertSubmit = ref<() => Promise<void>>(async () => {
   await deleteUser()
   location.reload()
 })
+const addresses = ref<Address[]>([])
+const contextItemMap = ref<Record<'address', ContextItem<Address>>>({
+  address: {
+    title: translation('addresses'),
+    value: 'address',
+    itemsRef: addresses,
+    text: (item: Address) => item.street_address,
+    note: (item: Address) => item.locality,
+    reorder: true,
+    add: true,
+    modify: true,
+    remove: true,
+    reorderCallback: addressComposable.reorder,
+    composable: addressComposable,
+    schema: addressSchema(),
+    defaultState: addressState,
+  },
+})
 
 /* Functions */
-async function onModalOpen(item: AccountItem) {
-  fields.value = item.fields
-  state.value = userStore.user
-  schema.value = item.schema
-  onSubmit.value = async (state: any) => {
-    await item.onSubmit(state)
-    modal.value.$el.dismiss()
+async function onModalOpen(context?: 'address', method?: ApiMethod, item?: any) {
+  // normal item not in accordion
+  if (!context && !method && item) {
+    fields.value = item.fields
+    state.value = userStore.user
+    schema.value = item.schema
+    onSubmit.value = async (state: any) => {
+      await item.onSubmit(state)
+      modal.value.$el.dismiss()
+    }
+    modalOpen.value = true
+
+    return
   }
-  modalOpen.value = true
+
+  // accordion items
+  if (context && method) {
+    const contextItem = contextItemMap.value[context]
+
+    const apiHandlerItem: ApiHandlerItem = {
+      // create form fields
+      fields: (await contextItem.composable.createFields?.()) ?? [],
+      // flatten item if it exists (prepare for modify), if not then create new state
+      state: item ?? { ...contextItem.defaultState },
+      // validation schema
+      schema: contextItem.schema,
+      // submit callback
+      onSubmit: async (state?: any) => {
+        // post
+        if (method === 'post') contextItem.composable.create?.(state)
+        // put
+        if (method === 'put') contextItem.composable.modify?.(item.id, state)
+        // delete
+        if (method === 'delete') contextItem.composable.remove?.(item.id)
+
+        // refetch and dismiss
+        contextItem.itemsRef.value = await contextItem.composable.get?.()
+        modal.value.$el.dismiss()
+        alert.value.$el.dismiss()
+      },
+    }
+
+    // if not delete then form modal, otherwise alert
+    method !== 'delete' ? modal.value.$el.present() : alert.value.$el.present()
+
+    // attribute variables
+    fields.value = apiHandlerItem.fields
+    state.value = apiHandlerItem.state
+    schema.value = apiHandlerItem.schema
+    onSubmit.value = apiHandlerItem.onSubmit
+  }
 }
 </script>
 

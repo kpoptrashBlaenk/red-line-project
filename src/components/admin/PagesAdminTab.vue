@@ -108,7 +108,6 @@ const contextItemMap = ref<
     composable: promotionComposable,
     schema: promotionSchema(),
     defaultState: promotionState,
-    ref: promotions,
   },
   homeText: {
     title: translation('admin_home_text_title'),
@@ -119,7 +118,6 @@ const contextItemMap = ref<
     composable: homeTextComposable,
     schema: homeTextSchema(),
     defaultState: homeTextState,
-    ref: homeText,
   },
   category: {
     title: translation('admin_category_title'),
@@ -136,7 +134,6 @@ const contextItemMap = ref<
     composable: categoryComposable,
     schema: categorySchema(),
     defaultState: categoryState,
-    ref: categories,
   },
   product: {
     title: translation('admin_product_title'),
@@ -153,7 +150,6 @@ const contextItemMap = ref<
     composable: productComposable,
     schema: productSchema(),
     defaultState: productState,
-    ref: products,
   },
   characteristic: {
     title: translation('admin_characteristic_title'),
@@ -167,7 +163,6 @@ const contextItemMap = ref<
     composable: characteristicComposable,
     schema: characteristicSchema(),
     defaultState: characteristicsState,
-    ref: characteristics,
   },
 })
 
@@ -201,7 +196,7 @@ async function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: a
       if (method === 'delete') contextItem.composable.remove?.(item.id)
 
       // refetch and dismiss
-      contextItem.ref.value = await contextItem.composable.get?.()
+      contextItem.itemsRef.value = await contextItem.composable.get?.()
       modal.value.$el.dismiss()
       alert.value.$el.dismiss()
     },

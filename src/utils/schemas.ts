@@ -285,7 +285,7 @@ export const addressSchema = () =>
     first_name: z.string(translation('error_required')).min(1, translation('error_required')),
     last_name: z.string(translation('error_required')).min(1, translation('error_required')),
     street_address: z.string(translation('error_required')).min(1, translation('error_required')),
-    extended_address: z.string(translation('error_required')).min(1, translation('error_required')).optional(),
+    extended_address: z.string(translation('error_required')).optional(),
     locality: z.string(translation('error_required')).min(1, translation('error_required')),
     postal_code: z.number(translation('error_required')).min(1, translation('error_required')),
     country_code: z.string(translation('error_required')).min(1, translation('error_required')),
