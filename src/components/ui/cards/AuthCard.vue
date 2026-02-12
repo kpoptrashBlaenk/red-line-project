@@ -24,14 +24,14 @@ import SolidButton from '@/components/ui/buttons/SolidButton.vue'
 import { FormField } from '@/types'
 import translation from '@/utils/translation'
 import { IonCard, IonCardContent } from '@ionic/vue'
-import z from 'zod'
+import { ZodType } from 'zod'
 
 /* Props */
 defineProps<{
   label: string
   fields: FormField[]
   state: any
-  schema: z.ZodType<any> | undefined
+  schema: ZodType<any> | undefined
   onSubmit: (state: any) => Promise<void>
 }>()
 </script>

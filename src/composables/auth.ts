@@ -1,17 +1,17 @@
-import { User } from '$/types'
+import { User, VerifyPassword } from '$/types'
 import { useUserStore } from '@/stores/user'
 import { FormField } from '@/types'
 import { LoginSchema, RegisterSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
 
 /**
- * Use this composable to do category related queries
+ * Use this composable to do auth related queries
  */
 export function useAuth() {
   const userStore = useUserStore()
 
   /**
-   * Create Category Form Fields
+   * Create Auth Form Fields
    */
   function createRegisterFields() {
     return [
@@ -172,9 +172,28 @@ export function useAuth() {
     userStore.setUser(undefined)
   }
 
+  /**
+   * Remember the user session
+   */
   function rememberUser(token: string) {
     localStorage.setItem('token', token)
   }
 
-  return { createRegisterFields, createLoginFields, register, login, restore, logout }
+  /**
+   * Verify password
+   */
+  async function verifyPassword(password: string) {
+    password
+    // use token to verify if password is correct
+
+    return true as VerifyPassword
+  }
+
+  async function deleteUser() {
+    logout()
+
+    // delete user from backend
+  }
+
+  return { createRegisterFields, createLoginFields, register, login, restore, logout, verifyPassword, deleteUser }
 }

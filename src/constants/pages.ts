@@ -9,6 +9,7 @@ const pageKeys = {
   contact: 'contact',
 
   admin: 'admin',
+  account: 'account',
   register: 'register',
   login: 'login',
 } as const
@@ -53,6 +54,11 @@ const pages: Record<PageKey, Page> = {
   admin: {
     translationKey: pageKeys.admin,
     url: '/admin',
+    auth: 'auth',
+  },
+  account: {
+    translationKey: pageKeys.account,
+    url: '/account',
     auth: 'auth',
   },
   register: {

@@ -106,7 +106,5 @@ onMounted(async () => {
   products.value = await productComposable.get()
   categories.value = await categoryComposable.get()
   characteristics.value = await characteristicComposable.get()
-
-  console.log(!isLengthZero(products.value))
 })
 </script>

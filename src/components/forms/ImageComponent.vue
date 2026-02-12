@@ -45,14 +45,14 @@ import { FilePicker } from '@capawesome/capacitor-file-picker'
 import { IonButton, IonIcon, IonReorder, IonReorderGroup, ReorderEndCustomEvent } from '@ionic/vue'
 import { closeCircleOutline, cloudUploadOutline } from 'ionicons/icons'
 import { nextTick, ref, toRef, watch } from 'vue'
-import z from 'zod'
+import { ZodType } from 'zod'
 import SolidButton from '../ui/buttons/SolidButton.vue'
 
 /* Props */
 const props = defineProps<{
   field: ImageField
   state: Record<string, any>
-  schema: z.ZodType<any> | undefined
+  schema: ZodType<any> | undefined
 }>()
 
 /* Refs */
@@ -122,7 +122,7 @@ async function openGallery() {
 async function validate() {
   await nextTick()
 
-  const result = props.schema!.safeParse(state.value)
+  const result = await props.schema!.safeParseAsync(state.value)
 
   if (!result.success) {
     const issue = result.error.issues.find((issue) => issue.path[0] === field.value.name)
