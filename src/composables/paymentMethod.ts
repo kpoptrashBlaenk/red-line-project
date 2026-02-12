@@ -43,17 +43,19 @@ export function usePaymentMethod() {
    * Get all payment methods
    */
   async function get() {
+    const hidden = '**** **** ****'
+
     const paymentMethods: PaymentMethod[] = [
       {
         id: 1,
         name: 'John Doe',
-        last4: 4242,
+        last4: `${hidden} ${'4242'}`,
         expiration: '12/28',
       },
       {
         id: 2,
         name: 'Marie Curie',
-        last4: 4444,
+        last4: `${hidden} ${'4444'}`,
         expiration: '07/27',
       },
     ]

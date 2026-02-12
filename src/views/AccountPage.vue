@@ -50,7 +50,7 @@
 
 <script setup lang="ts">
 /* Imports */
-import { Address } from '$/types'
+import { Address, PaymentMethod } from '$/types'
 import FormAlert from '@/components/forms/FormAlert.vue'
 import FormModal from '@/components/forms/FormModal.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
@@ -62,10 +62,11 @@ import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import ListGroupTitle from '@/components/ui/text/ListGroupTitle.vue'
 import { useAddress } from '@/composables/address'
 import { useAuth } from '@/composables/auth'
+import { usePaymentMethod } from '@/composables/paymentMethod'
 import { ApiMethod } from '@/constants/apiMethod'
 import { useUserStore } from '@/stores/user'
 import { ApiHandlerItem, ContextItem, FormField } from '@/types'
-import { addressSchema, addressState } from '@/utils/schemas'
+import { addressSchema, addressState, paymentMethodSchema, paymentMethodState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
 import { alertCircleOutline } from 'ionicons/icons'
@@ -76,6 +77,7 @@ import { ZodType } from 'zod'
 const { deleteUser } = useAuth()
 const userStore = useUserStore()
 const addressComposable = useAddress()
+const paymentMethodComposable = usePaymentMethod()
 
 /* Refs */
 const alert = ref()
@@ -86,7 +88,8 @@ const state = ref<any>({})
 const schema = ref<ZodType<any>>()
 const onSubmit = ref<(state?: any) => Promise<void>>(async () => {})
 const addresses = ref<Address[]>([])
-const contextItemMap = ref<Record<'address', ContextItem<Address>>>({
+const paymentMethods = ref<PaymentMethod[]>([])
+const contextItemMap = ref<Record<'address' | 'payment', ContextItem<Address> | ContextItem<PaymentMethod>>>({
   address: {
     title: translation('addresses'),
     value: 'address',
@@ -100,15 +103,28 @@ const contextItemMap = ref<Record<'address', ContextItem<Address>>>({
     schema: addressSchema(),
     defaultState: addressState,
   },
+  payment: {
+    title: translation('payment_methods'),
+    value: 'payment',
+    itemsRef: paymentMethods,
+    text: (item: PaymentMethod) => item.last4.toString(),
+    note: (item: PaymentMethod) => item.expiration,
+    add: true,
+    remove: true,
+    composable: paymentMethodComposable,
+    schema: paymentMethodSchema(),
+    defaultState: paymentMethodState,
+  },
 })
 
 /* Lifecycle Hook */
 onMounted(async () => {
   addresses.value = await addressComposable.get()
+  paymentMethods.value = await paymentMethodComposable.get()
 })
 
 /* Functions */
-async function onModalOpen(context?: 'address', method?: ApiMethod, item?: any) {
+async function onModalOpen(context?: 'address' | 'payment', method?: ApiMethod, item?: any) {
   // normal item not in accordion
   if (!context && !method && item) {
     fields.value = item.fields
