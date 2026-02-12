@@ -7,6 +7,7 @@ import {
   LoginSchema,
   NameSchema,
   PasswordSchema,
+  PaymentMethodSchema,
   PhoneSchema,
   ProductSchema,
   PromotionSchema,
@@ -77,6 +78,11 @@ export type EmailBody = EmailSchema
 export type PasswordBody = PasswordSchema
 
 /**
- * Body for password api
+ * Body for address api
  */
 export type AddressBody = AddressSchema & Id
+
+/**
+ * Body for payment method api
+ */
+export type paymentMethodBody = PaymentMethodSchema & Id

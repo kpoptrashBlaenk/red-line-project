@@ -110,3 +110,13 @@ export type Address = {
   phone: string
   prefix: string
 }
+
+/**
+ * Payment Address
+ */
+export type PaymentMethod = {
+  id: number
+  name: string
+  expiration: string
+  cvv: number
+}
