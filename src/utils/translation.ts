@@ -13,6 +13,7 @@ const translationKeys = {
   admin_home_carousel_title: 'admin_home_carousel_title',
   admin_home_text_title: 'admin_home_carousel_title',
   admin_product_title: 'admin_product_title',
+  addresses: 'addresses',
   advantages: 'advantages',
   alert_header: 'alert_header',
   alert_message: 'alert_message',
@@ -31,6 +32,7 @@ const translationKeys = {
   characteristics: 'characteristics',
   contact: 'contact',
   confirm_password: 'confirm_password',
+  country_code: 'country_code',
 
   // D
   default: 'default',
@@ -58,6 +60,7 @@ const translationKeys = {
   error_password_uppercase: 'error_password_uppercase',
   error_password_verify: 'error_password_verify',
   error_required: 'error_required',
+  extended_address: 'extended_address',
 
   // F
   file_too_big: 'file_too_big',
@@ -83,6 +86,7 @@ const translationKeys = {
   legal_mentions: 'legal_mentions',
   level: 'level',
   link: 'link',
+  locality: 'locality',
   login: 'login',
   login_info: 'login_info',
   logout: 'logout',
@@ -101,6 +105,7 @@ const translationKeys = {
 
   // O
   old: 'old',
+  optional: 'optional',
 
   // P
   pages: 'pages',
@@ -109,6 +114,7 @@ const translationKeys = {
   per_device: 'per_device',
   performance: 'performance',
   phone: 'phone',
+  postal_code: 'postal_code',
   price: 'price',
   priceHL: 'priceHL',
   priceLH: 'priceLH',
@@ -128,6 +134,7 @@ const translationKeys = {
   securities: 'securities',
   sign_in_now: 'sign_in_now',
   sort: 'sort',
+  street_address: 'street_address',
   submit: 'submit',
   subscribe_now: 'subscribe_now',
   subtitle: 'promotion_subtitle',
@@ -189,6 +196,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Products',
     fr: 'Produits',
   },
+  addresses: {
+    en: 'Addresses',
+    fr: 'Adresses',
+  },
   advantages: {
     en: 'Your benefits',
     fr: 'Vos avantages',
@@ -249,15 +260,19 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Confirm Password',
     fr: 'Confirmer le mot de passe',
   },
-  delete: {
-    en: 'Delete',
-    fr: 'Supprimer',
+  country_code: {
+    en: 'Country',
+    fr: 'Pays',
   },
 
   // D
   default: {
     en: 'Default',
     fr: 'Par défaut',
+  },
+  delete: {
+    en: 'Delete',
+    fr: 'Supprimer',
   },
   description: {
     en: 'Description',
@@ -297,7 +312,6 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Email',
     fr: 'Email',
   },
-
   error_category_post_500: {
     en: "Couldn't create category",
     fr: 'Impossible de créer la catégorie',
@@ -341,6 +355,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   error_required: {
     en: 'Please fill out this field',
     fr: 'Veuillez remplir ce champ',
+  },
+  extended_address: {
+    en: 'Extended Address',
+    fr: "Complément d'adresse",
   },
 
   // F
@@ -412,6 +430,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Level',
     fr: 'Niveau',
   },
+  locality: {
+    en: 'City',
+    fr: 'Ville',
+  },
   login: {
     en: 'Login',
     fr: 'Se connecter',
@@ -466,6 +488,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Oldest',
     fr: 'Nouveauté : ancien',
   },
+  optional: {
+    en: 'optional',
+    fr: 'optionnel',
+  },
 
   // P
   pages: {
@@ -491,6 +517,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   phone: {
     en: 'Phone',
     fr: 'Téléphone',
+  },
+  postal_code: {
+    en: 'Postal Code',
+    fr: 'Code postal',
   },
   price: {
     en: 'Price',
@@ -548,9 +578,17 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Securities',
     fr: 'Sécurités',
   },
+  sign_in_now: {
+    en: 'Sign in now!',
+    fr: 'Connectez-vous maintenant!',
+  },
   sort: {
     en: 'Sort',
     fr: 'Trier',
+  },
+  street_address: {
+    en: 'Street Address',
+    fr: 'Adresse',
   },
   submit: {
     en: 'Submit',
@@ -563,10 +601,6 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   subscribe_now: {
     en: 'Subscribe Now',
     fr: "S'abonner maintenant",
-  },
-  sign_in_now: {
-    en: 'Sign in now!',
-    fr: 'Connectez-vous maintenant!',
   },
 
   // T
