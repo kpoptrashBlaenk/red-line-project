@@ -1,4 +1,5 @@
 import {
+  AddressSchema,
   CategorySchema,
   CharacteristicSchema,
   EmailSchema,
@@ -74,3 +75,8 @@ export type EmailBody = EmailSchema
  * Body for password api
  */
 export type PasswordBody = PasswordSchema
+
+/**
+ * Body for password api
+ */
+export type AddressBody = AddressSchema

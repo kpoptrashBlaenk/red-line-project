@@ -93,3 +93,18 @@ export type Social = {
  * Password verification
  */
 export type VerifyPassword = boolean
+
+/**
+ * Payment Address
+ */
+export type Address = {
+  id: number
+  index: number
+  first_name: string
+  last_name: string
+  street_address: string
+  extended_address: string
+  locality: string // city
+  postal_code: number
+  country_code: string
+}

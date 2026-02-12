@@ -14,6 +14,12 @@
       <!-- Account List -->
       <AccountList :on-modal-open="onModalOpen" />
 
+      <!-- Payment Information -->
+      <ListGroupTitle :title="'Payment Information'" />
+      <IonAccordionGroup expand="inset" class="mb-10">
+        <AdminAccordionItem v-for="(key, information) in paymentInformation" :key />
+      </IonAccordionGroup>
+
       <!-- Account Delete -->
       <SolidButton
         :icon="alertCircleOutline"
@@ -37,11 +43,14 @@ import DefaultContentLayout from '@/components/layouts/default/DefaultContentLay
 import SolidButton from '@/components/ui/buttons/SolidButton.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
 import AccountList from '@/components/ui/items/AccountList.vue'
+import AdminAccordionItem from '@/components/ui/items/AdminAccordionItem.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
+import ListGroupTitle from '@/components/ui/text/ListGroupTitle.vue'
 import { useAuth } from '@/composables/auth'
 import { useUserStore } from '@/stores/user'
 import { AccountItem, FormField } from '@/types'
 import translation from '@/utils/translation'
+import { IonAccordionGroup } from '@ionic/vue'
 import { alertCircleOutline } from 'ionicons/icons'
 import { ref } from 'vue'
 import { ZodType } from 'zod'

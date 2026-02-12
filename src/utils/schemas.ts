@@ -278,3 +278,26 @@ export const passwordState = reactive<Partial<PasswordSchema>>({
   verify_password: undefined,
 })
 export type PasswordSchema = z.output<ReturnType<typeof passwordSchema>>
+
+/* Address */
+export const addressSchema = () =>
+  z.object({
+    first_name: z.string(translation('error_required')).min(1, translation('error_required')),
+    last_name: z.string(translation('error_required')).min(1, translation('error_required')),
+    street_address: z.string(translation('error_required')).min(1, translation('error_required')),
+    extended_address: z.string(translation('error_required')).min(1, translation('error_required')).optional(),
+    locality: z.string(translation('error_required')).min(1, translation('error_required')),
+    postal_code: z.number(translation('error_required')).min(1, translation('error_required')),
+    country_code: z.string(translation('error_required')).min(1, translation('error_required')),
+  })
+
+export const addressState = reactive<Partial<AddressSchema>>({
+  first_name: undefined,
+  last_name: undefined,
+  street_address: undefined,
+  extended_address: undefined,
+  locality: undefined,
+  postal_code: undefined,
+  country_code: undefined,
+})
+export type AddressSchema = z.output<ReturnType<typeof addressSchema>>
