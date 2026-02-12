@@ -6,6 +6,7 @@ import AccountPage from '@/views/AccountPage.vue'
 import AdminPage from '@/views/AdminPage.vue'
 import CategoriesPage from '@/views/CategoriesPage.vue'
 import CategoryPage from '@/views/CategoryPage.vue'
+import ForgotPasswordPage from '@/views/ForgotPasswordPage.vue'
 import HomePage from '@/views/HomePage.vue'
 import LoginPage from '@/views/LoginPage.vue'
 import ProductPage from '@/views/ProductPage.vue'
@@ -64,6 +65,11 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'login',
         component: LoginPage,
+        beforeEnter: guestOnly,
+      },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordPage,
         beforeEnter: guestOnly,
       },
     ],

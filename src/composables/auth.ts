@@ -212,7 +212,7 @@ export function useAuth() {
     state
     // send email to password, if email doesnt exist, ignore
 
-    presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+    presentToast(translation('toast_reset_link'), 'success', checkmarkCircleOutline)
   }
 
   /**

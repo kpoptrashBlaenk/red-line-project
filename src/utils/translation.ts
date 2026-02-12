@@ -148,6 +148,7 @@ const translationKeys = {
   toast_deleted: 'toast_deleted',
   toast_modified: 'toast_modified',
   toast_reordered: 'toast_reordered',
+  toast_reset_link: 'toast_reset_link',
   top: 'top',
   type: 'type',
 
@@ -637,6 +638,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   toast_reordered: {
     en: 'Items reordered',
     fr: 'Éléments réordonnés',
+  },
+  toast_reset_link: {
+    en: 'Reset link has been sent',
+    fr: 'Lien de réinitialisation evnoyé',
   },
   top: {
     en: 'Top',

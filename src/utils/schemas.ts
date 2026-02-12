@@ -249,13 +249,13 @@ export type PhoneSchema = z.output<ReturnType<typeof phoneSchema>>
 /* Forgot Password */
 export const forgotPasswordSchema = () =>
   z.object({
-    password: z.email(ERROR.error_required()),
+    email: z.email(ERROR.error_required()),
   })
 
-export const forgotPasswordState = reactive<Partial<ResetPasswordSchema>>({
-  password: undefined,
+export const forgotPasswordState = reactive<Partial<ForgotPasswordSchema>>({
+  email: undefined,
 })
-export type ResetPasswordSchema = z.output<ReturnType<typeof forgotPasswordSchema>>
+export type ForgotPasswordSchema = z.output<ReturnType<typeof forgotPasswordSchema>>
 
 /* Reset Password */
 export const resetPasswordSchema = () =>
@@ -282,11 +282,11 @@ export const resetPasswordSchema = () =>
       }
     })
 
-export const resetPasswordState = reactive<Partial<ForgotPasswordSchema>>({
+export const resetPasswordState = reactive<Partial<ResetPasswordSchema>>({
   password: undefined,
   confirm_password: undefined,
 })
-export type ForgotPasswordSchema = z.output<ReturnType<typeof resetPasswordSchema>>
+export type ResetPasswordSchema = z.output<ReturnType<typeof resetPasswordSchema>>
 
 /* Password */
 export const passwordSchema = () =>
