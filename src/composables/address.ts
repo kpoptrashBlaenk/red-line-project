@@ -12,7 +12,7 @@ export function useAddress() {
   /**
    * Create Address Form Fields
    */
-  function createFields() {
+  async function createFields() {
     return [
       {
         element: 'input',
@@ -46,9 +46,12 @@ export function useAddress() {
         type: 'number',
       },
       {
-        element: 'input',
+        element: 'select',
         name: 'country_code',
         label: translation('country_code'),
+        items: await fetch('/country_codes.json').then((res) => res.json()),
+        itemValueKey: 'code',
+        itemLabelKey: 'name',
       },
     ] as FormField[]
   }
@@ -82,7 +85,7 @@ export function useAddress() {
   async function create(state: AddressSchema) {
     state
 
-    await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
   }
 
   /**
