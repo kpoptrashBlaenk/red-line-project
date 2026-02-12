@@ -12,6 +12,12 @@
             translation('register_now')
           }}</span>
         </div>
+
+        <div class="text-center mt-5">
+          <span class="text-primary cursor-pointer" @click="handleRoute(route, router, '/forgot-password')">
+            {{ translation('forgot_password') }}</span
+          >
+        </div>
       </AuthCard>
 
       <SeparatorComponent size="sm" />

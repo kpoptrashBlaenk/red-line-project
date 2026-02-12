@@ -65,6 +65,7 @@ const translationKeys = {
   // F
   file_too_big: 'file_too_big',
   first_name: 'first_name',
+  forgot_password: 'forgot_password',
   french: 'french',
   functionalities: 'functionalities',
 
@@ -127,6 +128,7 @@ const translationKeys = {
   register: 'register',
   register_info: 'register_info',
   register_now: 'register_now',
+  reset_password: 'reset_password',
 
   // S
   scalability: 'scalability',
@@ -370,6 +372,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'First Name',
     fr: 'Prénom',
   },
+  forgot_password: {
+    en: 'I forgot my password',
+    fr: "J'oubliais mon mot de passe",
+  },
   french: {
     en: 'French',
     fr: 'Français',
@@ -563,6 +569,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   register_now: {
     en: 'Register now!',
     fr: 'Inscrivez vous maintenant!',
+  },
+  reset_password: {
+    en: 'Reset Password',
+    fr: 'Réinitialiser mon mot de passe',
   },
 
   // S
