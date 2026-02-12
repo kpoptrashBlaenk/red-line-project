@@ -1,6 +1,5 @@
 <template>
   <IonAlert
-    :is-open
     :header="translation('alert_header')"
     :message="translation('alert_message')"
     :buttons="[
@@ -17,7 +16,6 @@ import { IonAlert } from '@ionic/vue'
 
 /* Props */
 defineProps<{
-  isOpen: boolean
   onSubmit: (state?: any) => Promise<void>
 }>()
 </script>

@@ -7,7 +7,7 @@
       <FormModal ref="modal" :is-open="modalOpen" :fields :state :schema @submit="onSubmit" @did-dismiss="modalOpen = false" />
 
       <!-- Account Form Alert -->
-      <FormAlert ref="alert" :is-open="alertOpen" @submit="onAlertSubmit" @did-dismiss="alertOpen = false" />
+      <FormAlert ref="alert" @submit="onSubmit" />
 
       <SeparatorComponent size="xs" />
 
@@ -42,7 +42,7 @@
         color="danger"
         size="large"
         expand="block"
-        @click="alertOpen = true"
+        @click="setDeleteUserSubmit"
       />
 
       <SeparatorComponent size="sm" />
@@ -71,7 +71,7 @@ import { addressSchema, addressState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
 import { alertCircleOutline } from 'ionicons/icons'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { ZodType } from 'zod'
 
 /* Constants */
@@ -83,15 +83,10 @@ const addressComposable = useAddress()
 const alert = ref()
 const modal = ref()
 const modalOpen = ref<boolean>(false)
-const alertOpen = ref<boolean>(false)
 const fields = ref<FormField[]>([])
 const state = ref<any>({})
 const schema = ref<ZodType<any>>()
 const onSubmit = ref<(state?: any) => Promise<void>>(async () => {})
-const onAlertSubmit = ref<() => Promise<void>>(async () => {
-  await deleteUser()
-  location.reload()
-})
 const addresses = ref<Address[]>([])
 const contextItemMap = ref<Record<'address', ContextItem<Address>>>({
   address: {
@@ -109,6 +104,11 @@ const contextItemMap = ref<Record<'address', ContextItem<Address>>>({
     schema: addressSchema(),
     defaultState: addressState,
   },
+})
+
+/* Lifecycle Hook */
+onMounted(async () => {
+  addresses.value = await addressComposable.get()
 })
 
 /* Functions */
@@ -162,6 +162,15 @@ async function onModalOpen(context?: 'address', method?: ApiMethod, item?: any) 
     state.value = apiHandlerItem.state
     schema.value = apiHandlerItem.schema
     onSubmit.value = apiHandlerItem.onSubmit
+  }
+}
+
+function setDeleteUserSubmit() {
+  alert.value.$el.present()
+
+  onSubmit.value = async () => {
+    await deleteUser()
+    location.reload()
   }
 }
 </script>

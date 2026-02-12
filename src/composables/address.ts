@@ -60,7 +60,30 @@ export function useAddress() {
    * Get all addresses
    */
   async function get() {
-    const addresses: Address[] = []
+    const addresses: Address[] = [
+      {
+        id: 1,
+        index: 0,
+        first_name: 'John',
+        last_name: 'Doe',
+        street_address: '123 Main Street',
+        extended_address: 'Apt 4B',
+        locality: 'New York',
+        postal_code: 10001,
+        country_code: 'US',
+      },
+      {
+        id: 2,
+        index: 1,
+        first_name: 'Marie',
+        last_name: 'Curie',
+        street_address: '456 Rue de la République',
+        extended_address: '',
+        locality: 'Paris',
+        postal_code: 75001,
+        country_code: 'FR',
+      },
+    ]
 
     return addresses ?? []
   }
