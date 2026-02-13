@@ -12,6 +12,7 @@ import LoginPage from '@/views/LoginPage.vue'
 import ProductPage from '@/views/ProductPage.vue'
 import ProductsPage from '@/views/ProductsPage.vue'
 import RegisterPage from '@/views/RegisterPage.vue'
+import ResetPasswordPage from '@/views/ResetPasswordPage.vue'
 import TestPage from '@/views/TestPage.vue'
 import { createRouter, createWebHistory } from '@ionic/vue-router'
 import { RouteRecordRaw } from 'vue-router'
@@ -70,6 +71,11 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'forgot-password',
         component: ForgotPasswordPage,
+        beforeEnter: guestOnly,
+      },
+      {
+        path: 'reset-password/:token',
+        component: ResetPasswordPage,
         beforeEnter: guestOnly,
       },
     ],

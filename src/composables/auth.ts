@@ -242,11 +242,12 @@ export function useAuth() {
   /**
    * Reset password
    */
-  async function resetPassword(state: ResetPasswordSchema) {
+  async function resetPassword(token: string, state: ResetPasswordSchema) {
+    token
     state
-    // send email to password, if email doesnt exist, ignore
+    // verify token and reset password
 
-    presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+    presentToast(translation('toast_password_reset'), 'success', checkmarkCircleOutline)
   }
 
   async function deleteUser() {

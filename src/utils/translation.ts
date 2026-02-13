@@ -147,6 +147,7 @@ const translationKeys = {
   toast_added: 'toast_added',
   toast_deleted: 'toast_deleted',
   toast_modified: 'toast_modified',
+  toast_password_reset: 'toast_password_reset',
   toast_reordered: 'toast_reordered',
   toast_reset_link: 'toast_reset_link',
   top: 'top',
@@ -634,6 +635,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   toast_modified: {
     en: 'Successfully modified',
     fr: 'Modifié avec succès',
+  },
+  toast_password_reset: {
+    en: 'Password has been reset',
+    fr: 'Mot de passe a été réinitialisé',
   },
   toast_reordered: {
     en: 'Items reordered',
