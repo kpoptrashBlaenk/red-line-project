@@ -94,14 +94,35 @@ const router = createRouter({
 })
 
 let lastRoute: string | null = null
+let basePosition: number | null = null
 
 router.beforeEach((to, from, next) => {
+  if (!basePosition) {
+    basePosition = router.options.history.state.position as number
+
+    if (to.fullPath !== '/home') {
+      next({
+        path: '/home',
+        query: {
+          redirect: to.fullPath,
+        },
+      })
+
+      return
+    }
+  }
+
   lastRoute = from.fullPath
+
   next()
 })
 
 export function getLastRoute() {
   return lastRoute
+}
+
+export function getBasePosition() {
+  return basePosition
 }
 
 export default router
