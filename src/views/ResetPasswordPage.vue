@@ -3,7 +3,7 @@
     <div class="wrap">
       <SeparatorComponent size="sm" />
 
-      <AuthCard :label="translation('reset_password')" :fields :state :schema :on-submit="onSubmit" />
+      <AuthCard context="reset" :label="translation('reset_password')" :fields :state :schema :on-submit="onSubmit" />
 
       <SeparatorComponent size="sm" />
     </div>

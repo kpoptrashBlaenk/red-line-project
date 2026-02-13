@@ -8,8 +8,8 @@
         }"
         class="text-center sm:px-10 mb-5"
       />
-      <FormComponent id="auth-form" :fields :state :schema :on-submit="onSubmit" />
-      <SolidButton color="primary" :label="translation('submit')" expand="block" form="auth-form" class="mx-10" />
+      <FormComponent :id="`${context}-auth-form`" :fields :state :schema :on-submit="onSubmit" />
+      <SolidButton color="primary" :label="translation('submit')" expand="block" :form="`${context}-auth-form`" class="mx-10" />
 
       <slot></slot>
     </IonCardContent>
@@ -28,6 +28,7 @@ import { ZodType } from 'zod'
 
 /* Props */
 defineProps<{
+  context: string
   label: string
   fields: FormField[]
   state: any
