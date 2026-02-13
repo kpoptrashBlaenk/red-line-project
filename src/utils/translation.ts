@@ -65,6 +65,7 @@ const translationKeys = {
   // F
   file_too_big: 'file_too_big',
   first_name: 'first_name',
+  forgot_password: 'forgot_password',
   french: 'french',
   functionalities: 'functionalities',
 
@@ -127,6 +128,7 @@ const translationKeys = {
   register: 'register',
   register_info: 'register_info',
   register_now: 'register_now',
+  reset_password: 'reset_password',
 
   // S
   scalability: 'scalability',
@@ -145,7 +147,9 @@ const translationKeys = {
   toast_added: 'toast_added',
   toast_deleted: 'toast_deleted',
   toast_modified: 'toast_modified',
+  toast_password_reset: 'toast_password_reset',
   toast_reordered: 'toast_reordered',
+  toast_reset_link: 'toast_reset_link',
   top: 'top',
   type: 'type',
 
@@ -370,6 +374,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'First Name',
     fr: 'Prénom',
   },
+  forgot_password: {
+    en: 'I forgot my password',
+    fr: "J'oubliais mon mot de passe",
+  },
   french: {
     en: 'French',
     fr: 'Français',
@@ -564,6 +572,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Register now!',
     fr: 'Inscrivez vous maintenant!',
   },
+  reset_password: {
+    en: 'Reset Password',
+    fr: 'Réinitialiser mon mot de passe',
+  },
 
   // S
   scalability: {
@@ -624,9 +636,17 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Successfully modified',
     fr: 'Modifié avec succès',
   },
+  toast_password_reset: {
+    en: 'Password has been reset',
+    fr: 'Mot de passe a été réinitialisé',
+  },
   toast_reordered: {
     en: 'Items reordered',
     fr: 'Éléments réordonnés',
+  },
+  toast_reset_link: {
+    en: 'Reset link has been sent',
+    fr: 'Lien de réinitialisation evnoyé',
   },
   top: {
     en: 'Top',

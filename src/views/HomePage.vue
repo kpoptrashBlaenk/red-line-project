@@ -41,12 +41,15 @@ import { useProduct } from '@/composables/product'
 import { usePromotion } from '@/composables/promotion'
 import translation from '@/utils/translation'
 import { onMounted, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 /* Constants */
 const promotionComposable = usePromotion()
 const homeTextComposable = useHomeText()
 const categoryComposable = useCategory()
 const productComposable = useProduct()
+const route = useRoute()
+const router = useRouter()
 
 /* Refs */
 const promotions = ref<Promotion[]>([])
@@ -56,6 +59,15 @@ const products = ref<Product[]>([])
 
 /* Lifecycle Hooks */
 onMounted(async () => {
+  // if first route is not home, go home then redirect to where needed
+  const redirect = route.query.redirect as string | undefined
+  if (redirect) {
+    // remove redirect query
+    await router.replace({ path: '/home', query: {} })
+
+    await router.push(redirect)
+  }
+
   promotions.value = await promotionComposable.get()
   homeText.value = await homeTextComposable.get()
   categories.value = await categoryComposable.get()
