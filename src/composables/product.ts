@@ -117,7 +117,7 @@ export function useProduct() {
       {
         element: 'select',
         name: 'characteristics_performance_ids',
-        label: translation('performance'),
+        label: `${translation('performance')} (${translation('optional')})`,
         items: await characteristicComposable.get('performance'),
         itemLabelKey: 'name',
         itemValueKey: 'id',
@@ -126,7 +126,7 @@ export function useProduct() {
       {
         element: 'select',
         name: 'characteristics_scalability_ids',
-        label: translation('scalability'),
+        label: `${translation('scalability')} (${translation('optional')})`,
         items: await characteristicComposable.get('scalability'),
         itemLabelKey: 'name',
         itemValueKey: 'id',
@@ -135,7 +135,7 @@ export function useProduct() {
       {
         element: 'select',
         name: 'characteristics_level_ids',
-        label: translation('level'),
+        label: `${translation('level')} (${translation('optional')})`,
         items: await characteristicComposable.get('level'),
         itemLabelKey: 'name',
         itemValueKey: 'id',

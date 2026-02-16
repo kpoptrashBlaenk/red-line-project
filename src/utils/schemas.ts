@@ -342,8 +342,11 @@ export const addressSchema = () =>
     street_address: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
     extended_address: z.string(ERROR.error_required()).optional(),
     locality: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
+    region: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
     postal_code: z.coerce.number(ERROR.error_required()).min(1, ERROR.error_required()),
     country_code: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
+    phone: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
+    prefix: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
   })
 
 export const addressState = reactive<Partial<AddressSchema>>({
@@ -352,7 +355,27 @@ export const addressState = reactive<Partial<AddressSchema>>({
   street_address: undefined,
   extended_address: undefined,
   locality: undefined,
+  region: undefined,
   postal_code: undefined,
   country_code: undefined,
+  phone: undefined,
+  prefix: undefined,
 })
 export type AddressSchema = z.output<ReturnType<typeof addressSchema>>
+
+/* Payment Method */
+export const paymentMethodSchema = () =>
+  z.object({
+    name: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
+    card_number: z.string(ERROR.error_required()).regex(/^\d{16}$/, ERROR.error_required()),
+    expiration: z.string(ERROR.error_required()).regex(/^\d{2}\/\d{2}$/, ERROR.error_required()),
+    cvv: z.string(ERROR.error_required()).regex(/^\d{3}$/, ERROR.error_required()),
+  })
+
+export const paymentMethodState = reactive<Partial<PaymentMethodSchema>>({
+  name: undefined,
+  card_number: undefined,
+  expiration: undefined,
+  cvv: undefined,
+})
+export type PaymentMethodSchema = z.output<ReturnType<typeof paymentMethodSchema>>

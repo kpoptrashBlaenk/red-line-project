@@ -26,6 +26,7 @@ const translationKeys = {
 
   // C
   cancel: 'cancel',
+  card_number: 'card_number',
   categories: 'categories',
   category: 'category',
   category_products_title: 'category_products_title',
@@ -33,6 +34,7 @@ const translationKeys = {
   contact: 'contact',
   confirm_password: 'confirm_password',
   country_code: 'country_code',
+  cvv: 'cvv',
 
   // D
   default: 'default',
@@ -48,7 +50,7 @@ const translationKeys = {
   // E
   email: 'email',
   english: 'english',
-
+  expiration: 'expiration',
   error_category_post_500: 'error_category_post_500',
   error_password_confirm: 'error_password_confirm',
   error_password_lowercase: 'error_password_lowercase',
@@ -111,6 +113,7 @@ const translationKeys = {
   // P
   pages: 'pages',
   password: 'password',
+  payment_methods: 'payment_methods',
   per_user: 'per_user',
   per_device: 'per_device',
   performance: 'performance',
@@ -125,6 +128,7 @@ const translationKeys = {
   products: 'products',
 
   // R
+  region: 'region',
   register: 'register',
   register_info: 'register_info',
   register_now: 'register_now',
@@ -240,6 +244,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Cancel',
     fr: 'Annuler',
   },
+  card_number: {
+    en: 'Card Number',
+    fr: 'Numéro de carte',
+  },
   categories: {
     en: 'Categories',
     fr: 'Catégories',
@@ -267,6 +275,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   country_code: {
     en: 'Country',
     fr: 'Pays',
+  },
+  cvv: {
+    en: 'CVV',
+    fr: 'CVV',
   },
 
   // D
@@ -363,6 +375,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   extended_address: {
     en: 'Extended Address',
     fr: "Complément d'adresse",
+  },
+  expiration: {
+    en: 'Expiration Date',
+    fr: "Date d'expiration",
   },
 
   // F
@@ -510,6 +526,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Password',
     fr: 'Mot de passe',
   },
+  payment_methods: {
+    en: 'Payment Methods',
+    fr: 'Méthodes de paiement',
+  },
   per_user: {
     en: 'Per User',
     fr: 'Par Utilisateur',
@@ -560,6 +580,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   },
 
   // R
+  region: {
+    en: 'Region',
+    fr: 'Région',
+  },
   register: {
     en: 'Register',
     fr: "S'inscrire",
