@@ -23,8 +23,6 @@ export const useCheckoutStore = defineStore('checkout', {
   actions: {
     addOrder(order: DraftOrder) {
       this.orders[order.product.id] = order
-
-      console.log(this.totalPrice)
     },
   },
 })
