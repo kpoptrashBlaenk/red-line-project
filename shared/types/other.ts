@@ -1,19 +1,20 @@
 export enum CharacteristicType {
-  'performance',
-  'scalability',
-  'level',
+  performance = 'performance',
+  scalability = 'scalability',
+  level = 'level',
 }
+
 export enum SubscriptionLength {
-  'monthly',
-  'yearly',
+  monthly = 'monthly',
+  yearly = 'yearly',
 }
 
 export enum SubscriptionUsers {
-  'user',
-  'device',
+  user = 'user',
+  device = 'device',
 }
 
 export enum SubscriptionStatus {
-  'active',
-  'inactive',
+  active = 'active',
+  inactive = 'inactive',
 }

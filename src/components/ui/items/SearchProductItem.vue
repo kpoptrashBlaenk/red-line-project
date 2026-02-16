@@ -88,7 +88,7 @@ const filteredProducts = computed(() => {
   // category filter
   if (searchFilterStore.selectedCategories.length > 0) {
     results = results.filter((result) =>
-      searchFilterStore.selectedCategories.some((category) => category.id === result.category_id),
+      searchFilterStore.selectedCategories.some((category) => category.id === result.category.id),
     )
   }
 
@@ -104,9 +104,9 @@ const filteredProducts = computed(() => {
     results = results.filter((result) =>
       searchFilterStore.selectedCharacteristics.some(
         (characteristic) =>
-          result.characteristics_performance_ids.find((charId) => charId === characteristic.id) ||
-          result.characteristics_scalability_ids.find((charId) => charId === characteristic.id) ||
-          result.characteristics_level_ids.find((charId) => charId === characteristic.id),
+          result.characteristics_performance.find((char) => char.id === characteristic.id) ||
+          result.characteristics_scalability.find((char) => char.id === characteristic.id) ||
+          result.characteristics_level.find((char) => char.id === characteristic.id),
       ),
     )
   }
@@ -140,12 +140,12 @@ const filteredProducts = computed(() => {
   // flatten
   return results.map((product) => ({
     ...product,
-    category: findById(props.categories, product.category_id),
+    category: findById(props.categories, product.category.id),
     characteristics: [
-      ...product.characteristics_performance_ids,
-      ...product.characteristics_scalability_ids,
-      ...product.characteristics_level_ids,
-    ].map((characteristicId) => findById(props.characteristics, characteristicId)),
+      ...product.characteristics_performance,
+      ...product.characteristics_scalability,
+      ...product.characteristics_level,
+    ].map((characteristic) => findById(props.characteristics, characteristic.id)),
   }))
 })
 </script>

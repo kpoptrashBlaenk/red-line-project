@@ -43,7 +43,7 @@ export type Category = {
  */
 export type Product = {
   id: number
-  category_id: number
+  category: Category
   created_at: string
   image: string[]
   name: LanguageRecord
@@ -57,9 +57,9 @@ export type Product = {
   description_advantage: LanguageRecord
   description_security: LanguageRecord
 
-  characteristics_performance_ids: number[]
-  characteristics_scalability_ids: number[]
-  characteristics_level_ids: number[]
+  characteristics_performance: Characteristic[]
+  characteristics_scalability: Characteristic[]
+  characteristics_level: Characteristic[]
 }
 
 /**
@@ -128,10 +128,10 @@ export type PaymentMethod = {
 export type Order = {
   id: number
   date: string
-  user_id: number
-  product_id: number
-  address_id: number
-  payment_method_id: number
+  user: User
+  product: Product
+  address: Address
+  payment_method: PaymentMethod
   length: SubscriptionLength
   users: SubscriptionUsers
   amount: number

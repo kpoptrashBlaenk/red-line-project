@@ -42,7 +42,7 @@ const infoText = ref<string>('')
 
 /* Lifecycle Hooks */
 onMounted(async () => {
-  socials.value = await getSocials()
-  infoText.value = await getInfoText()
+  getSocials().then((data) => (socials.value = data))
+  getInfoText().then((data) => (infoText.value = data))
 })
 </script>

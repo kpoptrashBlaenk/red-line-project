@@ -88,7 +88,7 @@ const separatedProducts = computed(() => {
 onMounted(async () => {
   const id = Number(route.params.id)
 
-  category.value = await categoryComposable.find(id)
-  products.value = await productComposable.getByCategory(id)
+  categoryComposable.find(id).then((data) => (category.value = data))
+  productComposable.getByCategory(id).then((data) => (products.value = data))
 })
 </script>
