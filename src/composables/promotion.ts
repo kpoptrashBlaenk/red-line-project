@@ -1,6 +1,6 @@
 import { Promotion } from '$/types'
+import { promotionFixtures } from '@/constants/fixtures'
 import { FormField } from '@/types'
-import placeholderImages from '@/utils/placeholderImages'
 import presentToast from '@/utils/presentToast'
 import { PromotionSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
@@ -103,116 +103,7 @@ export function usePromotion() {
    * Get the promotional products
    */
   async function get() {
-    const promotions: Promotion[] = [
-      {
-        id: 6,
-        image: placeholderImages(['dfm']),
-        title: {
-          en: "Integration of Cyna's 24/7 SOC Solution",
-          fr: 'Intégration de la solution SOC 24/7 de Cyna',
-        },
-        subtitle: {
-          en: 'IT Services and Consulting',
-          fr: 'Services et conseil en informatique',
-        },
-        button: {
-          en: 'Read the article',
-          fr: "Lire l'article",
-        },
-        link: '/something',
-        index: 0,
-      },
-      {
-        id: 1,
-        image: placeholderImages(['hopital st camille']),
-        title: {
-          en: 'Implementation of a Managed SOC',
-          fr: "Mise en place d'un SOC Managé",
-        },
-        subtitle: {
-          en: 'Hospital Center',
-          fr: 'Centre hospitalier',
-        },
-        button: {
-          en: 'Read the article',
-          fr: "Lire l'article",
-        },
-        link: '/something',
-        index: 1,
-      },
-      {
-        id: 2,
-        image: placeholderImages(['groupe abcd']),
-        title: {
-          en: 'Cyberattack Incident Response',
-          fr: "Réponse à incident d'une cyberattaque",
-        },
-        subtitle: {
-          en: 'Gammist Manufacturer',
-          fr: 'Fabricant gammiste',
-        },
-        button: {
-          en: 'Read the article',
-          fr: "Lire l'article",
-        },
-        link: '/something',
-        index: 2,
-      },
-      {
-        id: 3,
-        image: placeholderImages(['sincrone-it-logo']),
-        title: {
-          en: 'Complete Cybersecurity Supported by 24/7 SOC',
-          fr: 'Une cybersécurité complète, portée par le SOC 24/7',
-        },
-        subtitle: {
-          en: 'IT and Telecom Solutions',
-          fr: 'Solutions informatiques et télécoms',
-        },
-        button: {
-          en: 'Read the article',
-          fr: "Lire l'article",
-        },
-        link: '/something',
-        index: 3,
-      },
-      {
-        id: 4,
-        image: placeholderImages(['logo-actuelburo']),
-        title: {
-          en: "Integration of Cyna's 24/7 SOC Offering",
-          fr: "Intégration de l'offre SOC 24/7 de Cyna",
-        },
-        subtitle: {
-          en: 'IT Services and Consulting',
-          fr: 'Services et conseil en informatique',
-        },
-        button: {
-          en: 'Read the article',
-          fr: "Lire l'article",
-        },
-        link: '/something',
-        index: 4,
-      },
-      {
-        id: 5,
-        image: placeholderImages(['neobrain-1']),
-        title: {
-          en: 'Simulation of an Attack (Black & Grey Box)',
-          fr: "Simulation d'une attaque (Black & Grey Box)",
-        },
-        subtitle: {
-          en: 'Software Publisher',
-          fr: 'Éditeur de logiciels',
-        },
-        button: {
-          en: 'Read the article',
-          fr: "Lire l'article",
-        },
-        link: '/something',
-        index: 5,
-      },
-    ]
+    const promotions: Promotion[] = Object.values(promotionFixtures)
 
     return promotions ?? []
   }

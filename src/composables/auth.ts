@@ -1,4 +1,5 @@
 import { User, VerifyPassword } from '$/types'
+import { userFixtures } from '@/constants/fixtures'
 import { useUserStore } from '@/stores/user'
 import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
@@ -96,15 +97,7 @@ export function useAuth() {
     state
     // register which returns user
 
-    const user: User = {
-      id: 1,
-      first_name: 'Aldin',
-      last_name: 'Music',
-      email: 'email@email.com',
-      phone: '0101010101',
-      prefix: '+33',
-      token: 'ABSOLUTELY_HASHED_TOKEN',
-    }
+    const user: User = userFixtures[1]
 
     if (user) {
       userStore.setUser(user)
@@ -122,15 +115,7 @@ export function useAuth() {
     state
     // login which returns user
 
-    const user: User = {
-      id: 1,
-      first_name: 'Aldin',
-      last_name: 'Music',
-      email: 'email@email.com',
-      phone: '0101010101',
-      prefix: '+33',
-      token: 'ABSOLUTELY_HASHED_TOKEN',
-    }
+    const user: User = userFixtures[1]
 
     if (user) {
       userStore.setUser(user)
@@ -147,15 +132,7 @@ export function useAuth() {
     // login which returns user
 
     if (token) {
-      const user: User = {
-        id: 1,
-        first_name: 'Aldin',
-        last_name: 'Music',
-        email: 'email@email.com',
-        phone: '0101010101',
-        prefix: '+33',
-        token: 'ABSOLUTELY_HASHED_TOKEN',
-      }
+      const user: User = userFixtures[1]
 
       if (user) {
         userStore.setUser(user)

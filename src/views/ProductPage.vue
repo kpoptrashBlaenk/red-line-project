@@ -66,7 +66,6 @@ import SolidButton from '@/components/ui/buttons/SolidButton.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import TitleComponent from '@/components/ui/text/TitleComponent.vue'
-import { useCharacteristic } from '@/composables/characteristic'
 import { useProduct } from '@/composables/product'
 import { Color } from '@/types'
 import shuffle from '@/utils/shuffle'
@@ -76,7 +75,6 @@ import { computed, onMounted, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 const productComposable = useProduct()
-const characteristicComposable = useCharacteristic()
 
 /* Refs */
 const product = ref<Product>()
@@ -105,7 +103,7 @@ const similarProducts = computed(() => {
 
   // products of same category but random order
   const categoryProducts = shuffle(
-    products.value.filter((p) => p.category_id === product.value?.category_id && p.id !== product.value?.id),
+    products.value.filter((p) => p.category.id === product.value?.category.id && p.id !== product.value?.id),
   )
 
   // priority
@@ -130,15 +128,10 @@ onMounted(async () => {
   const id = Number(route.params.id)
   product.value = await productComposable.find(id)
 
-  const characteristicsApi = await characteristicComposable.findMultiple([
-    ...product.value!.characteristics_level_ids,
-    ...product.value!.characteristics_performance_ids,
-    ...product.value!.characteristics_scalability_ids,
-  ])
-  characteristics.performance.characteristics = characteristicsApi.filter((c) => c.type === 'performance')
-  characteristics.scalability.characteristics = characteristicsApi.filter((c) => c.type === 'scalability')
-  characteristics.level.characteristics = characteristicsApi.filter((c) => c.type === 'level')
+  characteristics.performance.characteristics = product.value.characteristics_performance
+  characteristics.scalability.characteristics = product.value.characteristics_scalability
+  characteristics.level.characteristics = product.value.characteristics_level
 
-  if (product.value) products.value = await productComposable.getByCategory(product.value.category_id)
+  products.value = await productComposable.getByCategory(product.value.category.id)
 })
 </script>
