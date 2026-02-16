@@ -31,6 +31,7 @@ const translationKeys = {
   category: 'category',
   category_products_title: 'category_products_title',
   characteristics: 'characteristics',
+  checkout: 'checkout',
   contact: 'contact',
   confirm_password: 'confirm_password',
   country_code: 'country_code',
@@ -263,6 +264,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   characteristics: {
     en: 'Characteristics',
     fr: 'Caractéristiques',
+  },
+  checkout: {
+    en: 'Checkout',
+    fr: 'Panier',
   },
   contact: {
     en: 'Contact',
