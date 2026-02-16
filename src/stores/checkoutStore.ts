@@ -21,8 +21,28 @@ export const useCheckoutStore = defineStore('checkout', {
     },
   },
   actions: {
+    // save order in localstorage
+    saveOrders() {
+      localStorage.setItem('orders', JSON.stringify({ orders: this.orders, created_at: new Date().toISOString() }))
+    },
+    // restore order from localstorage
+    restoreOrders() {
+      // get data
+      const data = localStorage.getItem('orders')
+      if (!data) return
+
+      // parse and get age
+      const parsed = JSON.parse(data)
+      const age = new Date().getTime() - new Date(parsed.created_at).getTime()
+
+      // if less than 1 hour, restore, if longer, clear localstorage
+      age < 1000 * 60 * 60 ? (this.orders = parsed.orders) : localStorage.removeItem('orders')
+    },
+
     addOrder(order: DraftOrder) {
       this.orders[order.product.id] = order
+
+      this.saveOrders()
     },
   },
 })
