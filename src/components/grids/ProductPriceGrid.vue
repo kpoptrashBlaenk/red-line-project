@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 /* Imports */
-import { Product } from '$/types'
+import { Product, SubscriptionLength, SubscriptionUsers } from '$/types'
 import translation from '@/utils/translation'
 import { IonItem, IonList, IonRadio, IonRadioGroup } from '@ionic/vue'
 import { computed, ref } from 'vue'
@@ -44,12 +44,12 @@ const props = defineProps<{
 
 /* Constants */
 const periods = [
-  { value: 'month', label: translation('monthly') },
-  { value: 'year', label: translation('yearly') },
+  { value: SubscriptionLength.monthly, label: translation('monthly') },
+  { value: SubscriptionLength.yearly, label: translation('yearly') },
 ]
 const users = [
-  { value: 'user', label: translation('per_user') },
-  { value: 'device', label: translation('per_device') },
+  { value: SubscriptionUsers.user, label: translation('per_user') },
+  { value: SubscriptionUsers.device, label: translation('per_device') },
 ]
 
 /* Refs */
@@ -60,7 +60,10 @@ const amount = ref(1)
 /* Computeds */
 const calculatedPrice = computed(() => {
   return (
-    props.product.price * (selectedPeriod.value === 'year' ? 12 : 1) * (selectedUser.value === 'user' ? 1 : 1.2) * amount.value
+    props.product.price *
+    (selectedPeriod.value === SubscriptionLength.yearly ? 12 : 1) *
+    (selectedUser.value === SubscriptionUsers.user ? 1 : 1.2) *
+    amount.value
   )
 })
 </script>

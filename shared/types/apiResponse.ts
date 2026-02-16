@@ -1,4 +1,5 @@
 import { Language } from '@/types'
+import { SubscriptionLength, SubscriptionStatus, SubscriptionUsers } from './other'
 
 /**
  * Text record with multiple languages
@@ -119,4 +120,21 @@ export type PaymentMethod = {
   name: string
   last4: string
   expiration: string
+}
+
+/**
+ * Product order
+ */
+export type Order = {
+  id: number
+  date: string
+  user_id: number
+  product_id: number
+  address_id: number
+  payment_method_id: number
+  length: SubscriptionLength
+  users: SubscriptionUsers
+  amount: number
+  price: number
+  status: SubscriptionStatus
 }
