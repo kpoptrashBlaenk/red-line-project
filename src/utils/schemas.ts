@@ -246,6 +246,48 @@ export const phoneState = reactive<Partial<PhoneSchema>>({
 })
 export type PhoneSchema = z.output<ReturnType<typeof phoneSchema>>
 
+/* Forgot Password */
+export const forgotPasswordSchema = () =>
+  z.object({
+    email: z.email(ERROR.error_required()),
+  })
+
+export const forgotPasswordState = reactive<Partial<ForgotPasswordSchema>>({
+  email: undefined,
+})
+export type ForgotPasswordSchema = z.output<ReturnType<typeof forgotPasswordSchema>>
+
+/* Reset Password */
+export const resetPasswordSchema = () =>
+  z
+    .object({
+      password: z
+        .string(ERROR.error_required())
+        .min(8, ERROR.error_password_min())
+        .max(128, ERROR.error_password_max())
+        .regex(/[A-Z]/, ERROR.error_password_uppercase())
+        .regex(/[a-z]/, ERROR.error_password_lowercase())
+        .regex(/[0-9]/, ERROR.error_password_number())
+        .regex(/[!@#$%^&*(),.?":{}|<>]/, ERROR.error_password_special())
+        .refine((val) => !/\s/.test(val), ERROR.error_password_no_spaces()),
+      confirm_password: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
+    })
+    .superRefine(async ({ password, confirm_password }, ctx) => {
+      if (confirm_password !== password) {
+        ctx.addIssue({
+          code: 'custom',
+          message: ERROR.error_password_confirm(),
+          path: ['confirm_password'],
+        })
+      }
+    })
+
+export const resetPasswordState = reactive<Partial<ResetPasswordSchema>>({
+  password: undefined,
+  confirm_password: undefined,
+})
+export type ResetPasswordSchema = z.output<ReturnType<typeof resetPasswordSchema>>
+
 /* Password */
 export const passwordSchema = () =>
   z

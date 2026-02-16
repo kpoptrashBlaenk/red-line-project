@@ -6,11 +6,13 @@ import AccountPage from '@/views/AccountPage.vue'
 import AdminPage from '@/views/AdminPage.vue'
 import CategoriesPage from '@/views/CategoriesPage.vue'
 import CategoryPage from '@/views/CategoryPage.vue'
+import ForgotPasswordPage from '@/views/ForgotPasswordPage.vue'
 import HomePage from '@/views/HomePage.vue'
 import LoginPage from '@/views/LoginPage.vue'
 import ProductPage from '@/views/ProductPage.vue'
 import ProductsPage from '@/views/ProductsPage.vue'
 import RegisterPage from '@/views/RegisterPage.vue'
+import ResetPasswordPage from '@/views/ResetPasswordPage.vue'
 import TestPage from '@/views/TestPage.vue'
 import { createRouter, createWebHistory } from '@ionic/vue-router'
 import { RouteRecordRaw } from 'vue-router'
@@ -66,6 +68,16 @@ const routes: Array<RouteRecordRaw> = [
         component: LoginPage,
         beforeEnter: guestOnly,
       },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordPage,
+        beforeEnter: guestOnly,
+      },
+      {
+        path: 'reset-password/:token',
+        component: ResetPasswordPage,
+        beforeEnter: guestOnly,
+      },
     ],
   },
 
@@ -82,14 +94,35 @@ const router = createRouter({
 })
 
 let lastRoute: string | null = null
+let basePosition: number | null = null
 
 router.beforeEach((to, from, next) => {
+  if (!basePosition) {
+    basePosition = router.options.history.state.position as number
+
+    if (to.fullPath !== '/home') {
+      next({
+        path: '/home',
+        query: {
+          redirect: to.fullPath,
+        },
+      })
+
+      return
+    }
+  }
+
   lastRoute = from.fullPath
+
   next()
 })
 
 export function getLastRoute() {
   return lastRoute
+}
+
+export function getBasePosition() {
+  return basePosition
 }
 
 export default router

@@ -5,7 +5,7 @@
     <div class="wrap">
       <SeparatorComponent size="sm" />
 
-      <AuthCard :label="translation('register_info')" :fields :state :schema :on-submit="onSubmit">
+      <AuthCard context="register" :label="translation('register_info')" :fields :state :schema :on-submit="onSubmit">
         <div class="text-center mt-5">
           {{ translation('already_account') }}
           <span class="text-primary cursor-pointer" @click="handleRoute(route, router, '/login')">{{

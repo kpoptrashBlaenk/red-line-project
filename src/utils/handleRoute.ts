@@ -1,15 +1,16 @@
-import { getLastRoute } from '@/router'
+import { getBasePosition, getLastRoute } from '@/router'
 import { RouteLocationNormalizedLoaded, Router } from 'vue-router'
 
 const home = '/home'
 const linearRoutes = [home, '/category', '/product', '/categories', '/products']
-// const nonLinearRoutes = ['/admin', '/register', '/login']
+// const nonLinearRoutes = ['/admin', 'login', '/register', '/login', '/forgot-password', '/reset-password']
 
-export default function (route: RouteLocationNormalizedLoaded, router: Router, url: string, before?: () => void) {
+export default async function (route: RouteLocationNormalizedLoaded, router: Router, url: string, before?: () => void) {
   before?.()
+  const delta = -(router.options.history.state.position as number) + getBasePosition()!
 
-  // if going to home & already at home, do nothing
-  if (url.startsWith(home) && route.fullPath.startsWith(home)) {
+  // if not moving, do nothing
+  if (route.fullPath === url) {
     return
   }
 
@@ -19,10 +20,10 @@ export default function (route: RouteLocationNormalizedLoaded, router: Router, u
     return
   }
 
-  // if going to home & last route is not home, go back to first and replace with home
+  // if going to home & last route is not home, go back to first
   if (url.startsWith(home)) {
-    router.options.history.go(-router.options.history.state.position!)
-    // router.replace(home)
+    router.options.history.go(delta)
+
     return
   }
 

@@ -3,6 +3,7 @@ import {
   CategorySchema,
   CharacteristicSchema,
   EmailSchema,
+  ForgotPasswordSchema,
   HomeTextSchema,
   LoginSchema,
   NameSchema,
@@ -12,6 +13,7 @@ import {
   ProductSchema,
   PromotionSchema,
   RegisterSchema,
+  ResetPasswordSchema,
 } from '@/utils/schemas'
 
 type ImageString = { image: string[] }
