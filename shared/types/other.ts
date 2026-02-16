@@ -1,5 +1,8 @@
-export type CharacteristicType = 'performance' | 'scalability' | 'level'
-
+export enum CharacteristicType {
+  'performance',
+  'scalability',
+  'level',
+}
 export enum SubscriptionLength {
   'monthly',
   'yearly',

@@ -1,5 +1,4 @@
 import { Characteristic, CharacteristicType } from '$/types'
-import characteristicTypes from '@/constants/characteristicTypes'
 import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
 import { CharacteristicSchema } from '@/utils/schemas'
@@ -44,7 +43,7 @@ export function useCharacteristic() {
       },
       {
         element: 'select',
-        items: characteristicTypes,
+        items: CharacteristicType,
         itemLabelKey: 'label',
         itemValueKey: 'value',
         name: 'type',
@@ -72,17 +71,17 @@ export function useCharacteristic() {
    */
   async function get(type?: CharacteristicType) {
     const characteristics: Characteristic[] = [
-      { id: 1, name: { en: 'High Performance', fr: 'Haute performance' }, type: 'performance' },
-      { id: 2, name: { en: 'Optimized', fr: 'Optimisé' }, type: 'performance' },
-      { id: 3, name: { en: 'Low Latency', fr: 'Faible latence' }, type: 'performance' },
+      { id: 1, name: { en: 'High Performance', fr: 'Haute performance' }, type: CharacteristicType.performance },
+      { id: 2, name: { en: 'Optimized', fr: 'Optimisé' }, type: CharacteristicType.performance },
+      { id: 3, name: { en: 'Low Latency', fr: 'Faible latence' }, type: CharacteristicType.performance },
 
-      { id: 4, name: { en: 'Highly Scalable', fr: 'Haute scalabilité' }, type: 'scalability' },
-      { id: 5, name: { en: 'Cloud Ready', fr: 'Prêt pour le cloud' }, type: 'scalability' },
-      { id: 6, name: { en: 'Multi-Tenant', fr: 'Multi-locataire' }, type: 'scalability' },
+      { id: 4, name: { en: 'Highly Scalable', fr: 'Haute scalabilité' }, type: CharacteristicType.scalability },
+      { id: 5, name: { en: 'Cloud Ready', fr: 'Prêt pour le cloud' }, type: CharacteristicType.scalability },
+      { id: 6, name: { en: 'Multi-Tenant', fr: 'Multi-locataire' }, type: CharacteristicType.scalability },
 
-      { id: 7, name: { en: 'Enterprise Level', fr: 'Niveau entreprise' }, type: 'level' },
-      { id: 8, name: { en: 'SMB Level', fr: 'Niveau PME' }, type: 'level' },
-      { id: 9, name: { en: 'Basic Level', fr: 'Niveau de base' }, type: 'level' },
+      { id: 7, name: { en: 'Enterprise Level', fr: 'Niveau entreprise' }, type: CharacteristicType.level },
+      { id: 8, name: { en: 'SMB Level', fr: 'Niveau PME' }, type: CharacteristicType.level },
+      { id: 9, name: { en: 'Basic Level', fr: 'Niveau de base' }, type: CharacteristicType.level },
     ]
 
     return type ? characteristics.filter((characteristic) => characteristic.type === type) : characteristics

@@ -1,5 +1,5 @@
 import { Language } from '@/types'
-import { SubscriptionLength, SubscriptionStatus, SubscriptionUsers } from './other'
+import { CharacteristicType, SubscriptionLength, SubscriptionStatus, SubscriptionUsers } from './other'
 
 /**
  * Text record with multiple languages
@@ -68,7 +68,7 @@ export type Product = {
 export type Characteristic = {
   id: number
   name: LanguageRecord
-  type: 'performance' | 'scalability' | 'level'
+  type: CharacteristicType
 }
 
 export type User = {
