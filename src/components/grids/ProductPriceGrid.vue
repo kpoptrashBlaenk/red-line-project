@@ -31,6 +31,7 @@
 <script setup lang="ts">
 /* Imports */
 import { Product, SubscriptionLength, SubscriptionUsers } from '$/types'
+import calculatePrice from '@/utils/calculatePrice'
 import translation from '@/utils/translation'
 import { IonItem, IonList, IonRadio, IonRadioGroup } from '@ionic/vue'
 import { computed, ref } from 'vue'
@@ -57,13 +58,20 @@ const selectedPeriod = ref(periods[0].value)
 const selectedUser = ref(users[0].value)
 const amount = ref(1)
 
+/* Emits */
+const emit = defineEmits(['update:modelValue'])
+
 /* Computeds */
 const calculatedPrice = computed(() => {
-  return (
-    props.product.price *
-    (selectedPeriod.value === SubscriptionLength.yearly ? 12 : 1) *
-    (selectedUser.value === SubscriptionUsers.user ? 1 : 1.2) *
-    amount.value
-  )
+  const price = calculatePrice(props.product.price, selectedPeriod.value, selectedUser.value, amount.value)
+
+  emit('update:modelValue', {
+    product: props.product,
+    length: selectedPeriod.value,
+    users: selectedUser.value,
+    amount: amount.value,
+  })
+
+  return price
 })
 </script>

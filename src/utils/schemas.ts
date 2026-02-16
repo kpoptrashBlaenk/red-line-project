@@ -1,8 +1,8 @@
+import { SubscriptionLength, SubscriptionUsers } from '$/types'
 import { useAuth } from '@/composables/auth'
 import { reactive } from 'vue'
 import z from 'zod'
 import translation from './translation'
-import { SubscriptionLength, SubscriptionUsers } from '$/types'
 
 export const ERROR = {
   error_required: () => translation('error_required'),

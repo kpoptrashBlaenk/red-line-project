@@ -29,7 +29,7 @@
       <SeparatorComponent size="xs" />
       <IonCard color="light" class="py-5 lg:py-10">
         <IonCardContent>
-          <ProductPriceGrid v-if="product" :product />
+          <ProductPriceGrid v-if="product" v-model="draftOrder" :product />
         </IonCardContent>
       </IonCard>
 
@@ -40,6 +40,7 @@
         class="mt-5 mx-auto"
         expand="block"
         :disabled="!product?.disponible"
+        @click="addToCheckout"
       />
 
       <SeparatorComponent size="sm" />
@@ -67,14 +68,18 @@ import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import TitleComponent from '@/components/ui/text/TitleComponent.vue'
 import { useProduct } from '@/composables/product'
-import { Color } from '@/types'
+import { useCheckoutStore } from '@/stores/checkoutStore'
+import { Color, DraftOrder } from '@/types'
 import shuffle from '@/utils/shuffle'
 import translation from '@/utils/translation'
 import { IonCard, IonCardContent } from '@ionic/vue'
 import { computed, onMounted, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
+
+/* Constants */
 const route = useRoute()
 const productComposable = useProduct()
+const checkoutStore = useCheckoutStore()
 
 /* Refs */
 const product = ref<Product>()
@@ -96,6 +101,7 @@ const characteristics = reactive<{ [key: string]: { title: string; color: Color;
     characteristics: [],
   },
 })
+const draftOrder = ref<DraftOrder>()
 
 /* Computeds */
 const similarProducts = computed(() => {
@@ -134,4 +140,11 @@ onMounted(async () => {
 
   productComposable.getByCategory(product.value.category.id).then((data) => (products.value = data))
 })
+
+/* Functions */
+function addToCheckout() {
+  if (!product.value || !draftOrder.value) return
+
+  checkoutStore.addOrder(draftOrder.value)
+}
 </script>

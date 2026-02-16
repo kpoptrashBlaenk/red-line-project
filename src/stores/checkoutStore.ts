@@ -1,16 +1,30 @@
-import { OrderBody } from '$/types'
+import { DraftOrder } from '@/types'
+import calculatePrice from '@/utils/calculatePrice'
 import { defineStore } from 'pinia'
 
-export const useUserStore = defineStore('checkout', {
+export const useCheckoutStore = defineStore('checkout', {
   state: () => ({
-    checkout: {} as Record<number, OrderBody>,
+    orders: {} as Record<number, DraftOrder>,
+    address_id: undefined as number | undefined,
+    paymentMethodId: undefined as number | undefined,
   }),
   getters: {
-    orderLength: (state) => Object.values(state.checkout).length,
+    orderLength: (state) => Object.values(state.orders).length,
+    totalPrice: (state) => {
+      let price = 0
+
+      Object.values(state.orders).forEach(
+        (order) => (price += calculatePrice(order.product.price, order.length, order.users, order.amount)),
+      )
+
+      return price
+    },
   },
   actions: {
-    addOrder(order: OrderBody) {
-      this.checkout[order.product_id] = order
+    addOrder(order: DraftOrder) {
+      this.orders[order.product.id] = order
+
+      console.log(this.totalPrice)
     },
   },
 })
