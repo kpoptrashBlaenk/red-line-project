@@ -68,9 +68,9 @@ onMounted(async () => {
     await router.push(redirect)
   }
 
-  promotions.value = await promotionComposable.get()
-  homeText.value = await homeTextComposable.get()
-  categories.value = await categoryComposable.get()
-  products.value = await productComposable.top()
+  promotionComposable.get().then((data) => (promotions.value = data))
+  homeTextComposable.get().then((data) => (homeText.value = data))
+  categoryComposable.get().then((data) => (categories.value = data))
+  productComposable.top().then((data) => (products.value = data))
 })
 </script>

@@ -119,8 +119,8 @@ const contextItemMap = ref<Record<'address' | 'payment', ContextItem<Address> | 
 
 /* Lifecycle Hook */
 onMounted(async () => {
-  addresses.value = await addressComposable.get()
-  paymentMethods.value = await paymentMethodComposable.get()
+  addressComposable.get().then((data) => (addresses.value = data))
+  paymentMethodComposable.get().then((data) => (paymentMethods.value = data))
 })
 
 /* Functions */

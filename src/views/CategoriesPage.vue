@@ -31,6 +31,6 @@ const categories = ref<Category[]>([])
 
 /* Lifecycle Hooks */
 onMounted(async () => {
-  categories.value = await categoryComposable.get()
+  categoryComposable.get().then((data) => (categories.value = data))
 })
 </script>

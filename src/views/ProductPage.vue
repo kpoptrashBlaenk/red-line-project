@@ -132,6 +132,6 @@ onMounted(async () => {
   characteristics.scalability.characteristics = product.value.characteristics_scalability
   characteristics.level.characteristics = product.value.characteristics_level
 
-  products.value = await productComposable.getByCategory(product.value.category.id)
+  productComposable.getByCategory(product.value.category.id).then((data) => (products.value = data))
 })
 </script>
