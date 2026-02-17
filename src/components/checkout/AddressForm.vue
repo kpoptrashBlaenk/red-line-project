@@ -1,7 +1,7 @@
 <template>
   <IonList>
-    <IonRadioGroup>
-      <IonItem v-for="(address, key) in addresses" :key>
+    <IonRadioGroup :value="selected?.id">
+      <IonItem v-for="(address, key) in addresses" :key @click="$emit('update:address', address)">
         <IonRadio :value="address.id">
           <div>{{ address.first_name }} {{ address.last_name }}</div>
           <div>{{ address.street_address }}</div>
@@ -29,5 +29,6 @@ import SolidButton from '../ui/buttons/SolidButton.vue'
 /* Props */
 defineProps<{
   addresses: Address[]
+  selected: Address | undefined
 }>()
 </script>

@@ -15,11 +15,21 @@
 
       <!-- Address -->
       <ListGroupTitle :title="translation('address')" class="mt-5" />
-      <AddressForm :addresses @on-modal-open="onModalOpen('address')" />
+      <AddressForm
+        :addresses
+        :selected="checkoutStore.address"
+        @on-modal-open="onModalOpen('address')"
+        @update:address="checkoutStore.setAddress"
+      />
 
       <!-- Address -->
       <ListGroupTitle :title="translation('payment_method')" class="mt-5" />
-      <PaymentMethodForm :payment-methods @on-modal-open="onModalOpen('payment')" />
+      <PaymentMethodForm
+        :payment-methods
+        :selected="checkoutStore.paymentMethod"
+        @on-modal-open="onModalOpen('payment')"
+        @update:payment_method="checkoutStore.setPaymentMethod"
+      />
 
       <div class="border-b-2 border-gray-300 mt-5 mb-3"></div>
 

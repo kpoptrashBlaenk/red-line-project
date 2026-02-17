@@ -1,7 +1,7 @@
 <template>
   <IonList>
-    <IonRadioGroup>
-      <IonItem v-for="(paymentMethod, key) in paymentMethods" :key>
+    <IonRadioGroup :value="selected?.id">
+      <IonItem v-for="(paymentMethod, key) in paymentMethods" :key @click="$emit('update:payment_method', paymentMethod)">
         <IonRadio :value="paymentMethod.id">
           <div>{{ paymentMethod.name }}</div>
           <div>{{ paymentMethod.last4 }}</div>
@@ -29,5 +29,6 @@ import SolidButton from '../ui/buttons/SolidButton.vue'
 /* Props */
 defineProps<{
   paymentMethods: PaymentMethod[]
+  selected: PaymentMethod | undefined
 }>()
 </script>

@@ -15,7 +15,7 @@
       <AccountList :on-modal-open="onModalOpen" />
 
       <!-- Payment Information -->
-      <ListGroupTitle :title="'Payment Information'" />
+      <ListGroupTitle :title="'Payment Information'" class="mb-3" />
       <IonAccordionGroup expand="inset" class="mb-10">
         <AdminAccordionItem
           v-for="(item, key) in Object.values(contextItemMap)"

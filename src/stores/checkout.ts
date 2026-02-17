@@ -1,3 +1,4 @@
+import { Address, PaymentMethod } from '$/types'
 import { DraftOrder } from '@/types'
 import calculatePrice from '@/utils/calculatePrice'
 import { defineStore } from 'pinia'
@@ -5,8 +6,8 @@ import { defineStore } from 'pinia'
 export const useCheckoutStore = defineStore('checkout', {
   state: () => ({
     orders: {} as Record<number, DraftOrder>,
-    address_id: undefined as number | undefined,
-    paymentMethodId: undefined as number | undefined,
+    address: undefined as Address | undefined,
+    paymentMethod: undefined as PaymentMethod | undefined,
   }),
   getters: {
     orderLength: (state) => Object.values(state.orders).length,
@@ -44,6 +45,13 @@ export const useCheckoutStore = defineStore('checkout', {
       this.orders[order.product.id] = order
 
       this.saveOrders()
+    },
+    setAddress(address: Address) {
+      this.address = address
+      console.log(this.address)
+    },
+    setPaymentMethod(paymentMethod: PaymentMethod) {
+      this.paymentMethod = paymentMethod
     },
   },
 })
