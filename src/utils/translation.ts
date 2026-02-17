@@ -7,6 +7,9 @@ const translationKeys = {
   // A
   account: 'account',
   add: 'add',
+  add_address: 'add_address',
+  add_payment: 'add_payment',
+  address: 'address',
   admin: 'admin',
   admin_category_title: 'admin_category_title',
   admin_characteristic_title: 'admin_characteristic_title',
@@ -115,6 +118,7 @@ const translationKeys = {
   // P
   pages: 'pages',
   password: 'password',
+  payment_method: 'payment_method',
   payment_methods: 'payment_methods',
   performance: 'performance',
   phone: 'phone',
@@ -181,6 +185,18 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   add: {
     en: 'Add',
     fr: 'Ajouter',
+  },
+  add_address: {
+    en: 'Add new address',
+    fr: 'Ajouter une nouvelle adresse',
+  },
+  add_payment: {
+    en: 'Add new payment method',
+    fr: 'Ajouter un nouveau mode de paiement',
+  },
+  address: {
+    en: 'Address',
+    fr: 'Adresse',
   },
   admin: {
     en: 'Admin Access',
@@ -535,6 +551,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   password: {
     en: 'Password',
     fr: 'Mot de passe',
+  },
+  payment_method: {
+    en: 'Payment Method',
+    fr: 'Méthode de paiement',
   },
   payment_methods: {
     en: 'Payment Methods',
