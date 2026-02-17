@@ -23,6 +23,7 @@ export const useCheckoutStore = defineStore('checkout', {
   actions: {
     // save order in localstorage
     saveOrders() {
+      localStorage.removeItem('orders')
       localStorage.setItem('orders', JSON.stringify({ orders: this.orders, created_at: new Date().toISOString() }))
     },
     // restore order from localstorage

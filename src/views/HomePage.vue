@@ -59,13 +59,17 @@ const products = ref<Product[]>([])
 
 /* Lifecycle Hooks */
 onMounted(async () => {
-  // if first route is not home, go home then redirect to where needed
-  const redirect = route.query.redirect as string | undefined
-  if (redirect) {
-    // remove redirect query
-    await router.replace({ path: '/home', query: {} })
+  // set to true during prod
+  const prod = true
+  if (prod) {
+    // if first route is not home, go home then redirect to where needed
+    const redirect = route.query.redirect as string | undefined
+    if (redirect) {
+      // remove redirect query
+      await router.replace({ path: '/home', query: {} })
 
-    await router.push(redirect)
+      await router.push(redirect)
+    }
   }
 
   promotionComposable.get().then((data) => (promotions.value = data))

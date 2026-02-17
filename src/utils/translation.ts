@@ -45,6 +45,7 @@ const translationKeys = {
   description_functionality: 'description_functionality',
   description_security: 'description_security',
   details: 'details',
+  device: 'device',
   disponible: 'disponible',
   disponible_only: 'disponible_only',
 
@@ -115,8 +116,6 @@ const translationKeys = {
   pages: 'pages',
   password: 'password',
   payment_methods: 'payment_methods',
-  per_user: 'per_user',
-  per_device: 'per_device',
   performance: 'performance',
   phone: 'phone',
   postal_code: 'postal_code',
@@ -156,10 +155,12 @@ const translationKeys = {
   toast_reordered: 'toast_reordered',
   toast_reset_link: 'toast_reset_link',
   top: 'top',
+  total: 'total',
   type: 'type',
 
   // U
   upload: 'upload',
+  user: 'user',
   user_info: 'user_info',
 
   // V
@@ -314,6 +315,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   details: {
     en: 'Details',
     fr: 'Détails',
+  },
+  device: {
+    en: 'Per Device',
+    fr: 'Par Appareil',
   },
   disponible: {
     en: 'Available',
@@ -535,14 +540,6 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Payment Methods',
     fr: 'Méthodes de paiement',
   },
-  per_user: {
-    en: 'Per User',
-    fr: 'Par Utilisateur',
-  },
-  per_device: {
-    en: 'Per Device',
-    fr: 'Par Appareil',
-  },
   performance: {
     en: 'Performance',
     fr: 'Performance',
@@ -681,6 +678,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Top',
     fr: 'Top',
   },
+  total: {
+    en: 'Total',
+    fr: 'Total',
+  },
   type: {
     en: 'Type',
     fr: 'Type',
@@ -690,6 +691,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   upload: {
     en: 'Upload',
     fr: 'Upload',
+  },
+  user: {
+    en: 'Per User',
+    fr: 'Par Utilisateur',
   },
   user_info: {
     en: 'User Information',

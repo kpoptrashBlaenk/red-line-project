@@ -8,7 +8,7 @@
 /* Imports */
 import { IonApp, IonRouterOutlet } from '@ionic/vue'
 import { onMounted } from 'vue'
-import { useCheckoutStore } from './stores/checkoutStore'
+import { useCheckoutStore } from './stores/checkout'
 
 /* Constants */
 const checkoutStore = useCheckoutStore()

@@ -22,7 +22,7 @@
 <script setup lang="ts">
 /* Imports */
 import LogoComponent from '@/components/ui/LogoComponent.vue'
-import { useCheckoutStore } from '@/stores/checkoutStore'
+import { useCheckoutStore } from '@/stores/checkout'
 import handleRoute from '@/utils/handleRoute'
 import { IonBadge, IonButton, IonButtons, IonHeader, IonIcon, IonMenuButton, IonToolbar } from '@ionic/vue'
 import { cartOutline, searchOutline } from 'ionicons/icons'
