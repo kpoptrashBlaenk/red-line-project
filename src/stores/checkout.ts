@@ -8,6 +8,7 @@ export const useCheckoutStore = defineStore('checkout', {
     orders: {} as Record<number, DraftOrder>,
     address: undefined as Address | undefined,
     paymentMethod: undefined as PaymentMethod | undefined,
+    expiresAt: undefined as number | undefined,
   }),
   getters: {
     orderLength: (state) => Object.values(state.orders).length,
@@ -24,8 +25,10 @@ export const useCheckoutStore = defineStore('checkout', {
   actions: {
     // save order in localstorage
     saveOrders() {
-      localStorage.removeItem('orders')
-      localStorage.setItem('orders', JSON.stringify({ orders: this.orders, created_at: new Date().toISOString() }))
+      const expiresAt = Date.now() + 1000 * 60 * 60
+      this.expiresAt = expiresAt
+
+      localStorage.setItem('orders', JSON.stringify({ orders: this.orders, expires_at: expiresAt }))
     },
     // restore order from localstorage
     restoreOrders() {
@@ -33,12 +36,16 @@ export const useCheckoutStore = defineStore('checkout', {
       const data = localStorage.getItem('orders')
       if (!data) return
 
-      // parse and get age
+      // parse
       const parsed = JSON.parse(data)
-      const age = new Date().getTime() - new Date(parsed.created_at).getTime()
 
-      // if less than 1 hour, restore, if longer, clear localstorage
-      age < 1000 * 60 * 60 ? (this.orders = parsed.orders) : localStorage.removeItem('orders')
+      // if not passed, restore, if not, clear orders
+      if (Date.now() < parsed.expires_at) {
+        this.orders = parsed.orders
+        this.expiresAt = parsed.expires_at
+      } else {
+        this.clearOrders()
+      }
     },
 
     addOrder(order: DraftOrder) {
@@ -48,10 +55,25 @@ export const useCheckoutStore = defineStore('checkout', {
     },
     setAddress(address: Address) {
       this.address = address
-      console.log(this.address)
     },
     setPaymentMethod(paymentMethod: PaymentMethod) {
       this.paymentMethod = paymentMethod
+    },
+    clearOrders() {
+      this.orders = {}
+      this.expiresAt = undefined
+      localStorage.removeItem('orders')
+    },
+    timer() {
+      if (!this.expiresAt || this.orderLength === 0) return 0
+
+      const time = Math.max(0, this.expiresAt - Date.now())
+
+      if (time === 0) {
+        this.clearOrders()
+      }
+
+      return time
     },
   },
 })
