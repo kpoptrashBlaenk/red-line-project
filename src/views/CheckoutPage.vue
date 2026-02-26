@@ -33,7 +33,7 @@
 
       <div class="border-b-2 border-gray-300 mt-5 mb-3"></div>
 
-      <!-- Total Price -->
+      <!-- Summary -->
       <IonCard color="light">
         <IonCardContent>
           <CheckoutProductGrid />
@@ -41,10 +41,11 @@
       </IonCard>
 
       <!-- Pay Button -->
-      <div class="flex gap-5 items-center mt-5">
-        <TitleComponent :text="'<title>Total:</title>'" color="tertiary" class="text-3xl!" />
+      <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
+        <SolidButton v-if="userStore.user" color="primary" :label="translation('pay')" class="text-3xl w-full" />
+        <SolidButton v-else color="primary" :label="translation('login')" class="text-3xl w-full" :link="'/login'" />
+        <TitleComponent :text="`<title>${translation('total')}</title>`" color="tertiary" class="text-3xl!" />
         <TitleComponent :text="`<title>${checkoutStore.totalPrice}€</title>`" color="primary" />
-        <SolidButton color="primary" :label="'Pay'" class="text-3xl w-full" />
       </div>
 
       <SeparatorComponent size="sm" />
@@ -69,6 +70,7 @@ import TitleComponent from '@/components/ui/text/TitleComponent.vue'
 import { useAddress } from '@/composables/address'
 import { usePaymentMethod } from '@/composables/paymentMethod'
 import { useCheckoutStore } from '@/stores/checkout'
+import { useUserStore } from '@/stores/user'
 import { ApiHandlerItem, ContextItem, FormField } from '@/types'
 import { addressSchema, addressState, paymentMethodSchema, paymentMethodState } from '@/utils/schemas'
 import translation from '@/utils/translation'
@@ -78,6 +80,7 @@ import { ZodType } from 'zod'
 
 /* Constants */
 const checkoutStore = useCheckoutStore()
+const userStore = useUserStore()
 const paymentMethodComposable = usePaymentMethod()
 const addressComposable = useAddress()
 

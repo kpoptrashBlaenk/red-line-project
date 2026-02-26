@@ -118,6 +118,7 @@ const translationKeys = {
   // P
   pages: 'pages',
   password: 'password',
+  pay: 'pay',
   payment_method: 'payment_method',
   payment_methods: 'payment_methods',
   performance: 'performance',
@@ -147,7 +148,8 @@ const translationKeys = {
   street_address: 'street_address',
   submit: 'submit',
   subscribe_now: 'subscribe_now',
-  subtitle: 'promotion_subtitle',
+  subtitle: 'subtitle',
+  summary: 'summary',
 
   // T
   text: 'text',
@@ -552,6 +554,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Password',
     fr: 'Mot de passe',
   },
+  pay: {
+    en: 'Pay',
+    fr: 'Payer',
+  },
   payment_method: {
     en: 'Payment Method',
     fr: 'Méthode de paiement',
@@ -659,6 +665,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   subscribe_now: {
     en: 'Subscribe Now',
     fr: "S'abonner maintenant",
+  },
+  summary: {
+    en: 'Summary',
+    fr: 'Résumé',
   },
 
   // T
