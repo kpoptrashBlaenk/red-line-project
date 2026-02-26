@@ -8,6 +8,7 @@ const translationKeys = {
   account: 'account',
   add: 'add',
   add_address: 'add_address',
+  add_products: 'add_products',
   add_payment: 'add_payment',
   address: 'address',
   admin: 'admin',
@@ -54,6 +55,7 @@ const translationKeys = {
 
   // E
   email: 'email',
+  empty_cart: 'empty_cart',
   english: 'english',
   expiration: 'expiration',
   error_category_post_500: 'error_category_post_500',
@@ -195,6 +197,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   add_payment: {
     en: 'Add new payment method',
     fr: 'Ajouter un nouveau mode de paiement',
+  },
+  add_products: {
+    en: 'Add new products',
+    fr: 'Ajouter de nouveaux produits',
   },
   address: {
     en: 'Address',
@@ -355,6 +361,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   email: {
     en: 'Email',
     fr: 'Email',
+  },
+  empty_cart: {
+    en: 'Your Cart is Empty!',
+    fr: 'Votre Panier est Vide!',
   },
   error_category_post_500: {
     en: "Couldn't create category",

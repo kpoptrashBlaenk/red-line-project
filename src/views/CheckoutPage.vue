@@ -6,7 +6,13 @@
     <!-- Hero -->
     <HeroComponent :title="translation('checkout')" />
 
-    <div class="wrap">
+    <!-- Empty Order -->
+    <div v-if="checkoutStore.orderLength === 0" class="wrap">
+      <EmptyCheckout />
+    </div>
+
+    <!-- Order with Products -->
+    <div v-else class="wrap">
       <SeparatorComponent size="sm" />
 
       <!-- Products Accordion -->
@@ -58,6 +64,7 @@
 import { Address, PaymentMethod } from '$/types'
 import AddressForm from '@/components/checkout/AddressForm.vue'
 import CheckoutAccordion from '@/components/checkout/CheckoutAccordion.vue'
+import EmptyCheckout from '@/components/checkout/EmptyCheckout.vue'
 import PaymentMethodForm from '@/components/checkout/PaymentMethodForm.vue'
 import FormModal from '@/components/forms/FormModal.vue'
 import CheckoutProductGrid from '@/components/grids/CheckoutProductGrid.vue'
