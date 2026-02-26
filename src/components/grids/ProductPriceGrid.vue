@@ -24,7 +24,7 @@
       class="text-5xl sm:text-6xl xl:text-7xl lg:order-first"
     />
 
-    <NumberStepper v-model:amount="selectedAmount" :default="selectedAmount" :min="1" class="mx-auto" />
+    <NumberStepper v-model:amount="selectedAmount" :default="selectedAmount" :min="0" class="mx-auto" />
   </div>
 </template>
 

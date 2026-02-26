@@ -51,6 +51,11 @@ export const useCheckoutStore = defineStore('checkout', {
     addOrder(order: DraftOrder) {
       this.orders[order.product.id] = order
 
+      // if amount is 0 then delete from order
+      if (order.amount === 0) {
+        delete this.orders[order.product.id]
+      }
+
       this.saveOrders()
     },
     setAddress(address: Address) {
