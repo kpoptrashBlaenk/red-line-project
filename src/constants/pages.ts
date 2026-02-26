@@ -47,12 +47,12 @@ const pages: Record<PageKey, Page> = {
   },
   legal_mentions: {
     translationKey: pageKeys.legal_mentions,
-    url: '/legal',
+    url: '/legal-mentions',
     mobileOnly: true,
   },
   general_conditions: {
     translationKey: pageKeys.general_conditions,
-    url: '/conditions',
+    url: '/general-conditions',
     mobileOnly: true,
   },
 
