@@ -1,0 +1,98 @@
+<h1>General Terms and Conditions</h1>
+<p><strong>Last updated:</strong> February 26, 2026</p>
+
+<h2>1. Company Information</h2>
+<p>
+  CYNA-IT, SAS<br>
+  10 rue de Penthièvre, 75008 Paris, France<br>
+  VAT: FR20913711032<br>
+  Phone: +33 1 89 70 14 36<br>
+  Email: contact@cyna-it.fr<br>
+  Website: https://cyna-it.fr/
+</p>
+
+<h2>2. Acceptance of Terms</h2>
+<p>
+  By accessing or using our website, mobile application, or related services (the “Services”),
+  you agree to be bound by these Terms. If you do not agree, you must stop using the Services.
+  We may update these Terms at any time. Continued use means acceptance of changes.
+</p>
+
+<h2>3. Eligibility</h2>
+<p>
+  The Services are intended for users aged 18 or older. By using the Services,
+  you confirm that the information you provide is accurate and lawful.
+</p>
+
+<h2>4. Services and Products</h2>
+<p>
+  CYNA-IT provides cybersecurity solutions and related services.
+  Product availability and pricing may change at any time.
+  We reserve the right to refuse or cancel orders.
+</p>
+
+<h2>5. Payments</h2>
+<p>
+  Payments are processed in Euros via approved payment providers (e.g., PayPal).
+  You agree to provide accurate billing information.
+  All sales are final unless otherwise required by law.
+</p>
+
+<h2>6. Subscriptions</h2>
+<p>
+  Subscriptions renew automatically unless canceled.
+  You may cancel at any time from your account.
+  Fee changes will be communicated in advance.
+</p>
+
+<h2>7. Intellectual Property</h2>
+<p>
+  All content, trademarks, software, and materials on the Services
+  are the property of CYNA-IT or its licensors.
+  You may not reproduce, distribute, or exploit any content without prior written consent.
+</p>
+
+<h2>8. Prohibited Use</h2>
+<p>You agree not to:</p>
+<ul>
+  <li>Use the Services for unlawful purposes</li>
+  <li>Attempt to breach security or access restricted areas</li>
+  <li>Upload malicious code or harmful content</li>
+  <li>Copy or reverse-engineer our software</li>
+</ul>
+
+<h2>9. Privacy</h2>
+<p>
+  We process personal data in accordance with our Privacy Policy
+  available at /legal-mentions.
+  By using the Services, you consent to data processing in France.
+</p>
+
+<h2>10. Limitation of Liability</h2>
+<p>
+  The Services are provided “as is” and “as available.”
+  CYNA-IT is not liable for indirect, incidental, or consequential damages,
+  including loss of profit or data, to the extent permitted by law.
+</p>
+
+<h2>11. Termination</h2>
+<p>
+  We may suspend or terminate access to the Services at our discretion
+  if you violate these Terms or applicable law.
+</p>
+
+<h2>12. Governing Law</h2>
+<p>
+  These Terms are governed by French law.
+  Disputes shall fall under the jurisdiction of the courts of Paris, France,
+  unless mandatory consumer protection rules provide otherwise.
+</p>
+
+<h2>13. Contact</h2>
+<p>
+  CYNA-IT<br>
+  10 rue de Penthièvre<br>
+  75008 Paris – France<br>
+  Phone: +33 1 89 70 14 36<br>
+  Email: contact@cyna-it.fr
+</p>

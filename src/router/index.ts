@@ -8,7 +8,9 @@ import CategoriesPage from '@/views/CategoriesPage.vue'
 import CategoryPage from '@/views/CategoryPage.vue'
 import CheckoutPage from '@/views/CheckoutPage.vue'
 import ForgotPasswordPage from '@/views/ForgotPasswordPage.vue'
+import GeneralConditionsPage from '@/views/GeneralConditionsPage.vue'
 import HomePage from '@/views/HomePage.vue'
+import LegalMentionsPage from '@/views/LegalMentionsPage.vue'
 import LoginPage from '@/views/LoginPage.vue'
 import ProductPage from '@/views/ProductPage.vue'
 import ProductsPage from '@/views/ProductsPage.vue'
@@ -62,6 +64,14 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'checkout',
         component: CheckoutPage,
+      },
+      {
+        path: 'legal-mentions',
+        component: LegalMentionsPage,
+      },
+      {
+        path: 'general-conditions',
+        component: GeneralConditionsPage,
       },
       {
         path: 'register',

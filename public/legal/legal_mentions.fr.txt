@@ -1,0 +1,95 @@
+<h2>Définitions</h2>
+<p>
+  <b>Client :</b> Toute personne physique ou morale visitant ce site.<br />
+  <b>Services :</b> <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> fournit des solutions de cybersécurité et services associés.
+</p>
+
+<p>
+  <b>Contenu :</b> Tous les textes, images, vidéos et autres éléments présents sur le Site.
+</p>
+
+<p>
+  <b>Informations personnelles :</b> Données collectées auprès des utilisateurs pour la gestion de compte, la livraison des services, l’analyse et les statistiques.
+</p>
+
+<p><b>Utilisateur :</b> Toute personne accédant ou utilisant le Site.</p>
+
+<h2>1. Propriété du site</h2>
+<p>
+  <strong>Propriétaire :</strong> CYNA-IT, SAS – 10 rue de Penthièvre 75008 Paris<br />
+  <strong>Responsable publication :</strong> Cyna – contact@cyna-it.fr<br />
+  <strong>Webmaster :</strong> Aldin Music – aldinmusik@gmail.com<br />
+  <strong>Hébergeur :</strong> Vercel Inc – https://vercel.com/ CA 91723 Covina +1 888 501 8555<br />
+  <strong>Délégué à la protection des données (DPO) :</strong> Aldin Music – aldinmusik@gmail.com
+</p>
+
+<h2>2. Conditions d’utilisation</h2>
+<p>
+  L’utilisation du Site implique l’acceptation des présentes conditions. Le Site peut être temporairement indisponible pour maintenance. Les informations peuvent être mises à jour à tout moment.
+</p>
+
+<h2>3. Services</h2>
+<p>
+  Le Site fournit des informations sur les services de CYNA-IT. Malgré les efforts pour l’exactitude, CYNA-IT n’est pas responsable des omissions ou erreurs.
+</p>
+
+<h2>4. Limitations techniques</h2>
+<p>
+  Le Site utilise des technologies web modernes. Les utilisateurs doivent accéder au Site avec un appareil et un navigateur à jour. CYNA-IT est hébergé dans l’UE et respecte le RGPD.
+</p>
+
+<h2>5. Propriété intellectuelle</h2>
+<p>
+  Tout le contenu du Site est la propriété de CYNA-IT. Toute reproduction ou utilisation sans autorisation est interdite et pourra être poursuivie.
+</p>
+
+<h2>6. Responsabilité</h2>
+<p>
+  CYNA-IT n’est pas responsable des dommages directs ou indirects liés à l’utilisation du Site ou de ses espaces interactifs. Les utilisateurs doivent respecter la loi lors de la publication de contenus.
+</p>
+
+<h2>7. Données personnelles</h2>
+<h3>7.1 Responsable du traitement</h3>
+<p>
+  CYNA-IT, représenté par Nathan Bramli, est responsable des données personnelles collectées via le Site.
+</p>
+
+<h3>7.2 Finalités</h3>
+<ul>
+  <li>Gérer la navigation, les comptes et les commandes.</li>
+  <li>Prévenir la fraude et l’accès non autorisé.</li>
+  <li>Améliorer l’expérience utilisateur et analyser l’utilisation du Site.</li>
+  <li>Envoyer des enquêtes ou communications optionnelles (email/SMS).</li>
+</ul>
+
+<h3>7.3 Droits des utilisateurs</h3>
+<p>
+  Les utilisateurs peuvent accéder, corriger, supprimer, restreindre ou s’opposer au traitement de leurs données. Ils peuvent demander la portabilité et définir des instructions post-mortem. Les demandes doivent être envoyées à :
+</p>
+<p>
+  CYNA-IT – DPO, Nathan Bramli<br />
+  10 rue de Penthièvre 75008 Paris
+</p>
+<p>
+  Les demandes doivent inclure une pièce d’identité. Les utilisateurs peuvent également contacter la CNIL (https://www.cnil.fr/fr/plaintes).
+</p>
+
+<h3>7.4 Sécurité et partage des données</h3>
+<p>
+  Les données sont traitées de manière sécurisée uniquement par le personnel autorisé ou des prestataires de confiance. CYNA-IT ne vend pas les données personnelles. Les transferts hors UE ne se font qu’en respectant la loi et après information.
+</p>
+
+<h2>8. Notification d’incident</h2>
+<p>
+  En cas de violation de sécurité, les utilisateurs concernés seront informés rapidement et recevront des conseils pour protéger leurs données.
+</p>
+
+<h2>9. Cookies et suivi</h2>
+<p>
+  Le Site utilise des cookies et balises web pour l’analyse, la navigation et le fonctionnement des services. Les utilisateurs peuvent accepter ou refuser les cookies via leur navigateur. Le refus peut limiter certaines fonctionnalités.
+</p>
+
+<h2>10. Loi applicable et juridiction</h2>
+<p>
+  Le droit français s’applique. Les litiges relèvent des tribunaux compétents en France.
+</p>
