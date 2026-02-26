@@ -6,6 +6,7 @@ import AccountPage from '@/views/AccountPage.vue'
 import AdminPage from '@/views/AdminPage.vue'
 import CategoriesPage from '@/views/CategoriesPage.vue'
 import CategoryPage from '@/views/CategoryPage.vue'
+import CheckoutPage from '@/views/CheckoutPage.vue'
 import ForgotPasswordPage from '@/views/ForgotPasswordPage.vue'
 import HomePage from '@/views/HomePage.vue'
 import LoginPage from '@/views/LoginPage.vue'
@@ -57,6 +58,10 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'product/:id',
         component: ProductPage,
+      },
+      {
+        path: 'checkout',
+        component: CheckoutPage,
       },
       {
         path: 'register',

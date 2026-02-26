@@ -168,11 +168,11 @@ const contextItemMap = ref<
 
 /* Lifecycle Hooks */
 onMounted(async () => {
-  promotions.value = await promotionComposable.get()
-  homeText.value = await homeTextComposable.get()
-  categories.value = await categoryComposable.get()
-  products.value = await productComposable.get()
-  characteristics.value = await characteristicComposable.get()
+  promotionComposable.get().then((data) => (promotions.value = data))
+  homeTextComposable.get().then((data) => (homeText.value = data))
+  categoryComposable.get().then((data) => (categories.value = data))
+  productComposable.get().then((data) => (products.value = data))
+  characteristicComposable.get().then((data) => (characteristics.value = data))
 })
 
 /* Functions */

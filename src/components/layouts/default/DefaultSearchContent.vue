@@ -103,8 +103,8 @@ const characteristics = ref<Characteristic[]>([])
 
 /* Lifecycle Hooks */
 onMounted(async () => {
-  products.value = await productComposable.get()
-  categories.value = await categoryComposable.get()
-  characteristics.value = await characteristicComposable.get()
+  categoryComposable.get().then((data) => (categories.value = data))
+  productComposable.get().then((data) => (products.value = data))
+  characteristicComposable.get().then((data) => (characteristics.value = data))
 })
 </script>

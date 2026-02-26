@@ -1,5 +1,5 @@
 import { Social } from '$/types'
-import { logoGithub } from 'ionicons/icons'
+import { socialFixtures } from '@/constants/fixtures'
 
 /**
  * Use this composable to do footer related queries
@@ -9,13 +9,7 @@ export function useFooter() {
    * Get the Cyna social links for the footer
    */
   async function getSocials() {
-    const socials: Social[] = [
-      {
-        id: 1,
-        logo: logoGithub,
-        link: 'https://github.com/kpoptrashBlaenk',
-      },
-    ]
+    const socials: Social[] = Object.values(socialFixtures)
 
     return socials ?? []
   }

@@ -1,6 +1,6 @@
 <template>
   <template v-for="(group, key) in groups" :key="key">
-    <ListGroupTitle :title="group.header" />
+    <ListGroupTitle :title="group.header" class="mb-3" />
 
     <IonList class="mb-10! rounded-2xl border-2 border-primary p-0!">
       <IonItem

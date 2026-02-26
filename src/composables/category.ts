@@ -1,12 +1,11 @@
 import { Category } from '$/types'
 import { FormField } from '@/types'
 import { apiPost } from '@/utils/api'
-import findById from '@/utils/findById'
-import placeholderImages from '@/utils/placeholderImages'
 import presentToast from '@/utils/presentToast'
 import { CategorySchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { alertCircleOutline, checkmarkCircleOutline } from 'ionicons/icons'
+import { categoryFixtures } from './../constants/fixtures'
 
 /**
  * Use this composable to do category related queries
@@ -81,47 +80,7 @@ export function useCategory() {
    * Get all categories
    */
   async function get() {
-    const categories: Category[] = [
-      {
-        id: 1,
-        image: placeholderImages(['SOC Services']),
-        name: {
-          en: 'SOC Services',
-          fr: 'Services SOC',
-        },
-        description: {
-          en: 'Security Operations Center services for continuous monitoring and incident response.',
-          fr: 'Services de centre des opérations de sécurité pour une surveillance continue et une réponse aux incidents.',
-        },
-        index: 1,
-      },
-      {
-        id: 2,
-        image: placeholderImages(['EDR Services']),
-        name: {
-          en: 'EDR Services',
-          fr: 'Services EDR',
-        },
-        description: {
-          en: 'Endpoint Detection and Response solutions to protect and monitor endpoints.',
-          fr: 'Solutions de détection et de réponse sur les terminaux pour protéger et surveiller les postes.',
-        },
-        index: 2,
-      },
-      {
-        id: 3,
-        image: placeholderImages(['XDR Services']),
-        name: {
-          en: 'XDR Services',
-          fr: 'Services XDR',
-        },
-        description: {
-          en: 'Extended Detection and Response services integrating multiple security layers.',
-          fr: 'Services de détection et de réponse étendues intégrant plusieurs couches de sécurité.',
-        },
-        index: 3,
-      },
-    ]
+    const categories: Category[] = Object.values(categoryFixtures)
 
     return categories ?? []
   }
@@ -130,7 +89,7 @@ export function useCategory() {
    * Find category by id
    */
   async function find(id: number) {
-    const category = findById(await get(), id)
+    const category = categoryFixtures[id as keyof typeof categoryFixtures]
 
     return category
   }

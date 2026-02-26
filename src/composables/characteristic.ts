@@ -1,5 +1,5 @@
 import { Characteristic, CharacteristicType } from '$/types'
-import characteristicTypes from '@/constants/characteristicTypes'
+import { characteristicFixtures } from '@/constants/fixtures'
 import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
 import { CharacteristicSchema } from '@/utils/schemas'
@@ -44,7 +44,7 @@ export function useCharacteristic() {
       },
       {
         element: 'select',
-        items: characteristicTypes,
+        items: CharacteristicType,
         itemLabelKey: 'label',
         itemValueKey: 'value',
         name: 'type',
@@ -71,19 +71,7 @@ export function useCharacteristic() {
    * Get all characteristics
    */
   async function get(type?: CharacteristicType) {
-    const characteristics: Characteristic[] = [
-      { id: 1, name: { en: 'High Performance', fr: 'Haute performance' }, type: 'performance' },
-      { id: 2, name: { en: 'Optimized', fr: 'Optimisé' }, type: 'performance' },
-      { id: 3, name: { en: 'Low Latency', fr: 'Faible latence' }, type: 'performance' },
-
-      { id: 4, name: { en: 'Highly Scalable', fr: 'Haute scalabilité' }, type: 'scalability' },
-      { id: 5, name: { en: 'Cloud Ready', fr: 'Prêt pour le cloud' }, type: 'scalability' },
-      { id: 6, name: { en: 'Multi-Tenant', fr: 'Multi-locataire' }, type: 'scalability' },
-
-      { id: 7, name: { en: 'Enterprise Level', fr: 'Niveau entreprise' }, type: 'level' },
-      { id: 8, name: { en: 'SMB Level', fr: 'Niveau PME' }, type: 'level' },
-      { id: 9, name: { en: 'Basic Level', fr: 'Niveau de base' }, type: 'level' },
-    ]
+    const characteristics: Characteristic[] = Object.values(characteristicFixtures)
 
     return type ? characteristics.filter((characteristic) => characteristic.type === type) : characteristics
   }
@@ -92,8 +80,7 @@ export function useCharacteristic() {
    * Find characteristics by id
    */
   async function findMultiple(ids: number[]) {
-    const characteristics = await get()
-    return characteristics.filter((characteristic) => ids.includes(characteristic.id))
+    return Object.values(characteristicFixtures).filter((characteristic) => ids.includes(characteristic.id))
   }
 
   /**

@@ -7,6 +7,10 @@ const translationKeys = {
   // A
   account: 'account',
   add: 'add',
+  add_address: 'add_address',
+  add_products: 'add_products',
+  add_payment: 'add_payment',
+  address: 'address',
   admin: 'admin',
   admin_category_title: 'admin_category_title',
   admin_characteristic_title: 'admin_characteristic_title',
@@ -31,6 +35,7 @@ const translationKeys = {
   category: 'category',
   category_products_title: 'category_products_title',
   characteristics: 'characteristics',
+  checkout: 'checkout',
   contact: 'contact',
   confirm_password: 'confirm_password',
   country_code: 'country_code',
@@ -44,11 +49,13 @@ const translationKeys = {
   description_functionality: 'description_functionality',
   description_security: 'description_security',
   details: 'details',
+  device: 'device',
   disponible: 'disponible',
   disponible_only: 'disponible_only',
 
   // E
   email: 'email',
+  empty_cart: 'empty_cart',
   english: 'english',
   expiration: 'expiration',
   error_category_post_500: 'error_category_post_500',
@@ -113,9 +120,9 @@ const translationKeys = {
   // P
   pages: 'pages',
   password: 'password',
+  pay: 'pay',
+  payment_method: 'payment_method',
   payment_methods: 'payment_methods',
-  per_user: 'per_user',
-  per_device: 'per_device',
   performance: 'performance',
   phone: 'phone',
   postal_code: 'postal_code',
@@ -143,7 +150,8 @@ const translationKeys = {
   street_address: 'street_address',
   submit: 'submit',
   subscribe_now: 'subscribe_now',
-  subtitle: 'promotion_subtitle',
+  subtitle: 'subtitle',
+  summary: 'summary',
 
   // T
   text: 'text',
@@ -155,10 +163,12 @@ const translationKeys = {
   toast_reordered: 'toast_reordered',
   toast_reset_link: 'toast_reset_link',
   top: 'top',
+  total: 'total',
   type: 'type',
 
   // U
   upload: 'upload',
+  user: 'user',
   user_info: 'user_info',
 
   // V
@@ -179,6 +189,22 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   add: {
     en: 'Add',
     fr: 'Ajouter',
+  },
+  add_address: {
+    en: 'Add new address',
+    fr: 'Ajouter une nouvelle adresse',
+  },
+  add_payment: {
+    en: 'Add new payment method',
+    fr: 'Ajouter un nouveau mode de paiement',
+  },
+  add_products: {
+    en: 'Add new products',
+    fr: 'Ajouter de nouveaux produits',
+  },
+  address: {
+    en: 'Address',
+    fr: 'Adresse',
   },
   admin: {
     en: 'Admin Access',
@@ -264,6 +290,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Characteristics',
     fr: 'Caractéristiques',
   },
+  checkout: {
+    en: 'Checkout',
+    fr: 'Panier',
+  },
   contact: {
     en: 'Contact',
     fr: 'Contacte',
@@ -310,6 +340,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Details',
     fr: 'Détails',
   },
+  device: {
+    en: 'Per Device',
+    fr: 'Par Appareil',
+  },
   disponible: {
     en: 'Available',
     fr: 'Disponible',
@@ -327,6 +361,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   email: {
     en: 'Email',
     fr: 'Email',
+  },
+  empty_cart: {
+    en: 'Your Cart is Empty!',
+    fr: 'Votre Panier est Vide!',
   },
   error_category_post_500: {
     en: "Couldn't create category",
@@ -526,17 +564,17 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Password',
     fr: 'Mot de passe',
   },
+  pay: {
+    en: 'Pay',
+    fr: 'Payer',
+  },
+  payment_method: {
+    en: 'Payment Method',
+    fr: 'Méthode de paiement',
+  },
   payment_methods: {
     en: 'Payment Methods',
     fr: 'Méthodes de paiement',
-  },
-  per_user: {
-    en: 'Per User',
-    fr: 'Par Utilisateur',
-  },
-  per_device: {
-    en: 'Per Device',
-    fr: 'Par Appareil',
   },
   performance: {
     en: 'Performance',
@@ -638,6 +676,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Subscribe Now',
     fr: "S'abonner maintenant",
   },
+  summary: {
+    en: 'Summary',
+    fr: 'Résumé',
+  },
 
   // T
   text: {
@@ -676,6 +718,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Top',
     fr: 'Top',
   },
+  total: {
+    en: 'Total',
+    fr: 'Total',
+  },
   type: {
     en: 'Type',
     fr: 'Type',
@@ -685,6 +731,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   upload: {
     en: 'Upload',
     fr: 'Upload',
+  },
+  user: {
+    en: 'Per User',
+    fr: 'Par Utilisateur',
   },
   user_info: {
     en: 'User Information',

@@ -1,4 +1,5 @@
 import { Language } from '@/types'
+import { CharacteristicType, SubscriptionLength, SubscriptionStatus, SubscriptionUsers } from './other'
 
 /**
  * Text record with multiple languages
@@ -42,7 +43,7 @@ export type Category = {
  */
 export type Product = {
   id: number
-  category_id: number
+  category: Category
   created_at: string
   image: string[]
   name: LanguageRecord
@@ -56,9 +57,9 @@ export type Product = {
   description_advantage: LanguageRecord
   description_security: LanguageRecord
 
-  characteristics_performance_ids: number[]
-  characteristics_scalability_ids: number[]
-  characteristics_level_ids: number[]
+  characteristics_performance: Characteristic[]
+  characteristics_scalability: Characteristic[]
+  characteristics_level: Characteristic[]
 }
 
 /**
@@ -67,7 +68,7 @@ export type Product = {
 export type Characteristic = {
   id: number
   name: LanguageRecord
-  type: 'performance' | 'scalability' | 'level'
+  type: CharacteristicType
 }
 
 export type User = {
@@ -119,4 +120,21 @@ export type PaymentMethod = {
   name: string
   last4: string
   expiration: string
+}
+
+/**
+ * Product order
+ */
+export type Order = {
+  id: number
+  date: string
+  user: User
+  product: Product
+  address: Address
+  payment_method: PaymentMethod
+  length: SubscriptionLength
+  users: SubscriptionUsers
+  amount: number
+  price: number
+  status: SubscriptionStatus
 }

@@ -4,6 +4,7 @@ const pageKeys = {
   home: 'home',
   categories: 'categories',
   products: 'products',
+  checkout: 'checkout',
   legal_mentions: 'legal_mentions',
   general_conditions: 'general_conditions',
   contact: 'contact',
@@ -34,6 +35,10 @@ const pages: Record<PageKey, Page> = {
   products: {
     translationKey: pageKeys.products,
     url: '/products',
+  },
+  checkout: {
+    translationKey: pageKeys.checkout,
+    url: '/checkout',
   },
   contact: {
     translationKey: pageKeys.contact,

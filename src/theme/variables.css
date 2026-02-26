@@ -98,6 +98,9 @@ a:hover {
 .bg-light {
   background: var(--ion-color-light);
 }
+.bg-danger {
+  background: var(--ion-color-danger);
+}
 
 .text-primary {
   color: var(--ion-color-primary);

@@ -3,17 +3,16 @@ import {
   CategorySchema,
   CharacteristicSchema,
   EmailSchema,
-  ForgotPasswordSchema,
   HomeTextSchema,
   LoginSchema,
   NameSchema,
+  OrderSchema,
   PasswordSchema,
   PaymentMethodSchema,
   PhoneSchema,
   ProductSchema,
   PromotionSchema,
   RegisterSchema,
-  ResetPasswordSchema,
 } from '@/utils/schemas'
 
 type ImageString = { image: string[] }
@@ -87,3 +86,8 @@ export type AddressBody = AddressSchema
  * Body for payment method api
  */
 export type PaymentMethodBody = PaymentMethodSchema
+
+/**
+ * Body for order api
+ */
+export type OrderBody = OrderSchema
