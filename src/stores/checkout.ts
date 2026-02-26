@@ -1,4 +1,5 @@
 import { Address, PaymentMethod } from '$/types'
+import { useCheckout } from '@/composables/checkout'
 import { DraftOrder } from '@/types'
 import calculatePrice from '@/utils/calculatePrice'
 import { defineStore } from 'pinia'
@@ -79,6 +80,16 @@ export const useCheckoutStore = defineStore('checkout', {
       }
 
       return time
+    },
+
+    async sendPaymentData() {
+      const { sendPaymentData } = useCheckout()
+
+      if (!this.address || !this.paymentMethod) return
+
+      const approveUrl = await sendPaymentData(this.orders, this.address, this.paymentMethod)
+
+      window.location.href = approveUrl
     },
   },
 })

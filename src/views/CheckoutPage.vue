@@ -48,7 +48,14 @@
 
       <!-- Pay Button -->
       <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
-        <SolidButton v-if="userStore.user" color="primary" :label="translation('pay')" class="text-3xl w-full" />
+        <SolidButton
+          v-if="userStore.user"
+          color="primary"
+          :label="translation('pay')"
+          class="text-3xl w-full"
+          :disabled="!checkoutStore.address || !checkoutStore.paymentMethod"
+          @click="checkoutStore.sendPaymentData()"
+        />
         <SolidButton v-else color="primary" :label="translation('login')" class="text-3xl w-full" :link="'/login'" />
         <TitleComponent :text="`<title>${translation('total')}</title>`" color="tertiary" class="text-3xl!" />
         <TitleComponent :text="`<title>${checkoutStore.totalPrice}€</title>`" color="primary" />
