@@ -44,6 +44,7 @@ const translationKeys = {
   // D
   default: 'default',
   delete: 'delete',
+  delete_account: 'delete_account',
   description: 'description',
   description_advantage: 'description_advantage',
   description_functionality: 'description_functionality',
@@ -319,6 +320,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   delete: {
     en: 'Delete',
     fr: 'Supprimer',
+  },
+  delete_account: {
+    en: 'Delete Account',
+    fr: 'Supprimer le Compte',
   },
   description: {
     en: 'Description',

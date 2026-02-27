@@ -34,14 +34,7 @@
       </IonAccordionGroup>
 
       <!-- Account Delete -->
-      <SolidButton
-        :icon="alertCircleOutline"
-        :label="translation('delete')"
-        color="danger"
-        size="large"
-        expand="block"
-        @click="setDeleteUserSubmit"
-      />
+      <DangerSegment @delete:account="deleteAccount" />
 
       <SeparatorComponent size="sm" />
     </div>
@@ -51,29 +44,26 @@
 <script setup lang="ts">
 /* Imports */
 import { Address, PaymentMethod } from '$/types'
+import DangerSegment from '@/components/account/DangerSegment.vue'
 import ProfileSegment from '@/components/account/ProfileSegment.vue'
 import FormAlert from '@/components/forms/FormAlert.vue'
 import FormModal from '@/components/forms/FormModal.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
-import SolidButton from '@/components/ui/buttons/SolidButton.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
 import AdminAccordionItem from '@/components/ui/items/AdminAccordionItem.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import ListGroupTitle from '@/components/ui/text/ListGroupTitle.vue'
 import { useAddress } from '@/composables/address'
-import { useAuth } from '@/composables/auth'
 import { usePaymentMethod } from '@/composables/paymentMethod'
 import { ApiMethod } from '@/constants/apiMethod'
-import { ApiHandlerItem, ContextItem, FormField } from '@/types'
+import { AccountItem, ApiHandlerItem, ContextItem, FormField } from '@/types'
 import { addressSchema, addressState, paymentMethodSchema, paymentMethodState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
-import { alertCircleOutline } from 'ionicons/icons'
 import { onMounted, ref } from 'vue'
 import { ZodType } from 'zod'
 
 /* Constants */
-const { deleteUser } = useAuth()
 const addressComposable = useAddress()
 const paymentMethodComposable = usePaymentMethod()
 
@@ -161,24 +151,26 @@ async function onModalOpen(context?: 'address' | 'payment', method?: ApiMethod, 
   }
 }
 
-function updateFormModalProfile(event: any) {
+function updateFormModalProfile(event: {
+  fields: FormField[]
+  state: any
+  schema: ZodType<any>
+  onSubmit: (state?: AccountItem) => Promise<void>
+}) {
   fields.value = event.fields
   state.value = event.state
   schema.value = event.schema
-  onSubmit.value = async (state?: any) => {
+  onSubmit.value = async (state?: AccountItem) => {
     await event.onSubmit(state)
     modal.value.$el.dismiss()
   }
   modalOpen.value = true
 }
 
-function setDeleteUserSubmit() {
+function deleteAccount(event: () => Promise<void>) {
   alert.value.$el.present()
 
-  onSubmit.value = async () => {
-    await deleteUser()
-    location.reload()
-  }
+  onSubmit.value = event
 }
 </script>
 
