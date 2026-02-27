@@ -9,7 +9,7 @@
     <FormAlert ref="alert" @submit="onSubmit" />
 
     <!-- Segment Buttons -->
-    <IonSegment value="profile">
+    <IonSegment v-model="activeSegment">
       <IonSegmentButton value="profile" content-id="profile-content" class="segment-primary">
         <IonLabel class="text-lg">Profile</IonLabel>
       </IonSegmentButton>
@@ -70,6 +70,9 @@ const fields = ref<FormField[]>([])
 const state = ref<any>({})
 const schema = ref<ZodType<any>>()
 const onSubmit = ref<(state?: any) => Promise<void>>(async () => {})
+const activeSegment = ref<string>('profile')
+
+/* Functions */
 function updateFormModalBilling(event: {
   fields: FormField[]
   state: any
