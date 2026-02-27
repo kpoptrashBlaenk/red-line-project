@@ -9,12 +9,18 @@
     <FormAlert ref="alert" @submit="onSubmit" />
 
     <!-- Segment Buttons -->
-    <IonSegment v-model="activeSegment">
+    <IonSegment v-model="activeSegment" scrollable class="min-h-16 scrollbar-none">
       <IonSegmentButton value="profile" content-id="profile-content" class="segment-primary">
         <IonLabel class="text-lg">{{ translation('profile') }}</IonLabel>
       </IonSegmentButton>
       <IonSegmentButton value="billing" content-id="billing-content" class="segment-secondary">
         <IonLabel class="text-lg">{{ translation('billing') }}</IonLabel>
+      </IonSegmentButton>
+      <IonSegmentButton value="subscriptions" content-id="subscriptions-content" class="segment-tertiary">
+        <IonLabel class="text-lg">{{ 'subscriptions' }}</IonLabel>
+      </IonSegmentButton>
+      <IonSegmentButton value="orders" content-id="orders-content" class="segment-primary">
+        <IonLabel class="text-lg">{{ 'orders' }}</IonLabel>
       </IonSegmentButton>
       <IonSegmentButton value="danger" content-id="danger-content" class="segment-danger">
         <IonLabel class="text-lg">{{ translation('danger') }}</IonLabel>
@@ -35,6 +41,16 @@
         <BillingSegment @update:form-modal="updateFormModalBilling($event)" />
       </IonSegmentContent>
 
+      <!-- Subscriptions -->
+      <IonSegmentContent id="subscriptions-content">
+        <SubscriptionsSegment />
+      </IonSegmentContent>
+
+      <!-- Orders -->
+      <IonSegmentContent id="orders-content">
+        <OrdersSegment />
+      </IonSegmentContent>
+
       <!-- Danger -->
       <IonSegmentContent id="danger-content">
         <DangerSegment @delete:account="deleteAccount" />
@@ -47,7 +63,9 @@
 /* Imports */
 import BillingSegment from '@/components/account/BillingSegment.vue'
 import DangerSegment from '@/components/account/DangerSegment.vue'
+import OrdersSegment from '@/components/account/OrdersSegment.vue'
 import ProfileSegment from '@/components/account/ProfileSegment.vue'
+import SubscriptionsSegment from '@/components/account/SubscriptionsSegment.vue'
 import FormAlert from '@/components/forms/FormAlert.vue'
 import FormModal from '@/components/forms/FormModal.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
@@ -68,7 +86,7 @@ const fields = ref<FormField[]>([])
 const state = ref<any>({})
 const schema = ref<ZodType<any>>()
 const onSubmit = ref<(state?: any) => Promise<void>>(async () => {})
-const activeSegment = ref<string>('profile')
+const activeSegment = ref<string>('billing')
 
 /* Functions */
 function updateFormModalBilling(event: {
