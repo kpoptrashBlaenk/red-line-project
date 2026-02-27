@@ -1,12 +1,14 @@
 <template>
-  <SolidButton
-    :icon="alertCircleOutline"
-    :label="translation('delete_account')"
-    color="danger"
-    size="large"
-    expand="block"
-    @click="emit('delete:account', onSubmit)"
-  />
+  <div class="wrap">
+    <SolidButton
+      :icon="alertCircleOutline"
+      :label="translation('delete_account')"
+      color="danger"
+      size="large"
+      expand="block"
+      @click="emit('delete:account', onSubmit)"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">

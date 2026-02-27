@@ -2,26 +2,46 @@
   <DefaultContentLayout>
     <HeroComponent :title="translation('account')" />
 
-    <div class="wrap">
-      <!-- Account Form Modal -->
-      <FormModal ref="modal" :is-open="modalOpen" :fields :state :schema @submit="onSubmit" @did-dismiss="modalOpen = false" />
+    <!-- Account Form Modal -->
+    <FormModal ref="modal" :is-open="modalOpen" :fields :state :schema @submit="onSubmit" @did-dismiss="modalOpen = false" />
 
-      <!-- Account Form Alert -->
-      <FormAlert ref="alert" @submit="onSubmit" />
+    <!-- Account Form Alert -->
+    <FormAlert ref="alert" @submit="onSubmit" />
 
-      <SeparatorComponent size="xs" />
+    <!-- Segment Buttons -->
+    <IonSegment value="profile">
+      <IonSegmentButton value="profile" content-id="profile-content" class="segment-primary">
+        <IonLabel class="text-lg">Profile</IonLabel>
+      </IonSegmentButton>
+      <IonSegmentButton value="billing" content-id="billing-content" class="segment-secondary">
+        <IonLabel class="text-lg">Billing</IonLabel>
+      </IonSegmentButton>
+      <IonSegmentButton value="danger" content-id="danger-content" class="segment-danger">
+        <IonLabel class="text-lg">Danger</IonLabel>
+      </IonSegmentButton>
+    </IonSegment>
 
-      <!-- Account List -->
-      <ProfileSegment @update:form-modal="updateFormModalProfile($event)" />
+    <SeparatorComponent size="xs" />
 
-      <!-- Payment Information -->
-      <BillingSegment @update:form-modal="updateFormModalBilling($event)" />
+    <!-- Segment View -->
+    <IonSegmentView id="profile-content">
+      <!-- Profile -->
+      <IonSegmentContent id="profile-content">
+        <ProfileSegment @update:form-modal="updateFormModalProfile($event)" />
+      </IonSegmentContent>
 
-      <!-- Account Delete -->
-      <DangerSegment @delete:account="deleteAccount" />
+      <!-- Billing -->
+      <IonSegmentContent id="billing-content">
+        <BillingSegment @update:form-modal="updateFormModalBilling($event)" />
+      </IonSegmentContent>
 
-      <SeparatorComponent size="sm" />
-    </div>
+      <!-- Danger -->
+      <IonSegmentContent id="danger-content">
+        <DangerSegment @delete:account="deleteAccount" />
+      </IonSegmentContent>
+    </IonSegmentView>
+
+    <SeparatorComponent size="sm" />
   </DefaultContentLayout>
 </template>
 
@@ -38,6 +58,7 @@ import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { ApiMethod } from '@/constants/apiMethod'
 import { AccountItem, FormField } from '@/types'
 import translation from '@/utils/translation'
+import { IonLabel, IonSegment, IonSegmentButton, IonSegmentContent, IonSegmentView } from '@ionic/vue'
 import { ref } from 'vue'
 import { ZodType } from 'zod'
 
@@ -96,5 +117,18 @@ ion-item {
   --detail-icon-color: white;
   --detail-icon-opacity: 1;
   --detail-icon-font-size: 32px;
+}
+
+ion-segment-button.segment-primary {
+  --color-checked: var(--ion-color-primary);
+}
+ion-segment-button.segment-secondary {
+  --color-checked: var(--ion-color-secondary);
+}
+ion-segment-button.segment-tertiary {
+  --color-checked: var(--ion-color-tertiary);
+}
+ion-segment-button.segment-danger {
+  --color-checked: var(--ion-color-danger);
 }
 </style>

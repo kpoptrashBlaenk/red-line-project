@@ -1,5 +1,7 @@
 <template>
-  <AccountList :on-modal-open="onModalOpen" />
+  <div class="wrap">
+    <AccountList :on-modal-open="onModalOpen" />
+  </div>
 </template>
 
 <script setup lang="ts">

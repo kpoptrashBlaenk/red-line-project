@@ -1,21 +1,23 @@
 <template>
-  <ListGroupTitle :title="'Payment Information'" class="mb-3" />
-  <IonAccordionGroup expand="inset" class="mb-10">
-    <AdminAccordionItem
-      v-for="(item, key) in Object.values(contextItemMap)"
-      :key
-      :title="item.title"
-      :value="item.value"
-      :items="item.itemsRef"
-      :image="item.image"
-      :text="item.text"
-      :note="item.note"
-      :add="item.add"
-      :modify="item.modify"
-      :remove="item.remove"
-      @open:modal-form="onModalOpen"
-    />
-  </IonAccordionGroup>
+  <div class="wrap">
+    <ListGroupTitle :title="'Payment Information'" class="mb-3" />
+    <IonAccordionGroup expand="inset" class="mb-10">
+      <AdminAccordionItem
+        v-for="(item, key) in Object.values(contextItemMap)"
+        :key
+        :title="item.title"
+        :value="item.value"
+        :items="item.itemsRef"
+        :image="item.image"
+        :text="item.text"
+        :note="item.note"
+        :add="item.add"
+        :modify="item.modify"
+        :remove="item.remove"
+        @open:modal-form="onModalOpen"
+      />
+    </IonAccordionGroup>
+  </div>
 </template>
 
 <script setup lang="ts">
