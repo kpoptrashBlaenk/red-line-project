@@ -12,7 +12,7 @@
       >
         <IonIcon :icon="item.icon" slot="start" class="me-5" />
 
-        <div class="flex h-18 items-center pt-1 text-2xl">
+        <div class="flex h-12 items-center pt-1 text-xl">
           {{ item.label }}
         </div>
       </IonItem>
