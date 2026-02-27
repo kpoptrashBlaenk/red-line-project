@@ -12,7 +12,7 @@
       <SeparatorComponent size="xs" />
 
       <!-- Account List -->
-      <AccountList :on-modal-open="onModalOpen" />
+      <ProfileSegment @update:form-modal="updateFormModalProfile($event)" />
 
       <!-- Payment Information -->
       <ListGroupTitle :title="'Payment Information'" class="mb-3" />
@@ -51,12 +51,12 @@
 <script setup lang="ts">
 /* Imports */
 import { Address, PaymentMethod } from '$/types'
+import ProfileSegment from '@/components/account/ProfileSegment.vue'
 import FormAlert from '@/components/forms/FormAlert.vue'
 import FormModal from '@/components/forms/FormModal.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
 import SolidButton from '@/components/ui/buttons/SolidButton.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
-import AccountList from '@/components/ui/items/AccountList.vue'
 import AdminAccordionItem from '@/components/ui/items/AdminAccordionItem.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import ListGroupTitle from '@/components/ui/text/ListGroupTitle.vue'
@@ -64,7 +64,6 @@ import { useAddress } from '@/composables/address'
 import { useAuth } from '@/composables/auth'
 import { usePaymentMethod } from '@/composables/paymentMethod'
 import { ApiMethod } from '@/constants/apiMethod'
-import { useUserStore } from '@/stores/user'
 import { ApiHandlerItem, ContextItem, FormField } from '@/types'
 import { addressSchema, addressState, paymentMethodSchema, paymentMethodState } from '@/utils/schemas'
 import translation from '@/utils/translation'
@@ -75,7 +74,6 @@ import { ZodType } from 'zod'
 
 /* Constants */
 const { deleteUser } = useAuth()
-const userStore = useUserStore()
 const addressComposable = useAddress()
 const paymentMethodComposable = usePaymentMethod()
 
@@ -125,20 +123,6 @@ onMounted(async () => {
 
 /* Functions */
 async function onModalOpen(context?: 'address' | 'payment', method?: ApiMethod, item?: any) {
-  // normal item not in accordion
-  if (!context && !method && item) {
-    fields.value = item.fields
-    state.value = userStore.user
-    schema.value = item.schema
-    onSubmit.value = async (state: any) => {
-      await item.onSubmit(state)
-      modal.value.$el.dismiss()
-    }
-    modalOpen.value = true
-
-    return
-  }
-
   // accordion items
   if (context && method) {
     const contextItem = contextItemMap.value[context]
@@ -175,6 +159,17 @@ async function onModalOpen(context?: 'address' | 'payment', method?: ApiMethod, 
     schema.value = apiHandlerItem.schema
     onSubmit.value = apiHandlerItem.onSubmit
   }
+}
+
+function updateFormModalProfile(event: any) {
+  fields.value = event.fields
+  state.value = event.state
+  schema.value = event.schema
+  onSubmit.value = async (state?: any) => {
+    await event.onSubmit(state)
+    modal.value.$el.dismiss()
+  }
+  modalOpen.value = true
 }
 
 function setDeleteUserSubmit() {
