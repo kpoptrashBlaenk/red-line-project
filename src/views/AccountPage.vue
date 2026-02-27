@@ -11,13 +11,13 @@
     <!-- Segment Buttons -->
     <IonSegment v-model="activeSegment">
       <IonSegmentButton value="profile" content-id="profile-content" class="segment-primary">
-        <IonLabel class="text-lg">Profile</IonLabel>
+        <IonLabel class="text-lg">{{ translation('profile') }}</IonLabel>
       </IonSegmentButton>
       <IonSegmentButton value="billing" content-id="billing-content" class="segment-secondary">
-        <IonLabel class="text-lg">Billing</IonLabel>
+        <IonLabel class="text-lg">{{ translation('billing') }}</IonLabel>
       </IonSegmentButton>
       <IonSegmentButton value="danger" content-id="danger-content" class="segment-danger">
-        <IonLabel class="text-lg">Danger</IonLabel>
+        <IonLabel class="text-lg">{{ translation('danger') }}</IonLabel>
       </IonSegmentButton>
     </IonSegment>
 

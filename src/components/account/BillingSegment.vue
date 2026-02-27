@@ -1,6 +1,6 @@
 <template>
   <div class="wrap">
-    <ListGroupTitle :title="'Payment Information'" class="mb-3" />
+    <ListGroupTitle :title="translation('billing_information')" class="mb-3" />
     <IonAccordionGroup expand="inset" :value="['address', 'payment']" multiple class="mb-10">
       <AdminAccordionItem
         v-for="(item, key) in Object.values(contextItemMap)"

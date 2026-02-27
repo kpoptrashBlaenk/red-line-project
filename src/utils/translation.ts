@@ -27,6 +27,8 @@ const translationKeys = {
 
   // B
   button_text: 'promotion_button',
+  billing: 'billing',
+  billing_information: 'billing_information',
 
   // C
   cancel: 'cancel',
@@ -42,6 +44,7 @@ const translationKeys = {
   cvv: 'cvv',
 
   // D
+  danger: 'danger',
   default: 'default',
   delete: 'delete',
   delete_account: 'delete_account',
@@ -134,6 +137,7 @@ const translationKeys = {
   product_characteristics_title: 'product_characteristics_title',
   product_price_title: 'product_price_title',
   products: 'products',
+  profile: 'profile',
 
   // R
   region: 'region',
@@ -265,6 +269,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Button text',
     fr: 'Texte du bouton',
   },
+  billing: {
+    en: 'Billing',
+    fr: 'Facturation',
+  },
+  billing_information: {
+    en: 'Billing Information',
+    fr: 'Informations de facturation',
+  },
 
   // C
   cancel: {
@@ -313,6 +325,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   },
 
   // D
+  danger: {
+    en: 'Danger',
+    fr: 'Danger',
+  },
   default: {
     en: 'Default',
     fr: 'Par défaut',
@@ -620,6 +636,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   products: {
     en: 'Products',
     fr: 'Produits',
+  },
+  profile: {
+    en: 'Profile',
+    fr: 'Profil',
   },
 
   // R
