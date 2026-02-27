@@ -15,23 +15,7 @@
       <ProfileSegment @update:form-modal="updateFormModalProfile($event)" />
 
       <!-- Payment Information -->
-      <ListGroupTitle :title="'Payment Information'" class="mb-3" />
-      <IonAccordionGroup expand="inset" class="mb-10">
-        <AdminAccordionItem
-          v-for="(item, key) in Object.values(contextItemMap)"
-          :key
-          :title="item.title"
-          :value="item.value"
-          :items="item.itemsRef"
-          :image="item.image"
-          :text="item.text"
-          :note="item.note"
-          :add="item.add"
-          :modify="item.modify"
-          :remove="item.remove"
-          @open:modal-form="onModalOpen"
-        />
-      </IonAccordionGroup>
+      <BillingSegment @update:form-modal="updateFormModalBilling($event)" />
 
       <!-- Account Delete -->
       <DangerSegment @delete:account="deleteAccount" />
@@ -43,29 +27,19 @@
 
 <script setup lang="ts">
 /* Imports */
-import { Address, PaymentMethod } from '$/types'
+import BillingSegment from '@/components/account/BillingSegment.vue'
 import DangerSegment from '@/components/account/DangerSegment.vue'
 import ProfileSegment from '@/components/account/ProfileSegment.vue'
 import FormAlert from '@/components/forms/FormAlert.vue'
 import FormModal from '@/components/forms/FormModal.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
-import AdminAccordionItem from '@/components/ui/items/AdminAccordionItem.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
-import ListGroupTitle from '@/components/ui/text/ListGroupTitle.vue'
-import { useAddress } from '@/composables/address'
-import { usePaymentMethod } from '@/composables/paymentMethod'
 import { ApiMethod } from '@/constants/apiMethod'
-import { AccountItem, ApiHandlerItem, ContextItem, FormField } from '@/types'
-import { addressSchema, addressState, paymentMethodSchema, paymentMethodState } from '@/utils/schemas'
+import { AccountItem, FormField } from '@/types'
 import translation from '@/utils/translation'
-import { IonAccordionGroup } from '@ionic/vue'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { ZodType } from 'zod'
-
-/* Constants */
-const addressComposable = useAddress()
-const paymentMethodComposable = usePaymentMethod()
 
 /* Refs */
 const alert = ref()
@@ -75,80 +49,23 @@ const fields = ref<FormField[]>([])
 const state = ref<any>({})
 const schema = ref<ZodType<any>>()
 const onSubmit = ref<(state?: any) => Promise<void>>(async () => {})
-const addresses = ref<Address[]>([])
-const paymentMethods = ref<PaymentMethod[]>([])
-const contextItemMap = ref<Record<'address' | 'payment', ContextItem<Address> | ContextItem<PaymentMethod>>>({
-  address: {
-    title: translation('addresses'),
-    value: 'address',
-    itemsRef: addresses,
-    text: (item: Address) => item.street_address,
-    note: (item: Address) => item.locality,
-    add: true,
-    modify: true,
-    remove: true,
-    composable: addressComposable,
-    schema: addressSchema(),
-    defaultState: addressState,
-  },
-  payment: {
-    title: translation('payment_methods'),
-    value: 'payment',
-    itemsRef: paymentMethods,
-    text: (item: PaymentMethod) => item.last4.toString(),
-    note: (item: PaymentMethod) => item.expiration,
-    add: true,
-    remove: true,
-    composable: paymentMethodComposable,
-    schema: paymentMethodSchema(),
-    defaultState: paymentMethodState,
-  },
-})
-
-/* Lifecycle Hook */
-onMounted(async () => {
-  addressComposable.get().then((data) => (addresses.value = data))
-  paymentMethodComposable.get().then((data) => (paymentMethods.value = data))
-})
-
-/* Functions */
-async function onModalOpen(context?: 'address' | 'payment', method?: ApiMethod, item?: any) {
-  // accordion items
-  if (context && method) {
-    const contextItem = contextItemMap.value[context]
-
-    const apiHandlerItem: ApiHandlerItem = {
-      // create form fields
-      fields: (await contextItem.composable.createFields?.()) ?? [],
-      // flatten item if it exists (prepare for modify), if not then create new state
-      state: item ?? { ...contextItem.defaultState },
-      // validation schema
-      schema: contextItem.schema,
-      // submit callback
-      onSubmit: async (state?: any) => {
-        // post
-        if (method === 'post') contextItem.composable.create?.(state)
-        // put
-        if (method === 'put') contextItem.composable.modify?.(item.id, state)
-        // delete
-        if (method === 'delete') contextItem.composable.remove?.(item.id)
-
-        // refetch and dismiss
-        contextItem.itemsRef.value = await contextItem.composable.get?.()
-        modal.value.$el.dismiss()
-        alert.value.$el.dismiss()
-      },
-    }
-
-    // if not delete then form modal, otherwise alert
-    method !== 'delete' ? modal.value.$el.present() : alert.value.$el.present()
-
-    // attribute variables
-    fields.value = apiHandlerItem.fields
-    state.value = apiHandlerItem.state
-    schema.value = apiHandlerItem.schema
-    onSubmit.value = apiHandlerItem.onSubmit
+function updateFormModalBilling(event: {
+  fields: FormField[]
+  state: any
+  schema: ZodType<any>
+  onSubmit: (state?: AccountItem) => Promise<void>
+  method: ApiMethod
+}) {
+  fields.value = event.fields
+  state.value = event.state
+  schema.value = event.schema
+  onSubmit.value = async (state?: AccountItem) => {
+    await event.onSubmit(state)
+    modal.value.$el.dismiss()
+    alert.value.$el.dismiss()
   }
+
+  event.method !== 'delete' ? modal.value.$el.present() : alert.value.$el.present()
 }
 
 function updateFormModalProfile(event: {
