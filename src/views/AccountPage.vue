@@ -40,8 +40,6 @@
         <DangerSegment @delete:account="deleteAccount" />
       </IonSegmentContent>
     </IonSegmentView>
-
-    <SeparatorComponent size="sm" />
   </DefaultContentLayout>
 </template>
 
