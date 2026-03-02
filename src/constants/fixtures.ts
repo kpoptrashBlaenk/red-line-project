@@ -1,4 +1,4 @@
-import { CharacteristicType, Order, SubscriptionLength, SubscriptionUsers } from '$/types'
+import { CharacteristicType, Subscription, SubscriptionLength, SubscriptionUsers } from '$/types'
 import placeholderImages from '@/utils/placeholderImages'
 import { logoGithub } from 'ionicons/icons'
 
@@ -604,7 +604,7 @@ export const productsFixtures = {
   },
 }
 
-export const subscriptionFixtures: Record<number, Order> = {
+export const subscriptionFixtures: Record<number, Subscription> = {
   1: {
     id: 1,
     renews_at: '2026-02-01',

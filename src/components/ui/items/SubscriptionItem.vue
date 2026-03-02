@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 /* Imports */
-import { Order } from '$/types'
+import { Subscription } from '$/types'
 import translation from '@/utils/translation'
 import { IonImg, IonItem } from '@ionic/vue'
 import { pencilOutline } from 'ionicons/icons'
@@ -39,6 +39,6 @@ import TitleComponent from '../text/TitleComponent.vue'
 
 /* Props */
 defineProps<{
-  subscription: Order
+  subscription: Subscription
 }>()
 </script>

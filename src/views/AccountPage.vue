@@ -83,7 +83,7 @@ const fields = ref<FormField[]>([])
 const state = ref<any>({})
 const schema = ref<ZodType<any>>()
 const onSubmit = ref<(state?: any) => Promise<void>>(async () => {})
-const activeSegment = ref<string>('subscriptions')
+const activeSegment = ref<string>('orders')
 
 /* Functions */
 function updateFormModalBilling(event: {

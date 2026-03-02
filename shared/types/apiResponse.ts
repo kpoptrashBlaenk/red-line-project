@@ -123,9 +123,9 @@ export type PaymentMethod = {
 }
 
 /**
- * Product order
+ * Subscription
  */
-export type Order = {
+export type Subscription = {
   id: number
   renews_at: string
   user: User
@@ -137,4 +137,16 @@ export type Order = {
   amount: number
   price: number
   active: boolean
+}
+
+/**
+ * Product order
+ */
+export type Order = {
+  id: number
+  user: User
+  address: Address
+  payment_method: PaymentMethod
+  price: number
+  subscriptions: Subscription[]
 }

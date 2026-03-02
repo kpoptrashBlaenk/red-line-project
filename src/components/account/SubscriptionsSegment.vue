@@ -8,7 +8,7 @@
       :submit="submitModal"
       @open:alert="alert.$el.present()"
     >
-      <ProductPriceGrid v-if="selectedSubscription" v-model="newOrder" :product="selectedSubscription.product" />
+      <ProductPriceGrid v-if="selectedSubscription" v-model="newSubscription" :product="selectedSubscription.product" />
     </SubscriptionModal>
 
     <!-- Subscription Alert -->
@@ -49,7 +49,7 @@
 
 <script setup lang="ts">
 /* Imports */
-import { Order } from '$/types'
+import { Subscription } from '$/types'
 import { useOrder } from '@/composables/order'
 import { DraftOrder } from '@/types'
 import translation from '@/utils/translation'
@@ -64,10 +64,10 @@ import SubscriptionModal from './SubscriptionModal.vue'
 const { getSubscriptions, deactivateSubscription, modifySubscription } = useOrder()
 
 /* Refs */
-const subscriptions = ref<Order[]>([])
+const subscriptions = ref<Subscription[]>([])
 const modal = ref()
-const selectedSubscription = ref<Order | undefined>(undefined)
-const newOrder = ref<DraftOrder | undefined>(undefined)
+const selectedSubscription = ref<Subscription | undefined>(undefined)
+const newSubscription = ref<DraftOrder | undefined>(undefined)
 const alert = ref()
 
 /* Lifecycle Hooks */
@@ -76,19 +76,19 @@ onMounted(async () => {
 })
 
 /* Functions */
-function openModal(subscription: Order) {
+function openModal(subscription: Subscription) {
   selectedSubscription.value = subscription
   modal.value.open()
 }
 
 async function submitModal() {
-  if (!selectedSubscription.value || !newOrder.value) {
+  if (!selectedSubscription.value || !newSubscription.value) {
     return
   }
 
-  await modifySubscription(selectedSubscription.value.id, newOrder.value)
+  await modifySubscription(selectedSubscription.value.id, newSubscription.value)
 
-  newOrder.value = undefined
+  newSubscription.value = undefined
   selectedSubscription.value = undefined
   modal.value.close()
 }
