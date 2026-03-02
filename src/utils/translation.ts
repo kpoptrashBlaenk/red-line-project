@@ -148,6 +148,7 @@ const translationKeys = {
   register: 'register',
   register_info: 'register_info',
   register_now: 'register_now',
+  renewed: 'renewed',
   renews_on: 'renews_on',
   reset_password: 'reset_password',
 
@@ -679,6 +680,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   register_now: {
     en: 'Register now!',
     fr: 'Inscrivez vous maintenant!',
+  },
+  renewed: {
+    en: 'Renewed',
+    fr: 'Renouvelé',
   },
   renews_on: {
     en: 'Renews on',

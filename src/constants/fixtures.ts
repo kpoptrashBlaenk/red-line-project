@@ -654,9 +654,13 @@ export const orderFixtures: Record<number, Order> = {
     address: addressFixtures[2],
     payment_method: paymentMethodFixtures[1],
     price: 60,
-    subscriptions: [subscriptionFixtures[1]],
+    subscriptions: [
+      {
+        subscription: subscriptionFixtures[1],
+        status: 'active',
+      },
+    ],
   },
-
   2: {
     id: 2,
     created_at: '2025-01-15T10:00:00Z',
@@ -664,6 +668,29 @@ export const orderFixtures: Record<number, Order> = {
     address: addressFixtures[1],
     payment_method: paymentMethodFixtures[2],
     price: 160,
-    subscriptions: [subscriptionFixtures[2], subscriptionFixtures[3]],
+    subscriptions: [
+      {
+        subscription: subscriptionFixtures[2],
+        status: 'active',
+      },
+      {
+        subscription: subscriptionFixtures[3],
+        status: 'inactive',
+      },
+    ],
+  },
+  3: {
+    id: 3,
+    created_at: '2024-12-15T10:00:00Z',
+    user: userFixtures[1],
+    address: addressFixtures[2],
+    payment_method: paymentMethodFixtures[1],
+    price: 60,
+    subscriptions: [
+      {
+        subscription: subscriptionFixtures[1],
+        status: 'renewed',
+      },
+    ],
   },
 }

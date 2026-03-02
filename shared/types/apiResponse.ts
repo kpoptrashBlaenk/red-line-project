@@ -139,6 +139,8 @@ export type Subscription = {
   active: boolean
 }
 
+export type SubscriptionStatus = 'active' | 'inactive' | 'renewed'
+
 /**
  * Product order
  */
@@ -149,5 +151,8 @@ export type Order = {
   address: Address
   payment_method: PaymentMethod
   price: number
-  subscriptions: Subscription[]
+  subscriptions: {
+    subscription: Subscription
+    status: SubscriptionStatus
+  }[]
 }

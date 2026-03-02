@@ -12,7 +12,7 @@
       <div class="border-b-2 border-white pb-4 pt-2">
         <div class="flex gap-2 items-baseline">
           <div class="text-lg font-extrabold">{{ subscription.price }}€</div>
-          <div class="text-sm text-gray-300">/ {{ subscription.length }}</div>
+          <div class="text-sm text-gray-300">/{{ translation(subscription.length) }}</div>
         </div>
         <div class="text-sm text-gray-300">
           {{ translation('renews_on') }} {{ Intl.DateTimeFormat('fr-FR').format(new Date(subscription.renews_at)) }}
