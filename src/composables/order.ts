@@ -1,5 +1,5 @@
-import { Address, PaymentMethod, Subscription } from '$/types'
-import { subscriptionFixtures } from '@/constants/fixtures'
+import { Address, Order, PaymentMethod, Subscription } from '$/types'
+import { orderFixtures, subscriptionFixtures } from '@/constants/fixtures'
 import { DraftOrder } from '@/types'
 
 /**
@@ -21,20 +21,35 @@ export function useOrder() {
     return data
   }
 
+  /**
+   * Get all orders
+   */
+  async function getOrders() {
+    const orders: Order[] = Object.values(orderFixtures)
+
+    return orders
+  }
+
   async function getSubscriptions() {
     const subscriptions: Subscription[] = Object.values(subscriptionFixtures)
 
     return subscriptions
   }
 
+  /**
+   * Deactivate a subscription
+   */
   async function deactivateSubscription(subscription: Subscription) {
     subscription
   }
 
+  /**
+   * Modify a subscription
+   */
   async function modifySubscription(subscriptionId: number, newOrder: DraftOrder) {
     subscriptionId
     newOrder
   }
 
-  return { sendPaymentData, getSubscriptions, deactivateSubscription, modifySubscription }
+  return { sendPaymentData, getOrders, getSubscriptions, deactivateSubscription, modifySubscription }
 }

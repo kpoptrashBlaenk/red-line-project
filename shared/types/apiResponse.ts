@@ -144,6 +144,7 @@ export type Subscription = {
  */
 export type Order = {
   id: number
+  created_at: string
   user: User
   address: Address
   payment_method: PaymentMethod

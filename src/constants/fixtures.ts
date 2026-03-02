@@ -1,4 +1,4 @@
-import { CharacteristicType, Subscription, SubscriptionLength, SubscriptionUsers } from '$/types'
+import { CharacteristicType, Order, Subscription, SubscriptionLength, SubscriptionUsers } from '$/types'
 import placeholderImages from '@/utils/placeholderImages'
 import { logoGithub } from 'ionicons/icons'
 
@@ -643,5 +643,27 @@ export const subscriptionFixtures: Record<number, Subscription> = {
     amount: 3,
     price: 120,
     active: false,
+  },
+}
+
+export const orderFixtures: Record<number, Order> = {
+  1: {
+    id: 1,
+    created_at: '2025-01-15T10:00:00Z',
+    user: userFixtures[1],
+    address: addressFixtures[2],
+    payment_method: paymentMethodFixtures[1],
+    price: 60,
+    subscriptions: [subscriptionFixtures[1]],
+  },
+
+  2: {
+    id: 2,
+    created_at: '2025-01-15T10:00:00Z',
+    user: userFixtures[1],
+    address: addressFixtures[1],
+    payment_method: paymentMethodFixtures[2],
+    price: 160,
+    subscriptions: [subscriptionFixtures[2], subscriptionFixtures[3]],
   },
 }
