@@ -24,6 +24,7 @@ const translationKeys = {
   alert_message: 'alert_message',
   all_services: 'all_services',
   already_account: 'already_account',
+  amount: 'amount',
   authentication: 'authentication',
 
   // B
@@ -39,6 +40,7 @@ const translationKeys = {
   category_products_title: 'category_products_title',
   characteristics: 'characteristics',
   checkout: 'checkout',
+  close: 'close',
   contact: 'contact',
   confirm_password: 'confirm_password',
   country_code: 'country_code',
@@ -102,6 +104,7 @@ const translationKeys = {
   // L
   last_name: 'last_name',
   legal_mentions: 'legal_mentions',
+  length: 'length',
   level: 'level',
   link: 'link',
   locality: 'locality',
@@ -139,6 +142,7 @@ const translationKeys = {
   priceHL: 'priceHL',
   priceLH: 'priceLH',
   priority: 'priority',
+  product: 'product',
   product_characteristics_title: 'product_characteristics_title',
   product_price_title: 'product_price_title',
   products: 'products',
@@ -163,6 +167,7 @@ const translationKeys = {
   street_address: 'street_address',
   submit: 'submit',
   subscribe_now: 'subscribe_now',
+  subscriptions: 'subscriptions',
   subtitle: 'subtitle',
   summary: 'summary',
 
@@ -271,6 +276,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Already have an account?',
     fr: 'Vous avez déjà un compte?',
   },
+  amount: {
+    en: 'Amount',
+    fr: 'Quantité',
+  },
   authentication: {
     en: 'Authentication',
     fr: 'Authentification',
@@ -318,6 +327,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   checkout: {
     en: 'Checkout',
     fr: 'Panier',
+  },
+  close: {
+    en: 'Close',
+    fr: 'Fermer',
   },
   contact: {
     en: 'Contact',
@@ -533,6 +546,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Legal Mentions',
     fr: 'Mentions légales',
   },
+  length: {
+    en: 'Length',
+    fr: 'Durée',
+  },
   level: {
     en: 'Level',
     fr: 'Niveau',
@@ -653,6 +670,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Priority',
     fr: 'Priorité',
   },
+  product: {
+    en: 'Product',
+    fr: 'Produit',
+  },
   product_characteristics_title: {
     en: 'Service <title>Characteristics</title>',
     fr: '<title>Caractéristiques</title> du service',
@@ -740,6 +761,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   subscribe_now: {
     en: 'Subscribe Now',
     fr: "S'abonner maintenant",
+  },
+  subscriptions: {
+    en: 'Subscriptions',
+    fr: 'Abonnements',
   },
   summary: {
     en: 'Summary',

@@ -51,7 +51,6 @@ const filteredOrders = computed(() => {
 /* Lifecycle Hooks */
 onMounted(async () => {
   orders.value = await getOrders()
-  modal.value?.$el.present()
 })
 
 /* Functions */
