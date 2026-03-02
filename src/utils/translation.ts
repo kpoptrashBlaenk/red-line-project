@@ -46,6 +46,7 @@ const translationKeys = {
 
   // D
   danger: 'danger',
+  deactivate: 'deactivate',
   default: 'default',
   delete: 'delete',
   delete_account: 'delete_account',
@@ -142,6 +143,7 @@ const translationKeys = {
   profile: 'profile',
 
   // R
+  reactivate: 'reactivate',
   region: 'region',
   register: 'register',
   register_info: 'register_info',
@@ -335,6 +337,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   danger: {
     en: 'Danger',
     fr: 'Danger',
+  },
+  deactivate: {
+    en: 'Deactivate',
+    fr: 'Désactiver',
   },
   default: {
     en: 'Default',
@@ -654,6 +660,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   },
 
   // R
+  reactivate: {
+    en: 'Reactivate',
+    fr: 'Réactiver',
+  },
   region: {
     en: 'Region',
     fr: 'Région',

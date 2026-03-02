@@ -1,9 +1,36 @@
 <template>
   <div class="wrap pt-4!">
+    <!-- Subscription Modal -->
+    <SubscriptionModal
+      ref="modal"
+      :title="translation(selectedSubscription?.product.name)"
+      :active="selectedSubscription?.active"
+      :submit="submitModal"
+      @open:alert="alert.$el.present()"
+    >
+      <ProductPriceGrid v-if="selectedSubscription" v-model="newOrder" :product="selectedSubscription.product" />
+    </SubscriptionModal>
+
+    <!-- Subscription Alert -->
+    <IonAlert
+      ref="alert"
+      :header="translation('alert_header')"
+      :message="translation('alert_message')"
+      :buttons="[
+        { text: translation('cancel'), role: 'cancel' },
+        { text: translation('deactivate'), role: 'destructive', handler: alertSubmit, cssClass: 'bg-danger' },
+      ]"
+    />
+
     <!-- Active -->
     <ListGroupTitle :title="translation('active')" class="mb-3" />
     <IonList>
-      <SubscriptionItem v-for="(subscription, key) in subscriptions.filter((sub) => sub.active)" :key :subscription />
+      <SubscriptionItem
+        v-for="(subscription, key) in subscriptions.filter((sub) => sub.active)"
+        :key
+        :subscription
+        @open:modal="openModal(subscription)"
+      />
     </IonList>
 
     <!-- Inactive -->
@@ -14,6 +41,7 @@
         :key
         :subscription
         class="opacity-75"
+        @open:modal="openModal(subscription)"
       />
     </IonList>
   </div>
@@ -23,20 +51,51 @@
 /* Imports */
 import { Order } from '$/types'
 import { useOrder } from '@/composables/order'
+import { DraftOrder } from '@/types'
 import translation from '@/utils/translation'
-import { IonList } from '@ionic/vue'
+import { IonAlert, IonList } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
+import ProductPriceGrid from '../grids/ProductPriceGrid.vue'
 import SubscriptionItem from '../ui/items/SubscriptionItem.vue'
 import ListGroupTitle from '../ui/text/ListGroupTitle.vue'
+import SubscriptionModal from './SubscriptionModal.vue'
 
 /* Constants */
-const { getSubscriptions } = useOrder()
+const { getSubscriptions, deactivateSubscription, modifySubscription } = useOrder()
 
 /* Refs */
 const subscriptions = ref<Order[]>([])
+const modal = ref()
+const selectedSubscription = ref<Order | undefined>(undefined)
+const newOrder = ref<DraftOrder | undefined>(undefined)
+const alert = ref()
 
 /* Lifecycle Hooks */
 onMounted(async () => {
   subscriptions.value = await getSubscriptions()
 })
+
+/* Functions */
+function openModal(subscription: Order) {
+  selectedSubscription.value = subscription
+  modal.value.open()
+}
+
+async function submitModal() {
+  if (!selectedSubscription.value || !newOrder.value) {
+    return
+  }
+
+  await modifySubscription(selectedSubscription.value.id, newOrder.value)
+
+  newOrder.value = undefined
+  selectedSubscription.value = undefined
+  modal.value.close()
+}
+
+async function alertSubmit() {
+  await deactivateSubscription(selectedSubscription.value!)
+  alert.value.$el.dismiss()
+  modal.value.close()
+}
 </script>

@@ -2,9 +2,10 @@
   <IonItem lines="none" color="tertiary" class="mb-4 rounded-2xl">
     <div class="p-4 w-full">
       <!-- Image & Name -->
-      <div class="grid grid-cols-[100px_1fr] gap-5 items-center border-b-2 border-white pb-4">
+      <div class="grid grid-cols-[100px_1fr_48px] gap-5 items-center border-b-2 border-white pb-4">
         <IonImg :src="subscription.product.image[0]" class="object-contain" />
         <TitleComponent :text="translation(subscription.product.name)" class="text-2xl! text-left" />
+        <OutlineButton :icon="pencilOutline" color="light" class="h-12" @click="$emit('open:modal')" />
       </div>
 
       <!-- Price & Length & Date -->
@@ -32,6 +33,8 @@
 import { Order } from '$/types'
 import translation from '@/utils/translation'
 import { IonImg, IonItem } from '@ionic/vue'
+import { pencilOutline } from 'ionicons/icons'
+import OutlineButton from '../buttons/OutlineButton.vue'
 import TitleComponent from '../text/TitleComponent.vue'
 
 /* Props */

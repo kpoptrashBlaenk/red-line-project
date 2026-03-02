@@ -28,7 +28,7 @@
     </IonSegment>
 
     <!-- Segment View -->
-    <IonSegmentView id="profile-content">
+    <IonSegmentView>
       <!-- Profile -->
       <IonSegmentContent id="profile-content">
         <ProfileSegment @update:form-modal="updateFormModalProfile($event)" />

@@ -27,5 +27,14 @@ export function useOrder() {
     return subscriptions
   }
 
-  return { sendPaymentData, getSubscriptions }
+  async function deactivateSubscription(subscription: Order) {
+    subscription
+  }
+
+  async function modifySubscription(subscriptionId: number, newOrder: DraftOrder) {
+    subscriptionId
+    newOrder
+  }
+
+  return { sendPaymentData, getSubscriptions, deactivateSubscription, modifySubscription }
 }
