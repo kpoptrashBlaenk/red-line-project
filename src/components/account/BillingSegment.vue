@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap">
+  <div class="wrap pt-4!">
     <ListGroupTitle :title="translation('billing_information')" class="mb-3" />
     <IonAccordionGroup expand="inset" :value="['address', 'payment']" multiple class="mb-10">
       <AdminAccordionItem

@@ -6,6 +6,7 @@ import toTitle from './toTitle'
 const translationKeys = {
   // A
   account: 'account',
+  active: 'active',
   add: 'add',
   add_address: 'add_address',
   add_products: 'add_products',
@@ -94,6 +95,7 @@ const translationKeys = {
 
   // I
   image: 'image',
+  inactive: 'inactive',
 
   // L
   last_name: 'last_name',
@@ -144,6 +146,7 @@ const translationKeys = {
   register: 'register',
   register_info: 'register_info',
   register_now: 'register_now',
+  renews_on: 'renews_on',
   reset_password: 'reset_password',
 
   // S
@@ -190,6 +193,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   account: {
     en: 'Account',
     fr: 'Compte',
+  },
+  active: {
+    en: 'Active',
+    fr: 'Actif',
   },
   add: {
     en: 'Add',
@@ -495,6 +502,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Image',
     fr: 'Image',
   },
+  inactive: {
+    en: 'Inactive',
+    fr: 'Inactif',
+  },
 
   // L
   last_name: {
@@ -658,6 +669,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   register_now: {
     en: 'Register now!',
     fr: 'Inscrivez vous maintenant!',
+  },
+  renews_on: {
+    en: 'Renews on',
+    fr: 'Renouvellement le',
   },
   reset_password: {
     en: 'Reset Password',

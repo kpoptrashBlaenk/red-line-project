@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap">
+  <div class="wrap pt-4!">
     <SolidButton
       :icon="alertCircleOutline"
       :label="translation('delete_account')"

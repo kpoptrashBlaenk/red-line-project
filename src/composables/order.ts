@@ -1,10 +1,11 @@
-import { Address, PaymentMethod } from '$/types'
+import { Address, Order, PaymentMethod } from '$/types'
+import { subscriptionFixtures } from '@/constants/fixtures'
 import { DraftOrder } from '@/types'
 
 /**
- * Use this composable to do auth related queries
+ * Use this composable to do order related queries
  */
-export function useCheckout() {
+export function useOrder() {
   /**
    * Send payment data to backend
    */
@@ -20,5 +21,11 @@ export function useCheckout() {
     return data
   }
 
-  return { sendPaymentData }
+  async function getSubscriptions() {
+    const subscriptions: Order[] = Object.values(subscriptionFixtures)
+
+    return subscriptions
+  }
+
+  return { sendPaymentData, getSubscriptions }
 }

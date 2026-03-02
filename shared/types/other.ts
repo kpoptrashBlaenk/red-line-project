@@ -13,8 +13,3 @@ export enum SubscriptionUsers {
   user = 'user',
   device = 'device',
 }
-
-export enum SubscriptionStatus {
-  active = 'active',
-  inactive = 'inactive',
-}

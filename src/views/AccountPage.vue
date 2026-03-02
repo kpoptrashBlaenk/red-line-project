@@ -27,8 +27,6 @@
       </IonSegmentButton>
     </IonSegment>
 
-    <SeparatorComponent size="xs" />
-
     <!-- Segment View -->
     <IonSegmentView id="profile-content">
       <!-- Profile -->
@@ -70,7 +68,6 @@ import FormAlert from '@/components/forms/FormAlert.vue'
 import FormModal from '@/components/forms/FormModal.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
-import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { ApiMethod } from '@/constants/apiMethod'
 import { AccountItem, FormField } from '@/types'
 import translation from '@/utils/translation'
@@ -86,7 +83,7 @@ const fields = ref<FormField[]>([])
 const state = ref<any>({})
 const schema = ref<ZodType<any>>()
 const onSubmit = ref<(state?: any) => Promise<void>>(async () => {})
-const activeSegment = ref<string>('billing')
+const activeSegment = ref<string>('subscriptions')
 
 /* Functions */
 function updateFormModalBilling(event: {

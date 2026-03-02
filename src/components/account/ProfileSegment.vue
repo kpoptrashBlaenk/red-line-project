@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap">
+  <div class="wrap pt-4!">
     <AccountList :on-modal-open="onModalOpen" />
   </div>
 </template>
