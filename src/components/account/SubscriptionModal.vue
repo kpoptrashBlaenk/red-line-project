@@ -32,7 +32,13 @@
       <IonToolbar color="light">
         <div class="flex">
           <ClearButton :label="translation('cancel')" color="dark" size="large" class="flex-1" @click="modal.$el.dismiss()" />
-          <ClearButton :label="translation(active ? 'submit' : 'reactivate')" color="dark" size="large" class="flex-1" @click="submit()" />
+          <ClearButton
+            :label="translation(active ? 'submit' : 'reactivate')"
+            color="dark"
+            size="large"
+            class="flex-1"
+            @click="submit()"
+          />
         </div>
       </IonToolbar>
     </IonFooter>
