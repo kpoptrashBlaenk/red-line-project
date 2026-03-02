@@ -6,7 +6,7 @@
         <div class="text-sm text-tertiary font-bold">
           {{ Intl.DateTimeFormat('fr-FR').format(new Date(order.created_at)) }}
         </div>
-        <ClearButton :icon="openOutline" color="tertiary" class="mb-1 text-base!" />
+        <ClearButton :icon="openOutline" color="tertiary" class="mb-1 text-base! me-2" @click="$emit('open:modal', order)" />
       </div>
 
       <!-- Subscriptions -->
@@ -18,15 +18,15 @@
       >
         <!-- Name & Category & Status -->
         <div>
-          <div class="flex justify-between items-center pe-5">
+          <div class="flex justify-between items-center me-5">
             <TitleComponent
               :text="`<title>${translation(subscription.subscription.product.name)}</title>`"
               color="primary"
               class="text-2xl!"
             />
             <IonBadge
-              :color="subscription.status === 'active' ? 'success' : subscription.status === 'renewed' ? 'success' : 'danger'"
-              class="text-sm px-1 mt-1 opacity-80"
+              :color="subscription.status === 'active' ? 'success' : subscription.status === 'renewed' ? 'warning' : 'danger'"
+              class="text-sm px-1 mt-1 opacity-80 w-24"
               >{{ translation(subscription.status) }}</IonBadge
             >
           </div>

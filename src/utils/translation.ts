@@ -58,6 +58,7 @@ const translationKeys = {
   device: 'device',
   disponible: 'disponible',
   disponible_only: 'disponible_only',
+  download: 'download',
 
   // E
   email: 'email',
@@ -123,6 +124,7 @@ const translationKeys = {
   // O
   old: 'old',
   optional: 'optional',
+  order_details: 'order_details',
 
   // P
   pages: 'pages',
@@ -387,6 +389,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Available Only',
     fr: 'Services disponibles',
   },
+  download: {
+    en: 'Download',
+    fr: 'Télécharger',
+  },
 
   // E
   english: {
@@ -592,6 +598,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   optional: {
     en: 'optional',
     fr: 'optionnel',
+  },
+  order_details: {
+    en: 'Order Details',
+    fr: 'Détails de la commande',
   },
 
   // P
