@@ -156,3 +156,27 @@ export type Order = {
     status: SubscriptionStatus
   }[]
 }
+
+/**
+ * Chatbot message
+ */
+export type Message = {
+  id: number
+  created_at: string
+  sent_by: 'user' | 'chatbot'
+  message: LanguageRecord
+}
+
+/**
+ * Chatbot conversation
+ */
+export type Conversation = {
+  id: number
+  user_id: number
+  messages: Message[]
+}
+
+export type MessageChoice = {
+  key: string
+  text: LanguageRecord
+}
