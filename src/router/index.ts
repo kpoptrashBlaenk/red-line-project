@@ -115,7 +115,7 @@ router.beforeEach((to, from, next) => {
   if (!basePosition) {
     basePosition = router.options.history.state.position as number
 
-    if (to.fullPath !== '/home') {
+    if (to.fullPath !== '/home' && from.path !== '/home') {
       next({
         path: '/home',
         query: {
