@@ -34,6 +34,13 @@ export function useChatbot() {
     return
   }
 
+  /**
+   * Create new conversation
+   */
+  async function newConversation() {
+    return
+  }
+
   // return all functions
-  return { getConversation, getChoices, sendMessage }
+  return { getConversation, getChoices, sendMessage, newConversation }
 }

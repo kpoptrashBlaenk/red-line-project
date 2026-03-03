@@ -1,7 +1,7 @@
 <template>
-  <IonModal ref="modal">
+  <IonModal ref="modal" keep-contents-mounted>
     <!-- Header -->
-    <ChatbotHeader @close:modal="modal.$el.dismiss()" />
+    <ChatbotHeader @close:modal="modal.$el.dismiss()" @new:conversation="$emit('new:conversation')" />
 
     <!-- Content -->
     <IonContent ref="content">
@@ -36,14 +36,11 @@ const content = useTemplateRef('content')
 
 /* Lifecycle Hooks */
 onMounted(() => {
-  setTimeout(() => addResizeObserver(), 100)
-})
-
-function addResizeObserver() {
   const observer = new ResizeObserver(() => {
     content.value?.$el.scrollToBottom()
+    console.log('Content scrolled to bottom')
   })
 
   observer.observe(content.value?.$el)
-}
+})
 </script>

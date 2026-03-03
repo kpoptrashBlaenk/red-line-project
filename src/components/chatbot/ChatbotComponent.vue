@@ -1,6 +1,13 @@
 <template>
   <ChatbotFab @open:modal="modal.$el.present()" />
-  <ChatbotModal ref="modal" :conversation :choices @send:message="onSendMessage" />
+  <ChatbotModal
+    ref="modal"
+    keep-alive
+    :conversation
+    :choices
+    @send:message="onSendMessage"
+    @new:conversation="createNewConversation"
+  />
 </template>
 
 <script setup lang="ts">
@@ -13,7 +20,7 @@ import ChatbotFab from './ChatbotFab.vue'
 import ChatbotModal from './ChatbotModal.vue'
 
 /* Constants */
-const { getConversation, getChoices, sendMessage } = useChatbot()
+const { getConversation, getChoices, sendMessage, newConversation } = useChatbot()
 
 /* Refs */
 const modal = ref()
@@ -22,10 +29,7 @@ const choices = ref<MessageChoice[]>([])
 
 /* Lifecycle Hooks */
 onMounted(async () => {
-  getConversation().then((result) => (conversation.value = result))
-  getChoices().then((result) => (choices.value = result))
-
-  modal.value.$el.present()
+  fetchConversation()
 })
 
 /* Functions */
@@ -42,11 +46,17 @@ async function onSendMessage(choice: MessageChoice) {
   choices.value = []
 
   // send & receive conversation updates
-  await sendMessage(choice).then(() => {
-    getConversation().then((result) => {
-      conversation.value = result
-    })
-    getChoices().then((result) => (choices.value = result))
-  })
+  await sendMessage(choice)
+  fetchConversation()
+}
+
+async function createNewConversation() {
+  await newConversation()
+  fetchConversation()
+}
+
+function fetchConversation() {
+  getConversation().then((result) => (conversation.value = result))
+  getChoices().then((result) => (choices.value = result))
 }
 </script>

@@ -6,14 +6,14 @@
         <div class="flex items-center gap-3">
           <IonIcon :icon="personCircleOutline" class="text-4xl" />
           <div class="flex flex-col leading-tight">
-            <span class="text-lg font-semibold">Chatbot</span>
-            <span class="text-sm text-success">Online</span>
+            <span class="text-lg font-semibold">{{ translation('chatbot') }}</span>
+            <span class="text-sm text-success">{{ translation('online') }}</span>
           </div>
         </div>
 
         <!-- New Chat & Exit -->
         <div class="flex items-center">
-          <IonButton color="light" fill="clear">
+          <IonButton color="light" fill="clear" @click="$emit('new:conversation')">
             {{ translation('new_chat') }}
           </IonButton>
           <IonButton color="light" fill="clear" size="large" @click="$emit('close:modal')">
