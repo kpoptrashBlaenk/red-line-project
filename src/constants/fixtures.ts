@@ -1,4 +1,13 @@
-import { CharacteristicType, Order, Subscription, SubscriptionLength, SubscriptionUsers } from '$/types'
+import {
+  CharacteristicType,
+  Conversation,
+  Message,
+  MessageChoice,
+  Order,
+  Subscription,
+  SubscriptionLength,
+  SubscriptionUsers,
+} from '$/types'
 import placeholderImages from '@/utils/placeholderImages'
 import { logoGithub } from 'ionicons/icons'
 
@@ -291,7 +300,7 @@ export const productsFixtures = {
     created_at: '2023-05-12T10:15:00Z',
     description_functionality: {
       en: 'Real-time monitoring and incident response for enterprise networks.',
-      fr: 'Surveillance en temps réel et réponse aux incidents pour les réseaux d’entreprise.',
+      fr: "Surveillance en temps réel et réponse aux incidents pour les réseaux d'entreprise.",
     },
     description_advantage: {
       en: 'Reduces risk and ensures compliance with security standards.',
@@ -407,7 +416,7 @@ export const productsFixtures = {
     },
     description_security: {
       en: 'AI-driven SOC with real-time dashboards and incident logs.',
-      fr: 'SOC piloté par IA avec tableaux de bord en temps réel et journaux d’incidents.',
+      fr: "SOC piloté par IA avec tableaux de bord en temps réel et journaux d'incidents.",
     },
     characteristics_performance: [characteristicFixtures[3], characteristicFixtures[4]],
     characteristics_scalability: [characteristicFixtures[1], characteristicFixtures[2]],
@@ -457,11 +466,11 @@ export const productsFixtures = {
     },
     description_advantage: {
       en: 'Simplifies enterprise security and centralizes monitoring.',
-      fr: 'Simplifie la sécurité de l’entreprise et centralise la surveillance.',
+      fr: "Simplifie la sécurité de l'entreprise et centralise la surveillance.",
     },
     description_security: {
       en: 'Supports multi-layer detection, incident response, and analytics.',
-      fr: 'Prend en charge la détection multi-couche, la réponse aux incidents et l’analyse.',
+      fr: "Prend en charge la détection multi-couche, la réponse aux incidents et l'analyse.",
     },
     characteristics_performance: [characteristicFixtures[7], characteristicFixtures[8]],
     characteristics_scalability: [characteristicFixtures[6], characteristicFixtures[7]],
@@ -484,7 +493,7 @@ export const productsFixtures = {
     },
     description_advantage: {
       en: 'Affordable entry-level SOC for small teams.',
-      fr: 'SOC d’entrée de gamme abordable pour petites équipes.',
+      fr: "SOC d'entrée de gamme abordable pour petites équipes.",
     },
     description_security: {
       en: 'Basic logs and alerts with simple dashboard.',
@@ -515,7 +524,7 @@ export const productsFixtures = {
     },
     description_security: {
       en: 'Minimal AI-based detection and alerting.',
-      fr: 'Détection et alertes basiques basées sur l’IA.',
+      fr: "Détection et alertes basiques basées sur l'IA.",
     },
     characteristics_performance: [characteristicFixtures[1], characteristicFixtures[3]],
     characteristics_scalability: [characteristicFixtures[2], characteristicFixtures[3]],
@@ -561,7 +570,7 @@ export const productsFixtures = {
     created_at: '2024-09-10T15:20:00Z',
     description_functionality: {
       en: 'Enterprise SOC with advanced compliance and monitoring.',
-      fr: 'SOC d’entreprise avec conformité avancée et surveillance.',
+      fr: "SOC d'entreprise avec conformité avancée et surveillance.",
     },
     description_advantage: {
       en: 'Full automation and SLA-backed incident response.',
@@ -692,5 +701,114 @@ export const orderFixtures: Record<number, Order> = {
         status: 'renewed',
       },
     ],
+  },
+}
+
+export const messageFixtures: Record<number, Message> = {
+  1: {
+    id: 1,
+    created_at: '2026-03-03T09:00:00Z',
+    sent_by: 'chatbot',
+    message: { en: 'Hello! How can I help you today?', fr: "Bonjour ! Comment puis-je vous aider aujourd'hui ?" },
+  },
+  2: {
+    id: 2,
+    created_at: '2026-03-03T09:01:00Z',
+    sent_by: 'user',
+    message: { en: 'I want to check my subscription.', fr: 'Je veux vérifier mon abonnement.' },
+  },
+  3: {
+    id: 3,
+    created_at: '2026-03-03T09:02:00Z',
+    sent_by: 'chatbot',
+    message: { en: 'Sure! Which subscription?', fr: 'Bien sûr ! Quel abonnement ?' },
+  },
+  4: {
+    id: 4,
+    created_at: '2026-03-03T09:03:00Z',
+    sent_by: 'user',
+    message: { en: 'Premium', fr: 'Premium' },
+  },
+  5: {
+    id: 5,
+    created_at: '2026-03-03T09:04:00Z',
+    sent_by: 'chatbot',
+    message: {
+      en: 'Your Premium subscription is active until 2026-12-31.',
+      fr: "Votre abonnement Premium est actif jusqu'au 31/12/2026.",
+    },
+  },
+  6: {
+    id: 6,
+    created_at: '2026-03-03T09:05:00Z',
+    sent_by: 'user',
+    message: { en: 'Great, thanks!', fr: 'Super, merci !' },
+  },
+  7: {
+    id: 7,
+    created_at: '2026-03-03T09:06:00Z',
+    sent_by: 'chatbot',
+    message: { en: 'Do you want to manage your subscription?', fr: 'Voulez-vous gérer votre abonnement ?' },
+  },
+  8: {
+    id: 8,
+    created_at: '2026-03-03T09:07:00Z',
+    sent_by: 'user',
+    message: { en: 'Yes, I want to cancel it.', fr: "Oui, je veux l'annuler." },
+  },
+  9: {
+    id: 9,
+    created_at: '2026-03-03T09:08:00Z',
+    sent_by: 'chatbot',
+    message: {
+      en: 'Are you sure you want to cancel your subscription?',
+      fr: 'Êtes-vous sûr de vouloir annuler votre abonnement ?',
+    },
+  },
+  10: {
+    id: 10,
+    created_at: '2026-03-03T09:09:00Z',
+    sent_by: 'user',
+    message: { en: 'Yes, confirm.', fr: 'Oui, confirmez.' },
+  },
+  11: {
+    id: 11,
+    created_at: '2026-03-03T09:10:00Z',
+    sent_by: 'chatbot',
+    message: { en: 'Your subscription has been cancelled.', fr: 'Votre abonnement a été annulé.' },
+  },
+}
+
+export const conversationFixtures: Record<number, Conversation> = {
+  1: {
+    id: 1,
+    messages: [
+      messageFixtures[1],
+      messageFixtures[2],
+      messageFixtures[3],
+      messageFixtures[4],
+      messageFixtures[5],
+      messageFixtures[6],
+      messageFixtures[7],
+      messageFixtures[8],
+      messageFixtures[9],
+      messageFixtures[10],
+      messageFixtures[11],
+    ],
+  },
+}
+
+export const messageChoiceFixtures: Record<number, MessageChoice> = {
+  1: {
+    key: 'check_subscription',
+    text: { en: 'Check Subscription', fr: "Vérifier l'abonnement" },
+  },
+  2: {
+    key: 'cancel_subscription',
+    text: { en: 'Cancel Subscription', fr: "Annuler l'abonnement" },
+  },
+  3: {
+    key: 'contact_support',
+    text: { en: 'Contact Support', fr: 'Contacter le support' },
   },
 }

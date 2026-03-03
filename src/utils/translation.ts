@@ -25,6 +25,7 @@ const translationKeys = {
   all_services: 'all_services',
   already_account: 'already_account',
   amount: 'amount',
+  ask_anything: 'ask_anything',
   authentication: 'authentication',
 
   // B
@@ -39,6 +40,7 @@ const translationKeys = {
   category: 'category',
   category_products_title: 'category_products_title',
   characteristics: 'characteristics',
+  chatbot: 'chatbot',
   checkout: 'checkout',
   close: 'close',
   contact: 'contact',
@@ -119,6 +121,7 @@ const translationKeys = {
   // N
   name: 'name',
   new: 'new',
+  new_chat: 'new_chat',
   no_account: 'no_account',
   no_file: 'no_file',
   not_an_image: 'not_an_image',
@@ -126,6 +129,7 @@ const translationKeys = {
 
   // O
   old: 'old',
+  online: 'online',
   optional: 'optional',
   order_details: 'order_details',
 
@@ -195,6 +199,7 @@ const translationKeys = {
 
   // Y
   yearly: 'yearly',
+  you: 'you',
 }
 
 export type TranslationKey = keyof typeof translationKeys
@@ -281,6 +286,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Amount',
     fr: 'Quantité',
   },
+  ask_anything: {
+    en: 'Ask anything...',
+    fr: "Demandez n'importe quoi...",
+  },
   authentication: {
     en: 'Authentication',
     fr: 'Authentification',
@@ -324,6 +333,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   characteristics: {
     en: 'Characteristics',
     fr: 'Caractéristiques',
+  },
+  chatbot: {
+    en: 'Chatbot',
+    fr: 'Chatbot',
   },
   checkout: {
     en: 'Checkout',
@@ -591,6 +604,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Newest',
     fr: 'Nouveauté : récent',
   },
+  new_chat: {
+    en: 'New Chat',
+    fr: 'Nouveau Chat',
+  },
   no_file: {
     en: 'No file selected',
     fr: 'Aucun fichier sélectionné',
@@ -612,6 +629,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   old: {
     en: 'Oldest',
     fr: 'Nouveauté : ancien',
+  },
+  online: {
+    en: 'Online',
+    fr: 'En ligne',
   },
   optional: {
     en: 'optional',
@@ -846,6 +867,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   yearly: {
     en: 'Yearly',
     fr: 'Annuel',
+  },
+  you: {
+    en: 'You',
+    fr: 'Vous',
   },
 }
 

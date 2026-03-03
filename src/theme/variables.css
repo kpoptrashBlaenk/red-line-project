@@ -117,9 +117,15 @@ a:hover {
 .text-danger {
   color: var(--ion-color-danger);
 }
+.text-success {
+  color: var(--ion-color-success);
+}
 
 .border-primary {
   border-color: var(--ion-color-primary);
+}
+.border-tertiary {
+  border-color: var(--ion-color-tertiary);
 }
 
 /* ---------- LAYOUT ---------- */

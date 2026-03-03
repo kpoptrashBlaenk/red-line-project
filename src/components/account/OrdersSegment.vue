@@ -67,7 +67,7 @@ const filteredOrders = computed(() => {
 
 /* Lifecycle Hooks */
 onMounted(async () => {
-  orders.value = await getOrders()
+  getOrders().then((result) => (orders.value = result))
 })
 
 /* Functions */

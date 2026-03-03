@@ -4,7 +4,7 @@
       <!-- Date & Open -->
       <div class="flex justify-between items-center border-primary border-b ps-4">
         <div class="text-sm text-tertiary font-bold">
-          {{ Intl.DateTimeFormat('fr-FR').format(new Date(order.created_at)) }}
+          {{ formatDate(order.created_at) }}
         </div>
         <ClearButton :icon="openOutline" color="tertiary" class="mb-1 text-base! me-2" @click="$emit('open:modal', order)" />
       </div>
@@ -61,6 +61,7 @@ import { IonBadge, IonItem } from '@ionic/vue'
 import { openOutline } from 'ionicons/icons'
 import ClearButton from '../buttons/ClearButton.vue'
 import TitleComponent from '../text/TitleComponent.vue'
+import formatDate from '@/utils/formatDate'
 
 /* Props */
 defineProps<{

@@ -10,7 +10,7 @@
       <div v-if="order" class="p-5">
         <!-- Date & Address -->
         <div class="flex justify-between">
-          <div class="text-gray-600">{{ Intl.DateTimeFormat('fr-FR').format(new Date(order.created_at)) }}</div>
+          <div class="text-gray-600">{{ formatDate(order.created_at) }}</div>
           <div class="flex flex-col text-right">
             <p>{{ order.address.first_name }} {{ order.address.last_name }}</p>
             <p>{{ order.address.street_address }}</p>
@@ -86,6 +86,7 @@ import { IonButton, IonContent, IonFooter, IonHeader, IonIcon, IonModal, IonTitl
 import { downloadOutline } from 'ionicons/icons'
 import { ref } from 'vue'
 import ClearButton from '../ui/buttons/ClearButton.vue'
+import formatDate from '@/utils/formatDate'
 
 /* Constants */
 const { downloadOrder } = useOrder()
