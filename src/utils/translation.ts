@@ -39,6 +39,7 @@ const translationKeys = {
   category: 'category',
   category_products_title: 'category_products_title',
   characteristics: 'characteristics',
+  chatbot: 'chatbot',
   checkout: 'checkout',
   close: 'close',
   contact: 'contact',
@@ -196,6 +197,7 @@ const translationKeys = {
 
   // Y
   yearly: 'yearly',
+  you: 'you',
 }
 
 export type TranslationKey = keyof typeof translationKeys
@@ -325,6 +327,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   characteristics: {
     en: 'Characteristics',
     fr: 'Caractéristiques',
+  },
+  chatbot: {
+    en: 'Chatbot',
+    fr: 'Chatbot',
   },
   checkout: {
     en: 'Checkout',
@@ -851,6 +857,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   yearly: {
     en: 'Yearly',
     fr: 'Annuel',
+  },
+  you: {
+    en: 'You',
+    fr: 'Vous',
   },
 }
 

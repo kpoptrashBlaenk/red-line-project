@@ -14,9 +14,7 @@
           <div class="text-lg font-extrabold">{{ subscription.price }}€</div>
           <div class="text-sm text-gray-300">/{{ translation(subscription.length) }}</div>
         </div>
-        <div class="text-sm text-gray-300">
-          {{ translation('renews_on') }} {{ Intl.DateTimeFormat('fr-FR').format(new Date(subscription.renews_at)) }}
-        </div>
+        <div class="text-sm text-gray-300">{{ translation('renews_on') }} {{ formatDate(subscription.renews_at) }}</div>
       </div>
 
       <!-- Payment Method -->
@@ -36,6 +34,7 @@ import { IonImg, IonItem } from '@ionic/vue'
 import { pencilOutline } from 'ionicons/icons'
 import OutlineButton from '../buttons/OutlineButton.vue'
 import TitleComponent from '../text/TitleComponent.vue'
+import formatDate from '@/utils/formatDate'
 
 /* Props */
 defineProps<{

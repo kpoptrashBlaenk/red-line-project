@@ -72,7 +72,7 @@ const alert = ref()
 
 /* Lifecycle Hooks */
 onMounted(async () => {
-  subscriptions.value = await getSubscriptions()
+  getSubscriptions().then((result) => (subscriptions.value = result))
 })
 
 /* Functions */

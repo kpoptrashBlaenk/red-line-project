@@ -172,7 +172,6 @@ export type Message = {
  */
 export type Conversation = {
   id: number
-  user_id: number
   messages: Message[]
 }
 
