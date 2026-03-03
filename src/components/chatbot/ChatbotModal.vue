@@ -4,22 +4,22 @@
     <ChatbotHeader @close:modal="modal.$el.dismiss()" />
 
     <!-- Content -->
-    <IonContent>
-      <div class="flex flex-col p-5">
+    <IonContent ref="content">
+      <div id="message-container" class="flex flex-col p-5">
         <ChatbotMessage v-for="(message, key) in conversation.messages" :key :message />
       </div>
     </IonContent>
 
     <!-- Footer -->
-    <ChatbotFooter />
+    <ChatbotFooter :choices @send:message="$emit('send:message', $event)" />
   </IonModal>
 </template>
 
 <script setup lang="ts">
 /* Imports */
-import { Conversation } from '$/types'
+import { Conversation, MessageChoice } from '$/types'
 import { IonContent, IonModal } from '@ionic/vue'
-import { ref } from 'vue'
+import { onMounted, ref, useTemplateRef } from 'vue'
 import ChatbotFooter from './ChatbotFooter.vue'
 import ChatbotHeader from './ChatbotHeader.vue'
 import ChatbotMessage from './ChatbotMessage.vue'
@@ -27,8 +27,23 @@ import ChatbotMessage from './ChatbotMessage.vue'
 /* Props */
 defineProps<{
   conversation: Conversation
+  choices: MessageChoice[]
 }>()
 
 /* Refs */
 const modal = ref()
+const content = useTemplateRef('content')
+
+/* Lifecycle Hooks */
+onMounted(() => {
+  setTimeout(() => addResizeObserver(), 100)
+})
+
+function addResizeObserver() {
+  const observer = new ResizeObserver(() => {
+    content.value?.$el.scrollToBottom()
+  })
+
+  observer.observe(content.value?.$el)
+}
 </script>

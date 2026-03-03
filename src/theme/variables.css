@@ -124,6 +124,9 @@ a:hover {
 .border-primary {
   border-color: var(--ion-color-primary);
 }
+.border-tertiary {
+  border-color: var(--ion-color-tertiary);
+}
 
 /* ---------- LAYOUT ---------- */
 /* ---------------------------- */

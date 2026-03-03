@@ -1,4 +1,5 @@
-import { conversationFixtures } from '@/constants/fixtures'
+import { MessageChoice } from '$/types'
+import { conversationFixtures, messageChoiceFixtures } from '@/constants/fixtures'
 
 /**
  * Use this composable to do chatbot related queries
@@ -8,11 +9,31 @@ export function useChatbot() {
    * Get latest conversation
    */
   async function getConversation() {
-    const conversation = Object.values(conversationFixtures)[0]
+    const conversation = structuredClone(Object.values(conversationFixtures)[0])
 
     return conversation
   }
 
+  /**
+   * Get choices
+   */
+  async function getChoices() {
+    const choices = Object.values(messageChoiceFixtures)
+
+    return choices
+  }
+
+  /**
+   * Send message (choice)
+   */
+  async function sendMessage(choice: MessageChoice) {
+    choice
+
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
+    return
+  }
+
   // return all functions
-  return { getConversation }
+  return { getConversation, getChoices, sendMessage }
 }
