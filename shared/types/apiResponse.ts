@@ -1,5 +1,5 @@
 import { Language } from '@/types'
-import { CharacteristicType, SubscriptionLength, SubscriptionStatus, SubscriptionUsers } from './other'
+import { CharacteristicType, SubscriptionLength, SubscriptionUsers } from './other'
 
 /**
  * Text record with multiple languages
@@ -123,11 +123,11 @@ export type PaymentMethod = {
 }
 
 /**
- * Product order
+ * Subscription
  */
-export type Order = {
+export type Subscription = {
   id: number
-  date: string
+  renews_at: string
   user: User
   product: Product
   address: Address
@@ -136,5 +136,23 @@ export type Order = {
   users: SubscriptionUsers
   amount: number
   price: number
-  status: SubscriptionStatus
+  active: boolean
+}
+
+export type SubscriptionStatus = 'active' | 'inactive' | 'renewed'
+
+/**
+ * Product order
+ */
+export type Order = {
+  id: number
+  created_at: string
+  user: User
+  address: Address
+  payment_method: PaymentMethod
+  price: number
+  subscriptions: {
+    subscription: Subscription
+    status: SubscriptionStatus
+  }[]
 }

@@ -111,6 +111,9 @@ a:hover {
 .text-tertiary {
   color: var(--ion-color-tertiary);
 }
+.text-medium {
+  color: var(--ion-color-medium);
+}
 .text-danger {
   color: var(--ion-color-danger);
 }

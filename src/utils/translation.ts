@@ -6,6 +6,7 @@ import toTitle from './toTitle'
 const translationKeys = {
   // A
   account: 'account',
+  active: 'active',
   add: 'add',
   add_address: 'add_address',
   add_products: 'add_products',
@@ -23,10 +24,13 @@ const translationKeys = {
   alert_message: 'alert_message',
   all_services: 'all_services',
   already_account: 'already_account',
+  amount: 'amount',
   authentication: 'authentication',
 
   // B
   button_text: 'promotion_button',
+  billing: 'billing',
+  billing_information: 'billing_information',
 
   // C
   cancel: 'cancel',
@@ -36,14 +40,18 @@ const translationKeys = {
   category_products_title: 'category_products_title',
   characteristics: 'characteristics',
   checkout: 'checkout',
+  close: 'close',
   contact: 'contact',
   confirm_password: 'confirm_password',
   country_code: 'country_code',
   cvv: 'cvv',
 
   // D
+  danger: 'danger',
+  deactivate: 'deactivate',
   default: 'default',
   delete: 'delete',
+  delete_account: 'delete_account',
   description: 'description',
   description_advantage: 'description_advantage',
   description_functionality: 'description_functionality',
@@ -52,6 +60,7 @@ const translationKeys = {
   device: 'device',
   disponible: 'disponible',
   disponible_only: 'disponible_only',
+  download: 'download',
 
   // E
   email: 'email',
@@ -90,10 +99,12 @@ const translationKeys = {
 
   // I
   image: 'image',
+  inactive: 'inactive',
 
   // L
   last_name: 'last_name',
   legal_mentions: 'legal_mentions',
+  length: 'length',
   level: 'level',
   link: 'link',
   locality: 'locality',
@@ -116,6 +127,7 @@ const translationKeys = {
   // O
   old: 'old',
   optional: 'optional',
+  order_details: 'order_details',
 
   // P
   pages: 'pages',
@@ -130,19 +142,25 @@ const translationKeys = {
   priceHL: 'priceHL',
   priceLH: 'priceLH',
   priority: 'priority',
+  product: 'product',
   product_characteristics_title: 'product_characteristics_title',
   product_price_title: 'product_price_title',
   products: 'products',
+  profile: 'profile',
 
   // R
+  reactivate: 'reactivate',
   region: 'region',
   register: 'register',
   register_info: 'register_info',
   register_now: 'register_now',
+  renewed: 'renewed',
+  renews_on: 'renews_on',
   reset_password: 'reset_password',
 
   // S
   scalability: 'scalability',
+  search_order: 'search_order',
   search_product: 'search_product',
   securities: 'securities',
   sign_in_now: 'sign_in_now',
@@ -150,6 +168,7 @@ const translationKeys = {
   street_address: 'street_address',
   submit: 'submit',
   subscribe_now: 'subscribe_now',
+  subscriptions: 'subscriptions',
   subtitle: 'subtitle',
   summary: 'summary',
 
@@ -185,6 +204,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   account: {
     en: 'Account',
     fr: 'Compte',
+  },
+  active: {
+    en: 'Active',
+    fr: 'Actif',
   },
   add: {
     en: 'Add',
@@ -254,6 +277,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Already have an account?',
     fr: 'Vous avez déjà un compte?',
   },
+  amount: {
+    en: 'Amount',
+    fr: 'Quantité',
+  },
   authentication: {
     en: 'Authentication',
     fr: 'Authentification',
@@ -263,6 +290,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   button_text: {
     en: 'Button text',
     fr: 'Texte du bouton',
+  },
+  billing: {
+    en: 'Billing',
+    fr: 'Facturation',
+  },
+  billing_information: {
+    en: 'Billing Information',
+    fr: 'Informations de facturation',
   },
 
   // C
@@ -294,6 +329,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Checkout',
     fr: 'Panier',
   },
+  close: {
+    en: 'Close',
+    fr: 'Fermer',
+  },
   contact: {
     en: 'Contact',
     fr: 'Contacte',
@@ -312,6 +351,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   },
 
   // D
+  danger: {
+    en: 'Danger',
+    fr: 'Danger',
+  },
+  deactivate: {
+    en: 'Deactivate',
+    fr: 'Désactiver',
+  },
   default: {
     en: 'Default',
     fr: 'Par défaut',
@@ -319,6 +366,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   delete: {
     en: 'Delete',
     fr: 'Supprimer',
+  },
+  delete_account: {
+    en: 'Delete Account',
+    fr: 'Supprimer le Compte',
   },
   description: {
     en: 'Description',
@@ -351,6 +402,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   disponible_only: {
     en: 'Available Only',
     fr: 'Services disponibles',
+  },
+  download: {
+    en: 'Download',
+    fr: 'Télécharger',
   },
 
   // E
@@ -474,6 +529,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Image',
     fr: 'Image',
   },
+  inactive: {
+    en: 'Inactive',
+    fr: 'Inactif',
+  },
 
   // L
   last_name: {
@@ -487,6 +546,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   legal_mentions: {
     en: 'Legal Mentions',
     fr: 'Mentions légales',
+  },
+  length: {
+    en: 'Length',
+    fr: 'Durée',
   },
   level: {
     en: 'Level',
@@ -554,6 +617,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'optional',
     fr: 'optionnel',
   },
+  order_details: {
+    en: 'Order Details',
+    fr: 'Détails de la commande',
+  },
 
   // P
   pages: {
@@ -604,6 +671,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Priority',
     fr: 'Priorité',
   },
+  product: {
+    en: 'Product',
+    fr: 'Produit',
+  },
   product_characteristics_title: {
     en: 'Service <title>Characteristics</title>',
     fr: '<title>Caractéristiques</title> du service',
@@ -616,8 +687,16 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Products',
     fr: 'Produits',
   },
+  profile: {
+    en: 'Profile',
+    fr: 'Profil',
+  },
 
   // R
+  reactivate: {
+    en: 'Reactivate',
+    fr: 'Réactiver',
+  },
   region: {
     en: 'Region',
     fr: 'Région',
@@ -634,6 +713,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Register now!',
     fr: 'Inscrivez vous maintenant!',
   },
+  renewed: {
+    en: 'Renewed',
+    fr: 'Renouvelé',
+  },
+  renews_on: {
+    en: 'Renews on',
+    fr: 'Renouvellement le',
+  },
   reset_password: {
     en: 'Reset Password',
     fr: 'Réinitialiser mon mot de passe',
@@ -643,6 +730,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   scalability: {
     en: 'Scalability',
     fr: 'Scalabilité',
+  },
+  search_order: {
+    en: 'Search for orders...',
+    fr: 'Rechercher des commandes...',
   },
   search_product: {
     en: 'Search for products...',
@@ -675,6 +766,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   subscribe_now: {
     en: 'Subscribe Now',
     fr: "S'abonner maintenant",
+  },
+  subscriptions: {
+    en: 'Subscriptions',
+    fr: 'Abonnements',
   },
   summary: {
     en: 'Summary',

@@ -1,5 +1,5 @@
 import { Address, PaymentMethod } from '$/types'
-import { useCheckout } from '@/composables/checkout'
+import { useOrder } from '@/composables/order'
 import { DraftOrder } from '@/types'
 import calculatePrice from '@/utils/calculatePrice'
 import { defineStore } from 'pinia'
@@ -83,7 +83,7 @@ export const useCheckoutStore = defineStore('checkout', {
     },
 
     async sendPaymentData() {
-      const { sendPaymentData } = useCheckout()
+      const { sendPaymentData } = useOrder()
 
       if (!this.address || !this.paymentMethod) return
 

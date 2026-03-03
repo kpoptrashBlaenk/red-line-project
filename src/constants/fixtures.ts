@@ -1,4 +1,4 @@
-import { CharacteristicType } from '$/types'
+import { CharacteristicType, Order, Subscription, SubscriptionLength, SubscriptionUsers } from '$/types'
 import placeholderImages from '@/utils/placeholderImages'
 import { logoGithub } from 'ionicons/icons'
 
@@ -601,5 +601,96 @@ export const productsFixtures = {
     characteristics_performance: [characteristicFixtures[7], characteristicFixtures[8]],
     characteristics_scalability: [characteristicFixtures[7], characteristicFixtures[8]],
     characteristics_level: [characteristicFixtures[9]],
+  },
+}
+
+export const subscriptionFixtures: Record<number, Subscription> = {
+  1: {
+    id: 1,
+    renews_at: '2026-02-01',
+    user: userFixtures[1],
+    product: productsFixtures[1],
+    address: addressFixtures[2],
+    payment_method: paymentMethodFixtures[1],
+    length: SubscriptionLength.monthly,
+    users: SubscriptionUsers.user,
+    amount: 1,
+    price: 60,
+    active: true,
+  },
+  2: {
+    id: 2,
+    renews_at: '2026-01-15',
+    user: userFixtures[1],
+    product: productsFixtures[2],
+    address: addressFixtures[2],
+    payment_method: paymentMethodFixtures[2],
+    length: SubscriptionLength.yearly,
+    users: SubscriptionUsers.user,
+    amount: 1,
+    price: 40,
+    active: true,
+  },
+  3: {
+    id: 3,
+    renews_at: '2025-12-10',
+    user: userFixtures[1],
+    product: productsFixtures[3],
+    address: addressFixtures[2],
+    payment_method: paymentMethodFixtures[1],
+    length: SubscriptionLength.monthly,
+    users: SubscriptionUsers.device,
+    amount: 3,
+    price: 120,
+    active: false,
+  },
+}
+
+export const orderFixtures: Record<number, Order> = {
+  1: {
+    id: 1,
+    created_at: '2025-01-15T10:00:00Z',
+    user: userFixtures[1],
+    address: addressFixtures[2],
+    payment_method: paymentMethodFixtures[1],
+    price: 60,
+    subscriptions: [
+      {
+        subscription: subscriptionFixtures[1],
+        status: 'active',
+      },
+    ],
+  },
+  2: {
+    id: 2,
+    created_at: '2025-01-15T10:00:00Z',
+    user: userFixtures[1],
+    address: addressFixtures[1],
+    payment_method: paymentMethodFixtures[2],
+    price: 160,
+    subscriptions: [
+      {
+        subscription: subscriptionFixtures[2],
+        status: 'active',
+      },
+      {
+        subscription: subscriptionFixtures[3],
+        status: 'inactive',
+      },
+    ],
+  },
+  3: {
+    id: 3,
+    created_at: '2024-12-15T10:00:00Z',
+    user: userFixtures[1],
+    address: addressFixtures[2],
+    payment_method: paymentMethodFixtures[1],
+    price: 60,
+    subscriptions: [
+      {
+        subscription: subscriptionFixtures[1],
+        status: 'renewed',
+      },
+    ],
   },
 }

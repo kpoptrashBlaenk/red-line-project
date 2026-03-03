@@ -12,6 +12,7 @@
             :amount="order.amount"
             :length="order.length"
             :users="order.users"
+            can-zero
             @update:model-value="updateOrders"
           />
         </IonCardContent>
@@ -23,11 +24,11 @@
 <script setup lang="ts">
 /* Imports */
 import { useCheckoutStore } from '@/stores/checkout'
+import { DraftOrder } from '@/types'
 import translation from '@/utils/translation'
 import { IonAccordion, IonAccordionGroup, IonCard, IonCardContent, IonItem } from '@ionic/vue'
 import ProductPriceGrid from '../grids/ProductPriceGrid.vue'
 import TitleComponent from '../ui/text/TitleComponent.vue'
-import { DraftOrder } from '@/types'
 
 /* Constants */
 const checkoutStore = useCheckoutStore()

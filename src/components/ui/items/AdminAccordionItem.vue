@@ -26,7 +26,7 @@
       <div v-if="add" class="px-5 pb-5">
         <SolidButton
           :label="translate('add')"
-          color="success"
+          color="primary"
           class="mt-2"
           expand="block"
           @click="$emit('open:modal-form', value, apiMethod.post)"
