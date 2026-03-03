@@ -1,6 +1,8 @@
 import { Address, Order, PaymentMethod, Subscription } from '$/types'
 import { orderFixtures, subscriptionFixtures } from '@/constants/fixtures'
 import { DraftOrder } from '@/types'
+import { FileTransfer } from '@capacitor/file-transfer'
+import { Directory, Filesystem } from '@capacitor/filesystem'
 
 /**
  * Use this composable to do order related queries
@@ -51,5 +53,21 @@ export function useOrder() {
     newOrder
   }
 
-  return { sendPaymentData, getOrders, getSubscriptions, deactivateSubscription, modifySubscription }
+  /* Download an order invoice */
+  async function downloadOrder(order: Order) {
+    // get filesystem path
+    const fileInfo = await Filesystem.getUri({
+      directory: Directory.Documents,
+      path: `${order.created_at.replace(/[-:TZ.]/g, '').slice(0, 14)}.pdf`,
+    })
+
+    // download with file transfer
+    await FileTransfer.downloadFile({
+      url: '',
+      path: fileInfo.uri,
+      progress: false,
+    })
+  }
+
+  return { sendPaymentData, getOrders, getSubscriptions, deactivateSubscription, modifySubscription, downloadOrder }
 }

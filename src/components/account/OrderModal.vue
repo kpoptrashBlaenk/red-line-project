@@ -67,7 +67,7 @@
       <IonToolbar color="light">
         <div class="flex">
           <ClearButton :label="translation('close')" color="dark" size="large" class="flex-1" @click="modal.$el.dismiss()" />
-          <IonButton color="secondary" size="large" expand="block" class="flex-1">
+          <IonButton color="secondary" size="large" expand="block" class="flex-1" @click="order ? downloadOrder(order) : false">
             {{ translation('download') }}
             <IonIcon :icon="downloadOutline" class="ms-3 -mt-1" />
           </IonButton>
@@ -80,11 +80,17 @@
 <script setup lang="ts">
 /* Imports */
 import { Order } from '$/types'
+import { useOrder } from '@/composables/order'
 import translation from '@/utils/translation'
 import { IonButton, IonContent, IonFooter, IonHeader, IonIcon, IonModal, IonTitle, IonToolbar } from '@ionic/vue'
 import { downloadOutline } from 'ionicons/icons'
 import { ref } from 'vue'
 import ClearButton from '../ui/buttons/ClearButton.vue'
+
+/* Constants */
+const { downloadOrder } = useOrder()
+
+/* Props */
 defineProps<{
   order?: Order
 }>()
