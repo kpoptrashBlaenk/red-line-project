@@ -1,7 +1,7 @@
 <template>
   <!-- FAB -->
   <IonFab slot="fixed" vertical="bottom" horizontal="end">
-    <IonFabButton>
+    <IonFabButton @click="$emit('open:modal')">
       <IonIcon :icon="chatboxOutline" />
     </IonFabButton>
   </IonFab>

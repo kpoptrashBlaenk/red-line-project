@@ -119,6 +119,7 @@ const translationKeys = {
   // N
   name: 'name',
   new: 'new',
+  new_chat: 'new_chat',
   no_account: 'no_account',
   no_file: 'no_file',
   not_an_image: 'not_an_image',
@@ -590,6 +591,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   new: {
     en: 'Newest',
     fr: 'Nouveauté : récent',
+  },
+  new_chat: {
+    en: 'New Chat',
+    fr: 'Nouveau Chat',
   },
   no_file: {
     en: 'No file selected',
