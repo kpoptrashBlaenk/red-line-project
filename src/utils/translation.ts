@@ -25,6 +25,7 @@ const translationKeys = {
   all_services: 'all_services',
   already_account: 'already_account',
   amount: 'amount',
+  ask_anything: 'ask_anything',
   authentication: 'authentication',
 
   // B
@@ -283,6 +284,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   amount: {
     en: 'Amount',
     fr: 'Quantité',
+  },
+  ask_anything: {
+    en: 'Ask anything...',
+    fr: "Demandez n'importe quoi...",
   },
   authentication: {
     en: 'Authentication',
