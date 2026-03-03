@@ -160,6 +160,7 @@ const translationKeys = {
 
   // S
   scalability: 'scalability',
+  search_order: 'search_order',
   search_product: 'search_product',
   securities: 'securities',
   sign_in_now: 'sign_in_now',
@@ -729,6 +730,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   scalability: {
     en: 'Scalability',
     fr: 'Scalabilité',
+  },
+  search_order: {
+    en: 'Search for orders...',
+    fr: 'Rechercher des commandes...',
   },
   search_product: {
     en: 'Search for products...',
