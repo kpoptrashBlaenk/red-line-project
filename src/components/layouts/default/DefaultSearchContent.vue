@@ -84,7 +84,7 @@ import { useSearchFilter } from '@/stores/searchFilter'
 import isDesktop from '@/utils/isDesktop'
 import isLengthZero from '@/utils/isLengthZero'
 import translation from '@/utils/translation'
-import { IonList, IonSearchbar } from '@ionic/vue'
+import { IonList, IonSearchbar, RefresherCustomEvent } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
 import DefaultRangeFilter from './DefaultRangeFilter.vue'
 import DefaultSearchFilter from './DefaultSearchFilter.vue'
@@ -101,10 +101,20 @@ const products = ref<Product[]>([])
 const categories = ref<Category[]>([])
 const characteristics = ref<Characteristic[]>([])
 
+/* Exposes */
+defineExpose({ onRefresh })
+
 /* Lifecycle Hooks */
-onMounted(async () => {
-  categoryComposable.get().then((data) => (categories.value = data))
-  productComposable.get().then((data) => (products.value = data))
-  characteristicComposable.get().then((data) => (characteristics.value = data))
-})
+onMounted(onRefresh)
+
+/* Functions */
+async function onRefresh(event?: RefresherCustomEvent) {
+  await Promise.all([
+    categoryComposable.get().then((data) => (categories.value = data)),
+    productComposable.get().then((data) => (products.value = data)),
+    characteristicComposable.get().then((data) => (characteristics.value = data)),
+  ])
+
+  event?.target.complete()
+}
 </script>
