@@ -1,5 +1,6 @@
 import { MessageChoice } from '$/types'
 import { conversationFixtures, messageChoiceFixtures } from '@/constants/fixtures'
+import { ContactSchema } from '@/utils/schemas'
 
 /**
  * Use this composable to do chatbot related queries
@@ -41,6 +42,13 @@ export function useChatbot() {
     return
   }
 
+  /**
+   * Send the contact form
+   */
+  async function contactForm(data: ContactSchema) {
+    data
+  }
+
   // return all functions
-  return { getConversation, getChoices, sendMessage, newConversation }
+  return { getConversation, getChoices, sendMessage, newConversation, contactForm }
 }

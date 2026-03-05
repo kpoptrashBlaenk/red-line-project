@@ -2,6 +2,7 @@ import {
   AddressSchema,
   CategorySchema,
   CharacteristicSchema,
+  ContactSchema,
   EmailSchema,
   HomeTextSchema,
   LoginSchema,
@@ -91,3 +92,8 @@ export type PaymentMethodBody = PaymentMethodSchema
  * Body for order api
  */
 export type OrderBody = OrderSchema
+
+/**
+ * Body for contact api
+ */
+export type ContactBody = ContactSchema

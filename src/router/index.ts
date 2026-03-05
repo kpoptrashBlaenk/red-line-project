@@ -7,6 +7,7 @@ import AdminPage from '@/views/AdminPage.vue'
 import CategoriesPage from '@/views/CategoriesPage.vue'
 import CategoryPage from '@/views/CategoryPage.vue'
 import CheckoutPage from '@/views/CheckoutPage.vue'
+import ContactPage from '@/views/ContactPage.vue'
 import ForgotPasswordPage from '@/views/ForgotPasswordPage.vue'
 import GeneralConditionsPage from '@/views/GeneralConditionsPage.vue'
 import HomePage from '@/views/HomePage.vue'
@@ -43,6 +44,11 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'account',
         component: AccountPage,
+        beforeEnter: authOnly,
+      },
+      {
+        path: 'contact',
+        component: ContactPage,
         beforeEnter: authOnly,
       },
       {
