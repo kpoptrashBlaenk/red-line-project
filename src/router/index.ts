@@ -14,6 +14,7 @@ import GeneralConditionsPage from '@/views/GeneralConditionsPage.vue'
 import HomePage from '@/views/HomePage.vue'
 import LegalMentionsPage from '@/views/LegalMentionsPage.vue'
 import LoginPage from '@/views/LoginPage.vue'
+import OfflinePage from '@/views/OfflinePage.vue'
 import ProductPage from '@/views/ProductPage.vue'
 import ProductsPage from '@/views/ProductsPage.vue'
 import RegisterPage from '@/views/RegisterPage.vue'
@@ -98,6 +99,10 @@ const routes: Array<RouteRecordRaw> = [
         path: 'reset-password/:token',
         component: ResetPasswordPage,
         beforeEnter: guestOnly,
+      },
+      {
+        path: 'offline',
+        component: OfflinePage,
       },
     ],
   },
