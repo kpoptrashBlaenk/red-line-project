@@ -5,7 +5,11 @@
     <SeparatorComponent size="sm" />
 
     <div class="wrap">
-      <HomeCategoryGrid :categories color="primary" />
+      <!-- Skeleton -->
+      <HomeCategoryGridSkeleton v-if="!categories || categories.length === 0" color="primary" />
+
+      <!-- Grid -->
+      <HomeCategoryGrid v-else :categories color="primary" />
     </div>
 
     <SeparatorComponent size="sm" />
@@ -17,6 +21,7 @@
 import { Category } from '$/types'
 import HomeCategoryGrid from '@/components/grids/HomeCategoryGrid.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
+import HomeCategoryGridSkeleton from '@/components/skeletons/HomeCategoryGridSkeleton.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useCategory } from '@/composables/category'

@@ -14,7 +14,7 @@
         <OrderItemSkeleton v-if="!orders || orders.length === 0" />
 
         <!-- Items -->
-        <OrderItem v-for="(order, key) in orders" :key :order @open:modal="openModal" />
+        <OrderItem v-else v-for="(order, key) in orders" :key :order @open:modal="openModal" />
       </IonList>
     </div>
   </div>

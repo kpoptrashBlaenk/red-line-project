@@ -1,5 +1,5 @@
 <template>
-  <IonThumbnail :style="{ width: `${width * 4}px` }">
+  <IonThumbnail :style="{ width: width ? `${width * 4}px` : '' }">
     <IonSkeletonText animated />
   </IonThumbnail>
 </template>
@@ -10,6 +10,6 @@ import { IonSkeletonText, IonThumbnail } from '@ionic/vue'
 
 /* Props */
 defineProps<{
-  width: number
+  width?: number
 }>()
 </script>

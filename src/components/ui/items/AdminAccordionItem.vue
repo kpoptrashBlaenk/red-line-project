@@ -12,6 +12,7 @@
 
           <!-- Items -->
           <AdminReorderItem
+            v-else
             v-for="(item, key) in items"
             :key
             :item

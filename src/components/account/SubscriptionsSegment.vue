@@ -30,6 +30,7 @@
 
       <!-- Items -->
       <SubscriptionItem
+        v-else
         v-for="(subscription, key) in subscriptions.filter((sub) => sub.active)"
         :key
         :subscription
