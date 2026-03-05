@@ -4,6 +4,8 @@ import { Language } from '@/types'
 import toTitle from './toTitle'
 
 const translationKeys = {
+  '404': '404',
+
   // A
   account: 'account',
   active: 'active',
@@ -207,6 +209,11 @@ const translationKeys = {
 export type TranslationKey = keyof typeof translationKeys
 
 const translations: Record<TranslationKey, Record<Language, string>> = {
+  '404': {
+    en: 'Page not found',
+    fr: 'Page non trouvée',
+  },
+
   // A
   account: {
     en: 'Account',

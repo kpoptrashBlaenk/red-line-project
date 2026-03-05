@@ -8,57 +8,47 @@
     </IonHeader>
 
     <!-- List -->
-    <IonContent color="">
-      <IonList inset class="p-0! rounded-xl!">
-        <!-- Non-Auth Items -->
-        <template v-for="(page, key) in Object.values(pages).filter((page) => !page.auth)">
-          <IonItem
-            v-if="
-              !(page.mobileOnly && isDesktop()) &&
-              (page.auth === 'auth' ? userStore.user : page.auth === 'guest' ? !userStore.user : true)
-            "
-            :key
-            :color="
-              route.fullPath.startsWith(page.url) ||
-              (route.fullPath.includes('product') && page.url.includes('products')) ||
-              (route.fullPath.includes('category') && page.url.includes('categories'))
-                ? 'primary'
-                : 'light'
-            "
-            button
-            detail
-            :data-cy="`${key}-menu-item`"
-            @click="handleRoute(route, router, page.url, () => menu.$el.close())"
-          >
-            <IonLabel class="text-xl! ms-2">{{ translation(page.translationKey) }}</IonLabel>
-          </IonItem>
-        </template>
-      </IonList>
+    <IonContent>
+      <template
+        v-for="(sectionPages, section) in [
+          Object.values(pages).filter((page) => page.section === 0),
+          Object.values(pages).filter((page) => page.section === 1),
+          Object.values(pages).filter((page) => page.section === 2),
+        ]"
+        :key="section"
+      >
+        <IonList inset class="p-0! rounded-xl!">
+          <!-- Non-Auth Items -->
+          <template v-for="(page, key) in sectionPages">
+            <IonItem
+              v-if="
+                !(page.mobileOnly && isDesktop()) &&
+                (page.auth === 'auth' ? userStore.user : page.auth === 'guest' ? !userStore.user : true) &&
+                (page.admin ? userStore.user?.is_admin : true)
+              "
+              :key
+              :color="
+                route.fullPath.startsWith(page.url) ||
+                (route.fullPath.includes('product') && page.url.includes('products')) ||
+                (route.fullPath.includes('category') && page.url.includes('categories'))
+                  ? 'primary'
+                  : 'light'
+              "
+              button
+              detail
+              :data-cy="`${key}-menu-item`"
+              @click="handleRoute(route, router, page.url, () => menu.$el.close())"
+            >
+              <IonLabel class="text-xl! ms-2">{{ translation(page.translationKey) }}</IonLabel>
+            </IonItem>
+          </template>
 
-      <IonList inset class="p-0! rounded-xl!">
-        <!-- Auth Items -->
-        <template v-for="(page, key) in Object.values(pages).filter((page) => page.auth)">
-          <IonItem
-            v-if="
-              !(page.mobileOnly && isDesktop()) &&
-              (page.auth === 'auth' ? userStore.user : page.auth === 'guest' ? !userStore.user : true)
-            "
-            :key
-            :color="route.fullPath.startsWith(page.url) ? 'primary' : 'light'"
-            button
-            detail
-            :data-cy="`${key}-menu-item`"
-            @click="handleRoute(route, router, page.url, () => menu.$el.close())"
-          >
-            <IonLabel class="text-xl! ms-2">{{ translation(page.translationKey) }}</IonLabel>
+          <!-- Again for logout -->
+          <IonItem v-if="userStore.user && section === 2" color="danger" button detail @click="handleLogout">
+            <IonLabel class="text-xl! ms-2">{{ translation('logout') }}</IonLabel>
           </IonItem>
-        </template>
-
-        <!-- Again for logout -->
-        <IonItem v-if="userStore.user" color="danger" button detail @click="handleLogout">
-          <IonLabel class="text-xl! ms-2">{{ translation('logout') }}</IonLabel>
-        </IonItem>
-      </IonList>
+        </IonList>
+      </template>
     </IonContent>
   </IonMenu>
 </template>

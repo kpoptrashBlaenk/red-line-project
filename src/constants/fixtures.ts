@@ -1,17 +1,26 @@
 import {
+  Address,
+  Category,
+  Characteristic,
   CharacteristicType,
   Conversation,
+  HomeText,
   Message,
   MessageChoice,
   Order,
+  PaymentMethod,
+  Product,
+  Promotion,
+  Social,
   Subscription,
   SubscriptionLength,
   SubscriptionUsers,
+  User,
 } from '$/types'
 import placeholderImages from '@/utils/placeholderImages'
 import { logoGithub } from 'ionicons/icons'
 
-export const addressFixtures = {
+export const addressFixtures: Record<number, Address> = {
   1: {
     id: 1,
     first_name: 'John',
@@ -40,7 +49,7 @@ export const addressFixtures = {
   },
 }
 
-export const userFixtures = {
+export const userFixtures: Record<number, User> = {
   1: {
     id: 1,
     first_name: 'Aldin',
@@ -48,11 +57,12 @@ export const userFixtures = {
     email: 'email@email.com',
     phone: '0101010101',
     prefix: '+33',
+    is_admin: true,
     token: 'ABSOLUTELY_HASHED_TOKEN',
   },
 }
 
-export const categoryFixtures = {
+export const categoryFixtures: Record<number, Category> = {
   1: {
     id: 1,
     image: placeholderImages(['SOC Services']),
@@ -94,7 +104,7 @@ export const categoryFixtures = {
   },
 }
 
-export const characteristicFixtures = {
+export const characteristicFixtures: Record<number, Characteristic> = {
   1: {
     id: 1,
     name: { en: 'High Performance', fr: 'Haute performance' },
@@ -142,7 +152,7 @@ export const characteristicFixtures = {
   },
 }
 
-export const socialFixtures = {
+export const socialFixtures: Record<number, Social> = {
   1: {
     id: 1,
     logo: logoGithub,
@@ -150,7 +160,7 @@ export const socialFixtures = {
   },
 }
 
-export const homeTextFixtures = {
+export const homeTextFixtures: Record<number, HomeText> = {
   1: {
     id: 1,
     text: {
@@ -160,7 +170,7 @@ export const homeTextFixtures = {
   },
 }
 
-export const paymentMethodFixtures = {
+export const paymentMethodFixtures: Record<number, PaymentMethod> = {
   1: {
     id: 1,
     name: 'John Doe',
@@ -175,7 +185,7 @@ export const paymentMethodFixtures = {
   },
 }
 
-export const promotionFixtures = {
+export const promotionFixtures: Record<number, Promotion> = {
   6: {
     id: 6,
     image: placeholderImages(['dfm']),
@@ -286,7 +296,7 @@ export const promotionFixtures = {
   },
 }
 
-export const productsFixtures = {
+export const productsFixtures: Record<number, Product> = {
   1: {
     id: 1,
     category: categoryFixtures[1],

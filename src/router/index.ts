@@ -2,6 +2,7 @@ import DefaultLayout from '@/components/layouts/default/DefaultLayout.vue'
 import { authOnly } from '@/middleware/auth'
 import { guestOnly } from '@/middleware/guest'
 import restore from '@/middleware/restore'
+import NotFoundPage from '@/views/404Page.vue'
 import AccountPage from '@/views/AccountPage.vue'
 import AdminPage from '@/views/AdminPage.vue'
 import CategoriesPage from '@/views/CategoriesPage.vue'
@@ -17,7 +18,6 @@ import ProductPage from '@/views/ProductPage.vue'
 import ProductsPage from '@/views/ProductsPage.vue'
 import RegisterPage from '@/views/RegisterPage.vue'
 import ResetPasswordPage from '@/views/ResetPasswordPage.vue'
-import TestPage from '@/views/TestPage.vue'
 import { createRouter, createWebHistory } from '@ionic/vue-router'
 import { RouteRecordRaw } from 'vue-router'
 
@@ -102,10 +102,9 @@ const routes: Array<RouteRecordRaw> = [
     ],
   },
 
-  // Component Testing Page
   {
-    path: '/test',
-    component: TestPage,
+    path: '/:pathMatch(.*)*',
+    component: NotFoundPage,
   },
 ]
 

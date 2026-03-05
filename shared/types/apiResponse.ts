@@ -78,6 +78,7 @@ export type User = {
   email: string
   phone: string
   prefix: string
+  is_admin: boolean
   token: string
 }
 
