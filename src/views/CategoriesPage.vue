@@ -1,5 +1,5 @@
 <template>
-  <DefaultContentLayout>
+  <DefaultContentLayout :on-refresh>
     <HeroComponent :title="translation('categories')" />
 
     <SeparatorComponent size="sm" />
@@ -21,6 +21,7 @@ import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useCategory } from '@/composables/category'
 import translation from '@/utils/translation'
+import { RefresherCustomEvent } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
 
 /* Constants */
@@ -30,7 +31,12 @@ const categoryComposable = useCategory()
 const categories = ref<Category[]>([])
 
 /* Lifecycle Hooks */
-onMounted(async () => {
-  categoryComposable.get().then((data) => (categories.value = data))
-})
+onMounted(onRefresh)
+
+/* Functions */
+async function onRefresh(event?: RefresherCustomEvent) {
+  categories.value = await categoryComposable.get()
+
+  event?.target.complete()
+}
 </script>
