@@ -1,5 +1,5 @@
 <template>
-  <DefaultContentLayout>
+  <DefaultContentLayout :on-refresh>
     <!-- Form Modal -->
     <FormModal ref="modal" :is-open="modalOpen" :fields :state :schema @submit="onSubmit" @did-dismiss="modalOpen = false" />
 
@@ -88,7 +88,7 @@ import { useUserStore } from '@/stores/user'
 import { ApiHandlerItem, ContextItem, FormField } from '@/types'
 import { addressSchema, addressState, paymentMethodSchema, paymentMethodState } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { IonCard, IonCardContent } from '@ionic/vue'
+import { IonCard, IonCardContent, RefresherCustomEvent } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
 import { ZodType } from 'zod'
 
@@ -129,10 +129,7 @@ const contextItemMap = ref<Record<'address' | 'payment', ContextItem<Address> | 
 })
 
 /* Lifecycle Hook */
-onMounted(async () => {
-  addressComposable.get().then((data) => (addresses.value = data))
-  paymentMethodComposable.get().then((data) => (paymentMethods.value = data))
-})
+onMounted(onRefresh)
 
 /* Functions */
 async function onModalOpen(context: 'address' | 'payment') {
@@ -163,5 +160,14 @@ async function onModalOpen(context: 'address' | 'payment') {
   state.value = apiHandlerItem.state
   schema.value = apiHandlerItem.schema
   onSubmit.value = apiHandlerItem.onSubmit
+}
+
+async function onRefresh(event?: RefresherCustomEvent) {
+  await Promise.all([
+    addressComposable.get().then((data) => (addresses.value = data)),
+    paymentMethodComposable.get().then((data) => (paymentMethods.value = data)),
+  ])
+
+  event?.target.complete()
 }
 </script>

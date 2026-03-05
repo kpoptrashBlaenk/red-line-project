@@ -19,6 +19,8 @@
 
         <IonMenuButton data-cy="menu-button" />
       </IonButtons>
+
+      <IonProgressBar v-if="loadingStore.loading" type="indeterminate" />
     </IonToolbar>
   </IonHeader>
 </template>
@@ -27,8 +29,9 @@
 /* Imports */
 import LogoComponent from '@/components/ui/LogoComponent.vue'
 import { useCheckoutStore } from '@/stores/checkout'
+import { useLoadingStore } from '@/stores/loading'
 import handleRoute from '@/utils/handleRoute'
-import { IonBadge, IonButton, IonButtons, IonHeader, IonIcon, IonMenuButton, IonToolbar } from '@ionic/vue'
+import { IonBadge, IonButton, IonButtons, IonHeader, IonIcon, IonMenuButton, IonProgressBar, IonToolbar } from '@ionic/vue'
 import { cartOutline, searchOutline } from 'ionicons/icons'
 import { useRoute, useRouter } from 'vue-router'
 import CheckoutCounter from './CheckoutCounter.vue'
@@ -42,6 +45,7 @@ defineProps<{
 const route = useRoute()
 const router = useRouter()
 const checkoutStore = useCheckoutStore()
+const loadingStore = useLoadingStore()
 </script>
 
 <style lang="css" scoped>

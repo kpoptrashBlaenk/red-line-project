@@ -1,5 +1,5 @@
 <template>
-  <DefaultContentLayout>
+  <DefaultContentLayout :on-refresh>
     <HeroComponent :title="translation('home_carousel_title')">
       <HomeSwiper :promotions />
     </HeroComponent>
@@ -40,6 +40,7 @@ import { useHomeText } from '@/composables/homeText'
 import { useProduct } from '@/composables/product'
 import { usePromotion } from '@/composables/promotion'
 import translation from '@/utils/translation'
+import { RefresherCustomEvent } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -59,22 +60,27 @@ const products = ref<Product[]>([])
 
 /* Lifecycle Hooks */
 onMounted(async () => {
-  // set to true during prod
-  const prod = true
-  if (prod) {
-    // if first route is not home, go home then redirect to where needed
-    const redirect = route.query.redirect as string | undefined
-    if (redirect) {
-      // remove redirect query
-      await router.replace({ path: '/home', query: {} })
+  // if first route is not home, go home then redirect to where needed
+  const redirect = route.query.redirect as string | undefined
+  if (redirect) {
+    // remove redirect query
+    await router.replace({ path: '/home', query: {} })
 
-      await router.push(redirect)
-    }
+    await router.push(redirect)
   }
 
-  promotionComposable.get().then((data) => (promotions.value = data))
-  homeTextComposable.get().then((data) => (homeText.value = data))
-  categoryComposable.get().then((data) => (categories.value = data))
-  productComposable.top().then((data) => (products.value = data))
+  onRefresh()
 })
+
+/* Functions */
+async function onRefresh(event?: RefresherCustomEvent) {
+  await Promise.all([
+    promotionComposable.get().then((data) => (promotions.value = data)),
+    homeTextComposable.get().then((data) => (homeText.value = data)),
+    categoryComposable.get().then((data) => (categories.value = data)),
+    productComposable.top().then((data) => (products.value = data)),
+  ])
+
+  event?.target.complete()
+}
 </script>

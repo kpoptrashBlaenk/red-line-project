@@ -10,7 +10,11 @@
     <div v-for="(orders, year) in filteredOrders" :key="year">
       <ListGroupTitle :title="`${Number(year) * -1}`" class="mb-3" />
       <IonList lines="none">
-        <OrderItem v-for="(order, key) in orders" :key :order @open:modal="openModal" />
+        <!-- Skeleton -->
+        <OrderItemSkeleton v-if="!orders || orders.length === 0" />
+
+        <!-- Items -->
+        <OrderItem v-else v-for="(order, key) in orders" :key :order @open:modal="openModal" />
       </IonList>
     </div>
   </div>
@@ -26,6 +30,7 @@ import { computed, onMounted, ref } from 'vue'
 import OrderItem from '../ui/items/OrderItem.vue'
 import ListGroupTitle from '../ui/text/ListGroupTitle.vue'
 import OrderModal from './OrderModal.vue'
+import OrderItemSkeleton from '../skeletons/OrderItemSkeleton.vue'
 
 /* Constants */
 const { getOrders } = useOrder()
@@ -65,14 +70,21 @@ const filteredOrders = computed(() => {
   return groupedOrders
 })
 
+/* Exposes */
+defineExpose({ onRefresh })
+
 /* Lifecycle Hooks */
 onMounted(async () => {
-  getOrders().then((result) => (orders.value = result))
+  onRefresh()
 })
 
 /* Functions */
 function openModal(order: Order) {
   selectedOrder.value = order
   modal.value?.$el.present()
+}
+
+async function onRefresh() {
+  orders.value = await getOrders()
 }
 </script>

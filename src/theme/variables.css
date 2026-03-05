@@ -177,6 +177,10 @@ ion-toast.toast-danger {
   display: none;
 }
 
+ion-content::part(scroll) {
+  overscroll-behavior-y: none;
+}
+
 /* ---------- BUTTONS ---------- */
 /* ----------------------------- */
 ion-button::part(native) {

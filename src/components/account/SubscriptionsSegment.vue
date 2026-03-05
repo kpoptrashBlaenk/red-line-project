@@ -25,7 +25,12 @@
     <!-- Active -->
     <ListGroupTitle :title="translation('active')" class="mb-3" />
     <IonList>
+      <!-- Skeleton -->
+      <SubscriptionItemSkeleton v-if="!subscriptions || subscriptions.length === 0" />
+
+      <!-- Items -->
       <SubscriptionItem
+        v-else
         v-for="(subscription, key) in subscriptions.filter((sub) => sub.active)"
         :key
         :subscription
@@ -56,6 +61,7 @@ import translation from '@/utils/translation'
 import { IonAlert, IonList } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
 import ProductPriceGrid from '../grids/ProductPriceGrid.vue'
+import SubscriptionItemSkeleton from '../skeletons/SubscriptionItemSkeleton.vue'
 import SubscriptionItem from '../ui/items/SubscriptionItem.vue'
 import ListGroupTitle from '../ui/text/ListGroupTitle.vue'
 import SubscriptionModal from './SubscriptionModal.vue'
@@ -70,9 +76,12 @@ const selectedSubscription = ref<Subscription | undefined>(undefined)
 const newSubscription = ref<DraftOrder | undefined>(undefined)
 const alert = ref()
 
+/* Exposes */
+defineExpose({ onRefresh })
+
 /* Lifecycle Hooks */
 onMounted(async () => {
-  getSubscriptions().then((result) => (subscriptions.value = result))
+  onRefresh()
 })
 
 /* Functions */
@@ -97,5 +106,9 @@ async function alertSubmit() {
   await deactivateSubscription(selectedSubscription.value!)
   alert.value.$el.dismiss()
   modal.value.close()
+}
+
+async function onRefresh() {
+  subscriptions.value = await getSubscriptions()
 }
 </script>
