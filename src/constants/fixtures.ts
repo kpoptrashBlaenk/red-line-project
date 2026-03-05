@@ -57,7 +57,7 @@ export const userFixtures: Record<number, User> = {
     email: 'email@email.com',
     phone: '0101010101',
     prefix: '+33',
-    is_admin: false,
+    is_admin: true,
     token: 'ABSOLUTELY_HASHED_TOKEN',
   },
 }
