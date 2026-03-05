@@ -403,3 +403,16 @@ export const orderState = reactive<Partial<OrderSchema>>({
   price: undefined,
 })
 export type OrderSchema = z.output<ReturnType<typeof orderSchema>>
+
+/* Contact */
+export const contactSchema = () =>
+  z.object({
+    subject: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
+    text: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
+  })
+
+export const contactState = reactive<Partial<ContactSchema>>({
+  subject: undefined,
+  text: undefined,
+})
+export type ContactSchema = z.output<ReturnType<typeof contactSchema>>

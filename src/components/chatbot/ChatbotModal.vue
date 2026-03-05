@@ -38,7 +38,6 @@ const content = useTemplateRef('content')
 onMounted(() => {
   const observer = new ResizeObserver(() => {
     content.value?.$el.scrollToBottom()
-    console.log('Content scrolled to bottom')
   })
 
   observer.observe(content.value?.$el)
