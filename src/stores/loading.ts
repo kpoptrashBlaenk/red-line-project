@@ -14,7 +14,9 @@ export const useLoadingStore = defineStore('loading', {
       this.loadingStacks++
     },
     popStack() {
-      this.loadingStacks--
+      if (this.loadingStacks > 0) {
+        this.loadingStacks--
+      }
     },
   },
 })
