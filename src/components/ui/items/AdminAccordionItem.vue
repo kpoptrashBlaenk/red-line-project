@@ -7,6 +7,10 @@
     <div slot="content">
       <IonList>
         <IonReorderGroup :disabled="false" @ionReorderEnd="onReorderEnd">
+          <!-- Skeleton -->
+          <AdminAccordionItemSkeleton v-if="!items || items.length === 0" />
+
+          <!-- Items -->
           <AdminReorderItem
             v-for="(item, key) in items"
             :key
@@ -39,6 +43,7 @@
 
 <script setup lang="ts">
 /* Imports */
+import AdminAccordionItemSkeleton from '@/components/skeletons/AdminAccordionItemSkeleton.vue'
 import apiMethods from '@/constants/apiMethod'
 import translation from '@/utils/translation'
 import { IonAccordion, IonItem, IonLabel, IonList, IonReorderGroup, ReorderEndCustomEvent } from '@ionic/vue'
