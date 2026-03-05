@@ -1,5 +1,5 @@
 <template>
-  <IonThumbnail :class="`w-${width}`">
+  <IonThumbnail :style="{ width: `${width * 4}px` }">
     <IonSkeletonText animated />
   </IonThumbnail>
 </template>

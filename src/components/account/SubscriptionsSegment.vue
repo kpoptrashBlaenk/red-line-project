@@ -25,6 +25,7 @@
     <!-- Active -->
     <ListGroupTitle :title="translation('active')" class="mb-3" />
     <IonList>
+      <SubscriptionItemSkeleton />
       <SubscriptionItem
         v-for="(subscription, key) in subscriptions.filter((sub) => sub.active)"
         :key
@@ -59,6 +60,7 @@ import ProductPriceGrid from '../grids/ProductPriceGrid.vue'
 import SubscriptionItem from '../ui/items/SubscriptionItem.vue'
 import ListGroupTitle from '../ui/text/ListGroupTitle.vue'
 import SubscriptionModal from './SubscriptionModal.vue'
+import SubscriptionItemSkeleton from '../skeletons/SubscriptionItemSkeleton.vue'
 
 /* Constants */
 const { getSubscriptions, deactivateSubscription, modifySubscription } = useOrder()
