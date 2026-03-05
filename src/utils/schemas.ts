@@ -404,7 +404,7 @@ export const orderState = reactive<Partial<OrderSchema>>({
 })
 export type OrderSchema = z.output<ReturnType<typeof orderSchema>>
 
-/* Order */
+/* Contact */
 export const contactSchema = () =>
   z.object({
     subject: z.string(ERROR.error_required()).min(1, ERROR.error_required()),

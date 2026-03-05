@@ -116,6 +116,7 @@ const translationKeys = {
 
   // M
   menu: 'menu',
+  message: 'message',
   monthly: 'monthly',
 
   // N
@@ -170,6 +171,7 @@ const translationKeys = {
   sign_in_now: 'sign_in_now',
   sort: 'sort',
   street_address: 'street_address',
+  subject: 'subject',
   submit: 'submit',
   subscribe_now: 'subscribe_now',
   subscriptions: 'subscriptions',
@@ -590,6 +592,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Menu',
     fr: 'Menu',
   },
+  message: {
+    en: 'Message',
+    fr: 'Message',
+  },
   monthly: {
     en: 'Monthly',
     fr: 'Mensuel',
@@ -775,6 +781,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   street_address: {
     en: 'Street Address',
     fr: 'Adresse',
+  },
+  subject: {
+    en: 'Subject',
+    fr: 'Sujet',
   },
   submit: {
     en: 'Submit',
