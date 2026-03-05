@@ -8,7 +8,7 @@
       <IonList>
         <IonReorderGroup :disabled="false" @ionReorderEnd="onReorderEnd">
           <!-- Skeleton -->
-          <AdminAccordionItemSkeleton />
+          <AdminAccordionItemSkeleton v-if="!items || items.length === 0" />
 
           <!-- Items -->
           <AdminReorderItem
