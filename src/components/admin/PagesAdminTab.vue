@@ -60,7 +60,7 @@ import {
   promotionState,
 } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { IonAccordionGroup } from '@ionic/vue'
+import { IonAccordionGroup, RefresherCustomEvent } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
 import { ZodType } from 'zod'
 
@@ -166,13 +166,12 @@ const contextItemMap = ref<
   },
 })
 
+/* Exposes */
+defineExpose({ onRefresh })
+
 /* Lifecycle Hooks */
 onMounted(async () => {
-  promotionComposable.get().then((data) => (promotions.value = data))
-  homeTextComposable.get().then((data) => (homeText.value = data))
-  categoryComposable.get().then((data) => (categories.value = data))
-  productComposable.get().then((data) => (products.value = data))
-  characteristicComposable.get().then((data) => (characteristics.value = data))
+  onRefresh()
 })
 
 /* Functions */
@@ -210,5 +209,17 @@ async function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: a
   state.value = apiHandlerItem.state
   schema.value = apiHandlerItem.schema
   onSubmit.value = apiHandlerItem.onSubmit
+}
+
+async function onRefresh(event?: RefresherCustomEvent) {
+  await Promise.all([
+    promotionComposable.get().then((data) => (promotions.value = data)),
+    homeTextComposable.get().then((data) => (homeText.value = data)),
+    categoryComposable.get().then((data) => (categories.value = data)),
+    productComposable.get().then((data) => (products.value = data)),
+    characteristicComposable.get().then((data) => (characteristics.value = data)),
+  ])
+
+  event?.target.complete()
 }
 </script>

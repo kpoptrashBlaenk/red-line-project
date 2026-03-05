@@ -1,5 +1,5 @@
 <template>
-  <DefaultContentLayout>
+  <DefaultContentLayout :on-refresh>
     <HeroComponent>
       <div class="wrap">
         <ProductSwiper v-if="product" :product />
@@ -72,7 +72,7 @@ import { useCheckoutStore } from '@/stores/checkout'
 import { Color, DraftOrder } from '@/types'
 import shuffle from '@/utils/shuffle'
 import translation from '@/utils/translation'
-import { IonCard, IonCardContent } from '@ionic/vue'
+import { IonCard, IonCardContent, RefresherCustomEvent } from '@ionic/vue'
 import { computed, onMounted, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -146,5 +146,20 @@ function addToCheckout() {
   if (!product.value || !draftOrder.value) return
 
   checkoutStore.addOrder(draftOrder.value)
+}
+
+async function onRefresh(event?: RefresherCustomEvent) {
+  const id = Number(route.params.id)
+  product.value = await productComposable.find(id)
+
+  characteristics.performance.characteristics = product.value.characteristics_performance
+  characteristics.scalability.characteristics = product.value.characteristics_scalability
+  characteristics.level.characteristics = product.value.characteristics_level
+
+  const productByCategoryPromise = productComposable.getByCategory(product.value.category.id).then((data) => {
+    products.value = data
+  })
+
+  await Promise.all([productByCategoryPromise]).then(() => event?.target.complete())
 }
 </script>
