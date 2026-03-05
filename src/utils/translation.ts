@@ -131,6 +131,7 @@ const translationKeys = {
   not_disponible: 'not_disponible',
 
   // O
+  offline: 'offline',
   old: 'old',
   online: 'online',
   optional: 'optional',
@@ -191,6 +192,7 @@ const translationKeys = {
   toast_reset_link: 'toast_reset_link',
   top: 'top',
   total: 'total',
+  try_again: 'try_again',
   type: 'type',
 
   // U
@@ -639,6 +641,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   },
 
   // O
+  offline: {
+    en: 'You are offline',
+    fr: 'Vous êtes hors ligne',
+  },
   old: {
     en: 'Oldest',
     fr: 'Nouveauté : ancien',
@@ -854,6 +860,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   total: {
     en: 'Total',
     fr: 'Total',
+  },
+  try_again: {
+    en: 'Try Again',
+    fr: 'Réessayer',
   },
   type: {
     en: 'Type',

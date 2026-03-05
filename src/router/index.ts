@@ -100,13 +100,13 @@ const routes: Array<RouteRecordRaw> = [
         component: ResetPasswordPage,
         beforeEnter: guestOnly,
       },
-      {
-        path: 'offline',
-        component: OfflinePage,
-      },
     ],
   },
 
+  {
+    path: '/offline',
+    component: OfflinePage,
+  },
   {
     path: '/:pathMatch(.*)*',
     component: NotFoundPage,
@@ -122,10 +122,22 @@ let lastRoute: string | null = null
 let basePosition: number | null = null
 
 router.beforeEach((to, from, next) => {
+  // if not online go to offline page
+  if (!navigator.onLine) {
+    next('/offline')
+    return
+  }
+
+  // if going to offline, but user is online, go home
+  if (to.fullPath === '/offline') {
+    next('/home')
+    return
+  }
+
   if (!basePosition) {
     basePosition = router.options.history.state.position as number
 
-    if (to.fullPath !== '/home' && from.path !== '/home') {
+    if (to.fullPath !== '/home' && to.fullPath !== '/offline' && from.path !== '/home') {
       next({
         path: '/home',
         query: {
