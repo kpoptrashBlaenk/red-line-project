@@ -5,7 +5,7 @@
     <DefaultHeaderLayout :is-scrolled @open:search-modal="isOpenSearchModal = true" />
 
     <IonContent id="main-content" scroll-events @ion-scroll="handleScroll">
-      <IonRefresher :disabled="!isDesktop() || !onRefresh" slot="fixed" @ion-refresh="onRefresh">
+      <IonRefresher :disabled="isDesktop() || !onRefresh" slot="fixed" @ion-refresh="onRefresh">
         <IonRefresherContent />
       </IonRefresher>
       <div class="h-full flex flex-col">

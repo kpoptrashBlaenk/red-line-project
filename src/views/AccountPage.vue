@@ -1,5 +1,5 @@
 <template>
-  <DefaultContentLayout>
+  <DefaultContentLayout :on-refresh>
     <HeroComponent :title="translation('account')" />
 
     <!-- Account Form Modal -->
@@ -36,17 +36,17 @@
 
       <!-- Billing -->
       <IonSegmentContent id="billing-content">
-        <BillingSegment @update:form-modal="updateFormModalBilling($event)" />
+        <BillingSegment ref="billingSegment" @update:form-modal="updateFormModalBilling($event)" />
       </IonSegmentContent>
 
       <!-- Subscriptions -->
       <IonSegmentContent id="subscriptions-content">
-        <SubscriptionsSegment />
+        <SubscriptionsSegment ref="subscriptionsSegment" />
       </IonSegmentContent>
 
       <!-- Orders -->
       <IonSegmentContent id="orders-content">
-        <OrdersSegment />
+        <OrdersSegment ref="ordersSegment" />
       </IonSegmentContent>
 
       <!-- Danger -->
@@ -71,8 +71,8 @@ import HeroComponent from '@/components/ui/HeroComponent.vue'
 import { ApiMethod } from '@/constants/apiMethod'
 import { AccountItem, FormField } from '@/types'
 import translation from '@/utils/translation'
-import { IonLabel, IonSegment, IonSegmentButton, IonSegmentContent, IonSegmentView } from '@ionic/vue'
-import { ref } from 'vue'
+import { IonLabel, IonSegment, IonSegmentButton, IonSegmentContent, IonSegmentView, RefresherCustomEvent } from '@ionic/vue'
+import { ref, useTemplateRef, watch } from 'vue'
 import { ZodType } from 'zod'
 
 /* Refs */
@@ -83,7 +83,37 @@ const fields = ref<FormField[]>([])
 const state = ref<any>({})
 const schema = ref<ZodType<any>>()
 const onSubmit = ref<(state?: any) => Promise<void>>(async () => {})
-const activeSegment = ref<string>('orders')
+const billingSegment = useTemplateRef('billingSegment')
+const subscriptionsSegment = useTemplateRef('subscriptionsSegment')
+const ordersSegment = useTemplateRef('ordersSegment')
+const activeSegment = ref<string>('profile')
+const onRefresh = ref<((event: RefresherCustomEvent) => Promise<void>) | undefined>(undefined)
+
+/* Watches */
+watch(activeSegment, async (segment) => {
+  switch (segment) {
+    case 'billing':
+      onRefresh.value = async (event: RefresherCustomEvent) => {
+        await billingSegment.value?.onRefresh()
+        event.target.complete()
+      }
+      break
+    case 'subscriptions':
+      onRefresh.value = async (event: RefresherCustomEvent) => {
+        await subscriptionsSegment.value?.onRefresh()
+        event.target.complete()
+      }
+      break
+    case 'orders':
+      onRefresh.value = async (event: RefresherCustomEvent) => {
+        await ordersSegment.value?.onRefresh()
+        event.target.complete()
+      }
+      break
+    default:
+      onRefresh.value = undefined
+  }
+})
 
 /* Functions */
 function updateFormModalBilling(event: {

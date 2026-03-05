@@ -70,9 +70,12 @@ const selectedSubscription = ref<Subscription | undefined>(undefined)
 const newSubscription = ref<DraftOrder | undefined>(undefined)
 const alert = ref()
 
+/* Exposes */
+defineExpose({ onRefresh })
+
 /* Lifecycle Hooks */
 onMounted(async () => {
-  getSubscriptions().then((result) => (subscriptions.value = result))
+  onRefresh()
 })
 
 /* Functions */
@@ -97,5 +100,9 @@ async function alertSubmit() {
   await deactivateSubscription(selectedSubscription.value!)
   alert.value.$el.dismiss()
   modal.value.close()
+}
+
+async function onRefresh() {
+  subscriptions.value = await getSubscriptions()
 }
 </script>

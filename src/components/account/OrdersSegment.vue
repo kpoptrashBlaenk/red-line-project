@@ -65,14 +65,21 @@ const filteredOrders = computed(() => {
   return groupedOrders
 })
 
+/* Exposes */
+defineExpose({ onRefresh })
+
 /* Lifecycle Hooks */
 onMounted(async () => {
-  getOrders().then((result) => (orders.value = result))
+  onRefresh()
 })
 
 /* Functions */
 function openModal(order: Order) {
   selectedOrder.value = order
   modal.value?.$el.present()
+}
+
+async function onRefresh() {
+  orders.value = await getOrders()
 }
 </script>

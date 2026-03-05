@@ -72,10 +72,12 @@ const contextItemMap = ref<Record<'address' | 'payment', ContextItem<Address> | 
 /* Emits */
 const emit = defineEmits(['update:formModal'])
 
+/* Exposes */
+defineExpose({ onRefresh })
+
 /* Lifecycle Hook */
 onMounted(async () => {
-  addressComposable.get().then((data) => (addresses.value = data))
-  paymentMethodComposable.get().then((data) => (paymentMethods.value = data))
+  onRefresh()
 })
 
 /* Functions */
@@ -111,5 +113,12 @@ async function onModalOpen(context: 'address' | 'payment', method: ApiMethod, it
     onSubmit: apiHandlerItem.onSubmit,
     method: method,
   })
+}
+
+async function onRefresh() {
+  await Promise.all([
+    addressComposable.get().then((data) => (addresses.value = data)),
+    paymentMethodComposable.get().then((data) => (paymentMethods.value = data)),
+  ])
 }
 </script>
