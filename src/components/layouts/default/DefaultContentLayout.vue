@@ -1,13 +1,18 @@
 <template>
   <IonPage>
-    <DefaultModalLayout />
+    <DefaultModalLayout :is-open="isOpenSearchModal" @close:search-modal="isOpenSearchModal = false" />
 
-    <DefaultHeaderLayout :is-scrolled />
+    <DefaultHeaderLayout :is-scrolled @open:search-modal="isOpenSearchModal = true" />
 
     <IonContent id="main-content" scroll-events @ion-scroll="handleScroll">
-      <slot></slot>
+      <IonRefresher :disabled="isDesktop() || !onRefresh" slot="fixed" @ion-refresh="onRefresh">
+        <IonRefresherContent />
+      </IonRefresher>
+      <div class="h-full flex flex-col">
+        <slot></slot>
 
-      <DefaultFooter v-if="isDesktop()" />
+        <DefaultFooter v-if="isDesktop()" class="mt-auto" />
+      </div>
     </IonContent>
   </IonPage>
 </template>
@@ -15,14 +20,20 @@
 <script setup lang="ts">
 /* Imports */
 import isDesktop from '@/utils/isDesktop'
-import { IonContent, IonPage } from '@ionic/vue'
+import { IonContent, IonPage, IonRefresher, IonRefresherContent, RefresherCustomEvent } from '@ionic/vue'
 import { ref } from 'vue'
 import DefaultFooter from '../footer/DefaultFooter.vue'
 import DefaultHeaderLayout from './DefaultHeaderLayout.vue'
 import DefaultModalLayout from './DefaultModalLayout.vue'
 
+/* Props */
+defineProps<{
+  onRefresh?: (event: RefresherCustomEvent) => Promise<void>
+}>()
+
 /* Refs */
 const isScrolled = ref<boolean>(false)
+const isOpenSearchModal = ref<boolean>(false)
 
 /* Functions */
 function handleScroll(event: CustomEvent) {

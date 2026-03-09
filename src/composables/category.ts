@@ -1,9 +1,11 @@
 import { Category } from '$/types'
 import { FormField } from '@/types'
+import { apiPost } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { CategorySchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
+import { alertCircleOutline, checkmarkCircleOutline } from 'ionicons/icons'
+import { categoryFixtures } from './../constants/fixtures'
 
 /**
  * Use this composable to do category related queries
@@ -24,6 +26,11 @@ export function useCategory() {
         name: 'name_en',
         label: translation('name'),
       },
+      {
+        element: 'input',
+        name: 'description_en',
+        label: translation('description'),
+      },
 
       // fr
       {
@@ -34,6 +41,11 @@ export function useCategory() {
         element: 'input',
         name: 'name_fr',
         label: translation('name'),
+      },
+      {
+        element: 'input',
+        name: 'description_fr',
+        label: translation('description'),
       },
 
       // image
@@ -58,6 +70,8 @@ export function useCategory() {
     return {
       name_en: category.name.en,
       name_fr: category.name.fr,
+      description_en: category.description.en,
+      description_fr: category.description.fr,
       image: category.image,
     }
   }
@@ -66,64 +80,18 @@ export function useCategory() {
    * Get all categories
    */
   async function get() {
-    const categories: Category[] = [
-      {
-        id: 1,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: {
-          en: 'Technology',
-          fr: 'Technologie',
-        },
-        index: 0,
-      },
-      {
-        id: 2,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: {
-          en: 'Health',
-          fr: 'Santé',
-        },
-        index: 1,
-      },
-      {
-        id: 3,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: {
-          en: 'Travel',
-          fr: 'Voyage',
-        },
-        index: 2,
-      },
-      {
-        id: 4,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: {
-          en: 'Food',
-          fr: 'Alimentation',
-        },
-        index: 3,
-      },
-      {
-        id: 5,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: {
-          en: 'Education',
-          fr: 'Éducation',
-        },
-        index: 4,
-      },
-      {
-        id: 6,
-        image: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        name: {
-          en: 'Sports',
-          fr: 'Sports',
-        },
-        index: 5,
-      },
-    ]
+    const categories: Category[] = Object.values(categoryFixtures)
 
     return categories ?? []
+  }
+
+  /**
+   * Find category by id
+   */
+  async function find(id: number) {
+    const category = categoryFixtures[id as keyof typeof categoryFixtures]
+
+    return category
   }
 
   /**
@@ -144,10 +112,22 @@ export function useCategory() {
    * @param state The state that tracks the new values
    */
   async function create(state: CategorySchema) {
-    // api request
-    state
+    try {
+      // create promotion
+      const response = await apiPost<Category>('/api/promotion', state)
 
-    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+      // check response
+      if (!response) {
+        throw new Error(translation('error_category_post_500'))
+      }
+
+      // success
+      await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+
+      // catch
+    } catch (error: any) {
+      await presentToast(error.message, 'danger', alertCircleOutline)
+    }
   }
 
   /**
@@ -181,6 +161,7 @@ export function useCategory() {
     createFields,
     flatten,
     get,
+    find,
     reorder,
     create,
     modify,

@@ -1,15 +1,23 @@
 <template>
-  <IonButton fill="clear" :color="color" :router-link="link" :type="form ? 'submit' : 'button'" :form>
+  <IonButton
+    fill="clear"
+    :color="color"
+    :type="form ? 'submit' : 'button'"
+    :form
+    @click="link ? handleRoute(route, router, link) : false"
+  >
     {{ label }}
-    <IonIcon v-if="chevron" :icon="chevronForward" class="ms-1" />
+    <IonIcon v-if="chevron || icon" :icon="icon || chevronForward" class="ms-1" />
   </IonButton>
 </template>
 
 <script setup lang="ts">
 /* Imports */
 import { Color } from '@/types'
+import handleRoute from '@/utils/handleRoute'
 import { IonButton, IonIcon } from '@ionic/vue'
 import { chevronForward } from 'ionicons/icons'
+import { useRoute, useRouter } from 'vue-router'
 
 /* Props */
 defineProps<{
@@ -18,7 +26,12 @@ defineProps<{
   color: Color
   chevron?: boolean
   form?: string
+  icon?: string
 }>()
+
+/* Constants */
+const router = useRouter()
+const route = useRoute()
 </script>
 
 <style lang="css" scoped>

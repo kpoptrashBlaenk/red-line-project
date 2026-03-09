@@ -1,17 +1,29 @@
 <template>
-  <IonModal trigger="open-search-modal" :initial-breakpoint="0.75" :breakpoints="[0, 0.75]">
-    <IonContent>
-      <IonSearchbar placeholder="Search for products..." />
-      <IonList>
-        <IonItem router-link="/" button detail>
-          <!-- Product Info -->
-        </IonItem>
-      </IonList>
+  <IonModal
+    :is-open
+    :initial-breakpoint="0.75"
+    :breakpoints="[0, 0.75, 1]"
+    @will-dismiss="$emit('close:search-modal')"
+    :expand-to-scroll="false"
+  >
+    <IonContent color="light">
+      <DefaultSearchContent @close:search-modal="$emit('close:search-modal')" />
     </IonContent>
   </IonModal>
 </template>
 
 <script setup lang="ts">
 /* Imports */
-import { IonContent, IonItem, IonList, IonModal, IonSearchbar } from '@ionic/vue'
+import { IonContent, IonModal } from '@ionic/vue'
+import DefaultSearchContent from './DefaultSearchContent.vue'
+/* Props */
+defineProps<{
+  isOpen: boolean
+}>()
 </script>
+
+<style lang="css" scoped>
+ion-modal {
+  --width: 100%;
+}
+</style>

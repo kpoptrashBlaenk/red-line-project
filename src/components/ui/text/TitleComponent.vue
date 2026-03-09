@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { Color } from '@/types'
-import { ref } from 'vue'
+import { computed } from 'vue'
 
 /* Props */
 const props = defineProps<{
@@ -13,7 +13,7 @@ const props = defineProps<{
 }>()
 
 /* Refs */
-const title = ref<string>(
+const title = computed<string>(() =>
   props.text.replaceAll('<title>', `<span class="text-${props.color}">`).replaceAll('</title>', `</span>`),
 )
 </script>

@@ -3,7 +3,7 @@
     v-model="state[field.name]"
     :label="field.label"
     :aria-label="field.label"
-    label-placement="floating"
+    :label-placement="field.stacked ? 'stacked' : 'floating'"
     clear-input
     auto-grow
     fill="solid"
@@ -11,8 +11,7 @@
     @ionInput="validate"
     @ionBlur="markTouched"
     :class="{ 'ion-touched': field.touched, 'ion-invalid': field.error }"
-    mode="md"
-    class="ps-5!"
+    :rows="1"
   ></IonTextarea>
 </template>
 
@@ -21,13 +20,13 @@
 import type { TextareaField } from '@/types'
 import { IonTextarea } from '@ionic/vue'
 import { toRef } from 'vue'
-import z from 'zod'
+import { ZodType } from 'zod'
 
 /* Props */
 const props = defineProps<{
   field: TextareaField
   state: Record<string, any>
-  schema: z.ZodType<any> | undefined
+  schema: ZodType<any> | undefined
 }>()
 
 /* Refs */
@@ -35,8 +34,8 @@ const field = toRef(props, 'field')
 const state = toRef(props, 'state')
 
 /* Functions */
-function validate() {
-  const result = props.schema!.safeParse(state.value)
+async function validate() {
+  const result = await props.schema!.safeParseAsync(state.value)
 
   if (!result.success) {
     const issue = result.error.issues.find((issue) => issue.path[0] === field.value.name)
@@ -57,6 +56,8 @@ ion-textarea {
   --background: transparent !important;
   --border-color: var(--ion-color-primary-tint) !important;
   --highlight-color: var(--ion-color-primary-shade);
+
+  min-height: 0px !important;
 }
 
 ion-textarea.ion-invalid {

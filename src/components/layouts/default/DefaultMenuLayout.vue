@@ -8,32 +8,57 @@
     </IonHeader>
 
     <!-- List -->
-    <IonContent color="light">
-      <IonList inset class="p-0! rounded-xl!">
-        <!-- Item -->
-        <template v-for="(page, key) in pages">
-          <IonItem
-            v-if="!(page.mobileOnly && isDesktop())"
-            :key
-            :color="route.fullPath.startsWith(page.url) ? 'primary' : 'light'"
-            :router-link="page.url"
-            :router-direction="page.url === pages.home.url ? 'back' : 'forward'"
-            button
-            detail
-            @click="handleRoute(page.url)"
-          >
-            <IonLabel class="text-xl! ms-2">{{ translation(page.translationKey) }}</IonLabel>
+    <IonContent>
+      <template
+        v-for="(sectionPages, section) in [
+          Object.values(pages).filter((page) => page.section === 0),
+          Object.values(pages).filter((page) => page.section === 1),
+          Object.values(pages).filter((page) => page.section === 2),
+        ]"
+        :key="section"
+      >
+        <IonList inset class="p-0! rounded-xl!">
+          <!-- Non-Auth Items -->
+          <template v-for="(page, key) in sectionPages">
+            <IonItem
+              v-if="
+                !(page.mobileOnly && isDesktop()) &&
+                (page.auth === 'auth' ? userStore.user : page.auth === 'guest' ? !userStore.user : true) &&
+                (page.admin ? userStore.user?.is_admin : true)
+              "
+              :key
+              :color="
+                route.fullPath.startsWith(page.url) ||
+                (route.fullPath.includes('product') && page.url.includes('products')) ||
+                (route.fullPath.includes('category') && page.url.includes('categories'))
+                  ? 'primary'
+                  : 'light'
+              "
+              button
+              detail
+              :data-cy="`${key}-menu-item`"
+              @click="handleRoute(route, router, page.url, () => menu.$el.close())"
+            >
+              <IonLabel class="text-xl! ms-2">{{ translation(page.translationKey) }}</IonLabel>
+            </IonItem>
+          </template>
+
+          <!-- Again for logout -->
+          <IonItem v-if="userStore.user && section === 2" color="danger" button detail @click="handleLogout">
+            <IonLabel class="text-xl! ms-2">{{ translation('logout') }}</IonLabel>
           </IonItem>
-        </template>
-      </IonList>
+        </IonList>
+      </template>
     </IonContent>
   </IonMenu>
 </template>
 
 <script setup lang="ts">
 /* Imports */
+import { useAuth } from '@/composables/auth'
 import pages from '@/constants/pages'
-import { getLastRoute } from '@/router'
+import { useUserStore } from '@/stores/user'
+import handleRoute from '@/utils/handleRoute'
 import isDesktop from '@/utils/isDesktop'
 import translation from '@/utils/translation'
 import { IonContent, IonHeader, IonItem, IonLabel, IonList, IonMenu, IonTitle, IonToolbar } from '@ionic/vue'
@@ -43,24 +68,16 @@ import { useRoute, useRouter } from 'vue-router'
 /* Constants */
 const route = useRoute()
 const router = useRouter()
+const userStore = useUserStore()
+const { logout } = useAuth()
 
 /* Refs */
 const menu = ref()
 
 /* Functions */
-function handleRoute(url: string) {
+function handleLogout() {
+  logout()
   menu.value.$el.close()
-
-  if (route.fullPath.startsWith('/home')) {
-    router.push(url)
-    return
-  }
-
-  if (url.startsWith('/home')) {
-    getLastRoute()?.startsWith('/home') ? router.back() : router.push(url)
-    return
-  }
-
-  router.replace(url)
+  location.reload()
 }
 </script>

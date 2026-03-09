@@ -1,4 +1,3 @@
-/* @import url(./buttons.css); */
 @import 'tailwindcss';
 
 /* ---------- BREAKPOINTS ---------- */
@@ -99,6 +98,9 @@ a:hover {
 .bg-light {
   background: var(--ion-color-light);
 }
+.bg-danger {
+  background: var(--ion-color-danger);
+}
 
 .text-primary {
   color: var(--ion-color-primary);
@@ -109,12 +111,21 @@ a:hover {
 .text-tertiary {
   color: var(--ion-color-tertiary);
 }
+.text-medium {
+  color: var(--ion-color-medium);
+}
 .text-danger {
   color: var(--ion-color-danger);
+}
+.text-success {
+  color: var(--ion-color-success);
 }
 
 .border-primary {
   border-color: var(--ion-color-primary);
+}
+.border-tertiary {
+  border-color: var(--ion-color-tertiary);
 }
 
 /* ---------- LAYOUT ---------- */
@@ -154,4 +165,36 @@ ion-toast.toast-danger {
 
 .alert-button.ion-focusable {
   border-radius: 4px;
+}
+
+/* ---------- SCROLLBAR ---------- */
+/* ------------------------------- */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+ion-content::part(scroll) {
+  overscroll-behavior-y: none;
+}
+
+/* ---------- BUTTONS ---------- */
+/* ----------------------------- */
+ion-button::part(native) {
+  white-space: nowrap !important;
+}
+
+/* ---------- INPUT ---------- */
+/* --------------------------- */
+input[type='password']::-ms-reveal,
+input[type='password']::-ms-clear {
+  display: none;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
