@@ -94,7 +94,7 @@ router.post('/categories', async (req, res) => {
 
 router.put('/categories/:id', async (req, res) => {
     const { id } = req.params
-    const {urlimage, title_en, title_fr, subtitle_en, subtitle_fr, button_en, button_fr, index = 0}
+    const {urlimage, title_en, title_fr, subtitle_en, subtitle_fr, button_en, button_fr, index = 0} = req.body;
     try {
         const result = await pool.query(
             `UPDATE category
