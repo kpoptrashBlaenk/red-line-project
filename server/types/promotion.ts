@@ -1,4 +1,4 @@
-export interface Promotional {
+export interface PromotionRaw {
   id: number
   title_key: string
   subtitle_key: string

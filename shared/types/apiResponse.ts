@@ -1,5 +1,7 @@
 import { Language } from '@/types'
 import { CharacteristicType, SubscriptionLength, SubscriptionUsers } from './other'
+import { language } from 'ionicons/icons'
+import { en } from 'zod/v4/locales'
 
 /**
  * Text record with multiple languages
