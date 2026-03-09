@@ -1,0 +1,98 @@
+<h1>Conditions Générales d’Utilisation et de Vente</h1>
+<p><strong>Dernière mise à jour :</strong> 26 février 2026</p>
+
+<h2>1. Informations légales</h2>
+<p>
+  CYNA-IT, SAS<br>
+  10 rue de Penthièvre, 75008 Paris, France<br>
+  TVA : FR20913711032<br>
+  Téléphone : +33 1 89 70 14 36<br>
+  Email : contact@cyna-it.fr<br>
+  Site : https://cyna-it.fr/
+</p>
+
+<h2>2. Acceptation des conditions</h2>
+<p>
+  L’accès et l’utilisation du site, de l’application mobile et des services associés
+  (les « Services ») impliquent l’acceptation pleine et entière des présentes conditions.
+  En cas de désaccord, vous devez cesser toute utilisation.
+  CYNA-IT se réserve le droit de modifier ces conditions à tout moment.
+</p>
+
+<h2>3. Conditions d’accès</h2>
+<p>
+  Les Services sont réservés aux personnes majeures (18 ans ou plus).
+  Vous garantissez que les informations fournies sont exactes et conformes à la loi.
+</p>
+
+<h2>4. Services et produits</h2>
+<p>
+  CYNA-IT propose des solutions de cybersécurité et services associés.
+  Les produits et tarifs peuvent être modifiés à tout moment.
+  Nous nous réservons le droit de refuser ou d’annuler toute commande.
+</p>
+
+<h2>5. Paiement</h2>
+<p>
+  Les paiements sont effectués en euros via les prestataires autorisés (ex. PayPal).
+  Vous vous engagez à fournir des informations de facturation exactes.
+  Sauf disposition légale contraire, les ventes sont fermes et définitives.
+</p>
+
+<h2>6. Abonnements</h2>
+<p>
+  Les abonnements sont renouvelés automatiquement sauf résiliation.
+  Vous pouvez annuler à tout moment depuis votre compte.
+  Toute modification tarifaire sera communiquée conformément à la loi.
+</p>
+
+<h2>7. Propriété intellectuelle</h2>
+<p>
+  Tous les contenus, logiciels, marques et éléments présents sur les Services
+  sont la propriété exclusive de CYNA-IT ou de ses partenaires.
+  Toute reproduction ou exploitation sans autorisation écrite est interdite.
+</p>
+
+<h2>8. Utilisations interdites</h2>
+<ul>
+  <li>Utilisation à des fins illégales</li>
+  <li>Tentative d’accès frauduleux ou atteinte à la sécurité</li>
+  <li>Transmission de virus ou contenu malveillant</li>
+  <li>Copie ou rétro-ingénierie des logiciels</li>
+</ul>
+
+<h2>9. Données personnelles</h2>
+<p>
+  Les données personnelles sont traitées conformément à notre Politique de Confidentialité
+  disponible sur la page « Mentions légales ».
+  Les données sont traitées en France dans le respect du RGPD.
+</p>
+
+<h2>10. Responsabilité</h2>
+<p>
+  Les Services sont fournis « en l’état ».
+  CYNA-IT ne saurait être tenue responsable des dommages indirects,
+  pertes de données ou pertes financières, dans les limites autorisées par la loi.
+</p>
+
+<h2>11. Résiliation</h2>
+<p>
+  Nous pouvons suspendre ou résilier l’accès aux Services en cas de violation
+  des présentes conditions ou de la réglementation applicable.
+</p>
+
+<h2>12. Droit applicable</h2>
+<p>
+  Les présentes conditions sont régies par le droit français.
+  Tout litige relève de la compétence des tribunaux de Paris,
+  sous réserve des dispositions impératives protégeant les consommateurs.
+</p>
+
+<h2>13. Contact</h2>
+<p>
+  CYNA-IT<br>
+  10 rue de Penthièvre<br>
+  75008 Paris – France<br>
+  Téléphone : +33 1 89 70 14 36<br>
+  Email : contact@cyna-it.fr
+</p>

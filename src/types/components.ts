@@ -1,6 +1,7 @@
 import type { PredefinedColors } from '@ionic/core/dist/types/interface'
 import { ZodType } from 'zod'
 import { FormField } from './form'
+import { Product, SubscriptionLength, SubscriptionUsers } from '$/types'
 
 /**
  * Props type for unit testing
@@ -31,4 +32,14 @@ export type AccountItem = {
 export type AccountGroup = {
   header: string
   items: AccountItem[]
+}
+
+/**
+ * Piece of a draft
+ */
+export type DraftOrder = {
+  product: Product
+  length: SubscriptionLength
+  users: SubscriptionUsers
+  amount: number
 }

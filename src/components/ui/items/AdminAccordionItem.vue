@@ -7,7 +7,12 @@
     <div slot="content">
       <IonList>
         <IonReorderGroup :disabled="false" @ionReorderEnd="onReorderEnd">
+          <!-- Skeleton -->
+          <AdminAccordionItemSkeleton v-if="!items || items.length === 0" />
+
+          <!-- Items -->
           <AdminReorderItem
+            v-else
             v-for="(item, key) in items"
             :key
             :item
@@ -26,7 +31,7 @@
       <div v-if="add" class="px-5 pb-5">
         <SolidButton
           :label="translate('add')"
-          color="success"
+          color="primary"
           class="mt-2"
           expand="block"
           @click="$emit('open:modal-form', value, apiMethod.post)"
@@ -39,6 +44,7 @@
 
 <script setup lang="ts">
 /* Imports */
+import AdminAccordionItemSkeleton from '@/components/skeletons/AdminAccordionItemSkeleton.vue'
 import apiMethods from '@/constants/apiMethod'
 import translation from '@/utils/translation'
 import { IonAccordion, IonItem, IonLabel, IonList, IonReorderGroup, ReorderEndCustomEvent } from '@ionic/vue'

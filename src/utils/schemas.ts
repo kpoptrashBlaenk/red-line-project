@@ -1,3 +1,4 @@
+import { SubscriptionLength, SubscriptionUsers } from '$/types'
 import { useAuth } from '@/composables/auth'
 import { reactive } from 'vue'
 import z from 'zod'
@@ -379,3 +380,39 @@ export const paymentMethodState = reactive<Partial<PaymentMethodSchema>>({
   cvv: undefined,
 })
 export type PaymentMethodSchema = z.output<ReturnType<typeof paymentMethodSchema>>
+
+/* Order */
+export const orderSchema = () =>
+  z.object({
+    product_id: z.number(ERROR.error_required()).min(1, ERROR.error_required()),
+    address_id: z.number(ERROR.error_required()).min(1, ERROR.error_required()),
+    payment_method_id: z.number(ERROR.error_required()).min(1, ERROR.error_required()),
+    length: z.enum(SubscriptionLength, ERROR.error_required()),
+    users: z.enum(SubscriptionUsers, ERROR.error_required()),
+    amount: z.number(ERROR.error_required()).min(1, ERROR.error_required()),
+    price: z.number(ERROR.error_required()).min(1, ERROR.error_required()),
+  })
+
+export const orderState = reactive<Partial<OrderSchema>>({
+  product_id: undefined,
+  address_id: undefined,
+  payment_method_id: undefined,
+  length: undefined,
+  users: undefined,
+  amount: undefined,
+  price: undefined,
+})
+export type OrderSchema = z.output<ReturnType<typeof orderSchema>>
+
+/* Contact */
+export const contactSchema = () =>
+  z.object({
+    subject: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
+    text: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
+  })
+
+export const contactState = reactive<Partial<ContactSchema>>({
+  subject: undefined,
+  text: undefined,
+})
+export type ContactSchema = z.output<ReturnType<typeof contactSchema>>

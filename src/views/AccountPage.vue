@@ -1,83 +1,79 @@
 <template>
-  <DefaultContentLayout>
+  <DefaultContentLayout :on-refresh>
     <HeroComponent :title="translation('account')" />
 
-    <div class="wrap">
-      <!-- Account Form Modal -->
-      <FormModal ref="modal" :is-open="modalOpen" :fields :state :schema @submit="onSubmit" @did-dismiss="modalOpen = false" />
+    <!-- Account Form Modal -->
+    <FormModal ref="modal" :is-open="modalOpen" :fields :state :schema @submit="onSubmit" @did-dismiss="modalOpen = false" />
 
-      <!-- Account Form Alert -->
-      <FormAlert ref="alert" @submit="onSubmit" />
+    <!-- Account Form Alert -->
+    <FormAlert ref="alert" @submit="onSubmit" />
 
-      <SeparatorComponent size="xs" />
+    <!-- Segment Buttons -->
+    <IonSegment v-model="activeSegment" scrollable class="min-h-16 scrollbar-none">
+      <IonSegmentButton value="profile" content-id="profile-content" class="segment-primary">
+        <IonLabel class="text-lg">{{ translation('profile') }}</IonLabel>
+      </IonSegmentButton>
+      <IonSegmentButton value="billing" content-id="billing-content" class="segment-secondary">
+        <IonLabel class="text-lg">{{ translation('billing') }}</IonLabel>
+      </IonSegmentButton>
+      <IonSegmentButton value="subscriptions" content-id="subscriptions-content" class="segment-tertiary">
+        <IonLabel class="text-lg">{{ 'subscriptions' }}</IonLabel>
+      </IonSegmentButton>
+      <IonSegmentButton value="orders" content-id="orders-content" class="segment-primary">
+        <IonLabel class="text-lg">{{ 'orders' }}</IonLabel>
+      </IonSegmentButton>
+      <IonSegmentButton value="danger" content-id="danger-content" class="segment-danger">
+        <IonLabel class="text-lg">{{ translation('danger') }}</IonLabel>
+      </IonSegmentButton>
+    </IonSegment>
 
-      <!-- Account List -->
-      <AccountList :on-modal-open="onModalOpen" />
+    <!-- Segment View -->
+    <IonSegmentView>
+      <!-- Profile -->
+      <IonSegmentContent id="profile-content">
+        <ProfileSegment @update:form-modal="updateFormModalProfile($event)" />
+      </IonSegmentContent>
 
-      <!-- Payment Information -->
-      <ListGroupTitle :title="'Payment Information'" />
-      <IonAccordionGroup expand="inset" class="mb-10">
-        <AdminAccordionItem
-          v-for="(item, key) in Object.values(contextItemMap)"
-          :key
-          :title="item.title"
-          :value="item.value"
-          :items="item.itemsRef"
-          :image="item.image"
-          :text="item.text"
-          :note="item.note"
-          :add="item.add"
-          :modify="item.modify"
-          :remove="item.remove"
-          @open:modal-form="onModalOpen"
-        />
-      </IonAccordionGroup>
+      <!-- Billing -->
+      <IonSegmentContent id="billing-content">
+        <BillingSegment ref="billingSegment" @update:form-modal="updateFormModalBilling($event)" />
+      </IonSegmentContent>
 
-      <!-- Account Delete -->
-      <SolidButton
-        :icon="alertCircleOutline"
-        :label="translation('delete')"
-        color="danger"
-        size="large"
-        expand="block"
-        @click="setDeleteUserSubmit"
-      />
+      <!-- Subscriptions -->
+      <IonSegmentContent id="subscriptions-content">
+        <SubscriptionsSegment ref="subscriptionsSegment" />
+      </IonSegmentContent>
 
-      <SeparatorComponent size="sm" />
-    </div>
+      <!-- Orders -->
+      <IonSegmentContent id="orders-content">
+        <OrdersSegment ref="ordersSegment" />
+      </IonSegmentContent>
+
+      <!-- Danger -->
+      <IonSegmentContent id="danger-content">
+        <DangerSegment @delete:account="deleteAccount" />
+      </IonSegmentContent>
+    </IonSegmentView>
   </DefaultContentLayout>
 </template>
 
 <script setup lang="ts">
 /* Imports */
-import { Address, PaymentMethod } from '$/types'
+import BillingSegment from '@/components/account/BillingSegment.vue'
+import DangerSegment from '@/components/account/DangerSegment.vue'
+import OrdersSegment from '@/components/account/OrdersSegment.vue'
+import ProfileSegment from '@/components/account/ProfileSegment.vue'
+import SubscriptionsSegment from '@/components/account/SubscriptionsSegment.vue'
 import FormAlert from '@/components/forms/FormAlert.vue'
 import FormModal from '@/components/forms/FormModal.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
-import SolidButton from '@/components/ui/buttons/SolidButton.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
-import AccountList from '@/components/ui/items/AccountList.vue'
-import AdminAccordionItem from '@/components/ui/items/AdminAccordionItem.vue'
-import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
-import ListGroupTitle from '@/components/ui/text/ListGroupTitle.vue'
-import { useAddress } from '@/composables/address'
-import { useAuth } from '@/composables/auth'
-import { usePaymentMethod } from '@/composables/paymentMethod'
 import { ApiMethod } from '@/constants/apiMethod'
-import { useUserStore } from '@/stores/user'
-import { ApiHandlerItem, ContextItem, FormField } from '@/types'
-import { addressSchema, addressState, paymentMethodSchema, paymentMethodState } from '@/utils/schemas'
+import { AccountItem, FormField } from '@/types'
 import translation from '@/utils/translation'
-import { IonAccordionGroup } from '@ionic/vue'
-import { alertCircleOutline } from 'ionicons/icons'
-import { onMounted, ref } from 'vue'
+import { IonLabel, IonSegment, IonSegmentButton, IonSegmentContent, IonSegmentView, RefresherCustomEvent } from '@ionic/vue'
+import { ref, useTemplateRef, watch } from 'vue'
 import { ZodType } from 'zod'
-
-/* Constants */
-const { deleteUser } = useAuth()
-const userStore = useUserStore()
-const addressComposable = useAddress()
-const paymentMethodComposable = usePaymentMethod()
 
 /* Refs */
 const alert = ref()
@@ -87,103 +83,78 @@ const fields = ref<FormField[]>([])
 const state = ref<any>({})
 const schema = ref<ZodType<any>>()
 const onSubmit = ref<(state?: any) => Promise<void>>(async () => {})
-const addresses = ref<Address[]>([])
-const paymentMethods = ref<PaymentMethod[]>([])
-const contextItemMap = ref<Record<'address' | 'payment', ContextItem<Address> | ContextItem<PaymentMethod>>>({
-  address: {
-    title: translation('addresses'),
-    value: 'address',
-    itemsRef: addresses,
-    text: (item: Address) => item.street_address,
-    note: (item: Address) => item.locality,
-    add: true,
-    modify: true,
-    remove: true,
-    composable: addressComposable,
-    schema: addressSchema(),
-    defaultState: addressState,
-  },
-  payment: {
-    title: translation('payment_methods'),
-    value: 'payment',
-    itemsRef: paymentMethods,
-    text: (item: PaymentMethod) => item.last4.toString(),
-    note: (item: PaymentMethod) => item.expiration,
-    add: true,
-    remove: true,
-    composable: paymentMethodComposable,
-    schema: paymentMethodSchema(),
-    defaultState: paymentMethodState,
-  },
-})
+const billingSegment = useTemplateRef('billingSegment')
+const subscriptionsSegment = useTemplateRef('subscriptionsSegment')
+const ordersSegment = useTemplateRef('ordersSegment')
+const activeSegment = ref<string>('profile')
+const onRefresh = ref<((event: RefresherCustomEvent) => Promise<void>) | undefined>(undefined)
 
-/* Lifecycle Hook */
-onMounted(async () => {
-  addresses.value = await addressComposable.get()
-  paymentMethods.value = await paymentMethodComposable.get()
+/* Watches */
+watch(activeSegment, async (segment) => {
+  switch (segment) {
+    case 'billing':
+      onRefresh.value = async (event: RefresherCustomEvent) => {
+        await billingSegment.value?.onRefresh()
+        event.target.complete()
+      }
+      break
+    case 'subscriptions':
+      onRefresh.value = async (event: RefresherCustomEvent) => {
+        await subscriptionsSegment.value?.onRefresh()
+        event.target.complete()
+      }
+      break
+    case 'orders':
+      onRefresh.value = async (event: RefresherCustomEvent) => {
+        await ordersSegment.value?.onRefresh()
+        event.target.complete()
+      }
+      break
+    default:
+      onRefresh.value = undefined
+  }
 })
 
 /* Functions */
-async function onModalOpen(context?: 'address' | 'payment', method?: ApiMethod, item?: any) {
-  // normal item not in accordion
-  if (!context && !method && item) {
-    fields.value = item.fields
-    state.value = userStore.user
-    schema.value = item.schema
-    onSubmit.value = async (state: any) => {
-      await item.onSubmit(state)
-      modal.value.$el.dismiss()
-    }
-    modalOpen.value = true
-
-    return
+function updateFormModalBilling(event: {
+  fields: FormField[]
+  state: any
+  schema: ZodType<any>
+  onSubmit: (state?: AccountItem) => Promise<void>
+  method: ApiMethod
+}) {
+  fields.value = event.fields
+  state.value = event.state
+  schema.value = event.schema
+  onSubmit.value = async (state?: AccountItem) => {
+    await event.onSubmit(state)
+    modal.value.$el.dismiss()
+    alert.value.$el.dismiss()
   }
 
-  // accordion items
-  if (context && method) {
-    const contextItem = contextItemMap.value[context]
-
-    const apiHandlerItem: ApiHandlerItem = {
-      // create form fields
-      fields: (await contextItem.composable.createFields?.()) ?? [],
-      // flatten item if it exists (prepare for modify), if not then create new state
-      state: item ?? { ...contextItem.defaultState },
-      // validation schema
-      schema: contextItem.schema,
-      // submit callback
-      onSubmit: async (state?: any) => {
-        // post
-        if (method === 'post') contextItem.composable.create?.(state)
-        // put
-        if (method === 'put') contextItem.composable.modify?.(item.id, state)
-        // delete
-        if (method === 'delete') contextItem.composable.remove?.(item.id)
-
-        // refetch and dismiss
-        contextItem.itemsRef.value = await contextItem.composable.get?.()
-        modal.value.$el.dismiss()
-        alert.value.$el.dismiss()
-      },
-    }
-
-    // if not delete then form modal, otherwise alert
-    method !== 'delete' ? modal.value.$el.present() : alert.value.$el.present()
-
-    // attribute variables
-    fields.value = apiHandlerItem.fields
-    state.value = apiHandlerItem.state
-    schema.value = apiHandlerItem.schema
-    onSubmit.value = apiHandlerItem.onSubmit
-  }
+  event.method !== 'delete' ? modal.value.$el.present() : alert.value.$el.present()
 }
 
-function setDeleteUserSubmit() {
+function updateFormModalProfile(event: {
+  fields: FormField[]
+  state: any
+  schema: ZodType<any>
+  onSubmit: (state?: AccountItem) => Promise<void>
+}) {
+  fields.value = event.fields
+  state.value = event.state
+  schema.value = event.schema
+  onSubmit.value = async (state?: AccountItem) => {
+    await event.onSubmit(state)
+    modal.value.$el.dismiss()
+  }
+  modalOpen.value = true
+}
+
+function deleteAccount(event: () => Promise<void>) {
   alert.value.$el.present()
 
-  onSubmit.value = async () => {
-    await deleteUser()
-    location.reload()
-  }
+  onSubmit.value = event
 }
 </script>
 
@@ -192,5 +163,18 @@ ion-item {
   --detail-icon-color: white;
   --detail-icon-opacity: 1;
   --detail-icon-font-size: 32px;
+}
+
+ion-segment-button.segment-primary {
+  --color-checked: var(--ion-color-primary);
+}
+ion-segment-button.segment-secondary {
+  --color-checked: var(--ion-color-secondary);
+}
+ion-segment-button.segment-tertiary {
+  --color-checked: var(--ion-color-tertiary);
+}
+ion-segment-button.segment-danger {
+  --color-checked: var(--ion-color-danger);
 }
 </style>

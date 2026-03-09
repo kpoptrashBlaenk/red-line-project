@@ -98,6 +98,9 @@ a:hover {
 .bg-light {
   background: var(--ion-color-light);
 }
+.bg-danger {
+  background: var(--ion-color-danger);
+}
 
 .text-primary {
   color: var(--ion-color-primary);
@@ -108,12 +111,21 @@ a:hover {
 .text-tertiary {
   color: var(--ion-color-tertiary);
 }
+.text-medium {
+  color: var(--ion-color-medium);
+}
 .text-danger {
   color: var(--ion-color-danger);
+}
+.text-success {
+  color: var(--ion-color-success);
 }
 
 .border-primary {
   border-color: var(--ion-color-primary);
+}
+.border-tertiary {
+  border-color: var(--ion-color-tertiary);
 }
 
 /* ---------- LAYOUT ---------- */
@@ -163,6 +175,10 @@ ion-toast.toast-danger {
 }
 .scrollbar-none::-webkit-scrollbar {
   display: none;
+}
+
+ion-content::part(scroll) {
+  overscroll-behavior-y: none;
 }
 
 /* ---------- BUTTONS ---------- */

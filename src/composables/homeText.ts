@@ -1,4 +1,5 @@
 import { HomeText } from '$/types'
+import { homeTextFixtures } from '@/constants/fixtures'
 import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
 import { HomeTextSchema } from '@/utils/schemas'
@@ -54,15 +55,7 @@ export function useHomeText() {
    * Get all home texts
    */
   async function get() {
-    const homeText: HomeText[] = [
-      {
-        id: 1,
-        text: {
-          en: 'Cyna is a pure player in cybersecurity for SMEs and MSPs. Quality of service is at the heart of our business, where we prioritize expertise, proximity, and speed of execution.',
-          fr: "Cyna est un acteur pur de la cybersécurité pour les PME et les MSP. La qualité de service est au cœur de notre activité, où nous privilégions l'expertise, la proximité et la rapidité d'exécution.",
-        },
-      },
-    ]
+    const homeText: HomeText[] = Object.values(homeTextFixtures)
 
     return homeText ?? []
   }

@@ -1,4 +1,5 @@
 import { Language } from '@/types'
+import { CharacteristicType, SubscriptionLength, SubscriptionUsers } from './other'
 
 /**
  * Text record with multiple languages
@@ -42,7 +43,7 @@ export type Category = {
  */
 export type Product = {
   id: number
-  category_id: number
+  category: Category
   created_at: string
   image: string[]
   name: LanguageRecord
@@ -56,9 +57,9 @@ export type Product = {
   description_advantage: LanguageRecord
   description_security: LanguageRecord
 
-  characteristics_performance_ids: number[]
-  characteristics_scalability_ids: number[]
-  characteristics_level_ids: number[]
+  characteristics_performance: Characteristic[]
+  characteristics_scalability: Characteristic[]
+  characteristics_level: Characteristic[]
 }
 
 /**
@@ -67,7 +68,7 @@ export type Product = {
 export type Characteristic = {
   id: number
   name: LanguageRecord
-  type: 'performance' | 'scalability' | 'level'
+  type: CharacteristicType
 }
 
 export type User = {
@@ -77,6 +78,7 @@ export type User = {
   email: string
   phone: string
   prefix: string
+  is_admin: boolean
   token: string
 }
 
@@ -119,4 +121,62 @@ export type PaymentMethod = {
   name: string
   last4: string
   expiration: string
+}
+
+/**
+ * Subscription
+ */
+export type Subscription = {
+  id: number
+  renews_at: string
+  user: User
+  product: Product
+  address: Address
+  payment_method: PaymentMethod
+  length: SubscriptionLength
+  users: SubscriptionUsers
+  amount: number
+  price: number
+  active: boolean
+}
+
+export type SubscriptionStatus = 'active' | 'inactive' | 'renewed'
+
+/**
+ * Product order
+ */
+export type Order = {
+  id: number
+  created_at: string
+  user: User
+  address: Address
+  payment_method: PaymentMethod
+  price: number
+  subscriptions: {
+    subscription: Subscription
+    status: SubscriptionStatus
+  }[]
+}
+
+/**
+ * Chatbot message
+ */
+export type Message = {
+  id: number
+  created_at: string
+  sent_by: 'user' | 'chatbot'
+  message: LanguageRecord
+}
+
+/**
+ * Chatbot conversation
+ */
+export type Conversation = {
+  id: number
+  messages: Message[]
+}
+
+export type MessageChoice = {
+  key: string
+  text: LanguageRecord
 }

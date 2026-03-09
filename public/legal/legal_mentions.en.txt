@@ -1,0 +1,189 @@
+<h2>Definitions</h2>
+<p>
+  <b>Client:</b> any professional or natural person legally capable under Articles 1123 and following of the Civil Code, or a legal entity, who visits the Site subject to these terms and conditions.<br />
+  <b>Services:</b> <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> provides Clients with the following services:
+</p>
+
+<p>
+  <b>Content:</b> All elements constituting the information present on the Site, including texts, images, videos.
+</p>
+
+<p>
+  <b>Client Information:</b> Hereafter referred to as "Information(s)", meaning all personal data that <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> may hold for account management, customer relationship management, and analysis or statistical purposes.
+</p>
+
+<p><b>User:</b> Internet user connecting to or using the above-mentioned Site.</p>
+<p>
+  <b>Personal Information:</b> “Information which allows, in any form, directly or indirectly, the identification of natural persons to whom it relates” (Article 4 of Law No. 78-17 of January 6, 1978).
+</p>
+<p>
+  The terms “personal data”, “data subject”, “processor”, and “sensitive data” have the meaning defined by the General Data Protection Regulation (GDPR: No. 2016-679).
+</p>
+
+<h2>1. Website presentation</h2>
+<p>
+  Under Article 6 of Law No. 2004-575 of June 21, 2004, for confidence in the digital economy, users of the website <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> are informed of the identity of the various actors involved in its creation and maintenance:
+</p>
+<p>
+  <strong>Owner:</strong> SAS, joint-stock company CYNA-IT – 10 rue de Penthièvre 75008 Paris<br />
+
+  <strong>Publication manager:</strong> Cyna – contact@cyna-it.fr<br />
+  The publication manager may be a natural or legal person.<br />
+  <strong>Webmaster:</strong> Aldin Music – aldinmusik@gmail.com<br />
+  <strong>Host:</strong> Vercel Inc – https://vercel.com/ CA 91723 Covina +1 888 501 8555<br />
+  <strong>Data Protection Officer:</strong> Aldin Music – aldinmusik@gmail.com<br />
+</p>
+
+<div ng-bind-html="linkHTML">
+  <p>
+    The legal notices are based on the template provided by
+    <a href="https://fr.orson.io/1371/generateur-mentions-legales" title="RGPD legal notice generator by Orson.io">Orson.io’s GDPR legal notice generator</a>
+  </p>
+</div>
+
+<h2>2. General Terms of Use of the Site and Services</h2>
+<p>
+  The Site constitutes intellectual property protected by the provisions of the Intellectual Property Code and applicable international regulations. The Client may not in any way reuse, transfer, or exploit, for their own purposes, any part of the Site or its elements.
+</p>
+
+<p>
+  Using the website <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> implies full and unconditional acceptance of the general terms of use described below. These terms may be modified or supplemented at any time; users of the website <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> are therefore encouraged to consult them regularly.
+</p>
+
+<p>
+  This website is normally accessible to users at all times. However, interruptions for technical maintenance may be decided by <a href="https://cyna-it.fr/">https://cyna-it.fr/</a>, which will endeavor to inform users in advance of the dates and times of the intervention. The website <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> is regularly updated by its responsible party. Similarly, the legal notices may be updated at any time: they are binding on the user, who is invited to consult them frequently.
+</p>
+
+<h2>3. Description of services provided</h2>
+
+<p>
+  The website <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> aims to provide information concerning the company’s activities. <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> strives to provide accurate information on the Site. However, it cannot be held responsible for omissions, inaccuracies, or lack of updates, whether caused by itself or by third-party partners supplying information.
+</p>
+
+<p>
+  All information on <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> is provided for general guidance and may change. Additionally, the information is not exhaustive and is subject to modification after publication.
+</p>
+
+<h2>4. Technical data limitations</h2>
+
+<p>
+  The site uses JavaScript technology. The website cannot be held responsible for material damage related to its use. Users agree to access the site using up-to-date equipment, free from viruses, and with a modern browser. The site <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> is hosted by a provider within the European Union, in accordance with the GDPR (No. 2016-679).
+</p>
+
+<p>
+  The goal is to provide a service with the highest accessibility. The host ensures service continuity 24/7 but reserves the right to temporarily interrupt the hosting service for short durations for maintenance, infrastructure upgrades, failures, or abnormal traffic generated by the services.
+</p>
+
+<p>
+  <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> and its host cannot be held responsible for network, telephone, or computer failures preventing access to the server.
+</p>
+
+<h2>5. Intellectual property and counterfeiting</h2>
+
+<p>
+  <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> owns the intellectual property rights and usage rights for all elements accessible on the website, including texts, images, graphics, logos, videos, icons, and sounds. Any reproduction, representation, modification, publication, or adaptation of any element, in whole or in part, is prohibited without prior written authorization from <a href="https://cyna-it.fr/">https://cyna-it.fr/</a>.
+</p>
+
+<p>
+  Unauthorized use of the website or its elements will be considered counterfeiting and prosecuted under Articles L.335-2 and following of the Intellectual Property Code.
+</p>
+
+<h2>6. Limitation of liability</h2>
+
+<p>
+  <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> acts as the publisher of the Site and is responsible for the quality and accuracy of the Content it publishes.
+</p>
+
+<p>
+  <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> cannot be held liable for direct or indirect damage to user equipment resulting from access to the website, caused either by non-compliant hardware or by bugs/incompatibilities.
+</p>
+
+<p>
+  <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> cannot be held liable for indirect damages (e.g., lost business opportunities) resulting from use of the Site. Interactive spaces (e.g., contact forms) are available; <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> reserves the right to remove content violating laws and may hold users civilly or criminally liable for offensive, defamatory, racist, or pornographic messages.
+</p>
+
+<h2>7. Personal data management</h2>
+
+<p>
+  Clients are informed about regulations concerning marketing communication, the 2014 Digital Economy Confidence Act, the 2004 Data Protection Act, and the GDPR (No. 2016-679).
+</p>
+
+<h3>7.1 Personal data controllers</h3>
+
+<p>
+  For personal data collected during account creation or site usage, the data controller is CYNA-IT, represented by Nathan Bramli, its legal representative.
+</p>
+
+<p>
+  As the controller, <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> complies with all applicable legal provisions and ensures users are informed, data is accurate, and records are maintained.
+</p>
+
+<h3>7.2 Purpose of collected data</h3>
+
+<p><a href="https://cyna-it.fr/">https://cyna-it.fr/</a> may process some or all of the following data:</p>
+
+<ul>
+  <li>To allow navigation on the Site and manage services ordered: connection and usage data, billing, order history, etc.</li>
+  <li>To prevent and combat fraud: device information, IP address, password (hashed).</li>
+  <li>To improve site navigation: connection and usage data.</li>
+  <li>For optional satisfaction surveys: email address.</li>
+  <li>For communication campaigns (SMS, email): phone number, email address.</li>
+</ul>
+
+<p>
+  <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> does not sell personal data; it is used only as necessary or for statistics/analytics.
+</p>
+
+<h3>7.3 Rights of access, correction, and objection</h3>
+
+<p>
+  Under EU regulations, users have rights including: access, correction, erasure, restriction, objection, portability, and post-mortem instructions regarding their data.
+</p>
+
+<p>
+  Users may contact: CYNA-IT – DPO, Nathan Bramli <br /> 10 rue de Penthièvre 75008 Paris.
+</p>
+
+<p>
+  Requests must include identification and a copy of ID. Data deletion requests are subject to legal obligations. Users may also file complaints with CNIL (https://www.cnil.fr/fr/plaintes).
+</p>
+
+<h3>7.4 Non-disclosure of personal data</h3>
+
+<p>
+  <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> does not transfer, host, or disclose user information outside the EU or to non-compliant countries without informing clients. Data may only be processed by trusted service providers for the purposes described above.
+</p>
+
+<p>
+  Only relevant staff (e.g., customer service agents) have access to user data.
+</p>
+
+<h2>8. Incident notification</h2>
+<p>
+  No transmission method or electronic storage is completely secure. In case of a security breach, affected users will be notified and guided on protective measures. Legal obligations at national and EU levels are respected.
+</p>
+
+<h3>Security</h3>
+<p>
+  <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> uses standard protections like firewalls, pseudonymization, encryption, and passwords to secure personal data.
+</p>
+
+<h2>9. Hyperlinks, cookies, and Internet tags</h2>
+<p>
+  The site may contain links to external sites. <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> is not responsible for content on other sites. Cookies may be used unless disabled by the user.
+</p>
+
+<h3>9.1 Cookies</h3>
+<p>
+  Cookies are small files stored on the user’s device containing browsing information. They do not harm the device. Users may configure their browsers to accept or reject cookies. Functionality may be limited if cookies are refused.
+</p>
+
+<h3>9.2 Internet tags</h3>
+<p>
+  The site may use tags or web beacons to analyze user activity. External providers may collect data, including IP addresses, for analytics.
+</p>
+
+<h2>10. Applicable law and jurisdiction</h2>
+<p>
+  Any disputes related to the use of <a href="https://cyna-it.fr/">https://cyna-it.fr/</a> are subject to French law. Exclusive jurisdiction is granted to competent French courts unless otherwise required by law.
+</p>

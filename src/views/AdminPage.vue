@@ -1,13 +1,15 @@
 <template>
-  <DefaultContentLayout>
+  <DefaultContentLayout v-if="userStore.user?.is_admin" :on-refresh="pagesAdminTab?.onRefresh">
     <!-- Hero Page Grid -->
     <HeroComponent>
       <AdminPageGrid :selected-page @update:selected-page="selectedPage = $event" />
     </HeroComponent>
 
     <!-- Pages Tab -->
-    <PagesAdminTab v-if="selectedPage === 'pages'" />
+    <PagesAdminTab v-if="selectedPage === 'pages'" ref="pagesAdminTab" />
   </DefaultContentLayout>
+
+  <NotFoundPage v-else />
 </template>
 
 <script setup lang="ts">
@@ -17,8 +19,14 @@ import AdminPageGrid from '@/components/grids/AdminPageGrid.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
 import { AdminPageKey } from '@/constants/adminPages'
-import { ref } from 'vue'
+import { useUserStore } from '@/stores/user'
+import NotFoundPage from '@/views/404Page.vue'
+import { ref, useTemplateRef } from 'vue'
+
+/* Constants */
+const userStore = useUserStore()
 
 /* Refs */
 const selectedPage = ref<AdminPageKey>('pages')
+const pagesAdminTab = useTemplateRef('pagesAdminTab')
 </script>

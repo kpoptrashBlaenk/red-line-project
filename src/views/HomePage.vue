@@ -1,5 +1,5 @@
 <template>
-  <DefaultContentLayout>
+  <DefaultContentLayout :on-refresh>
     <HeroComponent :title="translation('home_carousel_title')">
       <HomeSwiper :promotions />
     </HeroComponent>
@@ -40,6 +40,7 @@ import { useHomeText } from '@/composables/homeText'
 import { useProduct } from '@/composables/product'
 import { usePromotion } from '@/composables/promotion'
 import translation from '@/utils/translation'
+import { RefresherCustomEvent } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -68,9 +69,18 @@ onMounted(async () => {
     await router.push(redirect)
   }
 
-  promotions.value = await promotionComposable.get()
-  homeText.value = await homeTextComposable.get()
-  categories.value = await categoryComposable.get()
-  products.value = await productComposable.top()
+  onRefresh()
 })
+
+/* Functions */
+async function onRefresh(event?: RefresherCustomEvent) {
+  await Promise.all([
+    promotionComposable.get().then((data) => (promotions.value = data)),
+    homeTextComposable.get().then((data) => (homeText.value = data)),
+    categoryComposable.get().then((data) => (categories.value = data)),
+    productComposable.top().then((data) => (products.value = data)),
+  ])
+
+  event?.target.complete()
+}
 </script>

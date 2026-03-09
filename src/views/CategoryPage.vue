@@ -1,5 +1,5 @@
 <template>
-  <DefaultContentLayout>
+  <DefaultContentLayout :on-refresh>
     <HeroComponent>
       <CategoryHero v-if="category" :category />
     </HeroComponent>
@@ -47,6 +47,7 @@ import { useCategory } from '@/composables/category'
 import { useProduct } from '@/composables/product'
 import isLengthZero from '@/utils/isLengthZero'
 import translation from '@/utils/translation'
+import { RefresherCustomEvent } from '@ionic/vue'
 import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -85,10 +86,17 @@ const separatedProducts = computed(() => {
 })
 
 /* Lifecycle Hooks */
-onMounted(async () => {
+onMounted(onRefresh)
+
+/* Functions */
+async function onRefresh(event?: RefresherCustomEvent) {
   const id = Number(route.params.id)
 
-  category.value = await categoryComposable.find(id)
-  products.value = await productComposable.getByCategory(id)
-})
+  await Promise.all([
+    categoryComposable.find(id).then((data) => (category.value = data)),
+    productComposable.getByCategory(id).then((data) => (products.value = data)),
+  ])
+
+  event?.target.complete()
+}
 </script>

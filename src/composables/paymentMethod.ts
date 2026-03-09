@@ -1,4 +1,5 @@
 import { PaymentMethod } from '$/types'
+import { paymentMethodFixtures } from '@/constants/fixtures'
 import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
 import { PaymentMethodSchema } from '@/utils/schemas'
@@ -43,22 +44,7 @@ export function usePaymentMethod() {
    * Get all payment methods
    */
   async function get() {
-    const hidden = '**** **** ****'
-
-    const paymentMethods: PaymentMethod[] = [
-      {
-        id: 1,
-        name: 'John Doe',
-        last4: `${hidden} ${'4242'}`,
-        expiration: '12/28',
-      },
-      {
-        id: 2,
-        name: 'Marie Curie',
-        last4: `${hidden} ${'4444'}`,
-        expiration: '07/27',
-      },
-    ]
+    const paymentMethods: PaymentMethod[] = Object.values(paymentMethodFixtures)
 
     return paymentMethods ?? []
   }
