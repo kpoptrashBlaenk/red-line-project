@@ -2,10 +2,8 @@ import pool from '../database/database';
 import { Promotion } from '$/types';
 
 export class PromotionService {
-  async getAllPromotions(showAll: boolean): Promise<Promotion[]> {
-    const query = showAll
-      ? 'SELECT * FROM promotional'
-      : 'SELECT * FROM promotional WHERE isactivate = true ORDER BY datecreate DESC';
+  async getAllPromotions(): Promise<Promotion[]> {
+    const query = 'SELECT * FROM promotional';
     const result = await pool.query(query);
     return result.rows.map((row) => this.formatPromotion(row));
   }

@@ -12,8 +12,7 @@ export default class PromotionController {
   // Méthode pour récupérer toutes les promotions
   async getAll(req: Request, res: Response) {
     try {
-      const showAll = req.query.all === 'true';
-      const promotions = await this.promotionService.getAllPromotions(showAll);
+      const promotions = await this.promotionService.getAllPromotions();
       res.status(200).json(promotions);
     } catch (error) {
       console.error('Error fetching promotionals:', error);
