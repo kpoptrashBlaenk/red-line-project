@@ -5,7 +5,9 @@
       <div class="col-span-1">{{ order.amount }}x</div>
       <div class="col-span-4 text-end">{{ translation(order.users) }}</div>
       <div class="col-span-4 text-end">{{ translation(order.length) }}</div>
-      <div class="font-bold col-span-3 text-end">{{ calculatePrice(order.product.price, order.length, order.users, order.amount) }}€</div>
+      <div class="font-bold col-span-3 text-end">
+        {{ calculatePrice(order.product.price, order.length, order.users, order.amount) }}€
+      </div>
     </div>
   </div>
 

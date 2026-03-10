@@ -3,7 +3,7 @@
     <HeroComponent :title="translation('products')"> </HeroComponent>
 
     <div class="wrap px-0! xl:px-0">
-      <DefaultSearchContent ref="defaultSearchContent" />
+      <DefaultSearchContent ref="defaultSearchContent" page />
     </div>
   </DefaultContentLayout>
 </template>

@@ -6,7 +6,7 @@
     <!-- Filters -->
     <div class="px-2 flex md:grid md:grid-cols-5 overflow-x-auto gap-2 scrollbar-none" :class="{ 'flex-wrap': isDesktop() }">
       <DefaultSearchFilter
-        context="category"
+        :context="page ? 'page-category' : 'modal-category'"
         color="primary"
         :label="translation('categories')"
         chip-key="name"
@@ -16,7 +16,7 @@
       />
 
       <DefaultSearchFilter
-        context="characteristic"
+        :context="page ? 'page-characteristic' : 'modal-characteristic'"
         color="secondary"
         :label="translation('characteristics')"
         chip-key="name"
@@ -26,7 +26,7 @@
       />
 
       <DefaultRangeFilter
-        context="price"
+        :context="page ? 'page-price' : 'modal-price'"
         color="tertiary"
         :label="translation('price')"
         :min="[...products].sort((a, b) => a.price - b.price)[0].price"
@@ -45,7 +45,7 @@
       />
 
       <DefaultSortByFilter
-        context="sort"
+        :context="page ? 'page-sort' : 'modal-sort'"
         color="secondary"
         :label="translation('sort')"
         :items="[
@@ -93,6 +93,11 @@ import { onMounted, ref } from 'vue'
 import DefaultRangeFilter from './DefaultRangeFilter.vue'
 import DefaultSearchFilter from './DefaultSearchFilter.vue'
 import DefaultSortByFilter from './DefaultSortByFilter.vue'
+
+/* Props */
+defineProps<{
+  page?: boolean
+}>()
 
 /* Constants */
 const productComposable = useProduct()
