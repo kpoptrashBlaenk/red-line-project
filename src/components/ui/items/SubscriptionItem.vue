@@ -1,20 +1,23 @@
 <template>
   <IonItem lines="none" color="tertiary" class="mb-4 rounded-2xl">
-    <div class="p-4 w-full">
+    <div class="py-3 px-0 w-full">
       <!-- Image & Name -->
-      <div class="grid grid-cols-[100px_1fr_48px] gap-5 items-center border-b-2 border-white pb-4">
+      <div class="grid grid-cols-[100px_1fr] gap-5 items-center border-b-2 border-white pb-4">
         <IonImg :src="subscription.product.image[0]" class="object-contain" />
-        <TitleComponent :text="translation(subscription.product.name)" class="text-2xl! text-left" />
-        <OutlineButton :icon="pencilOutline" color="light" class="h-12" @click="$emit('open:modal')" />
+        <TitleComponent :text="translation(subscription.product.name)" class="text-xl! text-left" />
       </div>
 
       <!-- Price & Length & Date -->
-      <div class="border-b-2 border-white pb-4 pt-2">
-        <div class="flex gap-2 items-baseline">
-          <div class="text-lg font-extrabold">{{ subscription.price }}€</div>
-          <div class="text-sm text-gray-300">/{{ translation(subscription.length) }}</div>
+      <div class="border-b-2 border-white py-2 flex justify-between items-center">
+        <div>
+          <div class="flex gap-2 items-baseline">
+            <div class="text-lg font-extrabold">{{ subscription.price }}€</div>
+            <div class="text-sm text-gray-300">/{{ translation(subscription.length) }}</div>
+          </div>
+          <div class="text-sm text-gray-300">{{ translation('renews_on') }} {{ formatDate(subscription.renews_at) }}</div>
         </div>
-        <div class="text-sm text-gray-300">{{ translation('renews_on') }} {{ formatDate(subscription.renews_at) }}</div>
+
+        <OutlineButton :icon="pencilOutline" color="light" class="h-10" @click="$emit('open:modal')" />
       </div>
 
       <!-- Payment Method -->
@@ -29,12 +32,12 @@
 <script setup lang="ts">
 /* Imports */
 import { Subscription } from '$/types'
+import formatDate from '@/utils/formatDate'
 import translation from '@/utils/translation'
 import { IonImg, IonItem } from '@ionic/vue'
 import { pencilOutline } from 'ionicons/icons'
 import OutlineButton from '../buttons/OutlineButton.vue'
 import TitleComponent from '../text/TitleComponent.vue'
-import formatDate from '@/utils/formatDate'
 
 /* Props */
 defineProps<{
