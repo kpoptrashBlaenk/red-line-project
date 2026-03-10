@@ -62,10 +62,14 @@
     </div>
 
     <!-- Filter Chips -->
-    <div id="chips-row" class="flex gap-1 px-2 mt-2 overflow-x-auto scrollbar-none" :class="{ 'flex-wrap': isDesktop() }"></div>
+    <div
+      id="chips-row"
+      class="flex gap-1 px-2 mt-2 overflow-x-auto scrollbar-none pb-2"
+      :class="{ 'flex-wrap': isDesktop() }"
+    ></div>
 
     <!-- List -->
-    <IonList class="bg-light">
+    <IonList class="bg-light pt-0!">
       <!-- Item -->
       <SearchProductItem :products :categories :characteristics @close:search-modal="$emit('close:search-modal')" />
     </IonList>

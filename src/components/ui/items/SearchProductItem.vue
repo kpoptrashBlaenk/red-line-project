@@ -15,25 +15,25 @@
       }
     "
   >
-    <div class="grid grid-cols-[80px_1fr_auto] py-3 gap-4 items-start w-full">
+    <div class="grid grid-cols-[80px_1fr_50px] py-3 gap-2 items-start w-full">
       <!-- Image -->
       <IonImg :src="product.image[0]" class="my-auto" />
 
-      <!-- Name & Description -->
+      <!-- Name & Category & Description -->
       <div>
-        <IonLabel class="font-bold mb-1 text-xl!" color="primary">{{ translation(product.name) }}</IonLabel>
+        <IonLabel class="font-bold text-xl!" color="primary">{{ translation(product.name) }}</IonLabel>
+        <IonLabel color="secondary" class="font-bold mb-1">{{ translation(product.category?.name) }}</IonLabel>
         <div class="text-gray-500 text-sm leading-4">{{ translation(product.description_functionality) }}</div>
       </div>
 
-      <!-- Category & Price -->
+      <!-- Price -->
       <div class="font-semibold text-lg text-end">
-        <IonLabel color="primary">{{ translation(product.category?.name) }}</IonLabel>
         <IonLabel color="secondary" :class="{ 'line-through': !product.disponible }">{{ product.price }}€</IonLabel>
         <IonLabel v-if="!product.disponible" color="tertiary">{{ translation('not_disponible') }}</IonLabel>
       </div>
 
       <!-- Characteristics -->
-      <div class="col-span-3 flex flex-wrap gap-1 mt-2">
+      <div class="col-span-3 flex flex-wrap gap-1">
         <ChipComponent
           v-for="(characteristic, key) in product.characteristics"
           :key="key"
