@@ -4,7 +4,7 @@
       <div class="wrap">
         <ProductSwiper v-if="product" :product />
 
-        <div class="text-7xl sm:text-8xl font-extrabold text-center text-white my-10">{{ translation(product?.name) }}</div>
+        <div class="text-6xl font-extrabold text-center text-white my-10">{{ translation(product?.name) }}</div>
       </div>
     </HeroComponent>
 
@@ -18,7 +18,7 @@
       <!-- Characteristics -->
       <TitleComponent :text="translation('product_characteristics_title')" color="secondary" />
       <SeparatorComponent size="2xs" />
-      <div class="w-fit mx-auto">
+      <div class="w-fit">
         <ProductCharacteristicGrid :characteristics />
       </div>
 

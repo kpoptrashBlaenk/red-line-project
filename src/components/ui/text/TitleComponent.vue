@@ -1,5 +1,5 @@
 <template>
-  <div v-html="title" class="text-5xl font-bold text-center"></div>
+  <div v-html="title" class="text-4xl font-bold text-center"></div>
 </template>
 
 <script setup lang="ts">
