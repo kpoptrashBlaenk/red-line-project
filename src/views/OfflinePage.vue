@@ -1,14 +1,14 @@
 <template>
   <div class="flex flex-col items-center">
-    <SeparatorComponent size="sm" />
+    <SeparatorComponent size="xs" />
 
     <LogoComponent :light="false" />
 
-    <SeparatorComponent size="sm" />
+    <SeparatorComponent size="xs" />
 
     <TitleComponent :text="`<title>${translation('offline')}</title>`" color="primary" />
 
-    <SeparatorComponent size="sm" />
+    <SeparatorComponent size="xs" />
 
     <SolidButton :label="translation('try_again')" color="secondary" link="/home" size="large" />
   </div>

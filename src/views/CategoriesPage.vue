@@ -2,7 +2,7 @@
   <DefaultContentLayout :on-refresh>
     <HeroComponent :title="translation('categories')" />
 
-    <SeparatorComponent size="sm" />
+    <SeparatorComponent size="xs" />
 
     <div class="wrap">
       <!-- Skeleton -->
@@ -12,7 +12,7 @@
       <HomeCategoryGrid v-else :categories color="primary" />
     </div>
 
-    <SeparatorComponent size="sm" />
+    <SeparatorComponent size="xs" />
   </DefaultContentLayout>
 </template>
 

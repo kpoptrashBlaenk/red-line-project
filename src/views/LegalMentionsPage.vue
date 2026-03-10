@@ -5,7 +5,7 @@
     <div class="wrap">
       <div v-html="legalMentions"></div>
 
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
     </div>
   </DefaultContentLayout>
 </template>

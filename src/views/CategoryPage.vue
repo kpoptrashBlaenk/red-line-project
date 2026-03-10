@@ -5,7 +5,7 @@
     </HeroComponent>
 
     <div class="wrap">
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <!-- Product List -->
       <TitleComponent color="secondary" :text="translation('category_products_title')" />
@@ -29,7 +29,7 @@
         <HomeProductGrid :products="separatedProducts.notDisponible" color="secondary" context="category" />
       </div>
 
-      <SeparatorComponent size="md" />
+      <SeparatorComponent size="sm" />
     </div>
   </DefaultContentLayout>
 </template>

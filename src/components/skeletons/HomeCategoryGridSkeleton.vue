@@ -3,7 +3,7 @@
     <IonCard v-for="(i, key) in [0, 1, 2]" :key class="active:scale-105 hover:scale-105 transition-all cursor-pointer h-min">
       <SkeletonImage class="h-32 w-full" />
       <IonCardHeader :color="color" class="p-1">
-        <SkeletonLine :width="48" size="xl" class="mx-auto my-1" />
+        <SkeletonLine :width="48" size="lg" class="mx-auto my-1" />
       </IonCardHeader>
     </IonCard>
   </div>

@@ -10,23 +10,23 @@
 
     <div class="wrap">
       <!-- Description -->
-      <SeparatorComponent size="xs" />
+      <SeparatorComponent size="2xs" />
       <ProductDescriptionGrid v-if="product" :product />
 
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <!-- Characteristics -->
       <TitleComponent :text="translation('product_characteristics_title')" color="secondary" />
-      <SeparatorComponent size="xs" />
+      <SeparatorComponent size="2xs" />
       <div class="w-fit mx-auto">
         <ProductCharacteristicGrid :characteristics />
       </div>
 
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <!-- Price -->
       <TitleComponent :text="translation('product_price_title')" color="primary" />
-      <SeparatorComponent size="xs" />
+      <SeparatorComponent size="2xs" />
       <IonCard color="light" class="py-5 lg:py-10">
         <IonCardContent>
           <ProductPriceGrid v-if="product" v-model="draftOrder" :product />
@@ -43,13 +43,13 @@
         @click="addToCheckout"
       />
 
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <!-- Similar Products -->
       <TitleComponent :text="'<title>Similar</title> Products'" color="secondary" />
       <ProductGrid :products="similarProducts" color="secondary" context="category" class="mt-5" />
 
-      <SeparatorComponent size="md" />
+      <SeparatorComponent size="sm" />
     </div>
   </DefaultContentLayout>
 </template>

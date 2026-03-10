@@ -13,7 +13,7 @@
 
     <!-- Order with Products -->
     <div v-else class="wrap">
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <!-- Products Accordion -->
       <ListGroupTitle :title="translation('products')" />
@@ -61,7 +61,7 @@
         <TitleComponent :text="`<title>${checkoutStore.totalPrice}€</title>`" color="primary" />
       </div>
 
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
     </div>
   </DefaultContentLayout>
 </template>

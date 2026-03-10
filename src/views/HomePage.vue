@@ -5,21 +5,21 @@
     </HeroComponent>
 
     <div class="wrap">
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <TextBox :home-text />
 
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <TitleComponent :text="translation('home_category_title')" color="secondary" />
       <HomeCategoryGrid :categories color="secondary" class="pt-5" />
 
-      <SeparatorComponent size="md" />
+      <SeparatorComponent size="sm" />
 
       <TitleComponent :text="translation('home_product_title')" color="primary" />
       <HomeProductGrid :products color="primary" context="home" class="pt-5" />
 
-      <SeparatorComponent size="md" />
+      <SeparatorComponent size="sm" />
     </div>
   </DefaultContentLayout>
 </template>

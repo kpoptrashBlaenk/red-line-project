@@ -6,7 +6,7 @@
     <!-- Admin Form Alert -->
     <FormAlert ref="alert" :is-open="alertOpen" @submit="onSubmit" />
 
-    <SeparatorComponent size="xs" />
+    <SeparatorComponent size="2xs" />
 
     <!-- Content Accordions -->
     <IonAccordionGroup expand="inset">
@@ -28,7 +28,7 @@
       />
     </IonAccordionGroup>
 
-    <SeparatorComponent size="md" />
+    <SeparatorComponent size="sm" />
   </div>
 </template>
 
