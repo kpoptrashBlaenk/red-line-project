@@ -1,6 +1,6 @@
 export interface Dictionary {
-    id: number
-    key: string
-    lang: string
-    translation: string
+  id: number
+  key: string
+  lang: string
+  translation: string
 }
