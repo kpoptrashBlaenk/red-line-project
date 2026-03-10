@@ -9,7 +9,7 @@ import '@ionic/vue/css/normalize.css'
 import '@ionic/vue/css/structure.css'
 import '@ionic/vue/css/typography.css'
 
-import '@ionic/vue/css/palettes/dark.system.css'
+import '@ionic/vue/css/palettes/dark.class.css'
 
 import '@ionic/vue/css/ionic-swiper.css'
 import 'swiper/css'
