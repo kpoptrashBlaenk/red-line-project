@@ -28,6 +28,7 @@
       :icon="cloudUploadOutline"
       expand="block"
       class="mt-4"
+      type="button"
       @click="openGallery"
     />
 
@@ -47,6 +48,7 @@ import { closeCircleOutline, cloudUploadOutline } from 'ionicons/icons'
 import { nextTick, ref, toRef, watch } from 'vue'
 import { ZodType } from 'zod'
 import SolidButton from '../ui/buttons/SolidButton.vue'
+import { Filesystem } from '@capacitor/filesystem'
 
 /* Props */
 const props = defineProps<{
@@ -85,9 +87,11 @@ async function openGallery() {
 
     // not an image
     for (const file of files) {
-      if ((!file.mimeType.startsWith('data:image') && !file.mimeType.startsWith('image')) || !file.blob) {
+      if (!file.mimeType.startsWith('data:image') && !file.mimeType.startsWith('image')) {
         throw new Error(translation('not_an_image'))
       }
+
+      const blob = file.blob ?? (await uriToBlob(file.path!, file.mimeType))
 
       // image too big
       if (file.size > maxFileSize) {
@@ -97,14 +101,14 @@ async function openGallery() {
       // push/replace
       if (field.value.multiple) {
         images.value.push({
-          file: new File([file.blob], file.name, { type: file.blob.type }),
-          preview: URL.createObjectURL(file.blob),
+          file: new File([blob], file.name, { type: blob.type }),
+          preview: URL.createObjectURL(blob),
         })
       } else {
         images.value = [
           {
-            file: new File([file.blob], file.name, { type: file.blob.type }),
-            preview: URL.createObjectURL(file.blob),
+            file: new File([blob], file.name, { type: blob.type }),
+            preview: URL.createObjectURL(blob),
           },
         ]
       }
@@ -113,10 +117,28 @@ async function openGallery() {
 
     // error (selection cancel too)
   } catch (error: any) {
+    console.error(error)
     field.value.error = error
   }
 
   markTouched()
+}
+
+async function uriToBlob(uri: string, mimeType: string) {
+  const result = await Filesystem.readFile({
+    path: uri,
+  })
+
+  const byteCharacters = atob(result.data as string)
+  const byteNumbers = new Array(byteCharacters.length)
+
+  for (let i = 0; i < byteCharacters.length; i++) {
+    byteNumbers[i] = byteCharacters.charCodeAt(i)
+  }
+
+  const byteArray = new Uint8Array(byteNumbers)
+
+  return new Blob([byteArray], { type: mimeType })
 }
 
 async function validate() {

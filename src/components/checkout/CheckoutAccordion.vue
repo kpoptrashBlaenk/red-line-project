@@ -2,7 +2,11 @@
   <IonAccordionGroup expand="inset">
     <IonAccordion v-for="(order, key) in checkoutStore.orders" :key :value="order.product.id.toString()" class="mt-2">
       <IonItem slot="header" color="light">
-        <TitleComponent :text="`<title>${translation(order.product.name)}</title>`" color="primary" class="text-3xl! py-5" />
+        <TitleComponent
+          :text="`<title>${translation(order.product.name)}</title>`"
+          color="primary"
+          class="text-2xl! text-nowrap py-5"
+        />
       </IonItem>
 
       <IonCard color="light" class="pb-5 lg:pb-0" slot="content">

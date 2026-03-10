@@ -139,6 +139,19 @@ a:hover {
   box-sizing: border-box;
 }
 
+/* ---------- MODALS ---------- */
+/* ---------------------------- */
+ion-modal {
+  --ion-safe-area-top: 0;
+  --ion-safe-area-bottom: 0;
+}
+
+/* ---------- FAB ---------- */
+/* ------------------------- */
+ion-fab {
+  margin-bottom: var(--ion-safe-area-bottom, 0);
+}
+
 /* ---------- TOASTS ---------- */
 /* ---------------------------- */
 ion-toast {

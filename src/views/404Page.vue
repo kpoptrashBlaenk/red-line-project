@@ -3,7 +3,7 @@
     <HeroComponent :title="translation('404')" />
 
     <div class="wrap">
-      <SeparatorComponent size="md" />
+      <SeparatorComponent size="sm" />
 
       <div class="flex justify-center">
         <SolidButton :label="translation('home')" color="primary" :link="'/home'" size="large" class="w-48!" />

@@ -2,7 +2,7 @@
   <IonModal ref="modal" :is-open>
     <!-- Header -->
     <IonHeader>
-      <IonToolbar color="tertiary" class="px-5">
+      <IonToolbar color="primary" class="px-5">
         <IonTitle> {{ translation('details') }} </IonTitle>
       </IonToolbar>
     </IonHeader>

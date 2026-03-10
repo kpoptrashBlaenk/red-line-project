@@ -3,7 +3,7 @@
     <HeroComponent :title="translation('login')" />
 
     <div class="wrap">
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <AuthCard context="login" :label="translation('login_info')" :fields :state :schema :on-submit="onSubmit">
         <div class="text-center mt-5">
@@ -20,7 +20,7 @@
         </div>
       </AuthCard>
 
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
     </div>
   </DefaultContentLayout>
 </template>

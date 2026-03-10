@@ -3,7 +3,7 @@
     <HeroComponent :title="translation('contact')" />
 
     <div class="wrap">
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <FormComponent id="contact-form" :fields :state="contactState" :schema="contactSchema()" :on-submit />
 
@@ -11,7 +11,7 @@
         <SolidButton form="contact-form" :label="translation('submit')" color="primary" />
       </div>
 
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
     </div>
   </DefaultContentLayout>
 </template>

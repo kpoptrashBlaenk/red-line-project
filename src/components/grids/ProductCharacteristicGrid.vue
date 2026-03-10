@@ -5,14 +5,14 @@
     class="flex"
     :class="{ hidden: isLengthZero(characteristic.characteristics) }"
   >
-    <div class="w-32 me-5 font-bold text-xl">{{ characteristic.title }}</div>
-    <div class="flex flex-wrap gap-1 items-center mb-3">
+    <div class="w-32 me-1 font-bold text-lg">{{ characteristic.title }}</div>
+    <div class="flex flex-wrap gap-1 items-center mb-3 flex-1">
       <ChipComponent
         v-for="(char, key) in characteristic.characteristics"
         :key="key"
         :label="translation(char?.name)"
         :color="characteristic.color"
-        class="text-sm! sm:text-lg!"
+        class="text-xs! sm:text-sm!"
       />
     </div>
   </div>

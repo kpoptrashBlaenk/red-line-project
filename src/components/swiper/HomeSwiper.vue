@@ -15,7 +15,7 @@
       slideShadows: true,
     }"
   >
-    <SwiperSlide v-for="(promotion, key) in promotions" :key="key" class="bg-primary max-w-80">
+    <SwiperSlide v-for="(promotion, key) in promotions" :key="key" class="bg-primary max-w-75">
       <HomeSwiperCard :promotion="promotion" />
     </SwiperSlide>
   </Swiper>

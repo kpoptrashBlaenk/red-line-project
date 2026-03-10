@@ -1,27 +1,25 @@
 <template>
-  <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 items-center">
-    <IonList class="bg-light">
+  <div class="grid grid-cols-2 lg:grid-cols-4 items-center">
+    <IonList class="bg-light py-0!">
       <IonRadioGroup :value="selectedLength" @ion-change="selectedLength = $event.detail.value">
-        <IonItem v-for="(length, key) in lengthRadio" :key lines="none" color="light" class="text-lg lg:text-xl">
+        <IonItem v-for="(length, key) in lengthRadio" :key lines="none" color="light" class="text-base lg:text-xl">
           <IonRadio :value="length.value">{{ length.label }}</IonRadio>
         </IonItem>
       </IonRadioGroup>
     </IonList>
 
-    <IonList class="bg-light">
+    <IonList class="bg-light py-0!">
       <IonRadioGroup :value="selectedUser" @ion-change="selectedUser = $event.detail.value">
-        <IonItem v-for="(user, key) in usersRadio" :key lines="none" color="light" class="text-lg lg:text-xl">
+        <IonItem v-for="(user, key) in usersRadio" :key lines="none" color="light" class="text-base lg:text-xl">
           <IonRadio :value="user.value">{{ user.label }}</IonRadio>
         </IonItem>
       </IonRadioGroup>
     </IonList>
 
-    <div class="col-span-2 border border-gray-200 -mt-5 lg:hidden"></div>
-
     <TitleComponent
       :text="`<title>${calculatedPrice}€</title>`"
       color="primary"
-      class="text-5xl sm:text-6xl xl:text-7xl lg:order-first"
+      class="text-4xl sm:text-6xl xl:text-7xl lg:order-first mt-2"
     />
 
     <NumberStepper v-model:amount="selectedAmount" :default="selectedAmount" :min="canZero ? 0 : 1" class="mx-auto" />
