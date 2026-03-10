@@ -31,7 +31,12 @@ export default function <T extends Record<string, any>>(items: T[], text: string
       .filter(
         (item) =>
           !results.find((result) => result.id === item.id) &&
-          keys.some((key) => charDifference(translation(item[key] as LanguageRecord).toLowerCase(), search) === 1),
+          keys.some((key) =>
+            translation(item[key] as LanguageRecord)
+              .toLowerCase()
+              .split(' ')
+              .some((word) => charDifference(word, search) === 1 || charDifference(word, search) === 0),
+          ),
       )
       // attribute score
       .map((item) => ({ ...item, score: 3 })),

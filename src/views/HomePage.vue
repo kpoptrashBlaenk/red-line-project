@@ -40,7 +40,7 @@ import { useHomeText } from '@/composables/homeText'
 import { useProduct } from '@/composables/product'
 import { usePromotion } from '@/composables/promotion'
 import translation from '@/utils/translation'
-import { App } from '@capacitor/app';
+import { App } from '@capacitor/app'
 import { RefresherCustomEvent, useBackButton } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
