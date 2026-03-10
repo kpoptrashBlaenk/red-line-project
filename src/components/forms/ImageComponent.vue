@@ -28,6 +28,7 @@
       :icon="cloudUploadOutline"
       expand="block"
       class="mt-4"
+      type="button"
       @click="openGallery"
     />
 
