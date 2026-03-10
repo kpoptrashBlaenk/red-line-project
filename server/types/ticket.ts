@@ -1,6 +1,6 @@
 export interface Ticket {
-    id: number
-    user_id: number
-    subject: string
-    text: string
+  id: number
+  user_id: number
+  subject: string
+  text: string
 }

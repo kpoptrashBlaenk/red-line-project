@@ -11,4 +11,3 @@ router.put('/promotionals/:id', controller.update)
 router.delete('/promotionals/:id', controller.delete)
 
 export default router
-
