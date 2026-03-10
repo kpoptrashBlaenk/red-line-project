@@ -1,7 +1,7 @@
 <template>
   <div v-for="(order, key) in checkoutStore.orders" :key class="text-lg mb-2">
     <div class="font-bold col-span-3">{{ translation(order.product.name) }}</div>
-    <div class="grid grid-cols-12 gap-2 justify-between items-center">
+    <div class="grid grid-cols-12 items-center">
       <div class="col-span-1">{{ order.amount }}x</div>
       <div class="col-span-4 text-end">{{ translation(order.users) }}</div>
       <div class="col-span-4 text-end">{{ translation(order.length) }}</div>
