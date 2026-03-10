@@ -6,7 +6,6 @@
     :state
     :schema
     class="col-span-4"
-    :class="{ 'ps-5!': !field.no_padding }"
   />
   <InputComponent
     v-else-if="field.element === 'input'"
@@ -14,7 +13,6 @@
     :state
     :schema
     class="col-span-4"
-    :class="{ 'ps-5!': !field.no_padding }"
   />
   <PhoneComponent
     v-else-if="field.element === 'phone'"
@@ -22,7 +20,6 @@
     :state
     :schema
     class="col-span-4"
-    :class="{ 'ps-5!': !field.no_padding }"
   />
   <TextAreaComponent
     v-else-if="field.element === 'textarea'"
@@ -30,7 +27,6 @@
     :state
     :schema
     class="col-span-4"
-    :class="{ 'ps-5!': !field.no_padding }"
   />
   <ToggleComponent
     v-else-if="field.element === 'toggle'"
@@ -38,7 +34,6 @@
     :state
     :schema
     class="col-span-4"
-    :class="{ 'ps-5!': !field.no_padding }"
   />
   <SelectComponent
     v-else-if="field.element === 'select'"
@@ -46,7 +41,6 @@
     :state
     :schema
     class="col-span-4"
-    :class="{ 'ps-5!': !field.no_padding }"
   />
 </template>
 
