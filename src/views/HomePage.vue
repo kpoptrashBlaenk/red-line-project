@@ -27,7 +27,6 @@
 <script setup lang="ts">
 /* Imports */
 import { Category, HomeText, Product, Promotion } from '$/types'
-import App from '@/App.vue'
 import HomeCategoryGrid from '@/components/grids/HomeCategoryGrid.vue'
 import HomeProductGrid from '@/components/grids/ProductGrid.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
@@ -41,6 +40,7 @@ import { useHomeText } from '@/composables/homeText'
 import { useProduct } from '@/composables/product'
 import { usePromotion } from '@/composables/promotion'
 import translation from '@/utils/translation'
+import { App } from '@capacitor/app';
 import { RefresherCustomEvent, useBackButton } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
