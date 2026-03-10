@@ -63,11 +63,14 @@ const products = ref<Product[]>([])
 onMounted(async () => {
   // if first route is not home, go home then redirect to where needed
   const redirect = route.query.redirect as string | undefined
+
   if (redirect) {
     // remove redirect query
     await router.replace({ path: '/home', query: {} })
 
     await router.push(redirect)
+
+    return
   }
 
   onRefresh()

@@ -4,7 +4,10 @@
     <IonSearchbar v-model="searchFilterStore.searchText" :placeholder="translation('search_product')" data-cy="searchbar" />
 
     <!-- Filters -->
-    <div class="px-2 flex md:grid md:grid-cols-5 overflow-x-auto gap-2 scrollbar-none" :class="{ 'flex-wrap': isDesktop() }">
+    <div
+      class="px-2 flex md:grid md:grid-cols-5 overflow-x-auto gap-2 scrollbar-none pb-1 bg-light"
+      :class="{ 'flex-wrap': isDesktop() }"
+    >
       <DefaultSearchFilter
         :context="page ? 'page-category' : 'modal-category'"
         color="primary"
@@ -64,7 +67,7 @@
     <!-- Filter Chips -->
     <div
       id="chips-row"
-      class="flex gap-1 px-2 mt-2 overflow-x-auto scrollbar-none pb-2"
+      class="flex gap-1 px-2 mt-1 overflow-x-auto scrollbar-none pb-2"
       :class="{ 'flex-wrap': isDesktop() }"
     ></div>
 

@@ -134,7 +134,7 @@ router.beforeEach((to, from, next) => {
     return
   }
 
-  if (!basePosition) {
+  if (basePosition === null) {
     basePosition = router.options.history.state.position as number
 
     if (to.fullPath !== '/home' && to.fullPath !== '/offline' && from.path !== '/home') {
