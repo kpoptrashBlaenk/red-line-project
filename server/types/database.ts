@@ -7,3 +7,8 @@ export type PromotionRaw = {
   image: string
   index: number
 }
+
+export type HomeTextRaw = {
+  id: number
+  text_key: string
+}

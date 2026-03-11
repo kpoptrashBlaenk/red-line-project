@@ -5,6 +5,10 @@ export const urls = {
   promotion_update: '/promotion/:id',
   promotion_delete: '/promotion/:id',
   promotion_reorder: '/promotion/reorder',
+
+  // home text
+  home_text_get_all: '/home-text',
+  home_text_update: '/home-text/:id',
 }
 
 /**

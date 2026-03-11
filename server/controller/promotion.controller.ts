@@ -9,20 +9,19 @@ export default class PromotionController {
     this.promotionService = new PromotionService()
   }
 
-  // get all promotions
   getAll = async (req: Request, res: Response) => {
     try {
       const promotions = await this.promotionService.findAll()
 
       return res.status(200).json(promotions)
-    } catch (error) {
+
       // error
+    } catch (error) {
       console.error('Error fetching promotions:', error)
       return res.status(500).json({ message: 'Internal Server Error' })
     }
   }
 
-  // create a promotion
   create = async (req: Request, res: Response) => {
     try {
       const body = req.body as PromotionBody
@@ -33,8 +32,9 @@ export default class PromotionController {
       await this.promotionService.create(body)
 
       return res.sendStatus(201)
-    } catch (error) {
+
       // error
+    } catch (error) {
       console.error('Error creating promotion:', error)
       return res.status(500).json({ message: 'Internal Server Error' })
     }
@@ -55,8 +55,9 @@ export default class PromotionController {
       }
 
       return res.sendStatus(204)
-    } catch (error) {
+
       // error
+    } catch (error) {
       console.error('Error updating promotion:', error)
       return res.status(500).json({ message: 'Internal Server Error' })
     }
@@ -69,8 +70,9 @@ export default class PromotionController {
       await this.promotionService.delete(id)
 
       return res.sendStatus(204)
-    } catch (error) {
+
       // error
+    } catch (error) {
       console.error('Error deleting promotion:', error)
       return res.status(500).json({ message: 'Internal Server Error' })
     }
@@ -83,8 +85,9 @@ export default class PromotionController {
       await this.promotionService.reorder(ids)
 
       return res.sendStatus(204)
-    } catch (error) {
+
       // error
+    } catch (error) {
       console.error('Error reordering promotions:', error)
       return res.status(500).json({ message: 'Internal Server Error' })
     }
