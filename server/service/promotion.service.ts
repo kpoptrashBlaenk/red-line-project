@@ -1,4 +1,5 @@
 import { pool } from '#/app'
+import { PromotionRaw } from '#/types/database'
 import uniqueKey from '#/utils/uniqueKey'
 import { Promotion, PromotionBody } from '$/types'
 import { DictionaryService } from './dictionary.service'
@@ -27,7 +28,7 @@ export class PromotionService {
                 'en', d_button_en.translation
             ) AS button,
             p.link,
-            p.image
+            jsonb_build_array(p.image) AS image
         FROM promotion p
 
         LEFT JOIN dictionary d_title_fr
@@ -50,10 +51,12 @@ export class PromotionService {
   }
 
   async create(body: PromotionBody) {
+    // create unique keys
     const titleKey = uniqueKey('promotion', 'title')
     const subtitleKey = uniqueKey('promotion', 'subtitle')
     const buttonKey = uniqueKey('promotion', 'button')
 
+    // create promotion
     await pool.query(
       `--sql
         INSERT INTO promotion (title_key, subtitle_key, button_key, link, image)
@@ -68,6 +71,7 @@ export class PromotionService {
       ],
     )
 
+    // create translations
     await this.dictionaryService.create({
       key: titleKey,
       en: body.title_en,
@@ -85,5 +89,31 @@ export class PromotionService {
       en: body.button_en,
       fr: body.button_fr,
     })
+  }
+
+  async update(id: number, body: PromotionBody) {
+    // find promotion for keys
+    const result = await pool.query<PromotionRaw>(
+      `--sql
+        SELECT * FROM promotion WHERE id = $1
+        `,
+      [id],
+    )
+    const promotion = result.rows[0]
+
+    // update promotion
+    await pool.query(
+      `--sql
+        UPDATE promotion
+        SET link = $2, image = $3
+        WHERE id = $1
+        `,
+      [id, body.link, body.image],
+    )
+
+    // update dictionary
+    await this.dictionaryService.update({ key: promotion.title_key, en: body.title_en, fr: body.title_fr })
+    await this.dictionaryService.update({ key: promotion.subtitle_key, en: body.subtitle_en, fr: body.subtitle_fr })
+    await this.dictionaryService.update({ key: promotion.button_key, en: body.button_en, fr: body.button_fr })
   }
 }

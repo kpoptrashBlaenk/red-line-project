@@ -1,6 +1,7 @@
 export const urls = {
   promotion_get_all: '/promotion',
   promotion_create: '/promotion',
+  promotion_update: '/promotion/:id',
 }
 
 /**

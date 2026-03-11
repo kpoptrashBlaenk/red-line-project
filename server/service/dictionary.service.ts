@@ -17,4 +17,24 @@ export class DictionaryService {
       ],
     )
   }
+
+  async update(body: DictionaryBody) {
+    await pool.query(
+      `--sql
+      UPDATE dictionary
+      SET translation = $3
+      WHERE key = $1 AND lang = $2;
+      `,
+      [body.key, 'en', body.en],
+    )
+
+    await pool.query(
+      `--sql
+      UPDATE dictionary
+      SET translation = $3
+      WHERE key = $1 AND lang = $2;
+      `,
+      [body.key, 'fr', body.fr],
+    )
+  }
 }

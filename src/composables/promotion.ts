@@ -1,7 +1,7 @@
 import apiUrl from '$/constants/apiUrl'
 import { Promotion } from '$/types'
 import { FormField } from '@/types'
-import { apiGet, apiPost } from '@/utils/api'
+import { apiGet, apiPost, apiPut } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { PromotionSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
@@ -161,11 +161,18 @@ export function usePromotion() {
    * @param state The state that tracks the new values
    */
   async function modify(id: number, state: PromotionSchema) {
-    // api request
-    id
-    state
+    try {
+      // create promotion
+      await apiPut(apiUrl('promotion_update', id), state)
 
-    await presentToast(translation('toast_modified'), 'success')
+      // toast
+      await presentToast(translation('toast_modified'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error updating promotion:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**

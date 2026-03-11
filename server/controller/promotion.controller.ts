@@ -36,4 +36,19 @@ export default class PromotionController {
       return res.status(500).json({ message: 'Internal Server Error' })
     }
   }
+
+  update = async (req: Request, res: Response) => {
+    try {
+      const id = parseInt(req.params.id)
+      const body = req.body as PromotionBody
+
+      await this.promotionService.update(id, body)
+
+      return res.sendStatus(200)
+    } catch (error) {
+      // error
+      console.error('Error updating promotion:', error)
+      return res.status(500).json({ message: 'Internal Server Error' })
+    }
+  }
 }
