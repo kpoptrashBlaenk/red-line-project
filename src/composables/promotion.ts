@@ -1,7 +1,7 @@
 import apiUrl from '$/constants/apiUrl'
 import { Promotion } from '$/types'
 import { FormField } from '@/types'
-import { apiGet } from '@/utils/api'
+import { apiGet, apiPost } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { PromotionSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
@@ -108,7 +108,7 @@ export function usePromotion() {
       const promotions = await apiGet<Promotion[]>(apiUrl('promotion_get_all'))
 
       // check if empty
-      if (!promotions || promotions.length === 0) throw new Error(translation('api_promotion_none'))
+      if (!promotions || promotions.length === 0) throw new Error(translation('toast_promotion_none'))
 
       // return
       return promotions
@@ -117,8 +117,9 @@ export function usePromotion() {
     } catch (error: any) {
       console.error('Error fetching promotions:', error)
       await presentToast(error.message, 'danger')
+
+      return []
     }
-    return []
   }
 
   /**
@@ -139,10 +140,18 @@ export function usePromotion() {
    * @param state The state that tracks the new values
    */
   async function create(state: PromotionSchema) {
-    // api request
-    state
+    try {
+      // create promotion
+      await apiPost(apiUrl('promotion_create'), state)
 
-    await presentToast(translation('toast_added'), 'success')
+      // toast
+      await presentToast(translation('toast_added'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching promotions:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**

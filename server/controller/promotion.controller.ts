@@ -14,11 +14,11 @@ export default class PromotionController {
     try {
       const promotions = await this.promotionService.findAll()
 
-      res.status(200).json(promotions)
+      return res.status(200).json(promotions)
     } catch (error) {
       // error
       console.error('Error fetching promotions:', error)
-      res.status(500).json({ message: 'Internal Server Error' })
+      return res.status(500).json({ message: 'Internal Server Error' })
     }
   }
 
@@ -29,11 +29,11 @@ export default class PromotionController {
 
       await this.promotionService.create(body)
 
-      res.status(201)
+      return res.sendStatus(201)
     } catch (error) {
       // error
       console.error('Error creating promotion:', error)
-      res.status(500).json({ message: 'Internal Server Error' })
+      return res.status(500).json({ message: 'Internal Server Error' })
     }
   }
 }

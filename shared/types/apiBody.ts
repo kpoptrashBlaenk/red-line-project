@@ -97,3 +97,12 @@ export type OrderBody = OrderSchema
  * Body for contact api
  */
 export type ContactBody = ContactSchema
+
+/**
+ * Body for dictionary api
+ */
+export type DictionaryBody = {
+  key: string
+  en: string
+  fr: string
+}

@@ -4,9 +4,6 @@ import { Language } from '@/types'
 import toTitle from './toTitle'
 
 const translationKeys = {
-  // API
-  api_promotion_none: 'api_promotion_none',
-
   // #
   '404': '404',
 
@@ -194,6 +191,7 @@ const translationKeys = {
   toast_password_reset: 'toast_password_reset',
   toast_reordered: 'toast_reordered',
   toast_reset_link: 'toast_reset_link',
+  toast_promotion_none: 'toast_promotion_none',
   top: 'top',
   total: 'total',
   try_again: 'try_again',
@@ -215,12 +213,6 @@ const translationKeys = {
 export type TranslationKey = keyof typeof translationKeys
 
 const translations: Record<TranslationKey, Record<Language, string>> = {
-  // API
-  api_promotion_none: {
-    en: 'No promotions found',
-    fr: 'Aucune promotion trouvée',
-  },
-
   // #
   '404': {
     en: 'Page not found',
@@ -863,6 +855,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   toast_reset_link: {
     en: 'Reset link has been sent',
     fr: 'Lien de réinitialisation evnoyé',
+  },
+  toast_promotion_none: {
+    en: 'No promotions found',
+    fr: 'Aucune promotion trouvée',
   },
   top: {
     en: 'Top',

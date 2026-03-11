@@ -6,5 +6,6 @@ const router = Router()
 const controller = new PromotionController()
 
 router.get(urls.promotion_get_all, controller.getAll)
+router.post(urls.promotion_create, controller.create)
 
 export default router

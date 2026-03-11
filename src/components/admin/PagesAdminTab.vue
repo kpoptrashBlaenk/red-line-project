@@ -188,14 +188,14 @@ async function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: a
     // submit callback
     onSubmit: async (state?: any) => {
       // post
-      if (method === 'post') contextItem.composable.create?.(state)
+      if (method === 'post') await contextItem.composable.create?.(state)
       // put
-      if (method === 'put') contextItem.composable.modify?.(item.id, state)
+      if (method === 'put') await contextItem.composable.modify?.(item.id, state)
       // delete
-      if (method === 'delete') contextItem.composable.remove?.(item.id)
+      if (method === 'delete') await contextItem.composable.remove?.(item.id)
 
       // refetch and dismiss
-      contextItem.itemsRef.value = await contextItem.composable.get?.()
+      contextItemMap.value[context].itemsRef = await contextItem.composable.get?.()
       modal.value.$el.dismiss()
       alert.value.$el.dismiss()
     },

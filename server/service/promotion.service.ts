@@ -1,9 +1,14 @@
 import { pool } from '#/app'
 import uniqueKey from '#/utils/uniqueKey'
 import { Promotion, PromotionBody } from '$/types'
+import { DictionaryService } from './dictionary.service'
 
 export class PromotionService {
-  constructor() {}
+  private dictionaryService: DictionaryService
+
+  constructor() {
+    this.dictionaryService = new DictionaryService()
+  }
 
   async findAll() {
     const result = await pool.query<Promotion>(`--sql
@@ -52,16 +57,7 @@ export class PromotionService {
     await pool.query(
       `--sql
         INSERT INTO promotion (title_key, subtitle_key, button_key, link, image)
-        VALUES ($1, $2, $3, $4, $5)
-
-        INSERT INTO dictionary (key, lang, translation)
-        VALUES ($1, 'en', $6), ($1, 'fr', $7)
-
-        INSERT INTO dictionary (key, lang, translation)
-        VALUES ($2, 'en', $8), ($2, 'fr', $9)
-
-        INSERT INTO dictionary (key, lang, translation)
-        VALUES ($3, 'en', $10), ($3, 'fr', $11)
+        VALUES ($1, $2, $3, $4, $5);
         `,
       [
         titleKey, // $1
@@ -69,13 +65,25 @@ export class PromotionService {
         buttonKey, // $3
         body.link, // $4
         body.image, // $5
-        body.title_en, // $6
-        body.title_fr, // $7
-        body.subtitle_en, // $8
-        body.subtitle_fr, // $9
-        body.button_en, // $10
-        body.button_fr, // $11
       ],
     )
+
+    await this.dictionaryService.create({
+      key: titleKey,
+      en: body.title_en,
+      fr: body.title_fr,
+    })
+
+    await this.dictionaryService.create({
+      key: subtitleKey,
+      en: body.subtitle_en,
+      fr: body.subtitle_fr,
+    })
+
+    await this.dictionaryService.create({
+      key: buttonKey,
+      en: body.button_en,
+      fr: body.button_fr,
+    })
   }
 }
