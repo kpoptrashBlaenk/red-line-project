@@ -10,8 +10,8 @@ pool
   .then(() => {
     console.log('Connected to database')
   })
-  .catch((err: Error) => {
-    console.error('Error connecting to database', err)
+  .catch((error: Error) => {
+    console.error('Error connecting to database', error)
   })
 
 app.listen(PORT, () => {

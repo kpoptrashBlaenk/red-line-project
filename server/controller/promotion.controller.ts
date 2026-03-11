@@ -8,6 +8,16 @@ export default class PromotionController {
     this.promotionService = new PromotionService()
   }
 
-  // Méthode pour récupérer toutes les promotions
-  async getAll(req: Request, res: Response) {}
+  // get all promotions
+  getAll = async (req: Request, res: Response) => {
+    try {
+      const promotions = await this.promotionService.findAll()
+
+      res.status(200).json(promotions)
+    } catch (error) {
+      // error
+      console.error('Error fetching promotions:', error)
+      res.status(500).json({ error: 'Internal Server Error' })
+    }
+  }
 }

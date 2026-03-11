@@ -1,10 +1,9 @@
 import { Category } from '$/types'
 import { FormField } from '@/types'
-import { apiPost } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { CategorySchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { alertCircleOutline, checkmarkCircleOutline } from 'ionicons/icons'
+import { checkmarkCircleOutline } from 'ionicons/icons'
 import { categoryFixtures } from './../constants/fixtures'
 
 /**
@@ -112,22 +111,23 @@ export function useCategory() {
    * @param state The state that tracks the new values
    */
   async function create(state: CategorySchema) {
-    try {
-      // create promotion
-      const response = await apiPost<Category>('/api/promotion', state)
+    state
+    // try {
+    //   // create promotion
+    //   const response = await apiPost<Category>('/api/promotion', state)
 
-      // check response
-      if (!response) {
-        throw new Error(translation('error_category_post_500'))
-      }
+    //   // check response
+    //   if (!response) {
+    //     throw new Error(translation('error_category_post_500'))
+    //   }
 
-      // success
-      await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+    //   // success
+    //   await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
 
-      // catch
-    } catch (error: any) {
-      await presentToast(error.message, 'danger', alertCircleOutline)
-    }
+    //   // catch
+    // } catch (error: any) {
+    //   await presentToast(error.message, 'danger', alertCircleOutline)
+    // }
   }
 
   /**
