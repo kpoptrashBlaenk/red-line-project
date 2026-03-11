@@ -44,10 +44,24 @@ export default class PromotionController {
 
       await this.promotionService.update(id, body)
 
-      return res.sendStatus(200)
+      return res.sendStatus(204)
     } catch (error) {
       // error
       console.error('Error updating promotion:', error)
+      return res.status(500).json({ message: 'Internal Server Error' })
+    }
+  }
+
+  delete = async (req: Request, res: Response) => {
+    try {
+      const id = parseInt(req.params.id)
+
+      await this.promotionService.delete(id)
+
+      return res.sendStatus(204)
+    } catch (error) {
+      // error
+      console.error('Error deleting promotion:', error)
       return res.status(500).json({ message: 'Internal Server Error' })
     }
   }

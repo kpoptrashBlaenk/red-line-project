@@ -44,7 +44,7 @@ export class PromotionService {
         LEFT JOIN dictionary d_button_fr
             ON d_button_fr.key = p.button_key AND d_button_fr.lang = 'fr'
         LEFT JOIN dictionary d_button_en
-            ON d_button_en.key = p.button_key AND d_button_en.lang = 'en'
+            ON d_button_en.key = p.button_key AND d_button_en.lang = 'en';
     `)
 
     return result.rows
@@ -115,5 +115,30 @@ export class PromotionService {
     await this.dictionaryService.update({ key: promotion.title_key, en: body.title_en, fr: body.title_fr })
     await this.dictionaryService.update({ key: promotion.subtitle_key, en: body.subtitle_en, fr: body.subtitle_fr })
     await this.dictionaryService.update({ key: promotion.button_key, en: body.button_en, fr: body.button_fr })
+  }
+
+  async delete(id: number) {
+    // find promotion for keys
+    const result = await pool.query<PromotionRaw>(
+      `--sql
+        SELECT * FROM promotion WHERE id = $1
+        `,
+      [id],
+    )
+    const promotion = result.rows[0]
+
+    // delete promotion
+    await pool.query(
+      `--sql
+        DELETE FROM promotion
+        WHERE id = $1
+        `,
+      [id],
+    )
+
+    // delete dictionary
+    await this.dictionaryService.delete(promotion.title_key)
+    await this.dictionaryService.delete(promotion.subtitle_key)
+    await this.dictionaryService.delete(promotion.button_key)
   }
 }

@@ -1,7 +1,7 @@
 import apiUrl from '$/constants/apiUrl'
 import { Promotion } from '$/types'
 import { FormField } from '@/types'
-import { apiGet, apiPost, apiPut } from '@/utils/api'
+import { apiDelete, apiGet, apiPost, apiPut } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { PromotionSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
@@ -181,10 +181,18 @@ export function usePromotion() {
    * @param id The id of the promotion record
    */
   async function remove(id: number) {
-    // api request
-    id
+    try {
+      // create promotion
+      await apiDelete(apiUrl('promotion_update', id))
 
-    await presentToast(translation('toast_deleted'), 'success')
+      // toast
+      await presentToast(translation('toast_deleted'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error deleting promotion:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   // return all functions

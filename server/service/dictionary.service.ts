@@ -37,4 +37,14 @@ export class DictionaryService {
       [body.key, 'fr', body.fr],
     )
   }
+
+  async delete(key: string) {
+    await pool.query(
+      `--sql
+      DELETE FROM dictionary
+      WHERE key = $1;
+      `,
+      [key],
+    )
+  }
 }
