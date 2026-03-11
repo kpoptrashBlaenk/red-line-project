@@ -1,5 +1,5 @@
 export const urls = {
-  promotion: '/promotion',
+  promotion_get_all: '/promotion',
 }
 
 /**

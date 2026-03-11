@@ -5,7 +5,6 @@ import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
 import { EmailSchema, NameSchema, PasswordSchema, PhoneSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do user related queries that are not auth
@@ -45,7 +44,7 @@ export function useUser() {
 
     if (user) {
       userStore.setUser(user)
-      presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+      presentToast(translation('toast_modified'), 'success')
     }
   }
 
@@ -76,7 +75,7 @@ export function useUser() {
 
     if (user) {
       userStore.setUser(user)
-      presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+      presentToast(translation('toast_modified'), 'success')
     }
   }
 
@@ -116,7 +115,7 @@ export function useUser() {
 
     if (user) {
       userStore.setUser(user)
-      presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+      presentToast(translation('toast_modified'), 'success')
     }
   }
 
@@ -165,7 +164,7 @@ export function useUser() {
 
     if (user) {
       userStore.setUser(user)
-      presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+      presentToast(translation('toast_modified'), 'success')
     }
   }
 

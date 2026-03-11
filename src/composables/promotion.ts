@@ -1,10 +1,10 @@
+import apiUrl from '$/constants/apiUrl'
 import { Promotion } from '$/types'
-import { promotionFixtures } from '@/constants/fixtures'
 import { FormField } from '@/types'
+import { apiGet } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { PromotionSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do promotion related queries
@@ -103,9 +103,22 @@ export function usePromotion() {
    * Get the promotional products
    */
   async function get() {
-    const promotions: Promotion[] = Object.values(promotionFixtures)
+    try {
+      // get promotions
+      const promotions = await apiGet<Promotion[]>(apiUrl('promotion_get_all'))
 
-    return promotions ?? []
+      // check if empty
+      if (!promotions || promotions.length === 0) throw new Error(translation('api_promotion_none'))
+
+      // return
+      return promotions
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching promotions:', error)
+      await presentToast(error.message, 'danger')
+    }
+    return []
   }
 
   /**
@@ -117,7 +130,7 @@ export function usePromotion() {
     // api request
     items
 
-    await presentToast(translation('toast_reordered'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_reordered'), 'success')
   }
 
   /**
@@ -129,7 +142,7 @@ export function usePromotion() {
     // api request
     state
 
-    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_added'), 'success')
   }
 
   /**
@@ -143,7 +156,7 @@ export function usePromotion() {
     id
     state
 
-    await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_modified'), 'success')
   }
 
   /**
@@ -155,7 +168,7 @@ export function usePromotion() {
     // api request
     id
 
-    await presentToast(translation('toast_deleted'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_deleted'), 'success')
   }
 
   // return all functions

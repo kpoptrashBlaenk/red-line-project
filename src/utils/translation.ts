@@ -4,6 +4,10 @@ import { Language } from '@/types'
 import toTitle from './toTitle'
 
 const translationKeys = {
+  // API
+  api_promotion_none: 'api_promotion_none',
+
+  // #
   '404': '404',
 
   // A
@@ -211,6 +215,13 @@ const translationKeys = {
 export type TranslationKey = keyof typeof translationKeys
 
 const translations: Record<TranslationKey, Record<Language, string>> = {
+  // API
+  api_promotion_none: {
+    en: 'No promotions found',
+    fr: 'Aucune promotion trouvée',
+  },
+
+  // #
   '404': {
     en: 'Page not found',
     fr: 'Page non trouvée',

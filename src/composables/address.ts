@@ -4,7 +4,6 @@ import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
 import { AddressSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do address related queries
@@ -84,7 +83,7 @@ export function useAddress() {
   async function create(state: AddressSchema) {
     state
 
-    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_added'), 'success')
   }
 
   /**
@@ -98,7 +97,7 @@ export function useAddress() {
     id
     state
 
-    await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_modified'), 'success')
   }
 
   /**
@@ -110,7 +109,7 @@ export function useAddress() {
     // api request
     id
 
-    await presentToast(translation('toast_deleted'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_deleted'), 'success')
   }
 
   // return all functions

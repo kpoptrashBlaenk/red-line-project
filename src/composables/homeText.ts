@@ -4,7 +4,6 @@ import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
 import { HomeTextSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do homeText related queries
@@ -71,7 +70,7 @@ export function useHomeText() {
     id
     state
 
-    await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_modified'), 'success')
   }
 
   // return all functions

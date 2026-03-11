@@ -5,7 +5,6 @@ import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
 import { ForgotPasswordSchema, LoginSchema, RegisterSchema, ResetPasswordSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do auth related queries
@@ -189,7 +188,7 @@ export function useAuth() {
     state
     // send email to password, if email doesnt exist, ignore
 
-    presentToast(translation('toast_reset_link'), 'success', checkmarkCircleOutline)
+    presentToast(translation('toast_reset_link'), 'success')
   }
 
   /**
@@ -224,7 +223,7 @@ export function useAuth() {
     state
     // verify token and reset password
 
-    presentToast(translation('toast_password_reset'), 'success', checkmarkCircleOutline)
+    presentToast(translation('toast_password_reset'), 'success')
   }
 
   async function deleteUser() {

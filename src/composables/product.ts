@@ -4,7 +4,6 @@ import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
 import { ProductSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
 import { useCategory } from './category'
 import { useCharacteristic } from './characteristic'
 
@@ -231,7 +230,7 @@ export function useProduct() {
     // api request
     items
 
-    await presentToast(translation('toast_reordered'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_reordered'), 'success')
   }
 
   /**
@@ -243,7 +242,7 @@ export function useProduct() {
     // api request
     state
 
-    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_added'), 'success')
   }
 
   /**
@@ -257,7 +256,7 @@ export function useProduct() {
     id
     state
 
-    await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_modified'), 'success')
   }
 
   /**
@@ -269,7 +268,7 @@ export function useProduct() {
     // api request
     id
 
-    await presentToast(translation('toast_deleted'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_deleted'), 'success')
   }
 
   // return all functions

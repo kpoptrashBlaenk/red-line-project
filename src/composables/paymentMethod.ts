@@ -4,7 +4,6 @@ import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
 import { PaymentMethodSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do payment method related queries
@@ -57,7 +56,7 @@ export function usePaymentMethod() {
   async function create(state: PaymentMethodSchema) {
     state
 
-    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_added'), 'success')
   }
 
   /**
@@ -69,7 +68,7 @@ export function usePaymentMethod() {
     // api request
     id
 
-    await presentToast(translation('toast_deleted'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_deleted'), 'success')
   }
 
   // return all functions

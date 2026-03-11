@@ -3,7 +3,6 @@ import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
 import { CategorySchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
 import { categoryFixtures } from './../constants/fixtures'
 
 /**
@@ -102,7 +101,7 @@ export function useCategory() {
     // api request
     items
 
-    await presentToast(translation('toast_reordered'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_reordered'), 'success')
   }
 
   /**
@@ -141,7 +140,7 @@ export function useCategory() {
     id
     state
 
-    await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_modified'), 'success')
   }
 
   /**
@@ -153,7 +152,7 @@ export function useCategory() {
     // api request
     id
 
-    await presentToast(translation('toast_deleted'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_deleted'), 'success')
   }
 
   // return all functions

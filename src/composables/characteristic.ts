@@ -4,7 +4,6 @@ import { FormField } from '@/types'
 import presentToast from '@/utils/presentToast'
 import { CharacteristicSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do characteristic related queries
@@ -92,7 +91,7 @@ export function useCharacteristic() {
     // api request
     state
 
-    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_added'), 'success')
   }
 
   /**
@@ -106,7 +105,7 @@ export function useCharacteristic() {
     id
     state
 
-    await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_modified'), 'success')
   }
 
   /**
@@ -118,7 +117,7 @@ export function useCharacteristic() {
     // api request
     id
 
-    await presentToast(translation('toast_deleted'), 'success', checkmarkCircleOutline)
+    await presentToast(translation('toast_deleted'), 'success')
   }
 
   // return all functions
