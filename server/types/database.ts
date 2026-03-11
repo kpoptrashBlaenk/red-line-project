@@ -5,4 +5,5 @@ export type PromotionRaw = {
   button_key: string
   link: string
   image: string
+  index: number
 }

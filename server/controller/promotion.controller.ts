@@ -65,4 +65,18 @@ export default class PromotionController {
       return res.status(500).json({ message: 'Internal Server Error' })
     }
   }
+
+  reorder = async (req: Request, res: Response) => {
+    try {
+      const ids = req.body as number[]
+
+      await this.promotionService.reorder(ids)
+
+      return res.sendStatus(204)
+    } catch (error) {
+      // error
+      console.error('Error reordering promotions:', error)
+      return res.status(500).json({ message: 'Internal Server Error' })
+    }
+  }
 }

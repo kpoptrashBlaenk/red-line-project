@@ -128,10 +128,20 @@ export function usePromotion() {
    * @param items Items in new order
    */
   async function reorder(items: Promotion[]) {
-    // api request
-    items
+    try {
+      const ids = items.map((item) => item.id)
 
-    await presentToast(translation('toast_reordered'), 'success')
+      // create promotion
+      await apiPut(apiUrl('promotion_reorder'), ids)
+
+      // toast
+      await presentToast(translation('toast_reordered'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error reordering promotions:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**

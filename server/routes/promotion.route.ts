@@ -5,6 +5,7 @@ import PromotionController from '../controller/promotion.controller'
 const router = Router()
 const controller = new PromotionController()
 
+router.put(urls.promotion_reorder, controller.reorder) // need to come before update
 router.get(urls.promotion_get_all, controller.getAll)
 router.post(urls.promotion_create, controller.create)
 router.put(urls.promotion_update, controller.update)

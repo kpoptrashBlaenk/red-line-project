@@ -4,6 +4,7 @@ export const urls = {
   promotion_create: '/promotion',
   promotion_update: '/promotion/:id',
   promotion_delete: '/promotion/:id',
+  promotion_reorder: '/promotion/reorder',
 }
 
 /**

@@ -12,7 +12,8 @@ export class PromotionService {
   }
 
   async findAll() {
-    const result = await pool.query<Promotion>(`--sql
+    const result = await pool.query<Promotion>(
+      `--sql
         SELECT
             p.id,
             jsonb_build_object(
@@ -44,8 +45,11 @@ export class PromotionService {
         LEFT JOIN dictionary d_button_fr
             ON d_button_fr.key = p.button_key AND d_button_fr.lang = 'fr'
         LEFT JOIN dictionary d_button_en
-            ON d_button_en.key = p.button_key AND d_button_en.lang = 'en';
-    `)
+            ON d_button_en.key = p.button_key AND d_button_en.lang = 'en'
+
+        ORDER BY p."index" ASC;
+    `,
+    )
 
     return result.rows
   }
@@ -56,11 +60,15 @@ export class PromotionService {
     const subtitleKey = uniqueKey('promotion', 'subtitle')
     const buttonKey = uniqueKey('promotion', 'button')
 
+    // get current max index
+    const maxResult = await pool.query<{ max: number }>(`SELECT MAX("index") AS max FROM promotion`)
+    const nextIndex = (maxResult.rows[0].max ?? 0) + 1
+
     // create promotion
     await pool.query(
       `--sql
-        INSERT INTO promotion (title_key, subtitle_key, button_key, link, image)
-        VALUES ($1, $2, $3, $4, $5);
+        INSERT INTO promotion (title_key, subtitle_key, button_key, link, image, "index")
+        VALUES ($1, $2, $3, $4, $5, $6);
         `,
       [
         titleKey, // $1
@@ -68,6 +76,7 @@ export class PromotionService {
         buttonKey, // $3
         body.link, // $4
         body.image, // $5
+        nextIndex, // $6
       ],
     )
 
@@ -140,5 +149,20 @@ export class PromotionService {
     await this.dictionaryService.delete(promotion.title_key)
     await this.dictionaryService.delete(promotion.subtitle_key)
     await this.dictionaryService.delete(promotion.button_key)
+  }
+
+  async reorder(ids: number[]) {
+    // update index for each id
+    for (let i = 0; i < ids.length; i++) {
+      const id = ids[i]
+      await pool.query(
+        `--sql
+          UPDATE promotion
+          SET "index" = $2
+          WHERE id = $1
+          `,
+        [id, i],
+      )
+    }
   }
 }
