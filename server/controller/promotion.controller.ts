@@ -26,6 +26,9 @@ export default class PromotionController {
   create = async (req: Request, res: Response) => {
     try {
       const body = req.body as PromotionBody
+      const images = req.files as Express.Multer.File[]
+
+      body.image = [images[0].path]
 
       await this.promotionService.create(body)
 
@@ -41,8 +44,15 @@ export default class PromotionController {
     try {
       const id = parseInt(req.params.id)
       const body = req.body as PromotionBody
+      const images = req.files as Express.Multer.File[]
 
-      await this.promotionService.update(id, body)
+      // check if image is updated
+      if (images && images.length > 0) {
+        body.image = [images[0].path]
+        await this.promotionService.update(id, body, true)
+      } else {
+        await this.promotionService.update(id, body, false)
+      }
 
       return res.sendStatus(204)
     } catch (error) {

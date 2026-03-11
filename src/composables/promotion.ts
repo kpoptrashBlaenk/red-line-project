@@ -151,8 +151,24 @@ export function usePromotion() {
    */
   async function create(state: PromotionSchema) {
     try {
+      // use form because image
+      const formData = new FormData()
+
+      formData.append('link', state.link)
+      formData.append('title_en', state.title_en)
+      formData.append('title_fr', state.title_fr)
+      formData.append('subtitle_en', state.subtitle_en)
+      formData.append('subtitle_fr', state.subtitle_fr)
+      formData.append('button_en', state.button_en)
+      formData.append('button_fr', state.button_fr)
+      state.image.forEach((file) => {
+        formData.append('image', file)
+      })
+
       // create promotion
-      await apiPost(apiUrl('promotion_create'), state)
+      await apiPost(apiUrl('promotion_create'), formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
 
       // toast
       await presentToast(translation('toast_added'), 'success')
@@ -172,8 +188,24 @@ export function usePromotion() {
    */
   async function modify(id: number, state: PromotionSchema) {
     try {
+      // use form because image
+      const formData = new FormData()
+
+      formData.append('link', state.link)
+      formData.append('title_en', state.title_en)
+      formData.append('title_fr', state.title_fr)
+      formData.append('subtitle_en', state.subtitle_en)
+      formData.append('subtitle_fr', state.subtitle_fr)
+      formData.append('button_en', state.button_en)
+      formData.append('button_fr', state.button_fr)
+      state.image.forEach((file) => {
+        formData.append('image', file)
+      })
+
       // create promotion
-      await apiPut(apiUrl('promotion_update', id), state)
+      await apiPut(apiUrl('promotion_update', id), formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
 
       // toast
       await presentToast(translation('toast_modified'), 'success')

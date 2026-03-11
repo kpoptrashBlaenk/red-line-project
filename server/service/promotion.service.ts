@@ -3,12 +3,15 @@ import { PromotionRaw } from '#/types/database'
 import uniqueKey from '#/utils/uniqueKey'
 import { Promotion, PromotionBody } from '$/types'
 import { DictionaryService } from './dictionary.service'
+import { ImageService } from './image.service'
 
 export class PromotionService {
   private dictionaryService: DictionaryService
+  private imageService: ImageService
 
   constructor() {
     this.dictionaryService = new DictionaryService()
+    this.imageService = new ImageService()
   }
 
   async findAll() {
@@ -75,7 +78,7 @@ export class PromotionService {
         subtitleKey, // $2
         buttonKey, // $3
         body.link, // $4
-        body.image, // $5
+        body.image[0], // $5
         nextIndex, // $6
       ],
     )
@@ -100,7 +103,7 @@ export class PromotionService {
     })
   }
 
-  async update(id: number, body: PromotionBody) {
+  async update(id: number, body: PromotionBody, replaceImage: boolean) {
     // find promotion for keys
     const result = await pool.query<PromotionRaw>(
       `--sql
@@ -110,6 +113,9 @@ export class PromotionService {
     )
     const promotion = result.rows[0]
 
+    // delete old image
+    if (replaceImage) this.imageService.delete(promotion.image)
+
     // update promotion
     await pool.query(
       `--sql
@@ -117,7 +123,7 @@ export class PromotionService {
         SET link = $2, image = $3
         WHERE id = $1
         `,
-      [id, body.link, body.image],
+      [id, body.link, body.image[0]],
     )
 
     // update dictionary
@@ -135,6 +141,9 @@ export class PromotionService {
       [id],
     )
     const promotion = result.rows[0]
+
+    // delete image
+    this.imageService.delete(promotion.image)
 
     // delete promotion
     await pool.query(

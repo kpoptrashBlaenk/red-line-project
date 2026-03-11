@@ -30,7 +30,7 @@ export const promotionSchema = () =>
     button_fr: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
 
     link: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
-    image: z.array(z.union([z.instanceof(File), z.url()])).length(1, ERROR.error_required()),
+    image: z.array(z.union([z.instanceof(File), z.string()])).length(1, ERROR.error_required()),
   })
 export const promotionState = reactive<Partial<PromotionSchema>>({
   title_en: undefined,
