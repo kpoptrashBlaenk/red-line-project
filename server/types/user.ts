@@ -3,8 +3,9 @@ export interface User{
     first_name: string
     last_name: string
     email: string
-    prefix: string | null
+    prefix: string
     phone: string
     password: string
-    token: string
+    is_verified: boolean
+    token: string | null
 }
