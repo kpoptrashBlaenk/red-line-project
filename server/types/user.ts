@@ -7,4 +7,6 @@ export interface User {
     phone: string
     prefix: string
     is_admin: boolean
+    reset_token: string | null
+    reset_expires: Date | null
 }
