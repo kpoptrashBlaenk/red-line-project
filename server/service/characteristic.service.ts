@@ -7,8 +7,8 @@ import { DictionaryService } from './dictionary.service'
 export class CharacteristicService {
   private dictionaryService: DictionaryService
 
-  constructor() {
-    this.dictionaryService = new DictionaryService()
+  constructor(dictionaryService: DictionaryService) {
+    this.dictionaryService = dictionaryService
   }
 
   async findAll() {

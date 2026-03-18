@@ -1,12 +1,13 @@
 import { HomeTextService } from '#/service/homeText.service'
 import { HomeTextBody } from '$/types'
 import { Request, Response } from 'express'
+import { Container } from '../utils/container'
 
 export default class HomeTextController {
   private homeTextService: HomeTextService
 
   constructor() {
-    this.homeTextService = new HomeTextService()
+    this.homeTextService = Container.getInstance().getHomeTextService()
   }
 
   getAll = async (req: Request, res: Response) => {

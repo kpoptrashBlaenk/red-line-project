@@ -1,12 +1,13 @@
 import { CategoryBody } from '$/types'
 import { Request, Response } from 'express'
 import { CategoryService } from '../service/category.service'
+import { Container } from '../utils/container'
 
 export default class CategoryController {
   private categoryService: CategoryService
 
   constructor() {
-    this.categoryService = new CategoryService()
+    this.categoryService = Container.getInstance().getCategoryService()
   }
 
   getAll = async (req: Request, res: Response) => {

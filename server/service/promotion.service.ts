@@ -9,9 +9,9 @@ export class PromotionService {
   private dictionaryService: DictionaryService
   private imageService: ImageService
 
-  constructor() {
-    this.dictionaryService = new DictionaryService()
-    this.imageService = new ImageService()
+  constructor(dictionaryService: DictionaryService, imageService: ImageService) {
+    this.dictionaryService = dictionaryService
+    this.imageService = imageService
   }
 
   async findAll() {

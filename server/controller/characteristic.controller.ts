@@ -1,12 +1,13 @@
 import { CharacteristicType } from '$/types'
 import { Request, Response } from 'express'
 import { CharacteristicService } from '../service/characteristic.service'
+import { Container } from '../utils/container'
 
 export default class CharacteristicController {
   private characteristicService: CharacteristicService
 
   constructor() {
-    this.characteristicService = new CharacteristicService()
+    this.characteristicService = Container.getInstance().getCharacteristicService()
   }
 
   getAll = async (_req: Request, res: Response) => {

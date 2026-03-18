@@ -1,12 +1,13 @@
 import { PromotionBody } from '$/types'
 import { Request, Response } from 'express'
 import { PromotionService } from '../service/promotion.service'
+import { Container } from '../utils/container'
 
 export default class PromotionController {
   private promotionService: PromotionService
 
   constructor() {
-    this.promotionService = new PromotionService()
+    this.promotionService = Container.getInstance().getPromotionService()
   }
 
   getAll = async (req: Request, res: Response) => {

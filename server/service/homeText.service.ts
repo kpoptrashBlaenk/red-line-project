@@ -6,8 +6,8 @@ import { DictionaryService } from './dictionary.service'
 export class HomeTextService {
   private dictionaryService: DictionaryService
 
-  constructor() {
-    this.dictionaryService = new DictionaryService()
+  constructor(dictionaryService: DictionaryService) {
+    this.dictionaryService = dictionaryService
   }
 
   async findAll() {
