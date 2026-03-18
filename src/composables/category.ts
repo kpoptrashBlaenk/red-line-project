@@ -1,9 +1,10 @@
+import apiUrl from '$/constants/apiUrl'
 import { Category } from '$/types'
 import { FormField } from '@/types'
+import { apiDelete, apiGet, apiPost, apiPut } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { CategorySchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { categoryFixtures } from './../constants/fixtures'
 
 /**
  * Use this composable to do category related queries
@@ -78,18 +79,46 @@ export function useCategory() {
    * Get all categories
    */
   async function get() {
-    const categories: Category[] = Object.values(categoryFixtures)
+    try {
+      // get categories
+      const categories = await apiGet<Category[]>(apiUrl('category_get_all'))
 
-    return categories ?? []
+      // check if empty
+      if (!categories || categories.length === 0) throw new Error(translation('toast_category_none'))
+
+      // return
+      return categories
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching categories:', error)
+      await presentToast(error.message, 'danger')
+
+      return []
+    }
   }
 
   /**
    * Find category by id
    */
   async function find(id: number) {
-    const category = categoryFixtures[id as keyof typeof categoryFixtures]
+    try {
+      // get categories
+      const categories = await apiGet<Category[]>(apiUrl('category_get_by_id', id))
 
-    return category
+      // check if empty
+      if (!categories || categories.length === 0) throw new Error(translation('toast_category_none'))
+
+      // return
+      return categories
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching category:', error)
+      await presentToast(error.message, 'danger')
+
+      return []
+    }
   }
 
   /**
@@ -98,10 +127,20 @@ export function useCategory() {
    * @param items Items in new order
    */
   async function reorder(items: Category[]) {
-    // api request
-    items
+    try {
+      const ids = items.map((item) => item.id)
 
-    await presentToast(translation('toast_reordered'), 'success')
+      // create promotion
+      await apiPut(apiUrl('category_reorder'), ids)
+
+      // toast
+      await presentToast(translation('toast_reordered'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error reordering category:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -110,23 +149,31 @@ export function useCategory() {
    * @param state The state that tracks the new values
    */
   async function create(state: CategorySchema) {
-    state
-    // try {
-    //   // create promotion
-    //   const response = await apiPost<Category>('/api/promotion', state)
+    try {
+      // use form because image
+      const formData = new FormData()
 
-    //   // check response
-    //   if (!response) {
-    //     throw new Error(translation('error_category_post_500'))
-    //   }
+      formData.append('name_en', state.name_en)
+      formData.append('name_fr', state.name_fr)
+      formData.append('description_en', state.description_en)
+      formData.append('description_fr', state.description_fr)
+      state.image.forEach((file) => {
+        formData.append('image', file)
+      })
 
-    //   // success
-    //   await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+      // create category
+      await apiPost(apiUrl('category_create'), formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
 
-    //   // catch
-    // } catch (error: any) {
-    //   await presentToast(error.message, 'danger', alertCircleOutline)
-    // }
+      // toast
+      await presentToast(translation('toast_added'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching categories:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -136,11 +183,31 @@ export function useCategory() {
    * @param state The state that tracks the new values
    */
   async function modify(id: number, state: CategorySchema) {
-    // api request
-    id
-    state
+    try {
+      // use form because image
+      const formData = new FormData()
 
-    await presentToast(translation('toast_modified'), 'success')
+      formData.append('name_en', state.name_en)
+      formData.append('name_fr', state.name_fr)
+      formData.append('description_en', state.description_en)
+      formData.append('description_fr', state.description_fr)
+      state.image.forEach((file) => {
+        formData.append('image', file)
+      })
+
+      // create category
+      await apiPut(apiUrl('category_update', id), formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+
+      // toast
+      await presentToast(translation('toast_modified'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error updating category:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -149,10 +216,18 @@ export function useCategory() {
    * @param id The id of the category record
    */
   async function remove(id: number) {
-    // api request
-    id
+    try {
+      // create category
+      await apiDelete(apiUrl('category_update', id))
 
-    await presentToast(translation('toast_deleted'), 'success')
+      // toast
+      await presentToast(translation('toast_deleted'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error deleting category:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   // return all functions

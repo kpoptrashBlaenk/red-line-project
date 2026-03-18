@@ -193,6 +193,7 @@ const translationKeys = {
   toast_reset_link: 'toast_reset_link',
   toast_promotion_none: 'toast_promotion_none',
   toast_home_text_none: 'toast_home_text_none',
+  toast_category_none: 'toast_category_none',
   top: 'top',
   total: 'total',
   try_again: 'try_again',
@@ -864,6 +865,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   toast_home_text_none: {
     en: 'No home texts found',
     fr: "Aucun texte d'accueil trouvé",
+  },
+  toast_category_none: {
+    en: 'No categories found',
+    fr: 'Aucune catégorie trouvée',
   },
   top: {
     en: 'Top',

@@ -9,6 +9,14 @@ export const urls = {
   // home text
   home_text_get_all: '/home-text',
   home_text_update: '/home-text/:id',
+
+  // category
+  category_get_all: '/category',
+  category_get_by_id: '/category/:id',
+  category_create: '/category',
+  category_update: '/category/:id',
+  category_delete: '/category/:id',
+  category_reorder: '/category/reorder',
 }
 
 /**

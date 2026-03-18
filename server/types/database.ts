@@ -12,3 +12,11 @@ export type HomeTextRaw = {
   id: number
   text_key: string
 }
+
+export type CategoryRaw = {
+  id: number
+  name_key: string
+  description_key: string
+  image: string
+  index: number
+}
