@@ -21,6 +21,7 @@ const props = defineProps<{
 
 /* Functions */
 async function handleSubmit() {
+  console.log(props.state)
   if (!(await validateForm(props.fields, props.state, props.schema))) {
     return
   }

@@ -195,6 +195,7 @@ const translationKeys = {
   toast_home_text_none: 'toast_home_text_none',
   toast_category_none: 'toast_category_none',
   toast_characteristic_none: 'toast_characteristic_none',
+  toast_product_none: 'toast_product_none',
   top: 'top',
   total: 'total',
   try_again: 'try_again',
@@ -874,6 +875,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   toast_characteristic_none: {
     en: 'No characteristics found',
     fr: 'Aucune caractéristique trouvée',
+  },
+  toast_product_none: {
+    en: 'No products found',
+    fr: 'Aucun produit trouvé',
   },
   top: {
     en: 'Top',

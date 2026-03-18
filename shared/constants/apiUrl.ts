@@ -21,10 +21,20 @@ export const urls = {
   // characteristic
   characteristic_get_all: '/characteristic',
   characteristic_get_by_ids: '/characteristic/ids',
-  characteristic_get_by_type: '/characteristic/type/:type',
+  characteristic_get_by_type: '/characteristic/type/:id',
   characteristic_create: '/characteristic',
   characteristic_update: '/characteristic/:id',
   characteristic_delete: '/characteristic/:id',
+
+  // product
+  product_get_all: '/product',
+  product_get_top: '/product/top',
+  product_get_by_category: '/product/category/:id',
+  product_get_by_id: '/product/:id',
+  product_create: '/product',
+  product_update: '/product/:id',
+  product_delete: '/product/:id',
+  product_reorder: '/product/reorder',
 }
 
 /**

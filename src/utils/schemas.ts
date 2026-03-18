@@ -100,7 +100,7 @@ export const productSchema = () =>
     characteristics_scalability_ids: z.array(z.number().min(1, ERROR.error_required())),
     characteristics_level_ids: z.array(z.number().min(1, ERROR.error_required())),
 
-    image: z.array(z.union([z.instanceof(File), z.url()])).min(1, ERROR.error_required()),
+    image: z.array(z.union([z.instanceof(File), z.string()])).min(1, ERROR.error_required()),
   })
 export const productState = reactive<Partial<ProductSchema>>({
   category_id: undefined,

@@ -103,21 +103,19 @@ export function useCategory() {
    */
   async function find(id: number) {
     try {
-      // get categories
-      const categories = await apiGet<Category[]>(apiUrl('category_get_by_id', id))
+      // get category
+      const category = await apiGet<Category>(apiUrl('category_get_by_id', id))
 
       // check if empty
-      if (!categories || categories.length === 0) throw new Error(translation('toast_category_none'))
+      if (!category) throw new Error(translation('toast_category_none'))
 
       // return
-      return categories
+      return category
 
       // error
     } catch (error: any) {
       console.error('Error fetching category:', error)
       await presentToast(error.message, 'danger')
-
-      return []
     }
   }
 

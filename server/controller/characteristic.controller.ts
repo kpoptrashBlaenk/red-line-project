@@ -34,7 +34,7 @@ export default class CharacteristicController {
 
   getByType = async (req: Request, res: Response) => {
     try {
-      const type = req.params.type as CharacteristicType
+      const type = req.params.id as CharacteristicType
 
       const data = await this.characteristicService.findByType(type)
 

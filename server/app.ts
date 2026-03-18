@@ -4,6 +4,7 @@ import pool from './database/database'
 import categoryRouter from './routes/category.route'
 import characteristicRouter from './routes/characteristic.route'
 import homeTextRouter from './routes/homeText.route'
+import productRouter from './routes/product.route'
 import promotionRouter from './routes/promotion.route'
 
 export { pool }
@@ -18,5 +19,6 @@ app.use('/api', promotionRouter)
 app.use('/api', homeTextRouter)
 app.use('/api', categoryRouter)
 app.use('/api', characteristicRouter)
+app.use('/api', productRouter)
 
 export default app
