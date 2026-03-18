@@ -1,3 +1,5 @@
+import { CharacteristicType } from '$/types'
+
 export type PromotionRaw = {
   id: number
   title_key: string
@@ -19,4 +21,10 @@ export type CategoryRaw = {
   description_key: string
   image: string
   index: number
+}
+
+export type CharacteristicRaw = {
+  id: number
+  name_key: string
+  type: CharacteristicType
 }

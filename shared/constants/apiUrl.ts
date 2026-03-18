@@ -17,6 +17,14 @@ export const urls = {
   category_update: '/category/:id',
   category_delete: '/category/:id',
   category_reorder: '/category/reorder',
+
+  // characteristic
+  characteristic_get_all: '/characteristic',
+  characteristic_get_by_ids: '/characteristic/ids',
+  characteristic_get_by_type: '/characteristic/type/:type',
+  characteristic_create: '/characteristic',
+  characteristic_update: '/characteristic/:id',
+  characteristic_delete: '/characteristic/:id',
 }
 
 /**
@@ -25,7 +33,7 @@ export const urls = {
  * @param urlKey The {@link urls} key to get the url
  * @param id Replace :id with the actual id in the frontend
  */
-export default function (urlKey: keyof typeof urls, id?: number) {
+export default function (urlKey: keyof typeof urls, id?: number | string) {
   const url = `http://localhost:3000/api${urls[urlKey]}`
 
   return id ? url.replace(':id', id.toString()) : url
