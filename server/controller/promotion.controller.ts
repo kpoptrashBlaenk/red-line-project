@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { PromotionService } from '../service/promotion.service';
+import { CreatePromotionInput } from '../types/promotion';
 import { Promotion } from '$/types';
 
 export default class PromotionController {
@@ -10,7 +11,7 @@ export default class PromotionController {
   }
 
   // Méthode pour récupérer toutes les promotions
-  async getAll(req: Request, res: Response) {
+  getAll = async (req: Request, res: Response) => {
     try {
       const promotions = await this.promotionService.getAllPromotions();
       res.status(200).json(promotions);
@@ -21,8 +22,9 @@ export default class PromotionController {
   }
 
   // Méthode pour récupérer une promotion par ID
-  async getById(req: Request, res: Response) {
-    const { id } = req.params;
+  getById = async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+    console.log(id)
     try {
       const promotion = await this.promotionService.getPromotionById(id);
       if (!promotion) {
@@ -36,8 +38,8 @@ export default class PromotionController {
   }
 
   // Méthode pour créer une promotion
-  async create(req: Request, res: Response) {
-    const promotionBody = req.body as Promotion;
+  create = async (req: Request, res: Response) => {
+    const promotionBody = req.body as CreatePromotionInput;
     try {
       const newPromotion = await this.promotionService.createPromotion(promotionBody);
       res.status(201).json(newPromotion);
@@ -48,8 +50,8 @@ export default class PromotionController {
   }
 
   // Méthode pour mettre à jour une promotion
-  async update(req: Request, res: Response) {
-    const { id } = req.params;
+  update = async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
     const promotionBody = req.body as Promotion;
     try {
       const updatedPromotion = await this.promotionService.updatePromotion(id, promotionBody);
@@ -64,8 +66,8 @@ export default class PromotionController {
   }
 
   // Méthode pour supprimer une promotion
-  async delete(req: Request, res: Response) {
-    const { id } = req.params;
+  delete = async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
     try {
       const result = await this.promotionService.deletePromotion(id);
       if (!result) {
