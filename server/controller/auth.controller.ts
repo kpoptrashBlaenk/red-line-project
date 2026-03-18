@@ -141,6 +141,26 @@ export default class UserController {
         res.json(result);
     }
 
+    async reset(req: Request, res: Response){
+        const {password, email} = req.body;
+        try {
+            const existingUser = this.authService.getUserByEmail(email);
+
+            if (existingUser != null) {
+            return res.status(400).json({ message: "User doesn't exist" });
+            }
+
+            const cryptedPassword = await this.authService.cryptPassword(password);
+
+            const result = await this.authService.updateUserPassword(cryptedPassword, existingUser);
+
+            res.status(201).json(result);
+        } catch (error) {
+            console.error('Error reset password:', error);
+            res.status(500).json({ error: 'Failed to reset the password' });
+        }
+    }
+
     /*async verify(req: Request, res: Response){
         const authHeader = req.headers.authorization;
 

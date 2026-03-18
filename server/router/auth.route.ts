@@ -10,9 +10,11 @@ router.delete('/auth/delete/:token', controller.delete);
 
 router.put('/auth/login', controller.login);
 
-router.put('/auth/logout', controller.logOut)
+router.put('/auth/logout', controller.logOut);
 
 router.put('/auth/me/:token', controller.me);
+
+router.put('/auth/reset', );
 
 //router.get('/auth/verify/:token', controller.verify);
 
