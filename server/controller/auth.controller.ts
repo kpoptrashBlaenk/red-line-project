@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { AuthService } from '../services/auth.service';
 import { User } from '../types/user';
-import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 const SECRET = process.env.JWT_SECRET!;
@@ -22,7 +21,7 @@ export default class UserController {
             return res.status(400).json({ message: "Email already used" });
             }
 
-            const hashedPassword = await bcrypt.hash(userBody.password, 10);
+            const hashedPassword = await this.authService.cryptPassword(userBody.password);
 
             const token = jwt.sign(
             { id: userBody.id, email: userBody.email },
@@ -32,7 +31,7 @@ export default class UserController {
 
             userBody.password = hashedPassword;
 
-            userBody.is_verified = false;
+            //userBody.is_verified = false;
 
             userBody.token = token;
 
@@ -45,6 +44,24 @@ export default class UserController {
         }
     }
 
+    async delete(req: Request, res: Response){
+        const userBody = req.body;
+        try {
+           const existingUser = await this.authService.getUserByJWT(userBody.token);
+
+            if (existingUser == null) {
+                return res.status(400).json({ message: "User doesn't exist" });
+            }
+
+            const result = await this.authService.deleteUser(userBody.id);
+
+            res.status(201).json(result);
+        } catch (error) {
+            console.error('Error deleting user:', error)
+            res.status(500).json({ error: 'Failed to delete user' })
+        }
+    }
+
     async login(req: Request, res: Response){
         const { email, password} = req.body
         try {
@@ -54,25 +71,29 @@ export default class UserController {
                 return res.status(400).json({ message: "Email doesn't exist" });
             }
 
-            if(!existingUser.is_verified){
+            /*if(!existingUser.is_verified){
                 return res.status(500).json({ error: 'User has not verified' });
-            }
+            }*/
 
-            const passwordCorrect = bcrypt.compare(password, existingUser.password);
+            const passwordCorrect = this.authService.verifyPassword(password, existingUser.password);
 
             if(!passwordCorrect){
                 return res.status(500).json({ error: 'Failed to login user' })
             }
 
-            const token = jwt.sign(
-            { id: existingUser.id, email: existingUser.email },
-            SECRET,
-            { expiresIn: "1h" }
-            );
+            const authHeader = req.headers.authorization;
 
-            const result = await this.authService.updateUser(token, existingUser)
+            if (!authHeader) {
+            return res.status(401).json({ message: "Non autorisé" });
+            }
 
-            res.status(201).json(result);
+            const token = authHeader.split(" ")[1];
+
+            const decoded = jwt.verify(token, SECRET!);
+
+            if(decoded){
+                res.status(201).json(existingUser);
+            }
         } catch (error) {
             console.error('Error login user:', error)
             res.status(500).json({ error: 'Failed to login user' })
@@ -94,7 +115,7 @@ export default class UserController {
             return res.status(400).json({ message: "User doesn't exist" });
         }
         
-        const result = await this.authService.updateUser(null, existingUser);
+        const result = await this.authService.updateUserToken(null, existingUser);
 
         if (result == null) {
             return res.status(401).json({ message: "Token invalide" });
@@ -120,7 +141,7 @@ export default class UserController {
         res.json(result);
     }
 
-    async verify(req: Request, res: Response){
+    /*async verify(req: Request, res: Response){
         const authHeader = req.headers.authorization;
 
         if(!authHeader){
@@ -142,5 +163,5 @@ export default class UserController {
         }
 
         res.json(result);
-    }
+    }*/
 }

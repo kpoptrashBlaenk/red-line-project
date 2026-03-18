@@ -6,6 +6,6 @@ export interface User{
     prefix: string
     phone: string
     password: string
-    is_verified: boolean
+    admin: boolean
     token: string | null
 }
