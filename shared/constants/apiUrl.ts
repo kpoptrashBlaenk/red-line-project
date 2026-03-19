@@ -35,6 +35,15 @@ export const urls = {
   product_update: '/product/:id',
   product_delete: '/product/:id',
   product_reorder: '/product/reorder',
+
+  // auth
+  auth_register: '/auth/register',
+  auth_login: '/auth/login',
+  auth_restore: '/auth/restore',
+  auth_verify_password: '/auth/verify-password',
+  auth_forgot_password: '/auth/forgot-password',
+  auth_reset_password: '/auth/reset-password',
+  auth_delete: '/auth/delete',
 }
 
 /**

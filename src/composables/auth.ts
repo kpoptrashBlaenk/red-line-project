@@ -1,7 +1,8 @@
+import apiUrl from '$/constants/apiUrl'
 import { User, VerifyPassword } from '$/types'
-import { userFixtures } from '@/constants/fixtures'
 import { useUserStore } from '@/stores/user'
 import { FormField } from '@/types'
+import { apiDelete, apiPost } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { ForgotPasswordSchema, LoginSchema, RegisterSchema, ResetPasswordSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
@@ -93,15 +94,18 @@ export function useAuth() {
    * @param state The state that tracks the new values
    */
   async function register(state: RegisterSchema) {
-    state
-    // register which returns user
+    try {
+      const user = await apiPost<User>(apiUrl('auth_register'), state)
+      if (user) {
+        userStore.setUser(user)
+        rememberUser(user.token)
+        return user
+      }
 
-    const user: User = userFixtures[1]
-
-    if (user) {
-      userStore.setUser(user)
-      rememberUser(user.token)
-      return user
+      // error
+    } catch (error: any) {
+      console.error('Error registering:', error)
+      await presentToast(error.message, 'danger')
     }
   }
 
@@ -111,15 +115,18 @@ export function useAuth() {
    * @param state The state that tracks the new values
    */
   async function login(state: LoginSchema) {
-    state
-    // login which returns user
+    try {
+      const user = await apiPost<User>(apiUrl('auth_login'), state)
+      if (user) {
+        userStore.setUser(user)
+        rememberUser(user.token)
+        return user
+      }
 
-    const user: User = userFixtures[1]
-
-    if (user) {
-      userStore.setUser(user)
-      rememberUser(user.token)
-      return user
+      // login
+    } catch (error: any) {
+      console.error('Error logging in:', error)
+      await presentToast(error.message, 'danger')
     }
   }
 
@@ -128,16 +135,20 @@ export function useAuth() {
    */
   async function restore() {
     const token = localStorage.getItem('token')
-    // login which returns user
 
-    if (token) {
-      const user: User = userFixtures[1]
-
+    if (!token) return
+    try {
+      const user = await apiPost<User>(apiUrl('auth_restore'), { token })
       if (user) {
         userStore.setUser(user)
         rememberUser(user.token)
         return user
       }
+
+      // error
+    } catch (error: any) {
+      console.error('Error restoring session:', error)
+      localStorage.removeItem('token')
     }
   }
 
@@ -161,10 +172,16 @@ export function useAuth() {
    * Verify password
    */
   async function verifyPassword(password: string) {
-    password
-    // use token to verify if password is correct
+    try {
+      const result = await apiPost<boolean>(apiUrl('auth_verify_password'), { password })
+      return result as VerifyPassword
 
-    return true as VerifyPassword
+      // error
+    } catch (error: any) {
+      console.error('Error verifying password:', error)
+      await presentToast(error.message, 'danger')
+      return false as VerifyPassword
+    }
   }
 
   /**
@@ -185,10 +202,15 @@ export function useAuth() {
    * Forgot password
    */
   async function forgotPassword(state: ForgotPasswordSchema) {
-    state
-    // send email to password, if email doesnt exist, ignore
+    try {
+      await apiPost(apiUrl('auth_forgot_password'), state)
+      presentToast(translation('toast_reset_link'), 'success')
 
-    presentToast(translation('toast_reset_link'), 'success')
+      // error
+    } catch (error: any) {
+      console.error('Error sending reset link:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -219,17 +241,27 @@ export function useAuth() {
    * Reset password
    */
   async function resetPassword(token: string, state: ResetPasswordSchema) {
-    token
-    state
-    // verify token and reset password
+    try {
+      await apiPost(apiUrl('auth_reset_password'), { token, ...state })
+      presentToast(translation('toast_password_reset'), 'success')
 
-    presentToast(translation('toast_password_reset'), 'success')
+      // error
+    } catch (error: any) {
+      console.error('Error resetting password:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   async function deleteUser() {
-    logout()
+    try {
+      await apiDelete(apiUrl('auth_delete'))
+      await logout()
 
-    // delete user from backend
+      // error
+    } catch (error: any) {
+      console.error('Error deleting user:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   return {

@@ -1,3 +1,4 @@
+import authRouter from './routes/auth.route'
 import cors from 'cors'
 import express from 'express'
 import pool from './database/database'
@@ -20,5 +21,6 @@ app.use('/api', homeTextRouter)
 app.use('/api', categoryRouter)
 app.use('/api', characteristicRouter)
 app.use('/api', productRouter)
+app.use('/api', authRouter)
 
 export default app
