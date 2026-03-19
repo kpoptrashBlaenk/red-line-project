@@ -144,6 +144,13 @@ GROUP BY
   async findByCategory(categoryId: number) {
     const result = await this.findAll()
 
+    console.log(
+      result.filter((product) => {
+        console.log(product.category.id, categoryId, product.category.id === categoryId)
+        return product.category.id === categoryId
+      }),
+    )
+
     return this.attachCharacteristics(result.filter((product) => product.category.id === categoryId))
   }
 

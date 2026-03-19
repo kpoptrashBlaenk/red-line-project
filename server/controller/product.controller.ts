@@ -38,7 +38,7 @@ export default class ProductController {
 
   getByCategory = async (req: Request, res: Response) => {
     try {
-      const categoryId = parseInt(req.params.categoryId)
+      const categoryId = parseInt(req.params.id)
 
       const data = await this.productService.findByCategory(categoryId)
 
