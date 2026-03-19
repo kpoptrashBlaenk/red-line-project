@@ -32,8 +32,8 @@
         :context="page ? 'page-price' : 'modal-price'"
         color="tertiary"
         :label="translation('price')"
-        :min="[...products].sort((a, b) => a.price - b.price)[0].price"
-        :max="[...products].sort((a, b) => b.price - a.price)[0].price"
+        :min="+[...products].sort((a, b) => a.price - b.price)[0].price"
+        :max="+[...products].sort((a, b) => b.price - a.price)[0].price"
         :default="searchFilterStore.selectedPriceRange"
         :on-update="searchFilterStore.setSelectedPriceRange"
       />
