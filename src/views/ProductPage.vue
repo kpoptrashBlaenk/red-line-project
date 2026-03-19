@@ -130,7 +130,7 @@ const similarProducts = computed(() => {
 })
 
 /* Lifecycle Hooks */
-onMounted(() => onRefresh)
+onMounted(onRefresh)
 
 /* Functions */
 function addToCheckout() {

@@ -138,34 +138,25 @@ GROUP BY
   async findAll() {
     const result = await pool.query<Product>(`${this.baseSelect} ORDER BY p."index" ASC`)
 
-    return this.attachCharacteristics(result.rows)
+    return await this.attachCharacteristics(result.rows)
   }
 
   async findByCategory(categoryId: number) {
     const result = await this.findAll()
 
-    console.log(
-      result.filter((product) => {
-        console.log(product.category.id, categoryId, product.category.id === categoryId)
-        return product.category.id === categoryId
-      }),
-    )
-
-    return this.attachCharacteristics(result.filter((product) => product.category.id === categoryId))
+    return await this.attachCharacteristics(result.filter((product) => product.category.id === categoryId))
   }
 
   async findTop() {
     const result = await this.findAll()
 
-    return this.attachCharacteristics(result.filter((product) => product.top))
+    return await this.attachCharacteristics(result.filter((product) => product.top))
   }
 
   async findById(id: number) {
-    const result = await pool.query<Product>(`${this.baseSelect} WHERE p.id = $1`, [id])
+    const result = await this.findAll()
 
-    const products = await this.attachCharacteristics(result.rows)
-
-    return products[0] ?? null
+    return await this.attachCharacteristics(result.filter((product) => product.id === id))
   }
 
   async create(body: ProductBody) {
