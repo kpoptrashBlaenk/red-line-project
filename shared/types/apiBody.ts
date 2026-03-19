@@ -36,7 +36,7 @@ export type CategoryBody = Omit<CategorySchema, 'image'> & ImageString
 /**
  * Body for product api
  */
-export type ProductBody = Omit<ProductSchema, 'image'> & ImageString
+export type ProductBody = Omit<ProductSchema, 'image'> & ImageString & { first: 'multer' | 'body' }
 
 /**
  * Body for characteristics api

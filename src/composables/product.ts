@@ -326,7 +326,8 @@ export function useProduct() {
       state.characteristics_performance_ids.forEach((id) => formData.append('characteristics_performance_ids', String(id)))
       state.characteristics_scalability_ids.forEach((id) => formData.append('characteristics_scalability_ids', String(id)))
       state.characteristics_level_ids.forEach((id) => formData.append('characteristics_level_ids', String(id)))
-      state.image.forEach((file) => formData.append('image', file as any))
+      state.image.forEach((file) => formData.append('image', file as File))
+      formData.append('first', 'multer')
 
       // create product
       await apiPost(apiUrl('product_create'), formData, {
@@ -370,6 +371,7 @@ export function useProduct() {
       state.characteristics_scalability_ids.forEach((id) => formData.append('characteristics_scalability_ids', String(id)))
       state.characteristics_level_ids.forEach((id) => formData.append('characteristics_level_ids', String(id)))
       state.image.forEach((file) => formData.append('image', file as any))
+      formData.append('first', typeof state.image[0] === 'string' ? 'body' : 'multer')
 
       await apiPut(apiUrl('product_update', id), formData, {
         headers: { 'Content-Type': 'multipart/form-data' },

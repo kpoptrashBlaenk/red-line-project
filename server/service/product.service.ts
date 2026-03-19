@@ -49,7 +49,7 @@ SELECT
   ) AS description_security,
 
   COALESCE(
-    json_agg(pi.image) FILTER (WHERE pi.id IS NOT NULL),
+    json_agg(pi.image ORDER BY pi.first DESC) FILTER (WHERE pi.id IS NOT NULL),
     '[]'
   ) AS image
 
@@ -142,24 +142,15 @@ GROUP BY
   }
 
   async findByCategory(categoryId: number) {
-    const result = await pool.query<Product>(
-      `${this.baseSelect}
-       WHERE p.category_id = $1
-       ORDER BY p."index" ASC`,
-      [categoryId],
-    )
+    const result = await this.findAll()
 
-    return this.attachCharacteristics(result.rows)
+    return this.attachCharacteristics(result.filter((product) => product.category.id === categoryId))
   }
 
   async findTop() {
-    const result = await pool.query<Product>(
-      `${this.baseSelect}
-       WHERE p.top = true
-       ORDER BY p."index" ASC`,
-    )
+    const result = await this.findAll()
 
-    return this.attachCharacteristics(result.rows)
+    return this.attachCharacteristics(result.filter((product) => product.top))
   }
 
   async findById(id: number) {
@@ -252,11 +243,11 @@ GROUP BY
   }
 
   private async insertImages(productId: number, images: string[]) {
-    images.forEach(async (image) => {
+    images.forEach(async (image, index) => {
       await pool.query(
-        `INSERT INTO product_image (product_id, image)
-         VALUES ($1, $2)`,
-        [productId, image],
+        `INSERT INTO product_image (product_id, image, first)
+         VALUES ($1, $2, $3)`,
+        [productId, image, index === 0],
       )
     })
   }
@@ -270,12 +261,13 @@ GROUP BY
     const images = await pool.query<ProductImageRaw>(`SELECT * FROM product_image WHERE product_id = $1`, [id])
 
     // delete removed images
-    images.rows
-      .filter((image) => !body.image.includes(image.image))
-      .forEach(async (image) => {
-        await pool.query(`DELETE FROM product_image WHERE image = $1`, [image.image])
+    images.rows.forEach(async (image) => {
+      await pool.query(`DELETE FROM product_image WHERE image = $1`, [image.image])
+
+      if (!body.image.includes(image.image)) {
         this.imageService.delete(image.image)
-      })
+      }
+    })
 
     // update
     await pool.query(
@@ -293,7 +285,11 @@ GROUP BY
     )
 
     // image updates
-    await this.insertImages(id, multerImages)
+    const existingImages = body.image === undefined ? [] : Array.isArray(body.image) ? body.image : [body.image]
+    await this.insertImages(
+      id,
+      body.first === 'body' ? [...existingImages, ...multerImages] : [...multerImages, ...existingImages],
+    )
 
     // dictionary updates
     await this.dictionaryService.update({

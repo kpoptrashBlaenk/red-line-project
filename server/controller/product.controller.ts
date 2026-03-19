@@ -81,8 +81,6 @@ export default class ProductController {
       const body = req.body as ProductBody
       const images = req.files as Express.Multer.File[]
 
-      body.image = Array.isArray(body.image) ? body.image : body.image ? [body.image] : []
-
       await this.productService.update(
         id,
         body,

@@ -1,7 +1,7 @@
 import apiUrl from '$/constants/apiUrl'
 import { Characteristic, CharacteristicType } from '$/types'
 import { FormField } from '@/types'
-import { apiDelete, apiGet, apiPost } from '@/utils/api'
+import { apiDelete, apiGet, apiPost, apiPut } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { CharacteristicSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
@@ -144,7 +144,7 @@ export function useCharacteristic() {
   async function modify(id: number, state: CharacteristicSchema) {
     try {
       // create characteristic
-      await apiPost(apiUrl('characteristic_update', id), state)
+      await apiPut(apiUrl('characteristic_update', id), state)
 
       // toast
       await presentToast(translation('toast_modified'), 'success')

@@ -65,7 +65,7 @@ export const categorySchema = () =>
     description_en: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
     description_fr: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
 
-    image: z.array(z.union([z.instanceof(File), z.url()])).length(1, ERROR.error_required()),
+    image: z.array(z.union([z.instanceof(File), z.string()])).length(1, ERROR.error_required()),
   })
 export const categoryState = reactive<Partial<CategorySchema>>({
   name_en: undefined,
