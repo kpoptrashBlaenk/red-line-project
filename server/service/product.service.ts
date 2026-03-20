@@ -156,7 +156,7 @@ GROUP BY
   async findById(id: number) {
     const result = await this.findAll()
 
-    return await this.attachCharacteristics(result.filter((product) => product.id === id))
+    return (await this.attachCharacteristics(result.filter((product) => product.id === id)))[0]
   }
 
   async create(body: ProductBody) {

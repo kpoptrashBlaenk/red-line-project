@@ -1,5 +1,5 @@
 <template>
-  <IonList>
+  <IonList v-if="paymentMethods.length > 0">
     <IonRadioGroup :value="selected?.id">
       <IonItem v-for="(paymentMethod, key) in paymentMethods" :key @click="$emit('update:payment_method', paymentMethod)">
         <IonRadio :value="paymentMethod.id">

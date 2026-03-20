@@ -85,3 +85,23 @@ export type PaymentMethodRaw = {
   last4: string
   expiration: string
 }
+
+export type SubscriptionRaw = {
+  id: number
+  product_id: number
+  user_id: number
+  length: string
+  users: string
+  amount: number
+  price: number
+  active: boolean
+  renews_at: Date
+}
+
+export type OrderRaw = {
+  id: number
+  created_at: Date
+  user_id: number
+  address_id: number
+  payment_method_id: number
+}

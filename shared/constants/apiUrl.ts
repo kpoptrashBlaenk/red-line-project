@@ -61,6 +61,16 @@ export const urls = {
   payment_method_get_all: '/payment-method',
   payment_method_create: '/payment-method',
   payment_method_delete: '/payment-method/:id',
+
+  // order
+  order_get_all: '/order',
+  order_create_intent: '/order/intent',
+  order_confirm: '/order/confirm',
+  order_invoice: '/order/:id/invoice',
+  subscription_get_all: '/subscription',
+  subscription_reactivate: '/subscription/reactivate',
+  subscription_deactivate: '/subscription/deactivate',
+  subscription_modify: '/subscription/:id',
 }
 
 /**

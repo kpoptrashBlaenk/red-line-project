@@ -1,5 +1,5 @@
 <template>
-  <IonList>
+  <IonList v-if="addresses.length > 0">
     <IonRadioGroup :value="selected?.id">
       <IonItem v-for="(address, key) in addresses" :key @click="$emit('update:address', address)">
         <IonRadio :value="address.id">

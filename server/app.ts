@@ -6,6 +6,7 @@ import authRouter from './routes/auth.route'
 import categoryRouter from './routes/category.route'
 import characteristicRouter from './routes/characteristic.route'
 import homeTextRouter from './routes/homeText.route'
+import orderRouter from './routes/order.route'
 import paymentRouter from './routes/payment.route'
 import productRouter from './routes/product.route'
 import promotionRouter from './routes/promotion.route'
@@ -28,5 +29,6 @@ app.use('/v1', authRouter)
 app.use('/v1', userRouter)
 app.use('/v1', addressRouter)
 app.use('/v1', paymentRouter)
+app.use('/v1', orderRouter)
 
 export default app

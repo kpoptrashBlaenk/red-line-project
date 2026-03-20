@@ -196,6 +196,10 @@ const translationKeys = {
   toast_category_none: 'toast_category_none',
   toast_characteristic_none: 'toast_characteristic_none',
   toast_product_none: 'toast_product_none',
+  toast_payment_failed: 'toast_payment_failed',
+  toast_order_success: 'toast_order_success',
+  toast_subscription_reactivated: 'toast_subscription_reactivated',
+  toast_subscription_deactivated: 'toast_subscription_deactivated',
   top: 'top',
   total: 'total',
   try_again: 'try_again',
@@ -879,6 +883,22 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   toast_product_none: {
     en: 'No products found',
     fr: 'Aucun produit trouvé',
+  },
+  toast_payment_failed: {
+    en: 'Payment failed',
+    fr: 'Paiement échoué',
+  },
+  toast_order_success: {
+    en: 'Order placed successfully',
+    fr: 'Commande passée avec succès',
+  },
+  toast_subscription_reactivated: {
+    en: 'Subscription reactivated',
+    fr: 'Abonnement réactivé',
+  },
+  toast_subscription_deactivated: {
+    en: 'Subscription deactivated',
+    fr: 'Abonnement désactivé',
   },
   top: {
     en: 'Top',
