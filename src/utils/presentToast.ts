@@ -1,4 +1,5 @@
 import { toastController } from '@ionic/vue'
+import { alertCircleOutline, checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Create a Toast at the bottom to give feedback for api interaction
@@ -7,10 +8,10 @@ import { toastController } from '@ionic/vue'
  * @param type success = green, danger = red
  * @param icon Icon to show in toast
  */
-export default async function (message: string, type: 'success' | 'danger', icon: string) {
+export default async function (message: string, type: 'success' | 'danger') {
   const toast = await toastController.create({
     message,
-    icon,
+    icon: type === 'success' ? checkmarkCircleOutline : alertCircleOutline,
     translucent: true,
     duration: 750,
     cssClass: `toast-${type} text-lg`,

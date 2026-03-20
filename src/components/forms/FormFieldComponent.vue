@@ -6,6 +6,7 @@
   <TextAreaComponent v-else-if="field.element === 'textarea'" :field :state :schema class="col-span-4" />
   <ToggleComponent v-else-if="field.element === 'toggle'" :field :state :schema class="col-span-4" />
   <SelectComponent v-else-if="field.element === 'select'" :field :state :schema class="col-span-4" />
+  <PaymentComponent v-else-if="field.element === 'payment'" :field :state :schema class="col-span-4" />
 </template>
 
 <script setup lang="ts">
@@ -19,6 +20,7 @@ import PhoneComponent from './PhoneComponent.vue'
 import SelectComponent from './SelectComponent.vue'
 import TextAreaComponent from './TextAreaComponent.vue'
 import ToggleComponent from './ToggleComponent.vue'
+import PaymentComponent from './PaymentComponent.vue'
 
 /* Props */
 defineProps<{

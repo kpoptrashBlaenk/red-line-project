@@ -1,80 +1,95 @@
-import { Request, Response } from 'express';
-import { PromotionService } from '../service/promotion.service';
-import { Promotion } from '$/types';
+import { PromotionBody } from '$/types'
+import { Request, Response } from 'express'
+import { PromotionService } from '../service/promotion.service'
 
 export default class PromotionController {
-  private promotionService: PromotionService;
+  private promotionService: PromotionService
 
   constructor() {
-    this.promotionService = new PromotionService();
+    this.promotionService = new PromotionService()
   }
 
-  // Méthode pour récupérer toutes les promotions
-  async getAll(req: Request, res: Response) {
+  getAll = async (req: Request, res: Response) => {
     try {
-      const promotions = await this.promotionService.getAllPromotions();
-      res.status(200).json(promotions);
+      const promotions = await this.promotionService.findAll()
+
+      return res.status(200).json(promotions)
+
+      // error
     } catch (error) {
-      console.error('Error fetching promotionals:', error);
-      res.status(500).json({ error: 'Internal Server Error', details: error });
+      console.error('Error fetching promotions:', error)
+      return res.status(500).json({ message: 'Internal Server Error' })
     }
   }
 
-  // Méthode pour récupérer une promotion par ID
-  async getById(req: Request, res: Response) {
-    const { id } = req.params;
+  create = async (req: Request, res: Response) => {
     try {
-      const promotion = await this.promotionService.getPromotionById(id);
-      if (!promotion) {
-        return res.status(404).json({ error: 'Promotional item not found' });
+      const body = req.body as PromotionBody
+      const images = req.files as Express.Multer.File[]
+
+      body.image = [images[0].path]
+
+      await this.promotionService.create(body)
+
+      return res.sendStatus(201)
+
+      // error
+    } catch (error) {
+      console.error('Error creating promotion:', error)
+      return res.status(500).json({ message: 'Internal Server Error' })
+    }
+  }
+
+  update = async (req: Request, res: Response) => {
+    try {
+      const id = parseInt(req.params.id)
+      const body = req.body as PromotionBody
+      const images = req.files as Express.Multer.File[]
+
+      // check if image is updated
+      if (images && images.length > 0) {
+        body.image = [images[0].path]
+        await this.promotionService.update(id, body, true)
+      } else {
+        await this.promotionService.update(id, body, false)
       }
-      res.status(200).json(promotion);
+
+      return res.sendStatus(204)
+
+      // error
     } catch (error) {
-      console.error('Error fetching promotional item:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      console.error('Error updating promotion:', error)
+      return res.status(500).json({ message: 'Internal Server Error' })
     }
   }
 
-  // Méthode pour créer une promotion
-  async create(req: Request, res: Response) {
-    const promotionBody = req.body as Promotion;
+  delete = async (req: Request, res: Response) => {
     try {
-      const newPromotion = await this.promotionService.createPromotion(promotionBody);
-      res.status(201).json(newPromotion);
+      const id = parseInt(req.params.id)
+
+      await this.promotionService.delete(id)
+
+      return res.sendStatus(204)
+
+      // error
     } catch (error) {
-      console.error('Error creating promotional item:', error);
-      res.status(500).json({ error: 'Failed to create promotional item' });
+      console.error('Error deleting promotion:', error)
+      return res.status(500).json({ message: 'Internal Server Error' })
     }
   }
 
-  // Méthode pour mettre à jour une promotion
-  async update(req: Request, res: Response) {
-    const { id } = req.params;
-    const promotionBody = req.body as Promotion;
+  reorder = async (req: Request, res: Response) => {
     try {
-      const updatedPromotion = await this.promotionService.updatePromotion(id, promotionBody);
-      if (!updatedPromotion) {
-        return res.status(404).json({ error: 'Promotional item not found' });
-      }
-      res.status(200).json(updatedPromotion);
-    } catch (error) {
-      console.error('Error updating promotional item:', error);
-      res.status(500).json({ error: 'Failed to update promotional item' });
-    }
-  }
+      const ids = req.body as number[]
 
-  // Méthode pour supprimer une promotion
-  async delete(req: Request, res: Response) {
-    const { id } = req.params;
-    try {
-      const result = await this.promotionService.deletePromotion(id);
-      if (!result) {
-        return res.status(404).json({ error: 'Promotional item not found' });
-      }
-      res.status(200).json({ message: 'Promotional item deleted successfully' });
+      await this.promotionService.reorder(ids)
+
+      return res.sendStatus(204)
+
+      // error
     } catch (error) {
-      console.error('Error deleting promotional item:', error);
-      res.status(500).json({ error: 'Failed to delete promotional item' });
+      console.error('Error reordering promotions:', error)
+      return res.status(500).json({ message: 'Internal Server Error' })
     }
   }
 }

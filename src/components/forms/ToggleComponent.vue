@@ -5,7 +5,7 @@
         v-model="state[field.name]"
         :aria-label="field.label"
         label-placement="start"
-        justify="start"
+        justify="space-between"
         fill="solid"
         :error-text="field.error"
         @ionChange="validate"

@@ -47,7 +47,7 @@ const contextItemMap = ref<Record<'address' | 'payment', ContextItem<Address> | 
     value: 'address',
     itemsRef: addresses,
     text: (item: Address) => item.street_address,
-    note: (item: Address) => item.locality,
+    note: (item: Address) => `${item.first_name} ${item.last_name}, ${item.postal_code} ${item.locality}, ${item.country_code}`,
     add: true,
     modify: true,
     remove: true,
@@ -59,7 +59,7 @@ const contextItemMap = ref<Record<'address' | 'payment', ContextItem<Address> | 
     title: translation('payment_methods'),
     value: 'payment',
     itemsRef: paymentMethods,
-    text: (item: PaymentMethod) => item.last4.toString(),
+    text: (item: PaymentMethod) => `**** **** **** ${item.last4}`,
     note: (item: PaymentMethod) => item.expiration,
     add: true,
     remove: true,
@@ -94,14 +94,14 @@ async function onModalOpen(context: 'address' | 'payment', method: ApiMethod, it
     // submit callback
     onSubmit: async (state?: any) => {
       // post
-      if (method === 'post') contextItem.composable.create?.(state)
+      if (method === 'post') await contextItem.composable.create?.(state)
       // put
-      if (method === 'put') contextItem.composable.modify?.(item.id, state)
+      if (method === 'put') await contextItem.composable.modify?.(item.id, state)
       // delete
-      if (method === 'delete') contextItem.composable.remove?.(item.id)
+      if (method === 'delete') await contextItem.composable.remove?.(item.id)
 
       // refetch and dismiss
-      contextItem.itemsRef.value = await contextItem.composable.get?.()
+      contextItemMap.value[context].itemsRef = await contextItem.composable.get?.()
     },
   }
 

@@ -82,14 +82,14 @@ export const useCheckoutStore = defineStore('checkout', {
       return time
     },
 
-    async sendPaymentData() {
-      const { sendPaymentData } = useOrder()
+    async createOrder() {
+      const { createOrder } = useOrder()
 
       if (!this.address || !this.paymentMethod) return
 
-      const approveUrl = await sendPaymentData(this.orders, this.address, this.paymentMethod)
+      const success = await createOrder(this.orders, this.address.id, this.paymentMethod.id)
 
-      window.location.href = approveUrl
+      console.log(success ? 'success' : 'fail')
     },
   },
 })

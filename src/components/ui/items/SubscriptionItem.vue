@@ -22,7 +22,7 @@
 
       <!-- Payment Method -->
       <div class="pt-2">
-        <div class="text-sm">{{ subscription.payment_method.last4 }}</div>
+        <div class="text-sm">{{ `**** **** **** ${subscription.payment_method.last4}` }}</div>
         <div class="text-sm text-gray-300 -mt-1">{{ subscription.payment_method.expiration }}</div>
       </div>
     </div>

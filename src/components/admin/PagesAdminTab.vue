@@ -97,7 +97,7 @@ const contextItemMap = ref<
     title: translation('admin_home_carousel_title'),
     value: 'promotion',
     itemsRef: promotions,
-    image: (item: Promotion) => item.image[0],
+    image: (item: Promotion) => item.image?.[0],
     text: (item: Promotion) => translation(item.title),
     note: (item: Promotion) => translation(item.subtitle),
     reorder: true,
@@ -123,7 +123,7 @@ const contextItemMap = ref<
     title: translation('admin_category_title'),
     value: 'category',
     itemsRef: categories,
-    image: (item: Category) => item.image[0],
+    image: (item: Category) => item.image?.[0],
     text: (item: Category) => translation(item.name),
     note: (item: Category) => translation(item.description),
     reorder: true,
@@ -139,9 +139,9 @@ const contextItemMap = ref<
     title: translation('admin_product_title'),
     value: 'product',
     itemsRef: products,
-    image: (item: Product) => item.image[0],
-    text: (item: Product) => translation(item.name),
-    note: (item: Product) => `${translation(item.description_functionality)} (${item.price}€)`,
+    image: (item: Product) => item.image?.[0],
+    text: (item: Product) => `${translation(item.name)} (${item.price}€)`,
+    note: (item: Product) => translation(item.description_functionality),
     reorder: true,
     add: true,
     modify: true,
@@ -188,14 +188,14 @@ async function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: a
     // submit callback
     onSubmit: async (state?: any) => {
       // post
-      if (method === 'post') contextItem.composable.create?.(state)
+      if (method === 'post') await contextItem.composable.create?.(state)
       // put
-      if (method === 'put') contextItem.composable.modify?.(item.id, state)
+      if (method === 'put') await contextItem.composable.modify?.(item.id, state)
       // delete
-      if (method === 'delete') contextItem.composable.remove?.(item.id)
+      if (method === 'delete') await contextItem.composable.remove?.(item.id)
 
       // refetch and dismiss
-      contextItem.itemsRef.value = await contextItem.composable.get?.()
+      contextItemMap.value[context].itemsRef = await contextItem.composable.get?.()
       modal.value.$el.dismiss()
       alert.value.$el.dismiss()
     },

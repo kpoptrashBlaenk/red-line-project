@@ -4,6 +4,7 @@ import { Language } from '@/types'
 import toTitle from './toTitle'
 
 const translationKeys = {
+  // #
   '404': '404',
 
   // A
@@ -190,6 +191,15 @@ const translationKeys = {
   toast_password_reset: 'toast_password_reset',
   toast_reordered: 'toast_reordered',
   toast_reset_link: 'toast_reset_link',
+  toast_promotion_none: 'toast_promotion_none',
+  toast_home_text_none: 'toast_home_text_none',
+  toast_category_none: 'toast_category_none',
+  toast_characteristic_none: 'toast_characteristic_none',
+  toast_product_none: 'toast_product_none',
+  toast_payment_failed: 'toast_payment_failed',
+  toast_order_success: 'toast_order_success',
+  toast_subscription_reactivated: 'toast_subscription_reactivated',
+  toast_subscription_deactivated: 'toast_subscription_deactivated',
   top: 'top',
   total: 'total',
   try_again: 'try_again',
@@ -211,6 +221,7 @@ const translationKeys = {
 export type TranslationKey = keyof typeof translationKeys
 
 const translations: Record<TranslationKey, Record<Language, string>> = {
+  // #
   '404': {
     en: 'Page not found',
     fr: 'Page non trouvée',
@@ -852,6 +863,42 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   toast_reset_link: {
     en: 'Reset link has been sent',
     fr: 'Lien de réinitialisation evnoyé',
+  },
+  toast_promotion_none: {
+    en: 'No promotions found',
+    fr: 'Aucune promotion trouvée',
+  },
+  toast_home_text_none: {
+    en: 'No home texts found',
+    fr: "Aucun texte d'accueil trouvé",
+  },
+  toast_category_none: {
+    en: 'No categories found',
+    fr: 'Aucune catégorie trouvée',
+  },
+  toast_characteristic_none: {
+    en: 'No characteristics found',
+    fr: 'Aucune caractéristique trouvée',
+  },
+  toast_product_none: {
+    en: 'No products found',
+    fr: 'Aucun produit trouvé',
+  },
+  toast_payment_failed: {
+    en: 'Payment failed',
+    fr: 'Paiement échoué',
+  },
+  toast_order_success: {
+    en: 'Order placed successfully',
+    fr: 'Commande passée avec succès',
+  },
+  toast_subscription_reactivated: {
+    en: 'Subscription reactivated',
+    fr: 'Abonnement réactivé',
+  },
+  toast_subscription_deactivated: {
+    en: 'Subscription deactivated',
+    fr: 'Abonnement désactivé',
   },
   top: {
     en: 'Top',

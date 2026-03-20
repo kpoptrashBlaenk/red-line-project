@@ -1,6 +1,12 @@
-import { Address, Order, PaymentMethod, Subscription } from '$/types'
-import { orderFixtures, subscriptionFixtures } from '@/constants/fixtures'
+import apiUrl from '$/constants/apiUrl'
+import { Order, Subscription } from '$/types'
+import { useCheckoutStore } from '@/stores/checkout'
 import { DraftOrder } from '@/types'
+import { apiGet, apiPost, apiPut } from '@/utils/api'
+import calculatePrice from '@/utils/calculatePrice'
+import presentToast from '@/utils/presentToast'
+import { getStripe } from '@/utils/stripe'
+import translation from '@/utils/translation'
 import { FileTransfer } from '@capacitor/file-transfer'
 import { Directory, Filesystem } from '@capacitor/filesystem'
 
@@ -11,63 +17,173 @@ export function useOrder() {
   /**
    * Send payment data to backend
    */
-  async function sendPaymentData(orders: Record<number, DraftOrder>, address: Address, paymentMethod: PaymentMethod) {
-    // send payment data to backend
-    // receive approval url for paypal
-    orders
-    address
-    paymentMethod
+  async function createOrder(draftOrders: Record<number, DraftOrder>, addressId: number, paymentMethodId: number) {
+    try {
+      const stripe = await getStripe()
 
-    const data = 'approvalUrl'
+      const bodies = Object.values(draftOrders).map((draft) => ({
+        product_id: draft.product.id,
+        address_id: addressId,
+        payment_method_id: paymentMethodId,
+        length: draft.length,
+        users: draft.users,
+        amount: draft.amount,
+        price: calculatePrice(draft.product.price, draft.length, draft.users, draft.amount),
+      }))
 
-    return data
+      // create intent
+      const { client_secret } = await apiPost<{ client_secret: string }>(apiUrl('order_create_intent'), bodies)
+
+      //  confirm with stripe (and 3d secure)
+      const { error, paymentIntent } = await stripe.confirmCardPayment(client_secret)
+
+      if (error) {
+        await presentToast(error.message ?? translation('toast_payment_failed'), 'danger')
+        return false
+      }
+
+      if (paymentIntent?.status !== 'succeeded') {
+        await presentToast(translation('toast_payment_failed'), 'danger')
+        return false
+      }
+
+      // confirm to backend
+      await apiPost(apiUrl('order_confirm'), {
+        payment_intent_id: paymentIntent.id,
+        bodies,
+      })
+
+      useCheckoutStore().clearOrders()
+
+      await presentToast(translation('toast_order_success'), 'success')
+      return true
+    } catch (error: any) {
+      console.error('Error creating order:', error)
+      await presentToast(error.message, 'danger')
+      return false
+    }
   }
 
   /**
    * Get all orders
    */
   async function getOrders() {
-    const orders: Order[] = Object.values(orderFixtures)
+    try {
+      const orders = await apiGet<Order[]>(apiUrl('order_get_all'))
+      return orders ?? []
 
-    return orders
+      // error
+    } catch (error: any) {
+      console.error('Error fetching orders:', error)
+      await presentToast(error.message, 'danger')
+      return []
+    }
   }
 
   async function getSubscriptions() {
-    const subscriptions: Subscription[] = Object.values(subscriptionFixtures)
+    try {
+      const subscriptions = await apiGet<Subscription[]>(apiUrl('subscription_get_all'))
+      return subscriptions ?? []
 
-    return subscriptions
+      // error
+    } catch (error: any) {
+      console.error('Error fetching subscriptions:', error)
+      await presentToast(error.message, 'danger')
+      return []
+    }
+  }
+
+  /**
+   * Reactivate a subscription
+   */
+  async function reactivateSubscription(subscription: Subscription) {
+    try {
+      const result = await apiPost<{ requires_action: boolean; client_secret?: string }>(apiUrl('subscription_reactivate'), {
+        subscription_id: subscription.id,
+      })
+
+      if (result.requires_action && result.client_secret) {
+        const stripe = await getStripe()
+        const { error } = await stripe.confirmCardPayment(result.client_secret)
+
+        if (error) {
+          await presentToast(error.message ?? translation('toast_payment_failed'), 'danger')
+          return false
+        }
+      }
+
+      await presentToast(translation('toast_subscription_reactivated'), 'success')
+      return true
+    } catch (error: any) {
+      console.error('Error reactivating subscription:', error)
+      await presentToast(error.message, 'danger')
+      return false
+    }
   }
 
   /**
    * Deactivate a subscription
    */
   async function deactivateSubscription(subscription: Subscription) {
-    subscription
+    try {
+      await apiPost(apiUrl('subscription_deactivate'), { subscription_id: subscription.id })
+      await presentToast(translation('toast_subscription_deactivated'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error deactivating subscription:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
    * Modify a subscription
    */
   async function modifySubscription(subscriptionId: number, newOrder: DraftOrder) {
-    subscriptionId
-    newOrder
+    try {
+      await apiPut(apiUrl('subscription_modify'), {
+        subscription_id: subscriptionId,
+        length: newOrder.length,
+        users: newOrder.users,
+        amount: newOrder.amount,
+      })
+      await presentToast(translation('toast_modified'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error modifying subscription:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /* Download an order invoice */
   async function downloadOrder(order: Order) {
-    // get filesystem path
-    const fileInfo = await Filesystem.getUri({
-      directory: Directory.Documents,
-      path: `${order.created_at.replace(/[-:TZ.]/g, '').slice(0, 14)}.pdf`,
-    })
+    try {
+      const fileInfo = await Filesystem.getUri({
+        directory: Directory.Documents,
+        path: `${order.created_at.replace(/[-:TZ.]/g, '').slice(0, 14)}.pdf`,
+      })
 
-    // download with file transfer
-    await FileTransfer.downloadFile({
-      url: '',
-      path: fileInfo.uri,
-      progress: false,
-    })
+      await FileTransfer.downloadFile({
+        url: apiUrl('order_invoice', order.id),
+        path: fileInfo.uri,
+        progress: false,
+      })
+
+      // error
+    } catch (error: any) {
+      console.error('Error downloading invoice:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
-  return { sendPaymentData, getOrders, getSubscriptions, deactivateSubscription, modifySubscription, downloadOrder }
+  return {
+    reactivateSubscription,
+    createOrder,
+    getOrders,
+    getSubscriptions,
+    deactivateSubscription,
+    modifySubscription,
+    downloadOrder,
+  }
 }

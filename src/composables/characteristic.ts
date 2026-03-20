@@ -1,10 +1,10 @@
+import apiUrl from '$/constants/apiUrl'
 import { Characteristic, CharacteristicType } from '$/types'
-import { characteristicFixtures } from '@/constants/fixtures'
 import { FormField } from '@/types'
+import { apiDelete, apiGet, apiPost, apiPut } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { CharacteristicSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do characteristic related queries
@@ -44,7 +44,7 @@ export function useCharacteristic() {
       },
       {
         element: 'select',
-        items: CharacteristicType,
+        items: Object.values(CharacteristicType).map((type) => ({ label: type, value: type })),
         itemLabelKey: 'label',
         itemValueKey: 'value',
         name: 'type',
@@ -68,19 +68,51 @@ export function useCharacteristic() {
   }
 
   /**
-   * Get all characteristics
+   * Get all characteristics or by type apparently
    */
   async function get(type?: CharacteristicType) {
-    const characteristics: Characteristic[] = Object.values(characteristicFixtures)
+    try {
+      // get characteristics
+      const characteristics = type
+        ? await apiGet<Characteristic[]>(apiUrl('characteristic_get_by_type', type))
+        : await apiGet<Characteristic[]>(apiUrl('characteristic_get_all'))
 
-    return type ? characteristics.filter((characteristic) => characteristic.type === type) : characteristics
+      // check if empty
+      if (!characteristics || characteristics.length === 0) throw new Error(translation('toast_characteristic_none'))
+
+      // return
+      return characteristics
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching characteristics:', error)
+      await presentToast(error.message, 'danger')
+
+      return []
+    }
   }
 
   /**
    * Find characteristics by id
    */
   async function findMultiple(ids: number[]) {
-    return Object.values(characteristicFixtures).filter((characteristic) => ids.includes(characteristic.id))
+    try {
+      // get characteristics
+      const characteristics = await apiPost<Characteristic[]>(apiUrl('characteristic_get_by_ids'), { ids })
+
+      // check if empty
+      if (!characteristics || characteristics.length === 0) throw new Error(translation('toast_characteristic_none'))
+
+      // return
+      return characteristics
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching characteristic:', error)
+      await presentToast(error.message, 'danger')
+
+      return []
+    }
   }
 
   /**
@@ -89,10 +121,18 @@ export function useCharacteristic() {
    * @param state The state that tracks the new values
    */
   async function create(state: CharacteristicSchema) {
-    // api request
-    state
+    try {
+      // create characteristic
+      await apiPost(apiUrl('characteristic_create'), state)
 
-    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+      // toast
+      await presentToast(translation('toast_added'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching characteristics:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -102,11 +142,18 @@ export function useCharacteristic() {
    * @param state The state that tracks the new values
    */
   async function modify(id: number, state: CharacteristicSchema) {
-    // api request
-    id
-    state
+    try {
+      // create characteristic
+      await apiPut(apiUrl('characteristic_update', id), state)
 
-    await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+      // toast
+      await presentToast(translation('toast_modified'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching characteristics:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -115,10 +162,18 @@ export function useCharacteristic() {
    * @param id The id of the characteristic record
    */
   async function remove(id: number) {
-    // api request
-    id
+    try {
+      // create characteristic
+      await apiDelete(apiUrl('characteristic_delete', id))
 
-    await presentToast(translation('toast_deleted'), 'success', checkmarkCircleOutline)
+      // toast
+      await presentToast(translation('toast_deleted'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error deleting characteristic:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   // return all functions

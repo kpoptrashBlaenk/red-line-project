@@ -1,10 +1,10 @@
+import apiUrl from '$/constants/apiUrl'
 import { CharacteristicType, Product } from '$/types'
-import { productsFixtures } from '@/constants/fixtures'
 import { FormField } from '@/types'
+import { apiDelete, apiGet, apiPost, apiPut } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { ProductSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
 import { useCategory } from './category'
 import { useCharacteristic } from './characteristic'
 
@@ -192,34 +192,90 @@ export function useProduct() {
    * Get all products
    */
   async function get() {
-    const products: Product[] = Object.values(productsFixtures)
+    try {
+      // get products
+      const products = await apiGet<Product[]>(apiUrl('product_get_all'))
 
-    return products ?? []
+      // check if empty
+      if (!products || products.length === 0) throw new Error(translation('toast_product_none'))
+
+      // return
+      return products
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching products:', error)
+      await presentToast(error.message, 'danger')
+
+      return []
+    }
   }
 
   /**
    * Get all products by category
    */
   async function getByCategory(categoryId: number) {
-    return Object.values(productsFixtures).filter((product) => product.category.id === categoryId)
+    try {
+      // get products
+      const products = await apiGet<Product[]>(apiUrl('product_get_by_category', categoryId))
+
+      // check if empty
+      if (!products || products.length === 0) throw new Error(translation('toast_product_none'))
+
+      // return
+      return products
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching products:', error)
+      await presentToast(error.message, 'danger')
+
+      return []
+    }
   }
 
   /**
    * Find product by id
    */
   async function find(id: number) {
-    const product = productsFixtures[id as keyof typeof productsFixtures]
+    try {
+      // get products
+      const product = await apiGet<Product>(apiUrl('product_get_by_id', id))
 
-    return product
+      // check if empty
+      if (!product) throw new Error(translation('toast_product_none'))
+
+      // return
+      return product
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching product:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
    * Get all top products
    */
   async function top() {
-    const products: Product[] = Object.values(productsFixtures).filter((product) => product.top)
+    try {
+      // get products
+      const products = await apiGet<Product[]>(apiUrl('product_get_top'))
 
-    return products ?? []
+      // check if empty
+      if (!products || products.length === 0) throw new Error(translation('toast_product_none'))
+
+      // return
+      return products
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching products:', error)
+      await presentToast(error.message, 'danger')
+
+      return []
+    }
   }
 
   /**
@@ -228,10 +284,20 @@ export function useProduct() {
    * @param items Items in new order
    */
   async function reorder(items: Product[]) {
-    // api request
-    items
+    try {
+      const ids = items.map((item) => item.id)
 
-    await presentToast(translation('toast_reordered'), 'success', checkmarkCircleOutline)
+      // create promotion
+      await apiPut(apiUrl('product_reorder'), ids)
+
+      // toast
+      await presentToast(translation('toast_reordered'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error reordering product:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -240,10 +306,42 @@ export function useProduct() {
    * @param state The state that tracks the new values
    */
   async function create(state: ProductSchema) {
-    // api request
-    state
+    try {
+      // use form because image
+      const formData = new FormData()
 
-    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+      formData.append('name_en', state.name_en)
+      formData.append('name_fr', state.name_fr)
+      formData.append('description_functionality_en', state.description_functionality_en)
+      formData.append('description_functionality_fr', state.description_functionality_fr)
+      formData.append('description_advantage_en', state.description_advantage_en)
+      formData.append('description_advantage_fr', state.description_advantage_fr)
+      formData.append('description_security_en', state.description_security_en)
+      formData.append('description_security_fr', state.description_security_fr)
+      formData.append('category_id', String(state.category_id))
+      formData.append('top', String(state.top))
+      formData.append('priority', String(state.priority))
+      formData.append('price', String(state.price))
+      formData.append('disponible', String(state.disponible))
+      state.characteristics_performance_ids.forEach((id) => formData.append('characteristics_performance_ids', String(id)))
+      state.characteristics_scalability_ids.forEach((id) => formData.append('characteristics_scalability_ids', String(id)))
+      state.characteristics_level_ids.forEach((id) => formData.append('characteristics_level_ids', String(id)))
+      state.image.forEach((file) => formData.append('image', file as File))
+      formData.append('first', 'multer')
+
+      // create product
+      await apiPost(apiUrl('product_create'), formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+
+      // toast
+      await presentToast(translation('toast_added'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching products:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -253,11 +351,39 @@ export function useProduct() {
    * @param state The state that tracks the new values
    */
   async function modify(id: number, state: ProductSchema) {
-    // api request
-    id
-    state
+    try {
+      const formData = new FormData()
 
-    await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+      formData.append('name_en', state.name_en)
+      formData.append('name_fr', state.name_fr)
+      formData.append('description_functionality_en', state.description_functionality_en)
+      formData.append('description_functionality_fr', state.description_functionality_fr)
+      formData.append('description_advantage_en', state.description_advantage_en)
+      formData.append('description_advantage_fr', state.description_advantage_fr)
+      formData.append('description_security_en', state.description_security_en)
+      formData.append('description_security_fr', state.description_security_fr)
+      formData.append('category_id', String(state.category_id))
+      formData.append('top', String(state.top))
+      formData.append('priority', String(state.priority))
+      formData.append('price', String(state.price))
+      formData.append('disponible', String(state.disponible))
+      state.characteristics_performance_ids.forEach((id) => formData.append('characteristics_performance_ids', String(id)))
+      state.characteristics_scalability_ids.forEach((id) => formData.append('characteristics_scalability_ids', String(id)))
+      state.characteristics_level_ids.forEach((id) => formData.append('characteristics_level_ids', String(id)))
+      state.image.forEach((file) => formData.append('image', file as any))
+      formData.append('first', typeof state.image[0] === 'string' ? 'body' : 'multer')
+
+      await apiPut(apiUrl('product_update', id), formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+
+      await presentToast(translation('toast_modified'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error updating product:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -266,10 +392,18 @@ export function useProduct() {
    * @param id The id of the product record
    */
   async function remove(id: number) {
-    // api request
-    id
+    try {
+      // create product
+      await apiDelete(apiUrl('product_delete', id))
 
-    await presentToast(translation('toast_deleted'), 'success', checkmarkCircleOutline)
+      // toast
+      await presentToast(translation('toast_deleted'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error deleting product:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   // return all functions

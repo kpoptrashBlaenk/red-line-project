@@ -1,19 +1,11 @@
-import apiUrl from '$/constants/apiUrl'
 import { useLoadingStore } from '@/stores/loading'
 import { useUserStore } from '@/stores/user'
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
-apiUrl // ignore that (lint)
-
-/**
- * URL of the API
- */
-const API_URL = 'localhost:8100'
 
 /**
  * Created axios instance
  */
 const api: AxiosInstance = axios.create({
-  baseURL: API_URL,
   timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
@@ -39,30 +31,28 @@ api.interceptors.request.use(
   (error: AxiosError) => {
     const loadingStore = useLoadingStore()
     loadingStore.popStack()
+
     Promise.reject(error)
   },
 )
 
 // response interceptor to handle errors
 api.interceptors.response.use(
-  (response: AxiosResponse) => response,
+  (response: AxiosResponse) => {
+    const loadingStore = useLoadingStore()
+    loadingStore.popStack()
+
+    return response
+  },
   (error: AxiosError) => {
     const loadingStore = useLoadingStore()
     loadingStore.popStack()
 
     if (error.response) {
-      const status = error.response.status
-
-      //  unauthorized
-      if (status === 401) {
-        // logout user & notify user that session expired
-        window.location.href = '/auth/login'
-      }
-
       // generic error
       const message = (error.response.data as any)?.message || error.message || 'Something went wrong.'
       // notify user
-      message
+      return Promise.reject(message)
     } else {
       // network error
       // notify user

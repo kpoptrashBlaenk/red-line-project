@@ -130,16 +130,7 @@ const similarProducts = computed(() => {
 })
 
 /* Lifecycle Hooks */
-onMounted(async () => {
-  const id = Number(route.params.id)
-  product.value = await productComposable.find(id)
-
-  characteristics.performance.characteristics = product.value.characteristics_performance
-  characteristics.scalability.characteristics = product.value.characteristics_scalability
-  characteristics.level.characteristics = product.value.characteristics_level
-
-  productComposable.getByCategory(product.value.category.id).then((data) => (products.value = data))
-})
+onMounted(onRefresh)
 
 /* Functions */
 function addToCheckout() {
@@ -151,6 +142,8 @@ function addToCheckout() {
 async function onRefresh(event?: RefresherCustomEvent) {
   const id = Number(route.params.id)
   product.value = await productComposable.find(id)
+
+  if (!product.value) return
 
   characteristics.performance.characteristics = product.value.characteristics_performance
   characteristics.scalability.characteristics = product.value.characteristics_scalability

@@ -15,7 +15,11 @@
       }
     "
   >
-    <div class="grid grid-cols-[80px_1fr_50px] py-3 gap-2 items-start w-full">
+    <div class="grid grid-cols-[80px_1fr_50px] py-3 gap-2 items-start w-full relative">
+      <div v-if="!product.disponible" class="absolute w-full h-full flex justify-center items-center text-3xl font-bold">
+        {{ translation('not_disponible') }}
+      </div>
+
       <!-- Image -->
       <IonImg :src="product.image[0]" class="my-auto" />
 
@@ -29,7 +33,6 @@
       <!-- Price -->
       <div class="font-semibold text-lg text-end">
         <IonLabel color="secondary" :class="{ 'line-through': !product.disponible }">{{ product.price }}€</IonLabel>
-        <IonLabel v-if="!product.disponible" color="tertiary">{{ translation('not_disponible') }}</IonLabel>
       </div>
 
       <!-- Characteristics -->
