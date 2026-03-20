@@ -1,5 +1,6 @@
 import { FormField } from '@/types'
 import { ZodType } from 'zod'
+import { getStripe } from './stripe'
 
 /**
  * Validate a form.
@@ -15,6 +16,25 @@ import { ZodType } from 'zod'
  */
 export async function validateForm(fields: FormField[], state: Record<string, any>, schema: ZodType<any> | undefined) {
   if (!schema) return false
+
+  if ('cardNumberElement' in state) {
+    const stripe = await getStripe()
+
+    if (!stripe) return false
+
+    const { paymentMethod, error } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: state.cardNumberElement,
+    })
+
+    console.log(paymentMethod, error)
+
+    if (error) return false
+
+    state.token = paymentMethod.id
+  }
+
+  console.log(state)
 
   const result = await schema.safeParseAsync(state)
 

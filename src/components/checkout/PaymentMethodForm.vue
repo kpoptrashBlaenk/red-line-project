@@ -4,7 +4,7 @@
       <IonItem v-for="(paymentMethod, key) in paymentMethods" :key @click="$emit('update:payment_method', paymentMethod)">
         <IonRadio :value="paymentMethod.id">
           <div>{{ paymentMethod.name }}</div>
-          <div>{{ paymentMethod.last4 }}</div>
+          <div>{{ `**** **** **** ${paymentMethod.last4}` }}</div>
           <div>{{ paymentMethod.expiration }}</div>
         </IonRadio>
       </IonItem>

@@ -56,7 +56,7 @@
           </div>
           <div>
             <div>{{ order.payment_method.name }}</div>
-            <div>{{ order.payment_method.last4 }}</div>
+            <div>{{ `**** **** **** ${order.payment_method.last4}` }}</div>
             <div>{{ order.payment_method.expiration }}</div>
           </div>
         </div>

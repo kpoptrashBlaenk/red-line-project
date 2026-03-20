@@ -5,7 +5,7 @@
         <IonRadio :value="address.id">
           <div>{{ address.first_name }} {{ address.last_name }}</div>
           <div>{{ address.street_address }}</div>
-          <div>{{ address.postal_code }} {{ address.locality }}</div>
+          <div>{{ `${address.postal_code} ${address.locality}, ${address.country_code}` }}</div>
         </IonRadio>
       </IonItem>
       <SolidButton

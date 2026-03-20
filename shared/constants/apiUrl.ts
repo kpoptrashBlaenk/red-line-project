@@ -56,6 +56,11 @@ export const urls = {
   address_create: '/address',
   address_update: '/address/:id',
   address_delete: '/address/:id',
+
+  // payment method
+  payment_method_get_all: '/payment-method',
+  payment_method_create: '/payment-method',
+  payment_method_delete: '/payment-method/:id',
 }
 
 /**
@@ -65,7 +70,7 @@ export const urls = {
  * @param id Replace :id with the actual id in the frontend
  */
 export default function (urlKey: keyof typeof urls, id?: number | string) {
-  const url = `http://localhost:3000/api${urls[urlKey]}`
+  const url = `http://localhost:3000/v1${urls[urlKey]}`
 
   return id ? url.replace(':id', id.toString()) : url
 }

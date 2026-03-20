@@ -76,3 +76,12 @@ export type AddressRaw = {
   phone: string
   prefix: string
 }
+
+export type PaymentMethodRaw = {
+  id: number
+  user_id: number
+  provider_id: string
+  name: string
+  last4: string
+  expiration: string
+}

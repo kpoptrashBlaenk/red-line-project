@@ -1,3 +1,5 @@
+import { Stripe } from '@stripe/stripe-js'
+
 /**
  * Form Field Wrapper
  */
@@ -67,6 +69,23 @@ export interface SelectField extends FormFieldWrapper {
 }
 
 /**
+ * Payment Method Form Field
+ */
+export interface PaymentField extends FormFieldWrapper {
+  element: 'payment'
+  type: 'cardNumber' | 'cardExpiry' | 'cardCvc'
+  instance: Stripe
+}
+
+/**
  * Form Field
  */
-export type FormField = DividerField | ImageField | InputField | TextareaField | ToggleField | SelectField | PhoneField
+export type FormField =
+  | DividerField
+  | ImageField
+  | InputField
+  | TextareaField
+  | ToggleField
+  | SelectField
+  | PhoneField
+  | PaymentField

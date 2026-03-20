@@ -29,6 +29,7 @@
     "@capawesome/capacitor-file-picker": "^8.0.2",
     "@ionic/vue": "^8.0.0",
     "@ionic/vue-router": "^8.0.0",
+    "@stripe/stripe-js": "^8.11.0",
     "@types/supertest": "^6.0.3",
     "axios": "^1.13.2",
     "bcrypt": "^6.0.0",
