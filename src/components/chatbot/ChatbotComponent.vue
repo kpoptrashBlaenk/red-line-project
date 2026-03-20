@@ -14,7 +14,6 @@
 /* Imports */
 import { Conversation, MessageChoice } from '$/types'
 import { useChatbot } from '@/composables/chatbot'
-import formatDate from '@/utils/formatDate'
 import { onMounted, ref } from 'vue'
 import ChatbotFab from './ChatbotFab.vue'
 import ChatbotModal from './ChatbotModal.vue'
@@ -37,7 +36,7 @@ async function onSendMessage(choice: MessageChoice) {
   // add message locally
   conversation.value.messages.push({
     id: 0,
-    created_at: formatDate(new Date().toISOString(), true),
+    created_at: 'now',
     sent_by: 'user',
     message: choice.text,
   })

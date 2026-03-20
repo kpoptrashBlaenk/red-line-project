@@ -4,7 +4,7 @@
       {{ translation(message.message) }}
     </div>
     <div class="text-xs text-gray-500" :class="message.sent_by === 'chatbot' ? 'ps-2' : 'pe-2 text-right'">
-      {{ formatDate(message.created_at, true) }}
+      {{ message.created_at === 'now' ? message.created_at : formatDate(message.created_at, true) }}
     </div>
   </div>
 </template>
