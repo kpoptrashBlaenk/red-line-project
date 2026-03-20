@@ -50,6 +50,12 @@ export const urls = {
   user_modify_name: '/user/name',
   user_modify_phone: '/user/phone',
   user_modify_email: '/user/email',
+
+  // address
+  address_get_all: '/address',
+  address_create: '/address',
+  address_update: '/address/:id',
+  address_delete: '/address/:id',
 }
 
 /**

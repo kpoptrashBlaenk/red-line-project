@@ -1,6 +1,7 @@
 import cors from 'cors'
 import express from 'express'
 import pool from './database/database'
+import addressRouter from './routes/address.route'
 import authRouter from './routes/auth.route'
 import categoryRouter from './routes/category.route'
 import characteristicRouter from './routes/characteristic.route'
@@ -24,5 +25,6 @@ app.use('/api', characteristicRouter)
 app.use('/api', productRouter)
 app.use('/api', authRouter)
 app.use('/api', userRouter)
+app.use('/api', addressRouter)
 
 export default app

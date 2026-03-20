@@ -61,3 +61,18 @@ export type UserRaw = {
   is_admin: boolean
   token: string
 }
+
+export type AddressRaw = {
+  id: number
+  user_id: number
+  first_name: string
+  last_name: string
+  street_address: string
+  extended_address: string
+  locality: string // city
+  region: string
+  postal_code: number
+  country_code: string
+  phone: string
+  prefix: string
+}
