@@ -12,6 +12,7 @@ router.post(urls.auth_restore, controller.restore)
 router.post(urls.auth_verify_password, authMiddleware, controller.verifyPassword)
 router.post(urls.auth_forgot_password, controller.forgotPassword)
 router.post(urls.auth_reset_password, controller.resetPassword)
+router.put(urls.auth_change_password, authMiddleware, controller.changePassword)
 router.delete(urls.auth_delete, authMiddleware, controller.deleteUser)
 
 export default router

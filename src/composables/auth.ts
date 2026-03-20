@@ -148,7 +148,6 @@ export function useAuth() {
       // error
     } catch (error: any) {
       console.error('Error restoring session:', error)
-      localStorage.removeItem('token')
     }
   }
 
@@ -277,5 +276,6 @@ export function useAuth() {
     createResetPasswordFields,
     resetPassword,
     deleteUser,
+    rememberUser,
   }
 }

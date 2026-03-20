@@ -1,12 +1,13 @@
-import authRouter from './routes/auth.route'
 import cors from 'cors'
 import express from 'express'
 import pool from './database/database'
+import authRouter from './routes/auth.route'
 import categoryRouter from './routes/category.route'
 import characteristicRouter from './routes/characteristic.route'
 import homeTextRouter from './routes/homeText.route'
 import productRouter from './routes/product.route'
 import promotionRouter from './routes/promotion.route'
+import userRouter from './routes/user.route'
 
 export { pool }
 
@@ -22,5 +23,6 @@ app.use('/api', categoryRouter)
 app.use('/api', characteristicRouter)
 app.use('/api', productRouter)
 app.use('/api', authRouter)
+app.use('/api', userRouter)
 
 export default app

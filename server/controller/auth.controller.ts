@@ -1,4 +1,4 @@
-import { RegisterBody } from '$/types'
+import { PasswordBody, RegisterBody } from '$/types'
 import { Request, Response } from 'express'
 import { AuthService } from '../service/auth.service'
 
@@ -90,6 +90,21 @@ export default class AuthController {
       return res.sendStatus(200)
     } catch (error) {
       console.error('Error resetting password:', error)
+      return res.status(500).json({ message: 'Internal Server Error' })
+    }
+  }
+
+  changePassword = async (req: Request, res: Response) => {
+    try {
+      const userId = (req as any).user.id
+      const { password } = req.body as PasswordBody
+
+      const user = await this.authService.changePassword(userId, password)
+      if (!user) return res.status(404).json({ message: 'User not found' })
+
+      return res.status(200).json(user)
+    } catch (error) {
+      console.error('Error changing password:', error)
       return res.status(500).json({ message: 'Internal Server Error' })
     }
   }

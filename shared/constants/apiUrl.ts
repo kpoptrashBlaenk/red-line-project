@@ -42,8 +42,14 @@ export const urls = {
   auth_restore: '/auth/restore',
   auth_verify_password: '/auth/verify-password',
   auth_forgot_password: '/auth/forgot-password',
+  auth_change_password: '/auth/change-password',
   auth_reset_password: '/auth/reset-password',
   auth_delete: '/auth/delete',
+
+  // user
+  user_modify_name: '/user/name',
+  user_modify_phone: '/user/phone',
+  user_modify_email: '/user/email',
 }
 
 /**
