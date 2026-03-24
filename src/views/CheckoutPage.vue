@@ -88,8 +88,8 @@ import { useUserStore } from '@/stores/user'
 import { ApiHandlerItem, ContextItem, FormField } from '@/types'
 import { addressSchema, addressState, paymentMethodSchema, paymentMethodState } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { IonCard, IonCardContent, RefresherCustomEvent } from '@ionic/vue'
-import { onMounted, ref } from 'vue'
+import { IonCard, IonCardContent, onIonViewWillEnter, RefresherCustomEvent } from '@ionic/vue'
+import { ref } from 'vue'
 import { ZodType } from 'zod'
 
 /* Constants */
@@ -129,7 +129,7 @@ const contextItemMap = ref<Record<'address' | 'payment', ContextItem<Address> | 
 })
 
 /* Lifecycle Hook */
-onMounted(onRefresh)
+onIonViewWillEnter(onRefresh)
 
 /* Functions */
 async function onModalOpen(context: 'address' | 'payment') {

@@ -87,32 +87,34 @@ const billingSegment = useTemplateRef('billingSegment')
 const subscriptionsSegment = useTemplateRef('subscriptionsSegment')
 const ordersSegment = useTemplateRef('ordersSegment')
 const activeSegment = ref<string>('profile')
-const onRefresh = ref<((event: RefresherCustomEvent) => Promise<void>) | undefined>(undefined)
+const onRefresh = ref<((event?: RefresherCustomEvent) => Promise<void>) | undefined>(undefined)
 
 /* Watches */
 watch(activeSegment, async (segment) => {
   switch (segment) {
     case 'billing':
-      onRefresh.value = async (event: RefresherCustomEvent) => {
+      onRefresh.value = async (event?: RefresherCustomEvent) => {
         await billingSegment.value?.onRefresh()
-        event.target.complete()
+        event?.target.complete()
       }
       break
     case 'subscriptions':
-      onRefresh.value = async (event: RefresherCustomEvent) => {
+      onRefresh.value = async (event?: RefresherCustomEvent) => {
         await subscriptionsSegment.value?.onRefresh()
-        event.target.complete()
+        event?.target.complete()
       }
       break
     case 'orders':
-      onRefresh.value = async (event: RefresherCustomEvent) => {
+      onRefresh.value = async (event?: RefresherCustomEvent) => {
         await ordersSegment.value?.onRefresh()
-        event.target.complete()
+        event?.target.complete()
       }
       break
     default:
       onRefresh.value = undefined
   }
+
+  onRefresh.value?.()
 })
 
 /* Functions */

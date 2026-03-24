@@ -59,7 +59,7 @@ import { useOrder } from '@/composables/order'
 import { DraftOrder } from '@/types'
 import translation from '@/utils/translation'
 import { IonAlert, IonList } from '@ionic/vue'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import ProductPriceGrid from '../grids/ProductPriceGrid.vue'
 import SubscriptionItemSkeleton from '../skeletons/SubscriptionItemSkeleton.vue'
 import SubscriptionItem from '../ui/items/SubscriptionItem.vue'
@@ -78,11 +78,6 @@ const alert = ref()
 
 /* Exposes */
 defineExpose({ onRefresh })
-
-/* Lifecycle Hooks */
-onMounted(async () => {
-  onRefresh()
-})
 
 /* Functions */
 function openModal(subscription: Subscription) {

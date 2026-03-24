@@ -26,7 +26,7 @@ import { Order } from '$/types'
 import { useOrder } from '@/composables/order'
 import translation from '@/utils/translation'
 import { IonList, IonSearchbar } from '@ionic/vue'
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 import OrderItemSkeleton from '../skeletons/OrderItemSkeleton.vue'
 import OrderItem from '../ui/items/OrderItem.vue'
 import ListGroupTitle from '../ui/text/ListGroupTitle.vue'
@@ -72,11 +72,6 @@ const filteredOrders = computed(() => {
 
 /* Exposes */
 defineExpose({ onRefresh })
-
-/* Lifecycle Hooks */
-onMounted(async () => {
-  onRefresh()
-})
 
 /* Functions */
 function openModal(order: Order) {

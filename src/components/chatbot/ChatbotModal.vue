@@ -35,7 +35,7 @@ const modal = ref()
 const content = useTemplateRef('content')
 
 /* Lifecycle Hooks */
-onMounted(() => {
+onMounted(async () => {
   const observer = new ResizeObserver(() => {
     content.value?.$el.scrollToBottom()
   })

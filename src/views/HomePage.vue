@@ -41,8 +41,8 @@ import { useProduct } from '@/composables/product'
 import { usePromotion } from '@/composables/promotion'
 import translation from '@/utils/translation'
 import { App } from '@capacitor/app'
-import { RefresherCustomEvent, useBackButton } from '@ionic/vue'
-import { onMounted, ref } from 'vue'
+import { onIonViewWillEnter, RefresherCustomEvent, useBackButton } from '@ionic/vue'
+import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 /* Constants */
@@ -60,7 +60,7 @@ const categories = ref<Category[]>([])
 const products = ref<Product[]>([])
 
 /* Lifecycle Hooks */
-onMounted(async () => {
+onIonViewWillEnter(async () => {
   // if first route is not home, go home then redirect to where needed
   const redirect = route.query.redirect as string | undefined
 

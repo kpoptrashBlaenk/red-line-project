@@ -170,9 +170,7 @@ const contextItemMap = ref<
 defineExpose({ onRefresh })
 
 /* Lifecycle Hooks */
-onMounted(async () => {
-  onRefresh()
-})
+onMounted(onRefresh)
 
 /* Functions */
 async function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: any) {

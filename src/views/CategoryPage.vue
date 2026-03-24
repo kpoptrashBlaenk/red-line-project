@@ -47,8 +47,8 @@ import { useCategory } from '@/composables/category'
 import { useProduct } from '@/composables/product'
 import isLengthZero from '@/utils/isLengthZero'
 import translation from '@/utils/translation'
-import { RefresherCustomEvent } from '@ionic/vue'
-import { computed, onMounted, ref } from 'vue'
+import { onIonViewWillEnter, RefresherCustomEvent } from '@ionic/vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 /* Constants */
@@ -86,7 +86,7 @@ const separatedProducts = computed(() => {
 })
 
 /* Lifecycle Hooks */
-onMounted(onRefresh)
+onIonViewWillEnter(onRefresh)
 
 /* Functions */
 async function onRefresh(event?: RefresherCustomEvent) {

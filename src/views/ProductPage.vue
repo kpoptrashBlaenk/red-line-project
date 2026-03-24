@@ -72,8 +72,8 @@ import { useCheckoutStore } from '@/stores/checkout'
 import { Color, DraftOrder } from '@/types'
 import shuffle from '@/utils/shuffle'
 import translation from '@/utils/translation'
-import { IonCard, IonCardContent, RefresherCustomEvent } from '@ionic/vue'
-import { computed, onMounted, reactive, ref } from 'vue'
+import { IonCard, IonCardContent, onIonViewWillEnter, RefresherCustomEvent } from '@ionic/vue'
+import { computed, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 /* Constants */
@@ -130,7 +130,7 @@ const similarProducts = computed(() => {
 })
 
 /* Lifecycle Hooks */
-onMounted(onRefresh)
+onIonViewWillEnter(onRefresh)
 
 /* Functions */
 function addToCheckout() {
