@@ -12,6 +12,5 @@ router.post(urls.order_create_intent, authMiddleware, controller.createIntent)
 router.post(urls.order_confirm, authMiddleware, controller.confirm)
 router.post(urls.subscription_reactivate, authMiddleware, controller.reactivateSubscription)
 router.post(urls.subscription_deactivate, authMiddleware, controller.deactivateSubscription)
-router.put(urls.subscription_modify, authMiddleware, controller.modifySubscription)
 
 export default router

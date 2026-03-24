@@ -1,4 +1,4 @@
-import { CharacteristicType } from '$/types'
+import { CharacteristicType, SubscriptionLength } from '$/types'
 
 export type PromotionRaw = {
   id: number
@@ -60,6 +60,7 @@ export type UserRaw = {
   prefix: string
   is_admin: boolean
   token: string
+  stripe_customer_id: string
 }
 
 export type AddressRaw = {
@@ -90,7 +91,7 @@ export type SubscriptionRaw = {
   id: number
   product_id: number
   user_id: number
-  length: string
+  length: SubscriptionLength
   users: string
   amount: number
   price: number

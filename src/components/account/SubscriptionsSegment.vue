@@ -7,9 +7,7 @@
       :active="selectedSubscription?.active"
       :submit="submitModal"
       @open:alert="alert.$el.present()"
-    >
-      <ProductPriceGrid v-if="selectedSubscription" v-model="newSubscription" :product="selectedSubscription.product" />
-    </SubscriptionModal>
+    />
 
     <!-- Subscription Alert -->
     <IonAlert
@@ -56,24 +54,21 @@
 /* Imports */
 import { Subscription } from '$/types'
 import { useOrder } from '@/composables/order'
-import { DraftOrder } from '@/types'
 import translation from '@/utils/translation'
 import { IonAlert, IonList } from '@ionic/vue'
 import { ref } from 'vue'
-import ProductPriceGrid from '../grids/ProductPriceGrid.vue'
 import SubscriptionItemSkeleton from '../skeletons/SubscriptionItemSkeleton.vue'
 import SubscriptionItem from '../ui/items/SubscriptionItem.vue'
 import ListGroupTitle from '../ui/text/ListGroupTitle.vue'
 import SubscriptionModal from './SubscriptionModal.vue'
 
 /* Constants */
-const { getSubscriptions, deactivateSubscription, modifySubscription } = useOrder()
+const { getSubscriptions, deactivateSubscription, reactivateSubscription } = useOrder()
 
 /* Refs */
 const subscriptions = ref<Subscription[]>([])
 const modal = ref()
 const selectedSubscription = ref<Subscription | undefined>(undefined)
-const newSubscription = ref<DraftOrder | undefined>(undefined)
 const alert = ref()
 
 /* Exposes */
@@ -86,13 +81,12 @@ function openModal(subscription: Subscription) {
 }
 
 async function submitModal() {
-  if (!selectedSubscription.value || !newSubscription.value) {
+  if (!selectedSubscription.value) {
     return
   }
 
-  await modifySubscription(selectedSubscription.value.id, newSubscription.value)
+  reactivateSubscription(selectedSubscription.value.id)
 
-  newSubscription.value = undefined
   selectedSubscription.value = undefined
   modal.value.close()
 }

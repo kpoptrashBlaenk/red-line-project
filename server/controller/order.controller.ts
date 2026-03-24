@@ -70,13 +70,9 @@ export default class OrderController {
       const userId = (req as any).user.id
       const { subscription_id } = req.body
 
-      const result = await this.orderService.reactivateSubscription(userId, subscription_id)
+      await this.orderService.reactivateSubscription(userId, subscription_id)
 
-      if (result.requires_action) {
-        return res.status(200).json({ requires_action: true, client_secret: result.client_secret })
-      }
-
-      return res.status(200).json({ requires_action: false })
+      return res.sendStatus(200)
 
       // error
     } catch (error) {
@@ -96,21 +92,6 @@ export default class OrderController {
       // error
     } catch (error) {
       console.error('Error deactivating subscription:', error)
-      return res.status(500).json({ message: 'Internal Server Error' })
-    }
-  }
-
-  modifySubscription = async (req: Request, res: Response) => {
-    try {
-      const userId = (req as any).user.id
-      const { subscription_id, length, users, amount } = req.body
-
-      await this.orderService.modifySubscription(userId, subscription_id, { length, users, amount })
-      return res.sendStatus(204)
-
-      // error
-    } catch (error) {
-      console.error('Error modifying subscription:', error)
       return res.status(500).json({ message: 'Internal Server Error' })
     }
   }

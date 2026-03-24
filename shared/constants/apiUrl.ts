@@ -70,7 +70,6 @@ export const urls = {
   subscription_get_all: '/subscription',
   subscription_reactivate: '/subscription/reactivate',
   subscription_deactivate: '/subscription/deactivate',
-  subscription_modify: '/subscription/:id',
 }
 
 /**
