@@ -143,7 +143,7 @@ const translationKeys = {
   pages: 'pages',
   password: 'password',
   pay: 'pay',
-  payment_method: 'payment_method',
+  payment: 'payment',
   payment_methods: 'payment_methods',
   performance: 'performance',
   phone: 'phone',
@@ -691,7 +691,7 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Pay',
     fr: 'Payer',
   },
-  payment_method: {
+  payment: {
     en: 'Payment Method',
     fr: 'Méthode de paiement',
   },

@@ -27,14 +27,10 @@ export async function validateForm(fields: FormField[], state: Record<string, an
       card: state.cardNumberElement,
     })
 
-    console.log(paymentMethod, error)
-
     if (error) return false
 
     state.token = paymentMethod.id
   }
-
-  console.log(state)
 
   const result = await schema.safeParseAsync(state)
 

@@ -52,7 +52,7 @@
         <!-- Payment Method -->
         <div>
           <div class="text-xl text-medium mb-3 border-gray-400 border-b w-min text-nowrap">
-            {{ translation('payment_method') }}
+            {{ translation('payment') }}
           </div>
           <div>
             <div>{{ order.payment_method.name }}</div>
