@@ -11,6 +11,7 @@ import paymentRouter from './routes/payment.route'
 import productRouter from './routes/product.route'
 import promotionRouter from './routes/promotion.route'
 import userRouter from './routes/user.route'
+import { startRenewalCron } from './utils/renewal'
 
 export { pool }
 
@@ -19,6 +20,8 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use('/uploads', express.static('uploads'))
+
+startRenewalCron()
 
 app.use('/v1', promotionRouter)
 app.use('/v1', homeTextRouter)
