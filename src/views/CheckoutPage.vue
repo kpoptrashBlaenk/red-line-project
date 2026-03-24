@@ -22,15 +22,17 @@
       <!-- Address -->
       <ListGroupTitle :title="translation('address')" class="mt-5" />
       <AddressForm
+        :key="listKey"
         :addresses
         :selected="checkoutStore.address"
         @on-modal-open="onModalOpen('address')"
         @update:address="checkoutStore.setAddress"
       />
 
-      <!-- Address -->
-      <ListGroupTitle :title="translation('payment_method')" class="mt-5" />
+      <!-- Pay -->
+      <ListGroupTitle :title="translation('payment')" class="mt-5" />
       <PaymentMethodForm
+        :key="listKey"
         :payment-methods
         :selected="checkoutStore.paymentMethod"
         @on-modal-open="onModalOpen('payment')"
@@ -88,8 +90,8 @@ import { useUserStore } from '@/stores/user'
 import { ApiHandlerItem, ContextItem, FormField } from '@/types'
 import { addressSchema, addressState, paymentMethodSchema, paymentMethodState } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { IonCard, IonCardContent, RefresherCustomEvent } from '@ionic/vue'
-import { onMounted, ref } from 'vue'
+import { IonCard, IonCardContent, onIonViewWillEnter, RefresherCustomEvent } from '@ionic/vue'
+import { ref } from 'vue'
 import { ZodType } from 'zod'
 
 /* Constants */
@@ -101,6 +103,7 @@ const addressComposable = useAddress()
 /* Refs */
 const modal = ref()
 const modalOpen = ref<boolean>(false)
+const listKey = ref<number>(0)
 const fields = ref<FormField[]>([])
 const state = ref<any>({})
 const schema = ref<ZodType<any>>()
@@ -129,7 +132,7 @@ const contextItemMap = ref<Record<'address' | 'payment', ContextItem<Address> | 
 })
 
 /* Lifecycle Hook */
-onMounted(onRefresh)
+onIonViewWillEnter(onRefresh)
 
 /* Functions */
 async function onModalOpen(context: 'address' | 'payment') {
@@ -145,10 +148,11 @@ async function onModalOpen(context: 'address' | 'payment') {
     // submit callback
     onSubmit: async (state?: any) => {
       // post
-      contextItem.composable.create?.(state)
+      await contextItem.composable.create?.(state)
 
       // refetch and dismiss
-      contextItem.itemsRef.value = await contextItem.composable.get?.()
+      contextItemMap.value[context].itemsRef = await contextItem.composable.get?.()
+      listKey.value++
       modal.value.$el.dismiss()
     },
   }

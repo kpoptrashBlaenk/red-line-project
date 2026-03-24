@@ -29,6 +29,7 @@ export type ContextItem<T> = {
   }
   defaultState: any
   schema: ZodType<any>
+  listKey?: number
 }
 
 /**

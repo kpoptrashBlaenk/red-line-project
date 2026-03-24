@@ -25,26 +25,21 @@
         <div class="w-full border-b border-black my-5"></div>
 
         <!-- Subscriptions & Total -->
-        <div>
-          <div class="text-xl text-medium mb-3 border-gray-400 border-b w-min">{{ translation('subscriptions') }}</div>
-          <div
-            v-for="(subscription, key) in order.subscriptions"
-            :key
-            class="grid grid-cols-12 gap-2 justify-between items-center text-lg mb-2"
-          >
-            <div class="font-bold col-span-3">{{ translation(subscription.subscription.product.name) }}</div>
-            <div>{{ subscription.subscription.amount }}x</div>
-            <div class="col-span-3">{{ translation(subscription.subscription.users) }}</div>
-            <div class="col-span-3">{{ translation(subscription.subscription.length) }}</div>
-            <div class="font-bold col-span-2">{{ subscription.subscription.price }}€</div>
-          </div>
 
-          <div class="border-b border-gray-300 mb-2"></div>
-
-          <div class="grid grid-cols-12 gap-2 justify-between text-lg">
-            <div class="font-bold col-span-3">{{ translation('total') }}:</div>
-            <div class="font-bold col-span-2 col-start-11">{{ order.price }}€</div>
+        <div class="text-xl text-medium mb-3 border-gray-400 border-b w-min">{{ translation('subscriptions') }}</div>
+        <div v-for="(subscription, key) in order.subscriptions" :key class="text-lg border-b border-gray-300 pb-2 mb-2">
+          <div class="font-bold col-span-3">{{ translation(subscription.subscription.product.name) }}</div>
+          <div class="grid grid-cols-12 items-center">
+            <div class="col-span-1">{{ subscription.subscription.amount }}x</div>
+            <div class="col-span-4 text-end">{{ translation(subscription.subscription.users) }}</div>
+            <div class="col-span-4 text-end">{{ translation(subscription.subscription.length) }}</div>
+            <div class="font-bold col-span-3 text-end">{{ subscription.subscription.price }}€</div>
           </div>
+        </div>
+
+        <div class="grid grid-cols-12 gap-2 justify-between text-lg mt-2">
+          <div class="font-bold col-span-3">{{ translation('total') }}:</div>
+          <div class="font-bold col-span-3 col-start-10 text-end">{{ order.price }}€</div>
         </div>
 
         <div class="w-full border-b border-black my-5"></div>
@@ -52,7 +47,7 @@
         <!-- Payment Method -->
         <div>
           <div class="text-xl text-medium mb-3 border-gray-400 border-b w-min text-nowrap">
-            {{ translation('payment_method') }}
+            {{ translation('payment') }}
           </div>
           <div>
             <div>{{ order.payment_method.name }}</div>
@@ -81,12 +76,12 @@
 /* Imports */
 import { Order } from '$/types'
 import { useOrder } from '@/composables/order'
+import formatDate from '@/utils/formatDate'
 import translation from '@/utils/translation'
 import { IonButton, IonContent, IonFooter, IonHeader, IonIcon, IonModal, IonTitle, IonToolbar } from '@ionic/vue'
 import { downloadOutline } from 'ionicons/icons'
 import { ref } from 'vue'
 import ClearButton from '../ui/buttons/ClearButton.vue'
-import formatDate from '@/utils/formatDate'
 
 /* Constants */
 const { downloadOrder } = useOrder()

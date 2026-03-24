@@ -1,4 +1,11 @@
 <template>
+  <TitleComponent
+    v-if="filteredProducts.length === 0"
+    :text="`<title>${translation('no_products')}</title>`"
+    color="primary"
+    class="mt-5"
+  ></TitleComponent>
+
   <!-- Item -->
   <IonItem
     v-for="(product, key) in filteredProducts"
@@ -62,6 +69,7 @@ import { IonImg, IonItem, IonLabel } from '@ionic/vue'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import ChipComponent from '../ChipComponent.vue'
+import TitleComponent from '../text/TitleComponent.vue'
 
 /* Props */
 const props = defineProps<{

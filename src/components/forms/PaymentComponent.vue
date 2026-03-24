@@ -11,8 +11,9 @@
 <script setup lang="ts">
 import { PaymentField } from '@/types'
 import { getElements, getStripe, resetElements } from '@/utils/stripe'
+import { onIonViewWillLeave } from '@ionic/vue'
 import type { StripeCardCvcElement, StripeCardExpiryElement, StripeCardNumberElement } from '@stripe/stripe-js'
-import { onMounted, onUnmounted, ref, toRef } from 'vue'
+import { onMounted, ref, toRef } from 'vue'
 
 /* Props */
 const props = defineProps<{
@@ -97,7 +98,7 @@ onMounted(async () => {
   })
 })
 
-onUnmounted(() => {
+onIonViewWillLeave(() => {
   element?.destroy()
   resetElements()
 })

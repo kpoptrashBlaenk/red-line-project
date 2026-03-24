@@ -9,13 +9,6 @@
     </IonHeader>
 
     <IonContent>
-      <!-- Price Card -->
-      <IonCard color="light" class="py-5 lg:py-10 mx-5 mt-5">
-        <IonCardContent>
-          <slot></slot>
-        </IonCardContent>
-      </IonCard>
-
       <SolidButton
         v-if="active"
         :label="translation('deactivate')"
@@ -25,6 +18,15 @@
         class="mt-5 mx-5"
         @click="$emit('open:alert')"
       />
+      <SolidButton
+        v-else
+        :label="translation('reactivate')"
+        color="primary"
+        size="large"
+        expand="block"
+        class="mt-5 mx-5"
+        @click="submit()"
+      />
     </IonContent>
 
     <!-- Buttons -->
@@ -32,13 +34,6 @@
       <IonToolbar color="light">
         <div class="flex">
           <ClearButton :label="translation('cancel')" color="dark" size="large" class="flex-1" @click="modal.$el.dismiss()" />
-          <ClearButton
-            :label="translation(active ? 'submit' : 'reactivate')"
-            color="dark"
-            size="large"
-            class="flex-1"
-            @click="submit()"
-          />
         </div>
       </IonToolbar>
     </IonFooter>
@@ -48,7 +43,7 @@
 <script setup lang="ts">
 /* Imports */
 import translation from '@/utils/translation'
-import { IonCard, IonCardContent, IonContent, IonFooter, IonHeader, IonModal, IonTitle, IonToolbar } from '@ionic/vue'
+import { IonContent, IonFooter, IonHeader, IonModal, IonTitle, IonToolbar } from '@ionic/vue'
 import { ref } from 'vue'
 import ClearButton from '../ui/buttons/ClearButton.vue'
 import SolidButton from '../ui/buttons/SolidButton.vue'

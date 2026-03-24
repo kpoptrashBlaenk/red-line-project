@@ -2,7 +2,7 @@ import apiUrl from '$/constants/apiUrl'
 import { Order, Subscription } from '$/types'
 import { useCheckoutStore } from '@/stores/checkout'
 import { DraftOrder } from '@/types'
-import { apiGet, apiPost, apiPut } from '@/utils/api'
+import { apiGet, apiPost } from '@/utils/api'
 import calculatePrice from '@/utils/calculatePrice'
 import presentToast from '@/utils/presentToast'
 import { getStripe } from '@/utils/stripe'
@@ -96,21 +96,11 @@ export function useOrder() {
   /**
    * Reactivate a subscription
    */
-  async function reactivateSubscription(subscription: Subscription) {
+  async function reactivateSubscription(id: number) {
     try {
-      const result = await apiPost<{ requires_action: boolean; client_secret?: string }>(apiUrl('subscription_reactivate'), {
-        subscription_id: subscription.id,
+      await apiPost<{ requires_action: boolean; client_secret?: string }>(apiUrl('subscription_reactivate'), {
+        subscription_id: id,
       })
-
-      if (result.requires_action && result.client_secret) {
-        const stripe = await getStripe()
-        const { error } = await stripe.confirmCardPayment(result.client_secret)
-
-        if (error) {
-          await presentToast(error.message ?? translation('toast_payment_failed'), 'danger')
-          return false
-        }
-      }
 
       await presentToast(translation('toast_subscription_reactivated'), 'success')
       return true
@@ -132,26 +122,6 @@ export function useOrder() {
       // error
     } catch (error: any) {
       console.error('Error deactivating subscription:', error)
-      await presentToast(error.message, 'danger')
-    }
-  }
-
-  /**
-   * Modify a subscription
-   */
-  async function modifySubscription(subscriptionId: number, newOrder: DraftOrder) {
-    try {
-      await apiPut(apiUrl('subscription_modify'), {
-        subscription_id: subscriptionId,
-        length: newOrder.length,
-        users: newOrder.users,
-        amount: newOrder.amount,
-      })
-      await presentToast(translation('toast_modified'), 'success')
-
-      // error
-    } catch (error: any) {
-      console.error('Error modifying subscription:', error)
       await presentToast(error.message, 'danger')
     }
   }
@@ -183,7 +153,6 @@ export function useOrder() {
     getOrders,
     getSubscriptions,
     deactivateSubscription,
-    modifySubscription,
     downloadOrder,
   }
 }

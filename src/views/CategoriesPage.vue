@@ -26,8 +26,8 @@ import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useCategory } from '@/composables/category'
 import translation from '@/utils/translation'
-import { RefresherCustomEvent } from '@ionic/vue'
-import { onMounted, ref } from 'vue'
+import { onIonViewWillEnter, RefresherCustomEvent } from '@ionic/vue'
+import { ref } from 'vue'
 
 /* Constants */
 const categoryComposable = useCategory()
@@ -36,7 +36,7 @@ const categoryComposable = useCategory()
 const categories = ref<Category[]>([])
 
 /* Lifecycle Hooks */
-onMounted(onRefresh)
+onIonViewWillEnter(onRefresh)
 
 /* Functions */
 async function onRefresh(event?: RefresherCustomEvent) {

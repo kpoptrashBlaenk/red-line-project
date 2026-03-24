@@ -28,13 +28,11 @@ const timer = computed(() => {
 })
 
 /* Lifecycle Hooks */
-onMounted(() => {
+onMounted(async () => {
   interval = window.setInterval(() => {
     time.value = checkoutStore.timer()
   }, 1000)
 })
 
-onUnmounted(() => {
-  clearInterval(interval)
-})
+onUnmounted(() => clearInterval(interval))
 </script>

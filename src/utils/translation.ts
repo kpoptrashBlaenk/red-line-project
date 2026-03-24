@@ -128,6 +128,7 @@ const translationKeys = {
   new_chat: 'new_chat',
   no_account: 'no_account',
   no_file: 'no_file',
+  no_products: 'no_products',
   not_an_image: 'not_an_image',
   not_disponible: 'not_disponible',
 
@@ -142,7 +143,7 @@ const translationKeys = {
   pages: 'pages',
   password: 'password',
   pay: 'pay',
-  payment_method: 'payment_method',
+  payment: 'payment',
   payment_methods: 'payment_methods',
   performance: 'performance',
   phone: 'phone',
@@ -642,6 +643,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'No account?',
     fr: 'Pas de compte?',
   },
+  no_products: {
+    en: 'No products found',
+    fr: 'Aucun produit trouvé',
+  },
   not_an_image: {
     en: 'The selected file is not an image',
     fr: "Le fichier sélectionné n'est pas une image",
@@ -686,7 +691,7 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Pay',
     fr: 'Payer',
   },
-  payment_method: {
+  payment: {
     en: 'Payment Method',
     fr: 'Méthode de paiement',
   },

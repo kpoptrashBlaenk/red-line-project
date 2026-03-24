@@ -17,7 +17,8 @@ import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useFooter } from '@/composables/footer'
 import translation from '@/utils/translation'
-import { onMounted, ref } from 'vue'
+import { onIonViewWillEnter } from '@ionic/vue'
+import { ref } from 'vue'
 
 /* Constants */
 const { getGeneralConditions } = useFooter()
@@ -26,7 +27,7 @@ const { getGeneralConditions } = useFooter()
 const generalConditions = ref<string>()
 
 /* Lifecycle Hooks */
-onMounted(async () => {
+onIonViewWillEnter(async () => {
   generalConditions.value = await getGeneralConditions()
 })
 </script>

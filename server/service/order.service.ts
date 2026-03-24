@@ -1,21 +1,15 @@
 import { pool } from '#/app'
-import { OrderRaw, SubscriptionRaw } from '#/types/database'
-import { Order, OrderBody, Subscription } from '$/types'
+import { OrderRaw, SubscriptionRaw, UserRaw } from '#/types/database'
+import { Order, OrderBody, Subscription, SubscriptionLength } from '$/types'
 import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
-function addLength(date: Date, length: string): Date {
+function addLength(date: Date, length: SubscriptionLength): Date {
   const next = new Date(date)
   if (length === 'monthly') next.setMonth(next.getMonth() + 1)
   else if (length === 'yearly') next.setFullYear(next.getFullYear() + 1)
   return next
-}
-
-function nextRenewsAt(currentRenewsAt: Date, length: string): Date {
-  const now = new Date()
-  const base = currentRenewsAt > now ? currentRenewsAt : now
-  return addLength(base, length)
 }
 
 export class OrderService {
@@ -185,36 +179,6 @@ export class OrderService {
     return result.rows
   }
 
-  async findLastPaymentMethodForSubscription(subscriptionId: number, userId: number): Promise<string | null> {
-    const result = await pool.query<{ provider_id: string }>(
-      `--sql
-        SELECT pm.provider_id
-        FROM "order" o
-        JOIN order_subscription os ON os.order_id = o.id
-        JOIN payment_method pm ON pm.id = o.payment_method_id
-        WHERE os.subscription_id = $1
-        ORDER BY o.created_at DESC
-        LIMIT 1
-      `,
-      [subscriptionId],
-    )
-
-    if (result.rows[0]) return result.rows[0].provider_id
-
-    const fallback = await pool.query<{ provider_id: string }>(
-      `--sql
-        SELECT pm.provider_id
-        FROM payment_method pm
-        WHERE pm.user_id = $1
-        ORDER BY pm.id DESC
-        LIMIT 1
-      `,
-      [userId],
-    )
-
-    return fallback.rows[0]?.provider_id ?? null
-  }
-
   async createIntent(userId: number, bodies: OrderBody[]): Promise<string> {
     const pmResult = await pool.query<{ provider_id: string }>(
       `--sql
@@ -226,11 +190,14 @@ export class OrderService {
     const providerMethod = pmResult.rows[0]
     if (!providerMethod) throw new Error('Payment method not found')
 
+    const userResult = await pool.query<UserRaw>(`SELECT stripe_customer_id FROM "user" WHERE id = $1 LIMIT 1`, [userId])
+
     const totalAmount = bodies.reduce((sum, b) => sum + Math.round(b.price * 100), 0)
 
     const intent = await stripe.paymentIntents.create({
       amount: totalAmount,
       currency: 'eur',
+      customer: userResult.rows[0].stripe_customer_id,
       payment_method: providerMethod.provider_id,
       confirm: false,
     })
@@ -278,66 +245,29 @@ export class OrderService {
     return orders.find((o) => o.id === order.id)!
   }
 
-  async reactivateSubscription(
-    userId: number,
-    subscriptionId: number,
-  ): Promise<{ requires_action: boolean; client_secret?: string }> {
-    const subResult = await pool.query<SubscriptionRaw>(
+  async reactivateSubscription(userId: number, subscriptionId: number) {
+    const subscriptionResult = await pool.query<SubscriptionRaw>(
       `--sql
         SELECT * FROM subscription WHERE id = $1 AND user_id = $2 LIMIT 1
       `,
       [subscriptionId, userId],
     )
 
-    const subscription = subResult.rows[0]
+    const subscription = subscriptionResult.rows[0]
     if (!subscription) throw new Error('Subscription not found')
 
-    const providerId = await this.findLastPaymentMethodForSubscription(subscriptionId, userId)
-    if (!providerId) throw new Error('No payment method found')
+    const now = new Date()
+    const base = subscription.renews_at > now ? subscription.renews_at : now
+    const newRenewsAt = addLength(base, subscription.length)
 
-    const pmResult = await pool.query<{ id: number }>(
+    await pool.query(
       `--sql
-        SELECT id FROM payment_method WHERE provider_id = $1 AND user_id = $2 LIMIT 1
+        UPDATE subscription
+        SET active = true, renews_at = $1
+        WHERE id = $2
       `,
-      [providerId, userId],
+      [newRenewsAt, subscriptionId],
     )
-    const paymentMethodId = pmResult.rows[0]?.id
-    if (!paymentMethodId) throw new Error('Payment method not found in DB')
-
-    // Charge directly in the background — no frontend 3DS
-    const intent = await stripe.paymentIntents.create({
-      amount: Math.round(subscription.price * 100),
-      currency: 'eur',
-      payment_method: providerId,
-      confirm: true,
-      automatic_payment_methods: { enabled: true, allow_redirects: 'never' },
-    })
-
-    if (intent.status === 'requires_action') {
-      return { requires_action: true, client_secret: intent.client_secret! }
-    }
-
-    if (intent.status !== 'succeeded') {
-      throw new Error('Payment failed')
-    }
-
-    const addressResult = await pool.query<{ address_id: number }>(
-      `--sql
-        SELECT o.address_id
-        FROM "order" o
-        JOIN order_subscription os ON os.order_id = o.id
-        WHERE os.subscription_id = $1
-        ORDER BY o.created_at DESC
-        LIMIT 1
-      `,
-      [subscriptionId],
-    )
-    const addressId = addressResult.rows[0]?.address_id
-    if (!addressId) throw new Error('No previous address found')
-
-    await this.createRenewalOrder(userId, subscriptionId, subscription, addressId, paymentMethodId)
-
-    return { requires_action: false }
   }
 
   async deactivateSubscription(userId: number, subscriptionId: number): Promise<void> {
@@ -347,56 +277,6 @@ export class OrderService {
         WHERE id = $1 AND user_id = $2
       `,
       [subscriptionId, userId],
-    )
-  }
-
-  async modifySubscription(
-    userId: number,
-    subscriptionId: number,
-    body: { length: string; users: string; amount: number },
-  ): Promise<void> {
-    await pool.query(
-      `--sql
-        UPDATE subscription
-        SET length = $1, users = $2, amount = $3
-        WHERE id = $4 AND user_id = $5
-      `,
-      [body.length, body.users, body.amount, subscriptionId, userId],
-    )
-  }
-
-  private async createRenewalOrder(
-    userId: number,
-    subscriptionId: number,
-    subscription: SubscriptionRaw,
-    addressId: number,
-    paymentMethodId: number,
-  ): Promise<void> {
-    const orderResult = await pool.query<OrderRaw>(
-      `--sql
-        INSERT INTO "order" (created_at, user_id, address_id, payment_method_id)
-        VALUES (NOW(), $1, $2, $3)
-        RETURNING *
-      `,
-      [userId, addressId, paymentMethodId],
-    )
-
-    await pool.query(
-      `--sql
-        INSERT INTO order_subscription (order_id, subscription_id)
-        VALUES ($1, $2)
-      `,
-      [orderResult.rows[0].id, subscriptionId],
-    )
-
-    const newRenewsAt = nextRenewsAt(subscription.renews_at, subscription.length)
-    await pool.query(
-      `--sql
-        UPDATE subscription
-        SET active = true, renews_at = $1
-        WHERE id = $2
-      `,
-      [newRenewsAt, subscriptionId],
     )
   }
 }

@@ -30,7 +30,7 @@ import { ApiHandlerItem, ContextItem } from '@/types'
 import { addressSchema, addressState, paymentMethodSchema, paymentMethodState } from '@/utils/schemas'
 import translation from '@/utils/translation'
 import { IonAccordionGroup } from '@ionic/vue'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import AdminAccordionItem from '../ui/items/AdminAccordionItem.vue'
 import ListGroupTitle from '../ui/text/ListGroupTitle.vue'
 
@@ -74,11 +74,6 @@ const emit = defineEmits(['update:formModal'])
 
 /* Exposes */
 defineExpose({ onRefresh })
-
-/* Lifecycle Hook */
-onMounted(async () => {
-  onRefresh()
-})
 
 /* Functions */
 async function onModalOpen(context: 'address' | 'payment', method: ApiMethod, item?: any) {

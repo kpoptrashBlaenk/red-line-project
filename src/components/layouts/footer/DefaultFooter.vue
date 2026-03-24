@@ -29,7 +29,8 @@
 import { Social } from '$/types'
 import { useFooter } from '@/composables/footer'
 import translation from '@/utils/translation'
-import { onMounted, ref } from 'vue'
+import { onIonViewWillEnter } from '@ionic/vue'
+import { ref } from 'vue'
 import DefaultInfoFooter from './DefaultInfoFooter.vue'
 import DefaultSocialsFooter from './DefaultSocialsFooter.vue'
 
@@ -41,7 +42,7 @@ const socials = ref<Social[]>([])
 const infoText = ref<string>('')
 
 /* Lifecycle Hooks */
-onMounted(async () => {
+onIonViewWillEnter(async () => {
   getSocials().then((data) => (socials.value = data))
   getInfoText().then((data) => (infoText.value = translation(data)))
 })
