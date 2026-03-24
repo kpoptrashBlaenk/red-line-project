@@ -128,6 +128,7 @@ const translationKeys = {
   new_chat: 'new_chat',
   no_account: 'no_account',
   no_file: 'no_file',
+  no_products: 'no_products',
   not_an_image: 'not_an_image',
   not_disponible: 'not_disponible',
 
@@ -641,6 +642,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   no_account: {
     en: 'No account?',
     fr: 'Pas de compte?',
+  },
+  no_products: {
+    en: 'No products found',
+    fr: 'Aucun produit trouvé',
   },
   not_an_image: {
     en: 'The selected file is not an image',
