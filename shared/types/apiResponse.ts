@@ -52,6 +52,7 @@ export type Product = {
   price: number
   disponible: boolean
   index: number
+  active: boolean
 
   description_functionality: LanguageRecord
   description_advantage: LanguageRecord

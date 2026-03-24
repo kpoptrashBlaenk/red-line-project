@@ -11,7 +11,7 @@ export class AddressService {
           id, first_name, last_name, street_address, extended_address,
           locality, region, postal_code, country_code, phone, prefix
         FROM address
-        WHERE user_id = $1
+        WHERE user_id = $1 AND active = true
         ORDER BY id ASC
       `,
       [userId],
@@ -86,7 +86,7 @@ export class AddressService {
   async delete(id: number): Promise<void> {
     await pool.query(
       `--sql
-        DELETE FROM address WHERE id = $1
+        UPDATE address SET active = false WHERE id = $1
       `,
       [id],
     )

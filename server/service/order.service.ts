@@ -12,8 +12,19 @@ function addLength(date: Date, length: SubscriptionLength): Date {
   return next
 }
 
+type LastOrderInfo = {
+  order_id: number
+  address_id: number
+  payment_method_id: number
+  provider_id: string
+  address_active: boolean
+  payment_method_active: boolean
+  product_active: boolean
+  customer: string
+}
+
 export class OrderService {
-  async findAllOrders(userId: number): Promise<Order[]> {
+  async findAllOrders(userId: number) {
     const result = await pool.query<Order>(
       `--sql
         SELECT
@@ -37,12 +48,15 @@ export class OrderService {
             jsonb_agg(
               jsonb_build_object(
                 'status', CASE
-                  WHEN s.active = true THEN 'active'
+                  WHEN p.active = false THEN 'inactive'
                   WHEN EXISTS (
-                    SELECT 1 FROM order_subscription os2
+                    SELECT 1
+                    FROM order_subscription os2
                     JOIN "order" o2 ON o2.id = os2.order_id
-                    WHERE os2.subscription_id = s.id AND o2.created_at > o.created_at
+                    WHERE os2.subscription_id = s.id
+                      AND o2.created_at > o.created_at
                   ) THEN 'renewed'
+                  WHEN s.active = true THEN 'active'
                   ELSE 'inactive'
                 END,
                 'subscription', jsonb_build_object(
@@ -105,7 +119,7 @@ export class OrderService {
     return result.rows
   }
 
-  async findAllSubscriptions(userId: number): Promise<Subscription[]> {
+  async findAllSubscriptions(userId: number) {
     const result = await pool.query<Subscription>(
       `--sql
         SELECT
@@ -122,7 +136,7 @@ export class OrderService {
           ) AS "user",
           jsonb_build_object(
             'id', p.id, 'price', p.price, 'disponible', p.disponible,
-            'top', p.top, 'priority', p.priority, 'index', p.index,
+            'top', p.top, 'priority', p.priority, 'index', p.index, 'active', p.active,
             'created_at', p.created_at,
             'name', jsonb_build_object('en', d_name_en.translation, 'fr', d_name_fr.translation),
             'image', COALESCE(
@@ -176,10 +190,11 @@ export class OrderService {
       `,
       [userId],
     )
-    return result.rows
+
+    return result.rows.filter((subscription) => subscription.product.active)
   }
 
-  async createIntent(userId: number, bodies: OrderBody[]): Promise<string> {
+  async createIntent(userId: number, bodies: OrderBody[]) {
     const pmResult = await pool.query<{ provider_id: string }>(
       `--sql
         SELECT provider_id FROM payment_method WHERE id = $1 AND user_id = $2 LIMIT 1
@@ -191,13 +206,14 @@ export class OrderService {
     if (!providerMethod) throw new Error('Payment method not found')
 
     const userResult = await pool.query<UserRaw>(`SELECT stripe_customer_id FROM "user" WHERE id = $1 LIMIT 1`, [userId])
+    const customer = userResult.rows[0].stripe_customer_id
 
     const totalAmount = bodies.reduce((sum, b) => sum + Math.round(b.price * 100), 0)
 
     const intent = await stripe.paymentIntents.create({
       amount: totalAmount,
       currency: 'eur',
-      customer: userResult.rows[0].stripe_customer_id,
+      customer: customer,
       payment_method: providerMethod.provider_id,
       confirm: false,
     })
@@ -257,8 +273,8 @@ export class OrderService {
     if (!subscription) throw new Error('Subscription not found')
 
     const now = new Date()
-    const base = subscription.renews_at > now ? subscription.renews_at : now
-    const newRenewsAt = addLength(base, subscription.length)
+    const isFuture = subscription.renews_at > now
+    const base = isFuture ? subscription.renews_at : now
 
     await pool.query(
       `--sql
@@ -266,8 +282,10 @@ export class OrderService {
         SET active = true, renews_at = $1
         WHERE id = $2
       `,
-      [newRenewsAt, subscriptionId],
+      [base, subscriptionId],
     )
+
+    if (!isFuture) await this.renewSubscription(subscriptionId)
   }
 
   async deactivateSubscription(userId: number, subscriptionId: number): Promise<void> {
@@ -278,5 +296,113 @@ export class OrderService {
       `,
       [subscriptionId, userId],
     )
+  }
+
+  async renewSubscription(subscriptionId: number) {
+    const subscriptionResult = await pool.query<SubscriptionRaw>(`SELECT * FROM subscription WHERE id = $1 LIMIT 1`, [
+      subscriptionId,
+    ])
+    const subscription = subscriptionResult.rows[0]
+    if (!subscription) return false
+
+    const lastOrderResult = await pool.query<LastOrderInfo>(
+      `--sql
+        SELECT
+          o.id AS order_id,
+          o.address_id,
+          o.payment_method_id,
+          pm.provider_id,
+          a.active AS address_active,
+          pm.active AS payment_method_active,
+          p.active AS product_active,
+          u.stripe_customer_id AS customer
+        FROM "order" o
+        JOIN order_subscription os ON os.order_id = o.id
+        JOIN payment_method pm ON pm.id = o.payment_method_id
+        JOIN address a ON a.id = o.address_id
+        JOIN product p ON p.id = $2
+        JOIN "user" u ON u.id = pm.user_id
+        WHERE os.subscription_id = $1
+        ORDER BY o.created_at DESC
+        LIMIT 1
+      `,
+      [subscriptionId, subscription.product_id],
+    )
+
+    const lastOrder = lastOrderResult.rows[0]
+
+    if (!lastOrder || !lastOrder.address_active || !lastOrder.payment_method_active || !lastOrder.product_active) {
+      await this.deactivateSubscription(subscription.user_id, subscriptionId)
+      return false
+    }
+
+    let intent: Stripe.PaymentIntent
+    try {
+      intent = await stripe.paymentIntents.create({
+        amount: Math.round(subscription.price * 100),
+        currency: 'eur',
+        payment_method: lastOrder.provider_id,
+        confirm: true,
+        customer: lastOrder.customer,
+        off_session: true,
+        metadata: { subscription_id: String(subscriptionId) },
+      })
+
+      // error
+    } catch (error) {
+      console.error(`[renewal] payment failed for subscription ${subscriptionId}:`, error)
+      await this.deactivateSubscription(subscription.user_id, subscriptionId)
+      return false
+    }
+
+    if (intent.status !== 'succeeded') {
+      await this.deactivateSubscription(subscription.user_id, subscriptionId)
+      return false
+    }
+
+    const orderResult = await pool.query<{ id: number }>(
+      `--sql
+        INSERT INTO "order" (created_at, user_id, address_id, payment_method_id)
+        VALUES (NOW(), $1, $2, $3)
+        RETURNING id
+      `,
+      [subscription.user_id, lastOrder.address_id, lastOrder.payment_method_id],
+    )
+
+    await pool.query(`INSERT INTO order_subscription (order_id, subscription_id) VALUES ($1, $2)`, [
+      orderResult.rows[0].id,
+      subscriptionId,
+    ])
+
+    const newRenewsAt = addLength(new Date(), subscription.length)
+    await pool.query(`UPDATE subscription SET active = true, renews_at = $1 WHERE id = $2`, [newRenewsAt, subscriptionId])
+
+    return true
+  }
+
+  async runDueRenewals() {
+    const result = await pool.query<{ id: number }>(
+      `--sql
+        SELECT id FROM subscription
+        WHERE active = true
+        AND renews_at <= NOW()
+      `,
+    )
+
+    if (result.rows.length === 0) {
+      console.log('[renewal] no subscriptions due for renewal')
+      return
+    }
+
+    console.log(`[renewal] processing ${result.rows.length} subscriptions`)
+
+    for (const row of result.rows) {
+      try {
+        const success = await this.renewSubscription(row.id)
+        console.log(`[renewal] subscription ${row.id}: ${success ? 'renewed' : 'deactivated'}`)
+      } catch (error) {
+        console.error(`[renewal] unexpected error for subscription ${row.id}:`, error)
+      }
+    }
   }
 }

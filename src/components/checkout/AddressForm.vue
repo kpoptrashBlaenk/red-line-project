@@ -24,14 +24,11 @@
 import { Address } from '$/types'
 import translation from '@/utils/translation'
 import { IonItem, IonList, IonRadio, IonRadioGroup } from '@ionic/vue'
-import { watch } from 'vue'
 import SolidButton from '../ui/buttons/SolidButton.vue'
 
 /* Props */
-const props = defineProps<{
+defineProps<{
   addresses: Address[]
   selected: Address | undefined
 }>()
-
-watch(props.addresses, (newValue) => console.log(newValue))
 </script>
