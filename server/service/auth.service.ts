@@ -4,8 +4,11 @@ import { User } from '$/types'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import jwt from 'jsonwebtoken'
+import Stripe from 'stripe'
 
 const SALT_ROUNDS = 12
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
 export class AuthService {
   private generateToken(user: Pick<UserRaw, 'id' | 'is_admin'>): string {
@@ -81,13 +84,15 @@ export class AuthService {
   }): Promise<User> {
     const hashed = await bcrypt.hash(body.password, SALT_ROUNDS)
 
+    const customer = await stripe.customers.create({ email: body.email })
+
     const result = await pool.query<UserRaw>(
       `--sql
-        INSERT INTO "user" (first_name, last_name, email, password, phone, prefix, is_admin)
-        VALUES ($1, $2, $3, $4, $5, $6, false)
+        INSERT INTO "user" (first_name, last_name, email, password, phone, prefix, is_admin, stripe_customer_id)
+        VALUES ($1, $2, $3, $4, $5, $6, false, $7)
         RETURNING *
       `,
-      [body.first_name, body.last_name, body.email, hashed, body.phone, body.prefix],
+      [body.first_name, body.last_name, body.email, hashed, body.phone, body.prefix, customer.id],
     )
 
     const user = result.rows[0]

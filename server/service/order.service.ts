@@ -226,11 +226,17 @@ export class OrderService {
     const providerMethod = pmResult.rows[0]
     if (!providerMethod) throw new Error('Payment method not found')
 
+    const userResult = await pool.query<{ stripe_customer_id: string }>(
+      `SELECT stripe_customer_id FROM "user" WHERE id = $1 LIMIT 1`,
+      [userId],
+    )
+
     const totalAmount = bodies.reduce((sum, b) => sum + Math.round(b.price * 100), 0)
 
     const intent = await stripe.paymentIntents.create({
       amount: totalAmount,
       currency: 'eur',
+      customer: userResult.rows[0].stripe_customer_id,
       payment_method: providerMethod.provider_id,
       confirm: false,
     })

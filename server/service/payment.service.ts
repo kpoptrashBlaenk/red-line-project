@@ -33,6 +33,15 @@ export class PaymentMethodService {
   }
 
   async create(userId: number, body: PaymentMethodBody): Promise<PaymentMethod> {
+    const userResult = await pool.query<{ stripe_customer_id: string }>(
+      `SELECT stripe_customer_id FROM "user" WHERE id = $1 LIMIT 1`,
+      [userId],
+    )
+    const customerId = userResult.rows[0]?.stripe_customer_id
+    if (!customerId) throw new Error('Stripe customer not found')
+
+    await stripe.paymentMethods.attach(body.token, { customer: customerId })
+
     const stripePaymentMethod = await stripe.paymentMethods.retrieve(body.token)
 
     if (!stripePaymentMethod.card) {
