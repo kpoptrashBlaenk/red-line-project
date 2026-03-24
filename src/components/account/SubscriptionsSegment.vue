@@ -88,11 +88,17 @@ async function submitModal() {
   reactivateSubscription(selectedSubscription.value.id)
 
   selectedSubscription.value = undefined
+
+  onRefresh()
+
   modal.value.close()
 }
 
 async function alertSubmit() {
   await deactivateSubscription(selectedSubscription.value!)
+
+  onRefresh()
+
   alert.value.$el.dismiss()
   modal.value.close()
 }
