@@ -87,9 +87,7 @@ export const useCheckoutStore = defineStore('checkout', {
 
       if (!this.address || !this.paymentMethod) return
 
-      const success = await createOrder(this.orders, this.address.id, this.paymentMethod.id)
-
-      console.log(success ? 'success' : 'fail')
+      await createOrder(this.orders, this.address.id, this.paymentMethod.id)
     },
   },
 })

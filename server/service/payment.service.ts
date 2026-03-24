@@ -14,7 +14,7 @@ export class PaymentMethodService {
       `--sql
         SELECT id, name, last4, expiration
         FROM payment_method
-        WHERE user_id = $1
+        WHERE user_id = $1 AND active = true
         ORDER BY id ASC
       `,
       [userId],
@@ -66,7 +66,7 @@ export class PaymentMethodService {
   async delete(id: number): Promise<void> {
     await pool.query(
       `--sql
-        DELETE FROM payment_method WHERE id = $1
+         UPDATE payment_method SET active = false WHERE id = $1
       `,
       [id],
     )

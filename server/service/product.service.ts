@@ -23,6 +23,7 @@ SELECT
   p.price,
   p.disponible,
   p."index",
+  p.active,
 
   jsonb_build_object(
     'id', c.id
@@ -135,8 +136,12 @@ GROUP BY
     return products
   }
 
-  async findAll() {
+  async findAll(active = true) {
     const result = await pool.query<Product>(`${this.baseSelect} ORDER BY p."index" ASC`)
+
+    if (active) {
+      return await this.attachCharacteristics(result.rows.filter((product) => product.active === true))
+    }
 
     return await this.attachCharacteristics(result.rows)
   }
@@ -154,7 +159,7 @@ GROUP BY
   }
 
   async findById(id: number) {
-    const result = await this.findAll()
+    const result = await this.findAll(false)
 
     return (await this.attachCharacteristics(result.filter((product) => product.id === id)))[0]
   }
@@ -262,7 +267,7 @@ GROUP BY
     images.rows.forEach(async (image) => {
       await pool.query(`DELETE FROM product_image WHERE image = $1`, [image.image])
 
-      if (!body.image.includes(image.image)) {
+      if (body.image.length > 0 && !body.image.includes(image.image)) {
         this.imageService.delete(image.image)
       }
     })
@@ -328,12 +333,11 @@ GROUP BY
     const images = await pool.query<ProductImageRaw>(`SELECT * FROM product_image WHERE product_id = $1`, [id])
 
     // delete
-    await pool.query(`DELETE FROM product WHERE id = $1`, [id])
+    await pool.query(`UPDATE product SET active = false WHERE id = $1`, [id])
     await pool.query(`DELETE FROM product_characteristic WHERE product_id = $1`, [id])
     await pool.query(`DELETE FROM product_image WHERE product_id = $1`, [id])
     images.rows.forEach(async (image) => this.imageService.delete(image.image))
 
-    await this.dictionaryService.delete(product.name_key)
     await this.dictionaryService.delete(product.description_functionality_key)
     await this.dictionaryService.delete(product.description_advantage_key)
     await this.dictionaryService.delete(product.description_security_key)

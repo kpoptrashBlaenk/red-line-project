@@ -37,11 +37,14 @@ export class OrderService {
             jsonb_agg(
               jsonb_build_object(
                 'status', CASE
+                  WHEN p.active = false THEN 'inactive'
                   WHEN s.active = true THEN 'active'
                   WHEN EXISTS (
-                    SELECT 1 FROM order_subscription os2
+                    SELECT 1
+                    FROM order_subscription os2
                     JOIN "order" o2 ON o2.id = os2.order_id
-                    WHERE os2.subscription_id = s.id AND o2.created_at > o.created_at
+                    WHERE os2.subscription_id = s.id
+                      AND o2.created_at > o.created_at
                   ) THEN 'renewed'
                   ELSE 'inactive'
                 END,
@@ -122,7 +125,7 @@ export class OrderService {
           ) AS "user",
           jsonb_build_object(
             'id', p.id, 'price', p.price, 'disponible', p.disponible,
-            'top', p.top, 'priority', p.priority, 'index', p.index,
+            'top', p.top, 'priority', p.priority, 'index', p.index, 'active', p.active,
             'created_at', p.created_at,
             'name', jsonb_build_object('en', d_name_en.translation, 'fr', d_name_fr.translation),
             'image', COALESCE(
@@ -176,7 +179,8 @@ export class OrderService {
       `,
       [userId],
     )
-    return result.rows
+
+    return result.rows.filter((subscription) => subscription.product.active)
   }
 
   async createIntent(userId: number, bodies: OrderBody[]): Promise<string> {
