@@ -49,7 +49,6 @@ export class OrderService {
               jsonb_build_object(
                 'status', CASE
                   WHEN p.active = false THEN 'inactive'
-                  WHEN s.active = true THEN 'active'
                   WHEN EXISTS (
                     SELECT 1
                     FROM order_subscription os2
@@ -57,6 +56,7 @@ export class OrderService {
                     WHERE os2.subscription_id = s.id
                       AND o2.created_at > o.created_at
                   ) THEN 'renewed'
+                  WHEN s.active = true THEN 'active'
                   ELSE 'inactive'
                 END,
                 'subscription', jsonb_build_object(
