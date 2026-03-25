@@ -28,7 +28,7 @@
       </div>
 
       <!-- Image -->
-      <IonImg :src="product.image[0]" class="my-auto" />
+      <IonImg :src="srcImage(product.image[0])" class="my-auto" />
 
       <!-- Name & Category & Description -->
       <div>
@@ -70,6 +70,7 @@ import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import ChipComponent from '../ChipComponent.vue'
 import TitleComponent from '../text/TitleComponent.vue'
+import srcImage from '@/utils/srcImage'
 
 /* Props */
 const props = defineProps<{

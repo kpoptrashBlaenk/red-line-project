@@ -1,7 +1,7 @@
 <template>
   <IonCard class="w-full h-78 flex flex-col" :class="isDesktop() ? 'rounded-2xl' : 'rounded-none mb-0.5'">
     <div class="h-32">
-      <img :src="promotion.image[0]" class="w-full! object-cover" />
+      <img :src="srcImage(promotion.image[0])" class="w-full! object-cover" />
     </div>
 
     <IonCardHeader class="px-3 pt-3 text-start">
@@ -19,6 +19,7 @@
 /* Imports */
 import { Promotion } from '$/types'
 import isDesktop from '@/utils/isDesktop'
+import srcImage from '@/utils/srcImage'
 import translation from '@/utils/translation'
 import { IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/vue'
 import ClearButton from '../buttons/ClearButton.vue'
