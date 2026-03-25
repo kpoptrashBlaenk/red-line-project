@@ -50,6 +50,14 @@
         </IonList>
       </template>
     </IonContent>
+
+    <IonFooter>
+      <IonToolbar color="tertiary">
+        <div class="flex justify-end pe-5">
+          <LanguageButton />
+        </div>
+      </IonToolbar>
+    </IonFooter>
   </IonMenu>
 </template>
 
@@ -61,9 +69,10 @@ import { useUserStore } from '@/stores/user'
 import handleRoute from '@/utils/handleRoute'
 import isDesktop from '@/utils/isDesktop'
 import translation from '@/utils/translation'
-import { IonContent, IonHeader, IonItem, IonLabel, IonList, IonMenu, IonTitle, IonToolbar } from '@ionic/vue'
+import { IonContent, IonFooter, IonHeader, IonItem, IonLabel, IonList, IonMenu, IonTitle, IonToolbar } from '@ionic/vue'
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import LanguageButton from './LanguageButton.vue'
 
 /* Constants */
 const route = useRoute()
