@@ -28,7 +28,7 @@
       </div>
 
       <!-- Image -->
-      <IonImg :src="srcImage(product.image[0])" class="my-auto" />
+      <NgrokImg :src="srcImage(product.image[0])" class="my-auto" />
 
       <!-- Name & Category & Description -->
       <div>
@@ -64,13 +64,14 @@ import { useSearchFilter } from '@/stores/searchFilter'
 import findById from '@/utils/findById'
 import handleRoute from '@/utils/handleRoute'
 import searchArray from '@/utils/searchArray'
+import srcImage from '@/utils/srcImage'
 import translation from '@/utils/translation'
-import { IonImg, IonItem, IonLabel } from '@ionic/vue'
+import { IonItem, IonLabel } from '@ionic/vue'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import ChipComponent from '../ChipComponent.vue'
+import NgrokImg from '../NgrokImg.vue'
 import TitleComponent from '../text/TitleComponent.vue'
-import srcImage from '@/utils/srcImage'
 
 /* Props */
 const props = defineProps<{

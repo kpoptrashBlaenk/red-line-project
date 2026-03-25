@@ -1,7 +1,7 @@
 <template>
   <div class="sm:mx-auto relative text-white wrap flex flex-col items-center">
     <div class="relative max-w-2xl">
-      <img ref="imageRef" :src="srcImage(category?.image[0])" class="rounded-3xl" />
+      <NgrokImg ref="imageRef" :src="srcImage(category?.image[0])" class="rounded-3xl" />
       <div
         class="absolute py-2 text-4xl text-center text-nowrap font-extrabold bottom-0 px-5 bg-primary w-full opacity-80 rounded-b-3xl"
       >
@@ -20,6 +20,7 @@
 import { Category } from '$/types'
 import srcImage from '@/utils/srcImage'
 import translation from '@/utils/translation'
+import NgrokImg from '../ui/NgrokImg.vue'
 
 /* Props */
 defineProps<{

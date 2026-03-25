@@ -5,10 +5,11 @@
         <IonReorder class="rounded-2xl">
           <div class="flex justify-center">
             <img
-              v-if="image"
-              :src="image.preview.startsWith('http://localhost') ? image.preview : srcImage(image.preview)"
+              v-if="image && image.preview.startsWith('blob')"
+              :src="image.preview"
               class="rounded-2xl object-fit border border-primary"
             />
+            <NgrokImg v-else-if="image" :src="srcImage(image.preview)" class="rounded-2xl object-fit border border-primary" />
           </div>
         </IonReorder>
 
@@ -54,6 +55,7 @@ import { closeCircleOutline, cloudUploadOutline } from 'ionicons/icons'
 import { nextTick, ref, toRef, watch } from 'vue'
 import { ZodType } from 'zod'
 import SolidButton from '../ui/buttons/SolidButton.vue'
+import NgrokImg from '../ui/NgrokImg.vue'
 
 /* Props */
 const props = defineProps<{

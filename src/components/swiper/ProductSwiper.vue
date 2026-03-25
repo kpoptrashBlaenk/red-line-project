@@ -1,7 +1,9 @@
 <template>
   <Swiper ref="swiper" :space-between="50" grab-cursor :thumbs="{ swiper: thumbsSwiper }" :modules>
     <SwiperSlide v-for="(image, key) in product.image" :key class="px-5">
-      <IonImg :src="srcImage(image)" />
+      <div>
+        <NgrokImg :src="srcImage(image)" />
+      </div>
     </SwiperSlide>
   </Swiper>
 
@@ -13,7 +15,7 @@
         class="cursor-pointer max-h-48 relative"
         @click="swiper?.$el.swiper.slideTo(key)"
       >
-        <IonImg :src="srcImage(image)" :class="{ 'brightness-70': swiper?.$el.swiper.activeIndex !== key }" />
+        <NgrokImg :src="srcImage(image)" :class="{ 'brightness-70': swiper?.$el.swiper.activeIndex !== key }" />
       </SwiperSlide>
     </Swiper>
   </div>
@@ -23,10 +25,10 @@
 /* Imports */
 import { Product } from '$/types'
 import srcImage from '@/utils/srcImage'
-import { IonImg } from '@ionic/vue'
 import { FreeMode, Thumbs } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { ref, useTemplateRef } from 'vue'
+import NgrokImg from '../ui/NgrokImg.vue'
 
 /* Props */
 defineProps<{

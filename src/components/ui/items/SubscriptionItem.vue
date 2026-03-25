@@ -3,7 +3,7 @@
     <div class="py-3 px-0 w-full">
       <!-- Image & Name -->
       <div class="grid grid-cols-[100px_1fr] gap-5 items-center border-b-2 border-white pb-4">
-        <IonImg :src="srcImage(subscription.product.image[0])" class="object-contain" />
+        <NgrokImg :src="srcImage(subscription.product.image[0])" class="object-contain" />
         <TitleComponent :text="translation(subscription.product.name)" class="text-xl! text-left" />
       </div>
 
@@ -35,9 +35,10 @@ import { Subscription } from '$/types'
 import formatDate from '@/utils/formatDate'
 import srcImage from '@/utils/srcImage'
 import translation from '@/utils/translation'
-import { IonImg, IonItem } from '@ionic/vue'
+import { IonItem } from '@ionic/vue'
 import { pencilOutline } from 'ionicons/icons'
 import OutlineButton from '../buttons/OutlineButton.vue'
+import NgrokImg from '../NgrokImg.vue'
 import TitleComponent from '../text/TitleComponent.vue'
 
 /* Props */
