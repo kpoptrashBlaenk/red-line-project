@@ -1,11 +1,11 @@
 <template>
-  <DefaultContentLayout>
+  <DefaultContentLayout :on-refresh>
     <HeroComponent>
       <CategoryHero v-if="category" :category />
     </HeroComponent>
 
     <div class="wrap">
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <!-- Product List -->
       <TitleComponent color="secondary" :text="translation('category_products_title')" />
@@ -29,7 +29,7 @@
         <HomeProductGrid :products="separatedProducts.notDisponible" color="secondary" context="category" />
       </div>
 
-      <SeparatorComponent size="md" />
+      <SeparatorComponent size="sm" />
     </div>
   </DefaultContentLayout>
 </template>
@@ -47,7 +47,8 @@ import { useCategory } from '@/composables/category'
 import { useProduct } from '@/composables/product'
 import isLengthZero from '@/utils/isLengthZero'
 import translation from '@/utils/translation'
-import { computed, onMounted, ref } from 'vue'
+import { onIonViewWillEnter, RefresherCustomEvent } from '@ionic/vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 /* Constants */
@@ -85,10 +86,17 @@ const separatedProducts = computed(() => {
 })
 
 /* Lifecycle Hooks */
-onMounted(async () => {
+onIonViewWillEnter(onRefresh)
+
+/* Functions */
+async function onRefresh(event?: RefresherCustomEvent) {
   const id = Number(route.params.id)
 
-  category.value = await categoryComposable.find(id)
-  products.value = await productComposable.getByCategory(id)
-})
+  await Promise.all([
+    categoryComposable.find(id).then((data) => (category.value = data)),
+    productComposable.getByCategory(id).then((data) => (products.value = data)),
+  ])
+
+  event?.target.complete()
+}
 </script>

@@ -1,16 +1,20 @@
+import apiUrl from '$/constants/apiUrl'
 import { User } from '$/types'
 import { useUserStore } from '@/stores/user'
 import { FormField } from '@/types'
+import { apiPut } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { EmailSchema, NameSchema, PasswordSchema, PhoneSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
+import { useAuth } from './auth'
 
 /**
  * Use this composable to do user related queries that are not auth
  */
 export function useUser() {
   const userStore = useUserStore()
+  const { rememberUser } = useAuth()
+
   /**
    * Create Names Form Fields
    */
@@ -37,22 +41,18 @@ export function useUser() {
    * @param state The state that tracks the new values
    */
   async function modifyName(state: NameSchema) {
-    state
-    // modify name and return user
+    try {
+      const user = await apiPut<User>(apiUrl('user_modify_name'), state)
 
-    const user: User = {
-      id: 1,
-      first_name: 'Aldin',
-      last_name: 'Music',
-      email: 'email@email.com',
-      phone: '0101010101',
-      prefix: '+33',
-      token: 'ABSOLUTELY_HASHED_TOKEN',
-    }
+      if (user) {
+        userStore.setUser(user)
+        presentToast(translation('toast_modified'), 'success')
+      }
 
-    if (user) {
-      userStore.setUser(user)
-      presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+      // error
+    } catch (error: any) {
+      console.error('Error modifying name:', error)
+      await presentToast(error.message, 'danger')
     }
   }
 
@@ -76,22 +76,18 @@ export function useUser() {
    * @param state The state that tracks the new values
    */
   async function modifyPhone(state: PhoneSchema) {
-    state
-    // modify phone and return user
+    try {
+      const user = await apiPut<User>(apiUrl('user_modify_phone'), state)
 
-    const user: User = {
-      id: 1,
-      first_name: 'Aldin',
-      last_name: 'Music',
-      email: 'email@email.com',
-      phone: '0101010101',
-      prefix: '+33',
-      token: 'ABSOLUTELY_HASHED_TOKEN',
-    }
+      if (user) {
+        userStore.setUser(user)
+        presentToast(translation('toast_modified'), 'success')
+      }
 
-    if (user) {
-      userStore.setUser(user)
-      presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+      // error
+    } catch (error: any) {
+      console.error('Error modifying phone:', error)
+      await presentToast(error.message, 'danger')
     }
   }
 
@@ -124,22 +120,18 @@ export function useUser() {
    * @param state The state that tracks the new values
    */
   async function modifyEmail(state: EmailSchema) {
-    state
-    // modify name and return user
+    try {
+      const user = await apiPut<User>(apiUrl('user_modify_email'), state)
 
-    const user: User = {
-      id: 1,
-      first_name: 'Aldin',
-      last_name: 'Music',
-      email: 'email@email.com',
-      phone: '0101010101',
-      prefix: '+33',
-      token: 'ABSOLUTELY_HASHED_TOKEN',
-    }
+      if (user) {
+        userStore.setUser(user)
+        presentToast(translation('toast_modified'), 'success')
+      }
 
-    if (user) {
-      userStore.setUser(user)
-      presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+      // error
+    } catch (error: any) {
+      console.error('Error modifying email:', error)
+      await presentToast(error.message, 'danger')
     }
   }
 
@@ -181,22 +173,19 @@ export function useUser() {
    * @param state The state that tracks the new values
    */
   async function modifyPassword(state: PasswordSchema) {
-    state
-    // modify name and return user
+    try {
+      const user = await apiPut<User>(apiUrl('auth_change_password'), state)
 
-    const user: User = {
-      id: 1,
-      first_name: 'Aldin',
-      last_name: 'Music',
-      email: 'email@email.com',
-      phone: '0101010101',
-      prefix: '+33',
-      token: 'ABSOLUTELY_HASHED_TOKEN',
-    }
+      if (user) {
+        userStore.setUser(user)
+        rememberUser(user.token)
+        presentToast(translation('toast_modified'), 'success')
+      }
 
-    if (user) {
-      userStore.setUser(user)
-      presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+      // error
+    } catch (error: any) {
+      console.error('Error modifying password:', error)
+      await presentToast(error.message, 'danger')
     }
   }
 

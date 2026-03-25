@@ -1,10 +1,10 @@
+import apiUrl from '$/constants/apiUrl'
 import { Promotion } from '$/types'
 import { FormField } from '@/types'
-import placeholderImages from '@/utils/placeholderImages'
+import { apiDelete, apiGet, apiPost, apiPut } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { PromotionSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do promotion related queries
@@ -103,118 +103,23 @@ export function usePromotion() {
    * Get the promotional products
    */
   async function get() {
-    const promotions: Promotion[] = [
-      {
-        id: 6,
-        image: placeholderImages(['dfm']),
-        title: {
-          en: "Integration of Cyna's 24/7 SOC Solution",
-          fr: 'Intégration de la solution SOC 24/7 de Cyna',
-        },
-        subtitle: {
-          en: 'IT Services and Consulting',
-          fr: 'Services et conseil en informatique',
-        },
-        button: {
-          en: 'Read the article',
-          fr: "Lire l'article",
-        },
-        link: '/something',
-        index: 0,
-      },
-      {
-        id: 1,
-        image: placeholderImages(['hopital st camille']),
-        title: {
-          en: 'Implementation of a Managed SOC',
-          fr: "Mise en place d'un SOC Managé",
-        },
-        subtitle: {
-          en: 'Hospital Center',
-          fr: 'Centre hospitalier',
-        },
-        button: {
-          en: 'Read the article',
-          fr: "Lire l'article",
-        },
-        link: '/something',
-        index: 1,
-      },
-      {
-        id: 2,
-        image: placeholderImages(['groupe abcd']),
-        title: {
-          en: 'Cyberattack Incident Response',
-          fr: "Réponse à incident d'une cyberattaque",
-        },
-        subtitle: {
-          en: 'Gammist Manufacturer',
-          fr: 'Fabricant gammiste',
-        },
-        button: {
-          en: 'Read the article',
-          fr: "Lire l'article",
-        },
-        link: '/something',
-        index: 2,
-      },
-      {
-        id: 3,
-        image: placeholderImages(['sincrone-it-logo']),
-        title: {
-          en: 'Complete Cybersecurity Supported by 24/7 SOC',
-          fr: 'Une cybersécurité complète, portée par le SOC 24/7',
-        },
-        subtitle: {
-          en: 'IT and Telecom Solutions',
-          fr: 'Solutions informatiques et télécoms',
-        },
-        button: {
-          en: 'Read the article',
-          fr: "Lire l'article",
-        },
-        link: '/something',
-        index: 3,
-      },
-      {
-        id: 4,
-        image: placeholderImages(['logo-actuelburo']),
-        title: {
-          en: "Integration of Cyna's 24/7 SOC Offering",
-          fr: "Intégration de l'offre SOC 24/7 de Cyna",
-        },
-        subtitle: {
-          en: 'IT Services and Consulting',
-          fr: 'Services et conseil en informatique',
-        },
-        button: {
-          en: 'Read the article',
-          fr: "Lire l'article",
-        },
-        link: '/something',
-        index: 4,
-      },
-      {
-        id: 5,
-        image: placeholderImages(['neobrain-1']),
-        title: {
-          en: 'Simulation of an Attack (Black & Grey Box)',
-          fr: "Simulation d'une attaque (Black & Grey Box)",
-        },
-        subtitle: {
-          en: 'Software Publisher',
-          fr: 'Éditeur de logiciels',
-        },
-        button: {
-          en: 'Read the article',
-          fr: "Lire l'article",
-        },
-        link: '/something',
-        index: 5,
-      },
-    ]
+    try {
+      // get promotions
+      const promotions = await apiGet<Promotion[]>(apiUrl('promotion_get_all'))
 
-    return promotions ?? []
+      // check if empty
+      if (!promotions || promotions.length === 0) throw new Error(translation('toast_promotion_none'))
+
+      // return
+      return promotions
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching promotions:', error)
+      await presentToast(error.message, 'danger')
+
+      return []
+    }
   }
 
   /**
@@ -223,10 +128,20 @@ export function usePromotion() {
    * @param items Items in new order
    */
   async function reorder(items: Promotion[]) {
-    // api request
-    items
+    try {
+      const ids = items.map((item) => item.id)
 
-    await presentToast(translation('toast_reordered'), 'success', checkmarkCircleOutline)
+      // create promotion
+      await apiPut(apiUrl('promotion_reorder'), ids)
+
+      // toast
+      await presentToast(translation('toast_reordered'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error reordering promotions:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -235,10 +150,34 @@ export function usePromotion() {
    * @param state The state that tracks the new values
    */
   async function create(state: PromotionSchema) {
-    // api request
-    state
+    try {
+      // use form because image
+      const formData = new FormData()
 
-    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+      formData.append('link', state.link)
+      formData.append('title_en', state.title_en)
+      formData.append('title_fr', state.title_fr)
+      formData.append('subtitle_en', state.subtitle_en)
+      formData.append('subtitle_fr', state.subtitle_fr)
+      formData.append('button_en', state.button_en)
+      formData.append('button_fr', state.button_fr)
+      state.image.forEach((file) => {
+        formData.append('image', file)
+      })
+
+      // create promotion
+      await apiPost(apiUrl('promotion_create'), formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+
+      // toast
+      await presentToast(translation('toast_added'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching promotions:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -248,11 +187,34 @@ export function usePromotion() {
    * @param state The state that tracks the new values
    */
   async function modify(id: number, state: PromotionSchema) {
-    // api request
-    id
-    state
+    try {
+      // use form because image
+      const formData = new FormData()
 
-    await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+      formData.append('link', state.link)
+      formData.append('title_en', state.title_en)
+      formData.append('title_fr', state.title_fr)
+      formData.append('subtitle_en', state.subtitle_en)
+      formData.append('subtitle_fr', state.subtitle_fr)
+      formData.append('button_en', state.button_en)
+      formData.append('button_fr', state.button_fr)
+      state.image.forEach((file) => {
+        formData.append('image', file)
+      })
+
+      // create promotion
+      await apiPut(apiUrl('promotion_update', id), formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+
+      // toast
+      await presentToast(translation('toast_modified'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error updating promotion:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -261,10 +223,18 @@ export function usePromotion() {
    * @param id The id of the promotion record
    */
   async function remove(id: number) {
-    // api request
-    id
+    try {
+      // create promotion
+      await apiDelete(apiUrl('promotion_update', id))
 
-    await presentToast(translation('toast_deleted'), 'success', checkmarkCircleOutline)
+      // toast
+      await presentToast(translation('toast_deleted'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error deleting promotion:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   // return all functions

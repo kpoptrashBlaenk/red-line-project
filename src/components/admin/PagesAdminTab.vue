@@ -6,7 +6,7 @@
     <!-- Admin Form Alert -->
     <FormAlert ref="alert" :is-open="alertOpen" @submit="onSubmit" />
 
-    <SeparatorComponent size="xs" />
+    <SeparatorComponent size="2xs" />
 
     <!-- Content Accordions -->
     <IonAccordionGroup expand="inset">
@@ -28,7 +28,7 @@
       />
     </IonAccordionGroup>
 
-    <SeparatorComponent size="md" />
+    <SeparatorComponent size="sm" />
   </div>
 </template>
 
@@ -60,7 +60,7 @@ import {
   promotionState,
 } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { IonAccordionGroup } from '@ionic/vue'
+import { IonAccordionGroup, RefresherCustomEvent } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
 import { ZodType } from 'zod'
 
@@ -97,7 +97,7 @@ const contextItemMap = ref<
     title: translation('admin_home_carousel_title'),
     value: 'promotion',
     itemsRef: promotions,
-    image: (item: Promotion) => item.image[0],
+    image: (item: Promotion) => item.image?.[0],
     text: (item: Promotion) => translation(item.title),
     note: (item: Promotion) => translation(item.subtitle),
     reorder: true,
@@ -123,7 +123,7 @@ const contextItemMap = ref<
     title: translation('admin_category_title'),
     value: 'category',
     itemsRef: categories,
-    image: (item: Category) => item.image[0],
+    image: (item: Category) => item.image?.[0],
     text: (item: Category) => translation(item.name),
     note: (item: Category) => translation(item.description),
     reorder: true,
@@ -139,9 +139,9 @@ const contextItemMap = ref<
     title: translation('admin_product_title'),
     value: 'product',
     itemsRef: products,
-    image: (item: Product) => item.image[0],
-    text: (item: Product) => translation(item.name),
-    note: (item: Product) => `${translation(item.description_functionality)} (${item.price}€)`,
+    image: (item: Product) => item.image?.[0],
+    text: (item: Product) => `${translation(item.name)} (${item.price}€)`,
+    note: (item: Product) => translation(item.description_functionality),
     reorder: true,
     add: true,
     modify: true,
@@ -166,14 +166,11 @@ const contextItemMap = ref<
   },
 })
 
+/* Exposes */
+defineExpose({ onRefresh })
+
 /* Lifecycle Hooks */
-onMounted(async () => {
-  promotions.value = await promotionComposable.get()
-  homeText.value = await homeTextComposable.get()
-  categories.value = await categoryComposable.get()
-  products.value = await productComposable.get()
-  characteristics.value = await characteristicComposable.get()
-})
+onMounted(onRefresh)
 
 /* Functions */
 async function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: any) {
@@ -189,14 +186,14 @@ async function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: a
     // submit callback
     onSubmit: async (state?: any) => {
       // post
-      if (method === 'post') contextItem.composable.create?.(state)
+      if (method === 'post') await contextItem.composable.create?.(state)
       // put
-      if (method === 'put') contextItem.composable.modify?.(item.id, state)
+      if (method === 'put') await contextItem.composable.modify?.(item.id, state)
       // delete
-      if (method === 'delete') contextItem.composable.remove?.(item.id)
+      if (method === 'delete') await contextItem.composable.remove?.(item.id)
 
       // refetch and dismiss
-      contextItem.itemsRef.value = await contextItem.composable.get?.()
+      contextItemMap.value[context].itemsRef = await contextItem.composable.get?.()
       modal.value.$el.dismiss()
       alert.value.$el.dismiss()
     },
@@ -210,5 +207,17 @@ async function onModalOpen(context: AdminSectionKey, method: ApiMethod, item?: a
   state.value = apiHandlerItem.state
   schema.value = apiHandlerItem.schema
   onSubmit.value = apiHandlerItem.onSubmit
+}
+
+async function onRefresh(event?: RefresherCustomEvent) {
+  await Promise.all([
+    promotionComposable.get().then((data) => (promotions.value = data)),
+    homeTextComposable.get().then((data) => (homeText.value = data)),
+    categoryComposable.get().then((data) => (categories.value = data)),
+    productComposable.get().then((data) => (products.value = data)),
+    characteristicComposable.get().then((data) => (characteristics.value = data)),
+  ])
+
+  event?.target.complete()
 }
 </script>

@@ -1,4 +1,11 @@
 <template>
+  <TitleComponent
+    v-if="filteredProducts.length === 0"
+    :text="`<title>${translation('no_products')}</title>`"
+    color="primary"
+    class="mt-5"
+  ></TitleComponent>
+
   <!-- Item -->
   <IonItem
     v-for="(product, key) in filteredProducts"
@@ -15,25 +22,28 @@
       }
     "
   >
-    <div class="grid grid-cols-[80px_1fr_auto] py-3 gap-4 items-start w-full">
+    <div class="grid grid-cols-[80px_1fr_50px] py-3 gap-2 items-start w-full relative">
+      <div v-if="!product.disponible" class="absolute w-full h-full flex justify-center items-center text-3xl font-bold">
+        {{ translation('not_disponible') }}
+      </div>
+
       <!-- Image -->
       <IonImg :src="product.image[0]" class="my-auto" />
 
-      <!-- Name & Description -->
+      <!-- Name & Category & Description -->
       <div>
-        <IonLabel class="font-bold mb-1 text-xl!" color="primary">{{ translation(product.name) }}</IonLabel>
+        <IonLabel class="font-bold text-xl!" color="primary">{{ translation(product.name) }}</IonLabel>
+        <IonLabel color="secondary" class="font-bold mb-1">{{ translation(product.category?.name) }}</IonLabel>
         <div class="text-gray-500 text-sm leading-4">{{ translation(product.description_functionality) }}</div>
       </div>
 
-      <!-- Category & Price -->
+      <!-- Price -->
       <div class="font-semibold text-lg text-end">
-        <IonLabel color="primary">{{ translation(product.category?.name) }}</IonLabel>
         <IonLabel color="secondary" :class="{ 'line-through': !product.disponible }">{{ product.price }}€</IonLabel>
-        <IonLabel v-if="!product.disponible" color="tertiary">{{ translation('not_disponible') }}</IonLabel>
       </div>
 
       <!-- Characteristics -->
-      <div class="col-span-3 flex flex-wrap gap-1 mt-2">
+      <div class="col-span-3 flex flex-wrap gap-1">
         <ChipComponent
           v-for="(characteristic, key) in product.characteristics"
           :key="key"
@@ -59,6 +69,7 @@ import { IonImg, IonItem, IonLabel } from '@ionic/vue'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import ChipComponent from '../ChipComponent.vue'
+import TitleComponent from '../text/TitleComponent.vue'
 
 /* Props */
 const props = defineProps<{
@@ -88,7 +99,7 @@ const filteredProducts = computed(() => {
   // category filter
   if (searchFilterStore.selectedCategories.length > 0) {
     results = results.filter((result) =>
-      searchFilterStore.selectedCategories.some((category) => category.id === result.category_id),
+      searchFilterStore.selectedCategories.some((category) => category.id === result.category.id),
     )
   }
 
@@ -104,9 +115,9 @@ const filteredProducts = computed(() => {
     results = results.filter((result) =>
       searchFilterStore.selectedCharacteristics.some(
         (characteristic) =>
-          result.characteristics_performance_ids.find((charId) => charId === characteristic.id) ||
-          result.characteristics_scalability_ids.find((charId) => charId === characteristic.id) ||
-          result.characteristics_level_ids.find((charId) => charId === characteristic.id),
+          result.characteristics_performance.find((char) => char.id === characteristic.id) ||
+          result.characteristics_scalability.find((char) => char.id === characteristic.id) ||
+          result.characteristics_level.find((char) => char.id === characteristic.id),
       ),
     )
   }
@@ -140,12 +151,12 @@ const filteredProducts = computed(() => {
   // flatten
   return results.map((product) => ({
     ...product,
-    category: findById(props.categories, product.category_id),
+    category: findById(props.categories, product.category.id),
     characteristics: [
-      ...product.characteristics_performance_ids,
-      ...product.characteristics_scalability_ids,
-      ...product.characteristics_level_ids,
-    ].map((characteristicId) => findById(props.characteristics, characteristicId)),
+      ...product.characteristics_performance,
+      ...product.characteristics_scalability,
+      ...product.characteristics_level,
+    ].map((characteristic) => findById(props.characteristics, characteristic.id)),
   }))
 })
 </script>

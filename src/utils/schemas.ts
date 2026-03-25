@@ -1,3 +1,4 @@
+import { SubscriptionLength, SubscriptionUsers } from '$/types'
 import { useAuth } from '@/composables/auth'
 import { reactive } from 'vue'
 import z from 'zod'
@@ -29,7 +30,7 @@ export const promotionSchema = () =>
     button_fr: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
 
     link: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
-    image: z.array(z.union([z.instanceof(File), z.url()])).length(1, ERROR.error_required()),
+    image: z.array(z.union([z.instanceof(File), z.string()])).length(1, ERROR.error_required()),
   })
 export const promotionState = reactive<Partial<PromotionSchema>>({
   title_en: undefined,
@@ -64,7 +65,7 @@ export const categorySchema = () =>
     description_en: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
     description_fr: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
 
-    image: z.array(z.union([z.instanceof(File), z.url()])).length(1, ERROR.error_required()),
+    image: z.array(z.union([z.instanceof(File), z.string()])).length(1, ERROR.error_required()),
   })
 export const categoryState = reactive<Partial<CategorySchema>>({
   name_en: undefined,
@@ -99,7 +100,7 @@ export const productSchema = () =>
     characteristics_scalability_ids: z.array(z.number().min(1, ERROR.error_required())),
     characteristics_level_ids: z.array(z.number().min(1, ERROR.error_required())),
 
-    image: z.array(z.union([z.instanceof(File), z.url()])).min(1, ERROR.error_required()),
+    image: z.array(z.union([z.instanceof(File), z.string()])).min(1, ERROR.error_required()),
   })
 export const productState = reactive<Partial<ProductSchema>>({
   category_id: undefined,
@@ -367,15 +368,47 @@ export type AddressSchema = z.output<ReturnType<typeof addressSchema>>
 export const paymentMethodSchema = () =>
   z.object({
     name: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
-    card_number: z.string(ERROR.error_required()).regex(/^\d{16}$/, ERROR.error_required()),
-    expiration: z.string(ERROR.error_required()).regex(/^\d{2}\/\d{2}$/, ERROR.error_required()),
-    cvv: z.string(ERROR.error_required()).regex(/^\d{3}$/, ERROR.error_required()),
+    token: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
   })
 
 export const paymentMethodState = reactive<Partial<PaymentMethodSchema>>({
   name: undefined,
-  card_number: undefined,
-  expiration: undefined,
-  cvv: undefined,
+  token: undefined,
 })
 export type PaymentMethodSchema = z.output<ReturnType<typeof paymentMethodSchema>>
+
+/* Order */
+export const orderSchema = () =>
+  z.object({
+    product_id: z.number(ERROR.error_required()).min(1, ERROR.error_required()),
+    address_id: z.number(ERROR.error_required()).min(1, ERROR.error_required()),
+    payment_method_id: z.number(ERROR.error_required()).min(1, ERROR.error_required()),
+    length: z.enum(SubscriptionLength, ERROR.error_required()),
+    users: z.enum(SubscriptionUsers, ERROR.error_required()),
+    amount: z.number(ERROR.error_required()).min(1, ERROR.error_required()),
+    price: z.number(ERROR.error_required()).min(1, ERROR.error_required()),
+  })
+
+export const orderState = reactive<Partial<OrderSchema>>({
+  product_id: undefined,
+  address_id: undefined,
+  payment_method_id: undefined,
+  length: undefined,
+  users: undefined,
+  amount: undefined,
+  price: undefined,
+})
+export type OrderSchema = z.output<ReturnType<typeof orderSchema>>
+
+/* Contact */
+export const contactSchema = () =>
+  z.object({
+    subject: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
+    text: z.string(ERROR.error_required()).min(1, ERROR.error_required()),
+  })
+
+export const contactState = reactive<Partial<ContactSchema>>({
+  subject: undefined,
+  text: undefined,
+})
+export type ContactSchema = z.output<ReturnType<typeof contactSchema>>

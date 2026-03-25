@@ -3,7 +3,7 @@
     <HeroComponent :title="translation('register')" />
 
     <div class="wrap">
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <AuthCard context="register" :label="translation('register_info')" :fields :state :schema :on-submit="onSubmit">
         <div class="text-center mt-5">
@@ -14,7 +14,7 @@
         </div>
       </AuthCard>
 
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
     </div>
   </DefaultContentLayout>
 </template>

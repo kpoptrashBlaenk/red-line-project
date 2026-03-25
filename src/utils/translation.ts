@@ -4,9 +4,17 @@ import { Language } from '@/types'
 import toTitle from './toTitle'
 
 const translationKeys = {
+  // #
+  '404': '404',
+
   // A
   account: 'account',
+  active: 'active',
   add: 'add',
+  add_address: 'add_address',
+  add_products: 'add_products',
+  add_payment: 'add_payment',
+  address: 'address',
   admin: 'admin',
   admin_category_title: 'admin_category_title',
   admin_characteristic_title: 'admin_characteristic_title',
@@ -19,10 +27,14 @@ const translationKeys = {
   alert_message: 'alert_message',
   all_services: 'all_services',
   already_account: 'already_account',
+  amount: 'amount',
+  ask_anything: 'ask_anything',
   authentication: 'authentication',
 
   // B
   button_text: 'promotion_button',
+  billing: 'billing',
+  billing_information: 'billing_information',
 
   // C
   cancel: 'cancel',
@@ -31,24 +43,33 @@ const translationKeys = {
   category: 'category',
   category_products_title: 'category_products_title',
   characteristics: 'characteristics',
+  chatbot: 'chatbot',
+  checkout: 'checkout',
+  close: 'close',
   contact: 'contact',
   confirm_password: 'confirm_password',
   country_code: 'country_code',
   cvv: 'cvv',
 
   // D
+  danger: 'danger',
+  deactivate: 'deactivate',
   default: 'default',
   delete: 'delete',
+  delete_account: 'delete_account',
   description: 'description',
   description_advantage: 'description_advantage',
   description_functionality: 'description_functionality',
   description_security: 'description_security',
   details: 'details',
+  device: 'device',
   disponible: 'disponible',
   disponible_only: 'disponible_only',
+  download: 'download',
 
   // E
   email: 'email',
+  empty_cart: 'empty_cart',
   english: 'english',
   expiration: 'expiration',
   error_category_post_500: 'error_category_post_500',
@@ -83,10 +104,12 @@ const translationKeys = {
 
   // I
   image: 'image',
+  inactive: 'inactive',
 
   // L
   last_name: 'last_name',
   legal_mentions: 'legal_mentions',
+  length: 'length',
   level: 'level',
   link: 'link',
   locality: 'locality',
@@ -96,26 +119,32 @@ const translationKeys = {
 
   // M
   menu: 'menu',
+  message: 'message',
   monthly: 'monthly',
 
   // N
   name: 'name',
   new: 'new',
+  new_chat: 'new_chat',
   no_account: 'no_account',
   no_file: 'no_file',
+  no_products: 'no_products',
   not_an_image: 'not_an_image',
   not_disponible: 'not_disponible',
 
   // O
+  offline: 'offline',
   old: 'old',
+  online: 'online',
   optional: 'optional',
+  order_details: 'order_details',
 
   // P
   pages: 'pages',
   password: 'password',
+  pay: 'pay',
+  payment: 'payment',
   payment_methods: 'payment_methods',
-  per_user: 'per_user',
-  per_device: 'per_device',
   performance: 'performance',
   phone: 'phone',
   postal_code: 'postal_code',
@@ -123,27 +152,36 @@ const translationKeys = {
   priceHL: 'priceHL',
   priceLH: 'priceLH',
   priority: 'priority',
+  product: 'product',
   product_characteristics_title: 'product_characteristics_title',
   product_price_title: 'product_price_title',
   products: 'products',
+  profile: 'profile',
 
   // R
+  reactivate: 'reactivate',
   region: 'region',
   register: 'register',
   register_info: 'register_info',
   register_now: 'register_now',
+  renewed: 'renewed',
+  renews_on: 'renews_on',
   reset_password: 'reset_password',
 
   // S
   scalability: 'scalability',
+  search_order: 'search_order',
   search_product: 'search_product',
   securities: 'securities',
   sign_in_now: 'sign_in_now',
   sort: 'sort',
   street_address: 'street_address',
+  subject: 'subject',
   submit: 'submit',
   subscribe_now: 'subscribe_now',
-  subtitle: 'promotion_subtitle',
+  subscriptions: 'subscriptions',
+  subtitle: 'subtitle',
+  summary: 'summary',
 
   // T
   text: 'text',
@@ -154,11 +192,23 @@ const translationKeys = {
   toast_password_reset: 'toast_password_reset',
   toast_reordered: 'toast_reordered',
   toast_reset_link: 'toast_reset_link',
+  toast_promotion_none: 'toast_promotion_none',
+  toast_home_text_none: 'toast_home_text_none',
+  toast_category_none: 'toast_category_none',
+  toast_characteristic_none: 'toast_characteristic_none',
+  toast_product_none: 'toast_product_none',
+  toast_payment_failed: 'toast_payment_failed',
+  toast_order_success: 'toast_order_success',
+  toast_subscription_reactivated: 'toast_subscription_reactivated',
+  toast_subscription_deactivated: 'toast_subscription_deactivated',
   top: 'top',
+  total: 'total',
+  try_again: 'try_again',
   type: 'type',
 
   // U
   upload: 'upload',
+  user: 'user',
   user_info: 'user_info',
 
   // V
@@ -166,19 +216,46 @@ const translationKeys = {
 
   // Y
   yearly: 'yearly',
+  you: 'you',
 }
 
 export type TranslationKey = keyof typeof translationKeys
 
 const translations: Record<TranslationKey, Record<Language, string>> = {
+  // #
+  '404': {
+    en: 'Page not found',
+    fr: 'Page non trouvée',
+  },
+
   // A
   account: {
     en: 'Account',
     fr: 'Compte',
   },
+  active: {
+    en: 'Active',
+    fr: 'Actif',
+  },
   add: {
     en: 'Add',
     fr: 'Ajouter',
+  },
+  add_address: {
+    en: 'Add new address',
+    fr: 'Ajouter une nouvelle adresse',
+  },
+  add_payment: {
+    en: 'Add new payment method',
+    fr: 'Ajouter un nouveau mode de paiement',
+  },
+  add_products: {
+    en: 'Add new products',
+    fr: 'Ajouter de nouveaux produits',
+  },
+  address: {
+    en: 'Address',
+    fr: 'Adresse',
   },
   admin: {
     en: 'Admin Access',
@@ -228,6 +305,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Already have an account?',
     fr: 'Vous avez déjà un compte?',
   },
+  amount: {
+    en: 'Amount',
+    fr: 'Quantité',
+  },
+  ask_anything: {
+    en: 'Ask anything...',
+    fr: "Demandez n'importe quoi...",
+  },
   authentication: {
     en: 'Authentication',
     fr: 'Authentification',
@@ -237,6 +322,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   button_text: {
     en: 'Button text',
     fr: 'Texte du bouton',
+  },
+  billing: {
+    en: 'Billing',
+    fr: 'Facturation',
+  },
+  billing_information: {
+    en: 'Billing Information',
+    fr: 'Informations de facturation',
   },
 
   // C
@@ -264,6 +357,18 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Characteristics',
     fr: 'Caractéristiques',
   },
+  chatbot: {
+    en: 'Chatbot',
+    fr: 'Chatbot',
+  },
+  checkout: {
+    en: 'Checkout',
+    fr: 'Panier',
+  },
+  close: {
+    en: 'Close',
+    fr: 'Fermer',
+  },
   contact: {
     en: 'Contact',
     fr: 'Contacte',
@@ -282,6 +387,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   },
 
   // D
+  danger: {
+    en: 'Danger',
+    fr: 'Danger',
+  },
+  deactivate: {
+    en: 'Deactivate',
+    fr: 'Désactiver',
+  },
   default: {
     en: 'Default',
     fr: 'Par défaut',
@@ -289,6 +402,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   delete: {
     en: 'Delete',
     fr: 'Supprimer',
+  },
+  delete_account: {
+    en: 'Delete Account',
+    fr: 'Supprimer le Compte',
   },
   description: {
     en: 'Description',
@@ -310,6 +427,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Details',
     fr: 'Détails',
   },
+  device: {
+    en: 'Per Device',
+    fr: 'Par Appareil',
+  },
   disponible: {
     en: 'Available',
     fr: 'Disponible',
@@ -317,6 +438,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   disponible_only: {
     en: 'Available Only',
     fr: 'Services disponibles',
+  },
+  download: {
+    en: 'Download',
+    fr: 'Télécharger',
   },
 
   // E
@@ -327,6 +452,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   email: {
     en: 'Email',
     fr: 'Email',
+  },
+  empty_cart: {
+    en: 'Your Cart is Empty!',
+    fr: 'Votre Panier est Vide!',
   },
   error_category_post_500: {
     en: "Couldn't create category",
@@ -436,6 +565,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Image',
     fr: 'Image',
   },
+  inactive: {
+    en: 'Inactive',
+    fr: 'Inactif',
+  },
 
   // L
   last_name: {
@@ -449,6 +582,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   legal_mentions: {
     en: 'Legal Mentions',
     fr: 'Mentions légales',
+  },
+  length: {
+    en: 'Length',
+    fr: 'Durée',
   },
   level: {
     en: 'Level',
@@ -476,6 +613,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Menu',
     fr: 'Menu',
   },
+  message: {
+    en: 'Message',
+    fr: 'Message',
+  },
   monthly: {
     en: 'Monthly',
     fr: 'Mensuel',
@@ -490,6 +631,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Newest',
     fr: 'Nouveauté : récent',
   },
+  new_chat: {
+    en: 'New Chat',
+    fr: 'Nouveau Chat',
+  },
   no_file: {
     en: 'No file selected',
     fr: 'Aucun fichier sélectionné',
@@ -497,6 +642,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   no_account: {
     en: 'No account?',
     fr: 'Pas de compte?',
+  },
+  no_products: {
+    en: 'No products found',
+    fr: 'Aucun produit trouvé',
   },
   not_an_image: {
     en: 'The selected file is not an image',
@@ -508,13 +657,25 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   },
 
   // O
+  offline: {
+    en: 'You are offline',
+    fr: 'Vous êtes hors ligne',
+  },
   old: {
     en: 'Oldest',
     fr: 'Nouveauté : ancien',
   },
+  online: {
+    en: 'Online',
+    fr: 'En ligne',
+  },
   optional: {
     en: 'optional',
     fr: 'optionnel',
+  },
+  order_details: {
+    en: 'Order Details',
+    fr: 'Détails de la commande',
   },
 
   // P
@@ -526,17 +687,17 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Password',
     fr: 'Mot de passe',
   },
+  pay: {
+    en: 'Pay',
+    fr: 'Payer',
+  },
+  payment: {
+    en: 'Payment Method',
+    fr: 'Méthode de paiement',
+  },
   payment_methods: {
     en: 'Payment Methods',
     fr: 'Méthodes de paiement',
-  },
-  per_user: {
-    en: 'Per User',
-    fr: 'Par Utilisateur',
-  },
-  per_device: {
-    en: 'Per Device',
-    fr: 'Par Appareil',
   },
   performance: {
     en: 'Performance',
@@ -566,6 +727,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Priority',
     fr: 'Priorité',
   },
+  product: {
+    en: 'Product',
+    fr: 'Produit',
+  },
   product_characteristics_title: {
     en: 'Service <title>Characteristics</title>',
     fr: '<title>Caractéristiques</title> du service',
@@ -578,8 +743,16 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Products',
     fr: 'Produits',
   },
+  profile: {
+    en: 'Profile',
+    fr: 'Profil',
+  },
 
   // R
+  reactivate: {
+    en: 'Reactivate',
+    fr: 'Réactiver',
+  },
   region: {
     en: 'Region',
     fr: 'Région',
@@ -596,6 +769,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Register now!',
     fr: 'Inscrivez vous maintenant!',
   },
+  renewed: {
+    en: 'Renewed',
+    fr: 'Renouvelé',
+  },
+  renews_on: {
+    en: 'Renews on',
+    fr: 'Renouvellement le',
+  },
   reset_password: {
     en: 'Reset Password',
     fr: 'Réinitialiser mon mot de passe',
@@ -605,6 +786,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   scalability: {
     en: 'Scalability',
     fr: 'Scalabilité',
+  },
+  search_order: {
+    en: 'Search for orders...',
+    fr: 'Rechercher des commandes...',
   },
   search_product: {
     en: 'Search for products...',
@@ -626,6 +811,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Street Address',
     fr: 'Adresse',
   },
+  subject: {
+    en: 'Subject',
+    fr: 'Sujet',
+  },
   submit: {
     en: 'Submit',
     fr: 'Envoyer',
@@ -637,6 +826,14 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   subscribe_now: {
     en: 'Subscribe Now',
     fr: "S'abonner maintenant",
+  },
+  subscriptions: {
+    en: 'Subscriptions',
+    fr: 'Abonnements',
+  },
+  summary: {
+    en: 'Summary',
+    fr: 'Résumé',
   },
 
   // T
@@ -672,9 +869,53 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
     en: 'Reset link has been sent',
     fr: 'Lien de réinitialisation evnoyé',
   },
+  toast_promotion_none: {
+    en: 'No promotions found',
+    fr: 'Aucune promotion trouvée',
+  },
+  toast_home_text_none: {
+    en: 'No home texts found',
+    fr: "Aucun texte d'accueil trouvé",
+  },
+  toast_category_none: {
+    en: 'No categories found',
+    fr: 'Aucune catégorie trouvée',
+  },
+  toast_characteristic_none: {
+    en: 'No characteristics found',
+    fr: 'Aucune caractéristique trouvée',
+  },
+  toast_product_none: {
+    en: 'No products found',
+    fr: 'Aucun produit trouvé',
+  },
+  toast_payment_failed: {
+    en: 'Payment failed',
+    fr: 'Paiement échoué',
+  },
+  toast_order_success: {
+    en: 'Order placed successfully',
+    fr: 'Commande passée avec succès',
+  },
+  toast_subscription_reactivated: {
+    en: 'Subscription reactivated',
+    fr: 'Abonnement réactivé',
+  },
+  toast_subscription_deactivated: {
+    en: 'Subscription deactivated',
+    fr: 'Abonnement désactivé',
+  },
   top: {
     en: 'Top',
     fr: 'Top',
+  },
+  total: {
+    en: 'Total',
+    fr: 'Total',
+  },
+  try_again: {
+    en: 'Try Again',
+    fr: 'Réessayer',
   },
   type: {
     en: 'Type',
@@ -685,6 +926,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   upload: {
     en: 'Upload',
     fr: 'Upload',
+  },
+  user: {
+    en: 'Per User',
+    fr: 'Par Utilisateur',
   },
   user_info: {
     en: 'User Information',
@@ -701,6 +946,10 @@ const translations: Record<TranslationKey, Record<Language, string>> = {
   yearly: {
     en: 'Yearly',
     fr: 'Annuel',
+  },
+  you: {
+    en: 'You',
+    fr: 'Vous',
   },
 }
 

@@ -1,9 +1,10 @@
+import apiUrl from '$/constants/apiUrl'
 import { Address } from '$/types'
 import { FormField } from '@/types'
+import { apiDelete, apiGet, apiPost, apiPut } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { AddressSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do address related queries
@@ -70,36 +71,16 @@ export function useAddress() {
    * Get all addresses
    */
   async function get() {
-    const addresses: Address[] = [
-      {
-        id: 1,
-        first_name: 'John',
-        last_name: 'Doe',
-        street_address: '123 Main Street',
-        extended_address: 'Apt 4B',
-        locality: 'New York',
-        region: 'NY',
-        postal_code: 10001,
-        country_code: 'US',
-        phone: '5551234567',
-        prefix: '+1',
-      },
-      {
-        id: 2,
-        first_name: 'Marie',
-        last_name: 'Curie',
-        street_address: '456 Rue de la République',
-        extended_address: '',
-        locality: 'Paris',
-        region: 'Île-de-France',
-        postal_code: 75001,
-        country_code: 'FR',
-        phone: '0145678901',
-        prefix: '+33',
-      },
-    ]
+    try {
+      const addresses = await apiGet<Address[]>(apiUrl('address_get_all'))
+      return addresses ?? []
 
-    return addresses ?? []
+      // error
+    } catch (error: any) {
+      console.error('Error fetching addresses:', error)
+      await presentToast(error.message, 'danger')
+      return []
+    }
   }
 
   /**
@@ -108,9 +89,15 @@ export function useAddress() {
    * @param state The state that tracks the new values
    */
   async function create(state: AddressSchema) {
-    state
+    try {
+      await apiPost(apiUrl('address_create'), state)
+      await presentToast(translation('toast_added'), 'success')
 
-    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+      // error
+    } catch (error: any) {
+      console.error('Error creating address:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -120,11 +107,15 @@ export function useAddress() {
    * @param state The state that tracks the new values
    */
   async function modify(id: number, state: AddressSchema) {
-    // api request
-    id
-    state
+    try {
+      await apiPut(apiUrl('address_update', id), state)
+      await presentToast(translation('toast_modified'), 'success')
 
-    await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+      // error
+    } catch (error: any) {
+      console.error('Error modifying address:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -133,10 +124,15 @@ export function useAddress() {
    * @param id The id of the address record
    */
   async function remove(id: number) {
-    // api request
-    id
+    try {
+      await apiDelete(apiUrl('address_delete', id))
+      await presentToast(translation('toast_deleted'), 'success')
 
-    await presentToast(translation('toast_deleted'), 'success', checkmarkCircleOutline)
+      // error
+    } catch (error: any) {
+      console.error('Error deleting address:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   // return all functions

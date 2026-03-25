@@ -1,25 +1,25 @@
 <template>
-  <DefaultContentLayout>
+  <DefaultContentLayout :on-refresh>
     <HeroComponent :title="translation('home_carousel_title')">
       <HomeSwiper :promotions />
     </HeroComponent>
 
     <div class="wrap">
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <TextBox :home-text />
 
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <TitleComponent :text="translation('home_category_title')" color="secondary" />
       <HomeCategoryGrid :categories color="secondary" class="pt-5" />
 
-      <SeparatorComponent size="md" />
+      <SeparatorComponent size="sm" />
 
       <TitleComponent :text="translation('home_product_title')" color="primary" />
       <HomeProductGrid :products color="primary" context="home" class="pt-5" />
 
-      <SeparatorComponent size="md" />
+      <SeparatorComponent size="sm" />
     </div>
   </DefaultContentLayout>
 </template>
@@ -40,7 +40,9 @@ import { useHomeText } from '@/composables/homeText'
 import { useProduct } from '@/composables/product'
 import { usePromotion } from '@/composables/promotion'
 import translation from '@/utils/translation'
-import { onMounted, ref } from 'vue'
+import { App } from '@capacitor/app'
+import { onIonViewWillEnter, RefresherCustomEvent, useBackButton } from '@ionic/vue'
+import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 /* Constants */
@@ -58,19 +60,36 @@ const categories = ref<Category[]>([])
 const products = ref<Product[]>([])
 
 /* Lifecycle Hooks */
-onMounted(async () => {
+onIonViewWillEnter(async () => {
   // if first route is not home, go home then redirect to where needed
   const redirect = route.query.redirect as string | undefined
+
   if (redirect) {
     // remove redirect query
     await router.replace({ path: '/home', query: {} })
 
     await router.push(redirect)
+
+    return
   }
 
-  promotions.value = await promotionComposable.get()
-  homeText.value = await homeTextComposable.get()
-  categories.value = await categoryComposable.get()
-  products.value = await productComposable.top()
+  onRefresh()
+
+  // exit app on back
+  useBackButton(-1, () => {
+    App.exitApp()
+  })
 })
+
+/* Functions */
+async function onRefresh(event?: RefresherCustomEvent) {
+  await Promise.all([
+    promotionComposable.get().then((data) => (promotions.value = data)),
+    homeTextComposable.get().then((data) => (homeText.value = data)),
+    categoryComposable.get().then((data) => (categories.value = data)),
+    productComposable.top().then((data) => (products.value = data)),
+  ])
+
+  event?.target.complete()
+}
 </script>

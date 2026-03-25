@@ -1,10 +1,10 @@
+import apiUrl from '$/constants/apiUrl'
 import { Characteristic, CharacteristicType } from '$/types'
-import characteristicTypes from '@/constants/characteristicTypes'
 import { FormField } from '@/types'
+import { apiDelete, apiGet, apiPost, apiPut } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { CharacteristicSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do characteristic related queries
@@ -44,7 +44,7 @@ export function useCharacteristic() {
       },
       {
         element: 'select',
-        items: characteristicTypes,
+        items: Object.values(CharacteristicType).map((type) => ({ label: type, value: type })),
         itemLabelKey: 'label',
         itemValueKey: 'value',
         name: 'type',
@@ -68,32 +68,51 @@ export function useCharacteristic() {
   }
 
   /**
-   * Get all characteristics
+   * Get all characteristics or by type apparently
    */
   async function get(type?: CharacteristicType) {
-    const characteristics: Characteristic[] = [
-      { id: 1, name: { en: 'High Performance', fr: 'Haute performance' }, type: 'performance' },
-      { id: 2, name: { en: 'Optimized', fr: 'Optimisé' }, type: 'performance' },
-      { id: 3, name: { en: 'Low Latency', fr: 'Faible latence' }, type: 'performance' },
+    try {
+      // get characteristics
+      const characteristics = type
+        ? await apiGet<Characteristic[]>(apiUrl('characteristic_get_by_type', type))
+        : await apiGet<Characteristic[]>(apiUrl('characteristic_get_all'))
 
-      { id: 4, name: { en: 'Highly Scalable', fr: 'Haute scalabilité' }, type: 'scalability' },
-      { id: 5, name: { en: 'Cloud Ready', fr: 'Prêt pour le cloud' }, type: 'scalability' },
-      { id: 6, name: { en: 'Multi-Tenant', fr: 'Multi-locataire' }, type: 'scalability' },
+      // check if empty
+      if (!characteristics || characteristics.length === 0) throw new Error(translation('toast_characteristic_none'))
 
-      { id: 7, name: { en: 'Enterprise Level', fr: 'Niveau entreprise' }, type: 'level' },
-      { id: 8, name: { en: 'SMB Level', fr: 'Niveau PME' }, type: 'level' },
-      { id: 9, name: { en: 'Basic Level', fr: 'Niveau de base' }, type: 'level' },
-    ]
+      // return
+      return characteristics
 
-    return type ? characteristics.filter((characteristic) => characteristic.type === type) : characteristics
+      // error
+    } catch (error: any) {
+      console.error('Error fetching characteristics:', error)
+      await presentToast(error.message, 'danger')
+
+      return []
+    }
   }
 
   /**
    * Find characteristics by id
    */
   async function findMultiple(ids: number[]) {
-    const characteristics = await get()
-    return characteristics.filter((characteristic) => ids.includes(characteristic.id))
+    try {
+      // get characteristics
+      const characteristics = await apiPost<Characteristic[]>(apiUrl('characteristic_get_by_ids'), { ids })
+
+      // check if empty
+      if (!characteristics || characteristics.length === 0) throw new Error(translation('toast_characteristic_none'))
+
+      // return
+      return characteristics
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching characteristic:', error)
+      await presentToast(error.message, 'danger')
+
+      return []
+    }
   }
 
   /**
@@ -102,10 +121,18 @@ export function useCharacteristic() {
    * @param state The state that tracks the new values
    */
   async function create(state: CharacteristicSchema) {
-    // api request
-    state
+    try {
+      // create characteristic
+      await apiPost(apiUrl('characteristic_create'), state)
 
-    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+      // toast
+      await presentToast(translation('toast_added'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching characteristics:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -115,11 +142,18 @@ export function useCharacteristic() {
    * @param state The state that tracks the new values
    */
   async function modify(id: number, state: CharacteristicSchema) {
-    // api request
-    id
-    state
+    try {
+      // create characteristic
+      await apiPut(apiUrl('characteristic_update', id), state)
 
-    await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+      // toast
+      await presentToast(translation('toast_modified'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching characteristics:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -128,10 +162,18 @@ export function useCharacteristic() {
    * @param id The id of the characteristic record
    */
   async function remove(id: number) {
-    // api request
-    id
+    try {
+      // create characteristic
+      await apiDelete(apiUrl('characteristic_delete', id))
 
-    await presentToast(translation('toast_deleted'), 'success', checkmarkCircleOutline)
+      // toast
+      await presentToast(translation('toast_deleted'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error deleting characteristic:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   // return all functions

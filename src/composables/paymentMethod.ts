@@ -1,9 +1,11 @@
+import apiUrl from '$/constants/apiUrl'
 import { PaymentMethod } from '$/types'
 import { FormField } from '@/types'
+import { apiDelete, apiGet, apiPost } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { PaymentMethodSchema } from '@/utils/schemas'
+import { getStripe } from '@/utils/stripe'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do payment method related queries
@@ -13,6 +15,8 @@ export function usePaymentMethod() {
    * Create Payment Method Form Fields
    */
   async function createFields() {
+    const stripe = await getStripe()
+
     return [
       {
         element: 'input',
@@ -20,21 +24,25 @@ export function usePaymentMethod() {
         label: translation('name'),
       },
       {
-        element: 'input',
-        name: 'card_number',
+        element: 'payment',
+        name: 'cardNumber',
         label: translation('card_number'),
-        type: 'number',
+        type: 'cardNumber',
+        instance: stripe,
       },
       {
-        element: 'input',
-        name: 'expiration',
+        element: 'payment',
+        name: 'cardExpiry',
         label: translation('expiration'),
+        type: 'cardExpiry',
+        instance: stripe,
       },
       {
-        element: 'input',
-        name: 'cvv',
+        element: 'payment',
+        name: 'cardCvc',
         label: translation('cvv'),
-        type: 'number',
+        type: 'cardCvc',
+        instance: stripe,
       },
     ] as FormField[]
   }
@@ -43,24 +51,16 @@ export function usePaymentMethod() {
    * Get all payment methods
    */
   async function get() {
-    const hidden = '**** **** ****'
+    try {
+      const methods = await apiGet<PaymentMethod[]>(apiUrl('payment_method_get_all'))
+      return methods ?? []
 
-    const paymentMethods: PaymentMethod[] = [
-      {
-        id: 1,
-        name: 'John Doe',
-        last4: `${hidden} ${'4242'}`,
-        expiration: '12/28',
-      },
-      {
-        id: 2,
-        name: 'Marie Curie',
-        last4: `${hidden} ${'4444'}`,
-        expiration: '07/27',
-      },
-    ]
-
-    return paymentMethods ?? []
+      // error
+    } catch (error: any) {
+      console.error('Error fetching payment methods:', error)
+      await presentToast(error.message, 'danger')
+      return []
+    }
   }
 
   /**
@@ -69,9 +69,18 @@ export function usePaymentMethod() {
    * @param state The state that tracks the new values
    */
   async function create(state: PaymentMethodSchema) {
-    state
+    try {
+      await apiPost<PaymentMethod>(apiUrl('payment_method_create'), {
+        token: state.token,
+        name: state.name,
+      })
+      await presentToast(translation('toast_added'), 'success')
 
-    await presentToast(translation('toast_added'), 'success', checkmarkCircleOutline)
+      // error
+    } catch (error: any) {
+      console.error('Error creating payment method:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   /**
@@ -80,10 +89,15 @@ export function usePaymentMethod() {
    * @param id The id of the payment method record
    */
   async function remove(id: number) {
-    // api request
-    id
+    try {
+      await apiDelete(apiUrl('payment_method_delete', id))
+      await presentToast(translation('toast_deleted'), 'success')
 
-    await presentToast(translation('toast_deleted'), 'success', checkmarkCircleOutline)
+      // error
+    } catch (error: any) {
+      console.error('Error deleting payment method:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   // return all functions

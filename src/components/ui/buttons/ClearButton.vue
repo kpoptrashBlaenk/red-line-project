@@ -7,7 +7,7 @@
     @click="link ? handleRoute(route, router, link) : false"
   >
     {{ label }}
-    <IonIcon v-if="chevron" :icon="chevronForward" class="ms-1" />
+    <IonIcon v-if="chevron || icon" :icon="icon || chevronForward" class="ms-1" />
   </IonButton>
 </template>
 
@@ -26,6 +26,7 @@ defineProps<{
   color: Color
   chevron?: boolean
   form?: string
+  icon?: string
 }>()
 
 /* Constants */

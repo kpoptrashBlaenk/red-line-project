@@ -3,16 +3,16 @@
     <div class="text-white grid grid-cols-1 md:grid-cols-5 gap-5 items-start wrap">
       <!-- Legal Mentions -->
       <div>
-        <RouterLink to="/home">{{ translation('legal_mentions') }}</RouterLink>
+        <RouterLink to="/legal-mentions">{{ translation('legal_mentions') }}</RouterLink>
       </div>
       <!-- General Conditions -->
       <div>
-        <RouterLink to="/home">{{ translation('general_conditions') }}</RouterLink>
+        <RouterLink to="/general-conditions">{{ translation('general_conditions') }}</RouterLink>
       </div>
 
       <!-- Contact -->
       <div>
-        <RouterLink to="/home">{{ translation('contact') }}</RouterLink>
+        <RouterLink to="/contact">{{ translation('contact') }}</RouterLink>
       </div>
 
       <!-- Social Media -->
@@ -29,7 +29,8 @@
 import { Social } from '$/types'
 import { useFooter } from '@/composables/footer'
 import translation from '@/utils/translation'
-import { onMounted, ref } from 'vue'
+import { onIonViewWillEnter } from '@ionic/vue'
+import { ref } from 'vue'
 import DefaultInfoFooter from './DefaultInfoFooter.vue'
 import DefaultSocialsFooter from './DefaultSocialsFooter.vue'
 
@@ -41,8 +42,8 @@ const socials = ref<Social[]>([])
 const infoText = ref<string>('')
 
 /* Lifecycle Hooks */
-onMounted(async () => {
-  socials.value = await getSocials()
-  infoText.value = await getInfoText()
+onIonViewWillEnter(async () => {
+  getSocials().then((data) => (socials.value = data))
+  getInfoText().then((data) => (infoText.value = translation(data)))
 })
 </script>

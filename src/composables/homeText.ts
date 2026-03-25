@@ -1,9 +1,10 @@
+import apiUrl from '$/constants/apiUrl'
 import { HomeText } from '$/types'
 import { FormField } from '@/types'
+import { apiGet, apiPut } from '@/utils/api'
 import presentToast from '@/utils/presentToast'
 import { HomeTextSchema } from '@/utils/schemas'
 import translation from '@/utils/translation'
-import { checkmarkCircleOutline } from 'ionicons/icons'
 
 /**
  * Use this composable to do homeText related queries
@@ -54,17 +55,23 @@ export function useHomeText() {
    * Get all home texts
    */
   async function get() {
-    const homeText: HomeText[] = [
-      {
-        id: 1,
-        text: {
-          en: 'Cyna is a pure player in cybersecurity for SMEs and MSPs. Quality of service is at the heart of our business, where we prioritize expertise, proximity, and speed of execution.',
-          fr: "Cyna est un acteur pur de la cybersécurité pour les PME et les MSP. La qualité de service est au cœur de notre activité, où nous privilégions l'expertise, la proximité et la rapidité d'exécution.",
-        },
-      },
-    ]
+    try {
+      // get home text
+      const homeTexts = await apiGet<HomeText[]>(apiUrl('home_text_get_all'))
 
-    return homeText ?? []
+      // check if empty
+      if (!homeTexts || homeTexts.length === 0) throw new Error(translation('toast_home_text_none'))
+
+      // return
+      return homeTexts
+
+      // error
+    } catch (error: any) {
+      console.error('Error fetching home text:', error)
+      await presentToast(error.message, 'danger')
+
+      return []
+    }
   }
 
   /**
@@ -74,11 +81,18 @@ export function useHomeText() {
    * @param state The state that tracks the new values
    */
   async function modify(id: number, state: HomeTextSchema) {
-    // api request
-    id
-    state
+    try {
+      // create promotion
+      await apiPut(apiUrl('home_text_update', id), state)
 
-    await presentToast(translation('toast_modified'), 'success', checkmarkCircleOutline)
+      // toast
+      await presentToast(translation('toast_modified'), 'success')
+
+      // error
+    } catch (error: any) {
+      console.error('Error updating home text:', error)
+      await presentToast(error.message, 'danger')
+    }
   }
 
   // return all functions

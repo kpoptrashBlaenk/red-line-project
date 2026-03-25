@@ -1,11 +1,11 @@
 <template>
   <DefaultContentLayout>
     <div class="wrap">
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <AuthCard context="reset" :label="translation('reset_password')" :fields :state :schema :on-submit="onSubmit" />
 
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
     </div>
   </DefaultContentLayout>
 </template>

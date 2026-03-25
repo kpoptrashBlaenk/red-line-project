@@ -2,7 +2,7 @@
   <IonModal ref="modal" :is-open>
     <!-- Header -->
     <IonHeader>
-      <IonToolbar color="tertiary" class="px-5">
+      <IonToolbar color="primary" class="px-5">
         <IonTitle> {{ translation('details') }} </IonTitle>
       </IonToolbar>
     </IonHeader>
@@ -16,8 +16,15 @@
     <IonFooter>
       <IonToolbar color="light">
         <div class="flex">
-          <ClearButton :label="'Cancel'" color="dark" size="large" class="flex-1" @click="modal.$el.dismiss()" />
-          <ClearButton :label="'Submit'" color="dark" size="large" form="modal-form" class="flex-1" data-cy="form-modal-submit" />
+          <ClearButton :label="translation('cancel')" color="dark" size="large" class="flex-1" @click="modal.$el.dismiss()" />
+          <ClearButton
+            :label="translation('submit')"
+            color="dark"
+            size="large"
+            form="modal-form"
+            class="flex-1"
+            data-cy="form-modal-submit"
+          />
         </div>
       </IonToolbar>
     </IonFooter>

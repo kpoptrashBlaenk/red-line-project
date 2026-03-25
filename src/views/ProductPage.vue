@@ -1,35 +1,35 @@
 <template>
-  <DefaultContentLayout>
+  <DefaultContentLayout :on-refresh>
     <HeroComponent>
       <div class="wrap">
         <ProductSwiper v-if="product" :product />
 
-        <div class="text-7xl sm:text-8xl font-extrabold text-center text-white my-10">{{ translation(product?.name) }}</div>
+        <div class="text-6xl font-extrabold text-center text-white my-10">{{ translation(product?.name) }}</div>
       </div>
     </HeroComponent>
 
     <div class="wrap">
       <!-- Description -->
-      <SeparatorComponent size="xs" />
+      <SeparatorComponent size="2xs" />
       <ProductDescriptionGrid v-if="product" :product />
 
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <!-- Characteristics -->
       <TitleComponent :text="translation('product_characteristics_title')" color="secondary" />
-      <SeparatorComponent size="xs" />
-      <div class="w-fit mx-auto">
+      <SeparatorComponent size="2xs" />
+      <div class="w-fit">
         <ProductCharacteristicGrid :characteristics />
       </div>
 
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <!-- Price -->
       <TitleComponent :text="translation('product_price_title')" color="primary" />
-      <SeparatorComponent size="xs" />
+      <SeparatorComponent size="2xs" />
       <IonCard color="light" class="py-5 lg:py-10">
         <IonCardContent>
-          <ProductPriceGrid v-if="product" :product />
+          <ProductPriceGrid v-if="product" v-model="draftOrder" :product />
         </IonCardContent>
       </IonCard>
 
@@ -40,15 +40,16 @@
         class="mt-5 mx-auto"
         expand="block"
         :disabled="!product?.disponible"
+        @click="addToCheckout"
       />
 
-      <SeparatorComponent size="sm" />
+      <SeparatorComponent size="xs" />
 
       <!-- Similar Products -->
       <TitleComponent :text="'<title>Similar</title> Products'" color="secondary" />
       <ProductGrid :products="similarProducts" color="secondary" context="category" class="mt-5" />
 
-      <SeparatorComponent size="md" />
+      <SeparatorComponent size="sm" />
     </div>
   </DefaultContentLayout>
 </template>
@@ -66,17 +67,19 @@ import SolidButton from '@/components/ui/buttons/SolidButton.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import TitleComponent from '@/components/ui/text/TitleComponent.vue'
-import { useCharacteristic } from '@/composables/characteristic'
 import { useProduct } from '@/composables/product'
-import { Color } from '@/types'
+import { useCheckoutStore } from '@/stores/checkout'
+import { Color, DraftOrder } from '@/types'
 import shuffle from '@/utils/shuffle'
 import translation from '@/utils/translation'
-import { IonCard, IonCardContent } from '@ionic/vue'
-import { computed, onMounted, reactive, ref } from 'vue'
+import { IonCard, IonCardContent, onIonViewWillEnter, RefresherCustomEvent } from '@ionic/vue'
+import { computed, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
+
+/* Constants */
 const route = useRoute()
 const productComposable = useProduct()
-const characteristicComposable = useCharacteristic()
+const checkoutStore = useCheckoutStore()
 
 /* Refs */
 const product = ref<Product>()
@@ -98,6 +101,7 @@ const characteristics = reactive<{ [key: string]: { title: string; color: Color;
     characteristics: [],
   },
 })
+const draftOrder = ref<DraftOrder>()
 
 /* Computeds */
 const similarProducts = computed(() => {
@@ -105,7 +109,7 @@ const similarProducts = computed(() => {
 
   // products of same category but random order
   const categoryProducts = shuffle(
-    products.value.filter((p) => p.category_id === product.value?.category_id && p.id !== product.value?.id),
+    products.value.filter((p) => p.category.id === product.value?.category.id && p.id !== product.value?.id),
   )
 
   // priority
@@ -126,19 +130,29 @@ const similarProducts = computed(() => {
 })
 
 /* Lifecycle Hooks */
-onMounted(async () => {
+onIonViewWillEnter(onRefresh)
+
+/* Functions */
+function addToCheckout() {
+  if (!product.value || !draftOrder.value) return
+
+  checkoutStore.addOrder(draftOrder.value)
+}
+
+async function onRefresh(event?: RefresherCustomEvent) {
   const id = Number(route.params.id)
   product.value = await productComposable.find(id)
 
-  const characteristicsApi = await characteristicComposable.findMultiple([
-    ...product.value!.characteristics_level_ids,
-    ...product.value!.characteristics_performance_ids,
-    ...product.value!.characteristics_scalability_ids,
-  ])
-  characteristics.performance.characteristics = characteristicsApi.filter((c) => c.type === 'performance')
-  characteristics.scalability.characteristics = characteristicsApi.filter((c) => c.type === 'scalability')
-  characteristics.level.characteristics = characteristicsApi.filter((c) => c.type === 'level')
+  if (!product.value) return
 
-  if (product.value) products.value = await productComposable.getByCategory(product.value.category_id)
-})
+  characteristics.performance.characteristics = product.value.characteristics_performance
+  characteristics.scalability.characteristics = product.value.characteristics_scalability
+  characteristics.level.characteristics = product.value.characteristics_level
+
+  const productByCategoryPromise = productComposable.getByCategory(product.value.category.id).then((data) => {
+    products.value = data
+  })
+
+  await Promise.all([productByCategoryPromise]).then(() => event?.target.complete())
+}
 </script>

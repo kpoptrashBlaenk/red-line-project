@@ -1,14 +1,18 @@
 <template>
-  <DefaultContentLayout>
+  <DefaultContentLayout :on-refresh>
     <HeroComponent :title="translation('categories')" />
 
-    <SeparatorComponent size="sm" />
+    <SeparatorComponent size="xs" />
 
     <div class="wrap">
-      <HomeCategoryGrid :categories color="primary" />
+      <!-- Skeleton -->
+      <HomeCategoryGridSkeleton v-if="!categories || categories.length === 0" color="primary" />
+
+      <!-- Grid -->
+      <HomeCategoryGrid v-else :categories color="primary" />
     </div>
 
-    <SeparatorComponent size="sm" />
+    <SeparatorComponent size="xs" />
   </DefaultContentLayout>
 </template>
 
@@ -17,11 +21,13 @@
 import { Category } from '$/types'
 import HomeCategoryGrid from '@/components/grids/HomeCategoryGrid.vue'
 import DefaultContentLayout from '@/components/layouts/default/DefaultContentLayout.vue'
+import HomeCategoryGridSkeleton from '@/components/skeletons/HomeCategoryGridSkeleton.vue'
 import HeroComponent from '@/components/ui/HeroComponent.vue'
 import SeparatorComponent from '@/components/ui/SeparatorComponent.vue'
 import { useCategory } from '@/composables/category'
 import translation from '@/utils/translation'
-import { onMounted, ref } from 'vue'
+import { onIonViewWillEnter, RefresherCustomEvent } from '@ionic/vue'
+import { ref } from 'vue'
 
 /* Constants */
 const categoryComposable = useCategory()
@@ -30,7 +36,12 @@ const categoryComposable = useCategory()
 const categories = ref<Category[]>([])
 
 /* Lifecycle Hooks */
-onMounted(async () => {
+onIonViewWillEnter(onRefresh)
+
+/* Functions */
+async function onRefresh(event?: RefresherCustomEvent) {
   categories.value = await categoryComposable.get()
-})
+
+  event?.target.complete()
+}
 </script>
