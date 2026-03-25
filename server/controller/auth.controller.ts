@@ -12,58 +12,74 @@ export default class UserController {
         this.authService = new AuthService();
     }
 
-    async create(req: Request, res: Response) {
+    create = async(req: Request, res: Response)=>{
         const userBody = req.body as User;
         try {
-            const existingUser = this.authService.getUserByEmail(userBody.email);
+            const existingUser = await this.authService.getUserByEmail(userBody.email);
 
             if (existingUser != null) {
-            return res.status(400).json({ message: "Email already used" });
+                return res.status(400).json({ message: "Email already used" });
             }
 
             const hashedPassword = await this.authService.cryptPassword(userBody.password);
 
+            userBody.password = hashedPassword;
+
+            const userCreate = await this.authService.createUser(userBody);
+
             const token = jwt.sign(
-            { id: userBody.id, email: userBody.email },
+            { id: userCreate.id, email: userCreate.email },
             SECRET,
             { expiresIn: "1h" }
             );
 
-            userBody.password = hashedPassword;
+            userCreate.token = token;
 
-            //userBody.is_verified = false;
-
-            userBody.token = token;
-
-            const result = this.authService.createUser(userBody);
+            const result = this.authService.updateUserToken(token, userCreate);
 
             res.status(201).json(result)
         } catch (error) {
-            console.error('Error creating new user:', error)
-            res.status(500).json({ error: 'Failed to create new user' })
+            console.error('Error creating new user:', error);
+            res.status(500).json({ error: 'Failed to create new user' });
         }
     }
 
-    async delete(req: Request, res: Response){
-        const userBody = req.body;
+    delete = async(req: Request, res: Response)=>{
+        const authHeader = req.headers.authorization;
+
+        if(!authHeader){
+            return res.status(401).json({ message: "Token manquant" });
+        }
+
+        const token = authHeader.split(" ")[1];
         try {
-           const existingUser = await this.authService.getUserByJWT(userBody.token);
+            const existingUser = await this.authService.getUserByJWT(token);
+
+            console.log("TOKEN:", token);
+            console.log("USER:", existingUser);
 
             if (existingUser == null) {
-                return res.status(400).json({ message: "User doesn't exist" });
+                return res.status(404).json({ message: "User doesn't exist" });
             }
 
-            const result = await this.authService.deleteUser(userBody.id);
+            console.log(existingUser);
 
-            res.status(201).json(result);
+            const result = await this.authService.deleteUser(existingUser.id);
+
+            if (!result) {
+                return res.status(404).json({ message: "User already deleted" });
+            }
+
+            console.log("Arrivé dans createUser, user:", result);
+            res.status(200).json(result);
         } catch (error) {
-            console.error('Error deleting user:', error)
-            res.status(500).json({ error: 'Failed to delete user' })
+            console.error('Error deleting user:', error);
+            res.status(204).json({ error: 'Failed to delete user' });
         }
     }
 
-    async login(req: Request, res: Response){
-        const { email, password} = req.body
+    login = async(req: Request, res: Response)=>{
+        const { email, password} = req.body;
         try {
            const existingUser = await this.authService.getUserByEmail(email);
 
@@ -71,36 +87,20 @@ export default class UserController {
                 return res.status(400).json({ message: "Email doesn't exist" });
             }
 
-            /*if(!existingUser.is_verified){
-                return res.status(500).json({ error: 'User has not verified' });
-            }*/
-
-            const passwordCorrect = this.authService.verifyPassword(password, existingUser.password);
+            const passwordCorrect = await this.authService.verifyPassword(password, existingUser.password);
 
             if(!passwordCorrect){
                 return res.status(500).json({ error: 'Failed to login user' })
             }
 
-            const authHeader = req.headers.authorization;
-
-            if (!authHeader) {
-            return res.status(401).json({ message: "Non autorisé" });
-            }
-
-            const token = authHeader.split(" ")[1];
-
-            const decoded = jwt.verify(token, SECRET!);
-
-            if(decoded){
-                res.status(201).json(existingUser);
-            }
+            res.status(200).json(existingUser);
         } catch (error) {
-            console.error('Error login user:', error)
-            res.status(500).json({ error: 'Failed to login user' })
+            console.error('Error login user:', error);
+            res.status(500).json({ error: 'Fail to login user' });
         }
     }
 
-    async logOut(req: Request, res: Response){
+    logOut = async(req: Request, res: Response)=>{
         const authHeader = req.headers.authorization;
 
         if(!authHeader){
@@ -109,21 +109,26 @@ export default class UserController {
 
         const token = authHeader.split(" ")[1];
 
-        const existingUser = await this.authService.getUserByJWT(token);
+        try {
+            const existingUser = await this.authService.getUserByJWT(token);
 
-        if(existingUser == null){
-            return res.status(400).json({ message: "User doesn't exist" });
-        }
-        
-        const result = await this.authService.updateUserToken(null, existingUser);
+            if(existingUser == null){
+                return res.status(400).json({ message: "User doesn't exist" });
+            }
+            
+            const result = await this.authService.updateUserToken(null, existingUser);
 
-        if (result == null) {
-            return res.status(401).json({ message: "Token invalide" });
+            if (result == null) {
+                return res.status(401).json({ message: "Token invalide" });
+            }
+            res.status(200).json(result);
+        } catch (error) {
+            console.error('Error logout user:', error);
+            res.status(500).json({ error: 'Failed to logout user' });
         }
-        res.json(result);
     }
 
-    async me(req: Request, res: Response){
+    me = async(req: Request, res: Response)=>{
         const authHeader = req.headers.authorization;
 
         if(!authHeader){
@@ -132,56 +137,44 @@ export default class UserController {
 
         const token = authHeader.split(" ")[1];
 
-        const result = await this.authService.getUserByJWT(token);
+        try {
+            const result = await this.authService.getUserByJWT(token);
 
-        if (result == null) {
-            return res.status(401).json({ message: "Token invalide" });
+            if (result == null) {
+                return res.status(401).json({ message: "Token invalide" });
+            }
+
+            res.status(200).json(result);
+        } catch (error) {
+            console.error('Error get user:', error);
+            res.status(500).json({ error: 'Failed to get user' });
         }
-
-        res.json(result);
     }
 
-    async reset(req: Request, res: Response){
+    reset = async(req: Request, res: Response)=>{
         const {password, email} = req.body;
-        try {
-            const existingUser = this.authService.getUserByEmail(email);
 
-            if (existingUser != null) {
-            return res.status(400).json({ message: "User doesn't exist" });
+        const authHeader = req.headers.authorization;
+
+        if(!authHeader){
+            return res.status(401).json({ message: "Token manquant" });
+        }
+
+        try {
+            const existingUser = await this.authService.getUserByEmail(email);
+
+            if (existingUser == null) {
+                return res.status(400).json({ message: "User doesn't exist" });
             }
 
             const cryptedPassword = await this.authService.cryptPassword(password);
 
             const result = await this.authService.updateUserPassword(cryptedPassword, existingUser);
 
-            res.status(201).json(result);
+            res.status(200).json(result);
         } catch (error) {
             console.error('Error reset password:', error);
             res.status(500).json({ error: 'Failed to reset the password' });
         }
     }
-
-    /*async verify(req: Request, res: Response){
-        const authHeader = req.headers.authorization;
-
-        if(!authHeader){
-            return res.status(401).json({ message: "Token manquant" });
-        }
-
-        const token = authHeader.split(" ")[1];
-
-        const existingUser = await this.authService.getUserByJWT(token);
-
-        if(existingUser == null){
-            return res.status(400).json({ message: "User doesn't exist" });
-        }
-
-        const result = await this.authService.updateVerify(true, existingUser);
-
-        if (result == null) {
-            return res.status(401).json({ message: "Token invalide" });
-        }
-
-        res.json(result);
-    }*/
 }

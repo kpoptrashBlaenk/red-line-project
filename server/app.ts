@@ -3,6 +3,7 @@ import express, { type Request, type Response } from 'express';
 import pool from './database/database';
 import categoryRouter from './router/category.route';
 import promotionalRouter from './router/promotional.route';
+import authRouter from './router/auth.route';
 // import { Promotion, PromotionBody } from '$/types';
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.json());
 
 app.use('/api', promotionalRouter);
 app.use('/api', categoryRouter);
+app.use('/api', authRouter);
 
 app.get('/', (req: Request, res: Response) => {
   res.json({ answer: 'Hello from Express!' });

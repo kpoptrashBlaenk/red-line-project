@@ -6,16 +6,14 @@ const controller = new AuthController()
 
 router.post('/auth/register', controller.create);
 
-router.delete('/auth/delete/:token', controller.delete);
+router.delete('/auth/delete', controller.delete);
 
-router.put('/auth/login', controller.login);
+router.get('/auth/login', controller.login);
 
 router.put('/auth/logout', controller.logOut);
 
-router.put('/auth/me/:token', controller.me);
+router.get('/auth/me', controller.me);
 
-router.put('/auth/reset', );
-
-//router.get('/auth/verify/:token', controller.verify);
+router.put('/auth/reset', controller.reset);
 
 export default router
