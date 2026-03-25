@@ -4,7 +4,7 @@
     :class="{ 'opacity-60': note }"
     @click="handleRoute(route, router, link)"
   >
-    <IonImg v-if="image" :src="image" class="h-32 object-cover" />
+    <NgrokImg v-if="image" :src="srcImage(image)" class="h-32 object-cover" />
     <IonCardHeader :color="color" class="p-1">
       <IonCardTitle class="text-center text-2xl!">{{ title }}</IonCardTitle>
       <IonCardTitle v-if="subtitle" class="text-center text-xl!">{{ subtitle }}</IonCardTitle>
@@ -19,8 +19,10 @@
 /* Imports */
 import { Color } from '@/types'
 import handleRoute from '@/utils/handleRoute'
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonImg, IonTitle } from '@ionic/vue'
+import srcImage from '@/utils/srcImage'
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonTitle } from '@ionic/vue'
 import { useRoute, useRouter } from 'vue-router'
+import NgrokImg from '../NgrokImg.vue'
 
 /* Constants */
 const route = useRoute()

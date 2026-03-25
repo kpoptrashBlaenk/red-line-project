@@ -1,7 +1,10 @@
 <template>
   <IonHeader>
     <IonToolbar class="px-5" :color="isScrolled ? '' : 'tertiary'">
-      <LogoComponent slot="start" :light="!isScrolled" />
+      <div class="flex items-center">
+        <LogoComponent slot="start" :light="!isScrolled" />
+        <LanguageButton v-if="isDesktop()" />
+      </div>
 
       <IonButtons slot="end">
         <IonButton fill="clear" size="large" data-cy="search-button" @click="$emit('open:search-modal')">
@@ -31,10 +34,12 @@ import LogoComponent from '@/components/ui/LogoComponent.vue'
 import { useCheckoutStore } from '@/stores/checkout'
 import { useLoadingStore } from '@/stores/loading'
 import handleRoute from '@/utils/handleRoute'
+import isDesktop from '@/utils/isDesktop'
 import { IonBadge, IonButton, IonButtons, IonHeader, IonIcon, IonMenuButton, IonProgressBar, IonToolbar } from '@ionic/vue'
 import { cartOutline, searchOutline } from 'ionicons/icons'
 import { useRoute, useRouter } from 'vue-router'
 import CheckoutCounter from './CheckoutCounter.vue'
+import LanguageButton from './LanguageButton.vue'
 
 /* Props */
 defineProps<{

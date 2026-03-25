@@ -13,7 +13,7 @@
         }"
       >
         <IonReorder v-if="reorder" />
-        <IonImg v-if="image" :src="image(item)" class="w-12" />
+        <NgrokImg v-if="image" :src="srcImage(image(item)!)" class="w-12" />
         <div class="overflow-hidden">
           <div v-if="text" class="truncate text-ellipsis">{{ text(item) }}</div>
           <div v-if="note" class="truncate text-ellipsis text-gray-500 text-sm">{{ note(item) }}</div>
@@ -39,10 +39,12 @@
 <script setup lang="ts">
 /* Imports */
 import apiMethods from '@/constants/apiMethod'
-import { IonIcon, IonImg, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonReorder } from '@ionic/vue'
+import srcImage from '@/utils/srcImage'
+import { IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonReorder } from '@ionic/vue'
 import { pencilOutline, trashBinOutline } from 'ionicons/icons'
 import { ref } from 'vue'
 import ClearButton from '../buttons/ClearButton.vue'
+import NgrokImg from '../NgrokImg.vue'
 
 /* Props */
 defineProps<{

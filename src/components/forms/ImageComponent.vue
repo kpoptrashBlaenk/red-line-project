@@ -4,7 +4,12 @@
       <div v-for="(image, key) in images" :key class="mb-2 relative">
         <IonReorder class="rounded-2xl">
           <div class="flex justify-center">
-            <img v-if="image" :src="image.preview" class="rounded-2xl object-fit border border-primary" />
+            <img
+              v-if="image && image.preview.startsWith('blob')"
+              :src="image.preview"
+              class="rounded-2xl object-fit border border-primary"
+            />
+            <NgrokImg v-else-if="image" :src="srcImage(image.preview)" class="rounded-2xl object-fit border border-primary" />
           </div>
         </IonReorder>
 
@@ -41,14 +46,16 @@
 import maxFileSize from '$/constants/maxFileSize'
 import type { ImageField } from '@/types'
 import isLengthZero from '@/utils/isLengthZero'
+import srcImage from '@/utils/srcImage'
 import translation from '@/utils/translation'
+import { Filesystem } from '@capacitor/filesystem'
 import { FilePicker } from '@capawesome/capacitor-file-picker'
 import { IonButton, IonIcon, IonReorder, IonReorderGroup, ReorderEndCustomEvent } from '@ionic/vue'
 import { closeCircleOutline, cloudUploadOutline } from 'ionicons/icons'
 import { nextTick, ref, toRef, watch } from 'vue'
 import { ZodType } from 'zod'
 import SolidButton from '../ui/buttons/SolidButton.vue'
-import { Filesystem } from '@capacitor/filesystem'
+import NgrokImg from '../ui/NgrokImg.vue'
 
 /* Props */
 const props = defineProps<{
