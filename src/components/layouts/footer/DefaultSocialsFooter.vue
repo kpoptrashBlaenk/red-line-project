@@ -12,7 +12,9 @@ import { Social } from '$/types'
 import { IonIcon } from '@ionic/vue'
 
 /* Props */
-defineProps<{
+const props = defineProps<{
   socials: Social[]
 }>()
+
+console.log(props.socials)
 </script>

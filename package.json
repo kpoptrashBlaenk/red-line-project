@@ -1,7 +1,7 @@
 {
   "name": "red-line",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "serve": "npx ionic serve",
@@ -15,7 +15,8 @@
     "server": "tsx server/server.ts",
     "lint": "eslint .",
     "type-check": "vue-tsc",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "ngrok": "ngrok http 3000"
   },
   "dependencies": {
     "@capacitor/android": "^8.2.0",
@@ -39,6 +40,7 @@
     "ionicons": "^7.0.0",
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.1.1",
+    "ngrok": "^5.0.0-beta.2",
     "node-cron": "^4.2.1",
     "pg": "^8.16.3",
     "pinia": "^3.0.4",

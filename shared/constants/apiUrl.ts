@@ -80,7 +80,7 @@ export const urls = {
  * @param id Replace :id with the actual id in the frontend
  */
 export default function (urlKey: keyof typeof urls, id?: number | string) {
-  const url = `http://localhost:3000/v1${urls[urlKey]}`
+  const url = `${import.meta.env.VITE_SERVER_URL}/v1${urls[urlKey]}`
 
   return id ? url.replace(':id', id.toString()) : url
 }
