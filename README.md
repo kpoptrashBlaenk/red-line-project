@@ -18,6 +18,7 @@
 - [Features](#features)
 - [Testing](#testing)
 - [Contributing](#contributing)
+- [Roadmap](#roadmap)
 - [Team](#team)
 
 ---
@@ -198,6 +199,47 @@ npm run type-check  # Type-check with vue-tsc
 ```
 
 PRs that do not pass all three will not be reviewed.
+
+---
+
+## Roadmap
+
+A chronological overview of the project's development phases and releases.
+
+## Phase 1 — Foundations
+- **28.11 — v0.1.0**: Initialization  
+- **30.11 — v0.2.0**: Layout setup  
+- **01.12 — v0.3.0**: Home page  
+- **04.12 — v0.4.0**: Search page  
+- **05.12 — v0.5.0**: Category page  
+
+## Phase 2 — Core Features
+- **12.01 — v0.6.0**: Tests  
+- **15.01 — v0.7.0**: Product page  
+- **26.01 — v0.8.0**: Registration, login, user page  
+
+## Phase 3 — Checkout System
+- **12.02 — v0.9.0**: Address page  
+- **12.02 — v0.10.0**: Payment method page  
+- **26.02 — v0.11.0**: Checkout page  
+
+## Phase 4 — Product Completion
+- **26.02 — v0.12.0**: Static legal pages  
+- **03.03 — v0.13.0**: Subscriptions page  
+- **03.03 — v0.14.0**: Order history  
+- **03.03 — v0.15.0**: Chatbot  
+
+## Phase 5 — UX & Admin
+- **05.03 — v0.16.0**: Contact form  
+- **05.03 — v0.17.0**: Admin-only access  
+- **05.03 — v0.18.0**: Loading feedback  
+- **10.03 — v0.18.21**: Mobile fixes  
+
+## Phase 6 — Release & Stabilization
+- **15.03 — v1.0.0**: Official release  
+- **15.03 — v1.0.4**: Production fixes  
+- **20.03 — v0.33.0**: Backend catch-up (delay recovery)  
+- **24.03 — v0.34.0**: Automatic renewal payment  
 
 ---
 
