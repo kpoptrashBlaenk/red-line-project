@@ -236,10 +236,10 @@ A chronological overview of the project's development phases and releases.
 - **10.03 — v0.18.21**: Mobile fixes  
 
 ## Phase 6 — Release & Stabilization
-- **15.03 — v1.0.0**: Official release  
-- **15.03 — v1.0.4**: Production fixes  
 - **20.03 — v0.33.0**: Backend catch-up (delay recovery)  
-- **24.03 — v0.34.0**: Automatic renewal payment  
+- **24.03 — v0.34.0**: Automatic renewal payment
+- **25.03 — v1.0.0**: Official release  
+- **25.03 — v1.0.4**: Production fixes  
 
 ---
 
