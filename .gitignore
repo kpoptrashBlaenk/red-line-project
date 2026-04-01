@@ -5,3 +5,5 @@ cypress
 dist
 android
 uploads
+
+resources/android/**/*
