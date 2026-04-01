@@ -4,7 +4,7 @@
     :class="{ 'opacity-60': note }"
     @click="handleRoute(route, router, link)"
   >
-    <NgrokImg v-if="image" :src="srcImage(image)" class="h-32 object-cover" />
+    <NgrokImg v-if="image" :src="srcImage(image)" class="h-32 object-cover w-full" />
     <IonCardHeader :color="color" class="p-1">
       <IonCardTitle class="text-center text-2xl!">{{ title }}</IonCardTitle>
       <IonCardTitle v-if="subtitle" class="text-center text-xl!">{{ subtitle }}</IonCardTitle>

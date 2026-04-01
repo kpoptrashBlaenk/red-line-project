@@ -13,7 +13,7 @@
         }"
       >
         <IonReorder v-if="reorder" />
-        <NgrokImg v-if="image" :src="srcImage(image(item)!)" class="w-12" />
+        <NgrokImg v-if="image" :src="srcImage(image(item)!)" class="w-12 min-w-12" />
         <div class="overflow-hidden">
           <div v-if="text" class="truncate text-ellipsis">{{ text(item) }}</div>
           <div v-if="note" class="truncate text-ellipsis text-gray-500 text-sm">{{ note(item) }}</div>
