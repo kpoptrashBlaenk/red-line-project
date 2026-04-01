@@ -40,7 +40,6 @@ import { useHomeText } from '@/composables/homeText'
 import { useProduct } from '@/composables/product'
 import { usePromotion } from '@/composables/promotion'
 import translation from '@/utils/translation'
-import { App } from '@capacitor/app'
 import { onIonViewWillEnter, RefresherCustomEvent, useBackButton } from '@ionic/vue'
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -77,7 +76,7 @@ onIonViewWillEnter(async () => {
 
   // exit app on back
   useBackButton(-1, () => {
-    App.exitApp()
+    // App.exitApp()
   })
 })
 
