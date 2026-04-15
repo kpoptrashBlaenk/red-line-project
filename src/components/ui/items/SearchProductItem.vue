@@ -22,19 +22,18 @@
       }
     "
   >
-    <div class="grid grid-cols-[80px_1fr_50px] py-3 gap-2 items-start w-full relative">
+    <div class="grid grid-cols-[80px_1fr_65px] py-3 gap-2 w-full relative">
       <div v-if="!product.disponible" class="absolute w-full h-full flex justify-center items-center text-3xl font-bold">
         {{ translation('not_disponible') }}
       </div>
 
       <!-- Image -->
-      <NgrokImg :src="srcImage(product.image[0])" class="my-auto" />
+      <NgrokImg :src="srcImage(product.image[0])" class="my-auto rounded-md" />
 
-      <!-- Name & Category & Description -->
+      <!-- Name & Category -->
       <div>
         <IonLabel class="font-bold text-xl!" color="primary">{{ translation(product.name) }}</IonLabel>
         <IonLabel color="secondary" class="font-bold mb-1">{{ translation(product.category?.name) }}</IonLabel>
-        <div class="text-gray-500 text-sm leading-4">{{ translation(product.description_functionality) }}</div>
       </div>
 
       <!-- Price -->
@@ -43,7 +42,8 @@
       </div>
 
       <!-- Characteristics -->
-      <div class="col-span-3 flex flex-wrap gap-1">
+      <div class="col-span-3 flex flex-wrap gap-1 items-center">
+        <div class="text-gray-500 text-sm leading-4 mb-1">{{ translation(product.description_functionality) }}</div>
         <ChipComponent
           v-for="(characteristic, key) in product.characteristics"
           :key="key"
