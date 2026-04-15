@@ -1,7 +1,7 @@
 <template>
   <Swiper ref="swiper" :space-between="50" grab-cursor :thumbs="{ swiper: thumbsSwiper }" :modules>
-    <SwiperSlide v-for="(image, key) in product.image" :key class="px-5 min-h-52 max-h-52">
-      <NgrokImg :src="srcImage(image)" class="object-cover min-h-52 max-h-52" />
+    <SwiperSlide v-for="(image, key) in product.image" :key class="px-5 min-h-40 max-h-40">
+      <NgrokImg :src="srcImage(image)" class="object-cover min-h-40 max-h-40" />
     </SwiperSlide>
   </Swiper>
 
@@ -15,7 +15,7 @@
       >
         <NgrokImg
           :src="srcImage(image)"
-          class="max-h-24 min-h-24 object-cover"
+          class="max-h-14 min-h-14 object-cover"
           :class="{ 'brightness-70': swiper?.$el.swiper.activeIndex !== key }"
         />
       </SwiperSlide>

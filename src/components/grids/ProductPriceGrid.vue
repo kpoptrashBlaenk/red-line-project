@@ -85,3 +85,14 @@ watch(
   { immediate: true },
 )
 </script>
+
+<style lang="css" scoped>
+ion-item::part(native) {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+ion-radio::part(label) {
+  margin-right: 0;
+}
+</style>

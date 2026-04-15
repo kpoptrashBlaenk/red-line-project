@@ -4,7 +4,7 @@
       <div class="wrap">
         <ProductSwiper v-if="product" :product />
 
-        <div class="text-6xl font-extrabold text-center text-white my-10">{{ translation(product?.name) }}</div>
+        <div class="text-5xl font-extrabold text-center text-white mt-0">{{ translation(product?.name) }}</div>
       </div>
     </HeroComponent>
 
@@ -27,7 +27,7 @@
       <!-- Price -->
       <TitleComponent :text="translation('product_price_title')" color="primary" />
       <SeparatorComponent size="2xs" />
-      <IonCard color="light" class="py-5 lg:py-10">
+      <IonCard color="light" class="py-5 lg:py-10 px-0">
         <IonCardContent>
           <ProductPriceGrid v-if="product" v-model="draftOrder" :product />
         </IonCardContent>
